@@ -19,6 +19,7 @@ namespace StudyBuddy
 
         private void label1_Click(object sender, EventArgs e)
         {
+            //Pakeičiau kažką
             label1.Text = label1.Text + "!";
         }
 
