@@ -21,6 +21,14 @@ namespace StudyBuddy
         {
             label1.Text = label1.Text + "!";
             label1.Text = label1.Text + "!?";
+            label1.Text = label1.Text + "!";
+            label1.Text = label1.Text + "!";
+            label1.Text = label1.Text + "!";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
