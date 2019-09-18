@@ -47,17 +47,39 @@ namespace StudyBuddy
             auth.loginResult = new Authenticator.LoginResult(loginResultCallBack);
         }
         
-        private void loginResultCallBack(bool success, string message)
+        private void loginResultCallBack(Authenticator.authStatus status, LocalUser user)
         {
             if (loginButton.InvokeRequired) // Has to be same thread
             {
-                loginButton.Invoke(new Authenticator.LoginResult(loginResultCallBack), new object[] { success, message });
+                loginButton.Invoke(new Authenticator.LoginResult(loginResultCallBack), new object[] { status, user });
             }
             else
             {
                 loginButton.Enabled = true;
+                string message = "";
+                switch (status)
+                {
+                    case Authenticator.authStatus.usernameEmpty:
+                        message = "Vartotojo vardas negali būti tuščias";
+                        break;
+                    case Authenticator.authStatus.passwordEmpty:
+                        message = "Vartotojo slaptažodis negali būti tuščias";
+                        break;
+                    case Authenticator.authStatus.failedToConnect:
+                        message = "Nepavyko prisijungti prie serverio";
+                        break;
+                    case Authenticator.authStatus.incorrectCredentials:
+                        message = "Neteisingas vartotojo vardas/slaptažodis";
+                        break;
+                    case Authenticator.authStatus.incorrectID://Remember login
+                        message = "Bandykite prisijungti išnaujo";
+                        break;
+                    case Authenticator.authStatus.success:
+                        message = "Success";
+                        break;
+                }
                 statusLabel.Text = message;
-                if (success)
+                if (status == Authenticator.authStatus.success)
                 {
                     //Switch to another form
                     MainForm mainForm = new MainForm(); // Create a the main form and show it

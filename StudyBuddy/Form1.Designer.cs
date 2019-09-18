@@ -92,6 +92,7 @@
             this.Controls.Add(this.passwordField);
             this.Controls.Add(this.usernameField);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Text = "LoginForm";
             this.Load += new System.EventHandler(this.LoginForm_Load);
