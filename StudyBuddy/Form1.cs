@@ -45,6 +45,7 @@ namespace StudyBuddy
         {
             auth = new Authenticator();
             auth.loginResult = new Authenticator.LoginResult(loginResultCallBack);
+            //new Form2().Show();
         }
         
         private void loginResultCallBack(bool success, string message)
