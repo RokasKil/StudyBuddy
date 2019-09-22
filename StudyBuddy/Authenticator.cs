@@ -9,7 +9,17 @@ namespace StudyBuddy
 {
     class Authenticator
     {
-        public delegate void LoginResult(bool success, String message);
+        public enum authStatus
+        {
+            usernameEmpty,
+            passwordEmpty,
+            incorrectCredentials,
+            incorrectID,
+            failedToConnect,
+            success
+        }
+
+        public delegate void LoginResult(authStatus status, LocalUser user);
         private delegate void LoginLogic(string username, string password);
         public LoginResult loginResult;
         private Thread loginThread;
@@ -23,13 +33,13 @@ namespace StudyBuddy
 
             if(String.IsNullOrEmpty(username) || String.IsNullOrWhiteSpace(username))
             {
-                loginResult(false, "Vartotojo vardas negali būti tuščias");
+                loginResult(authStatus.usernameEmpty, null);
                 return;
             }
 
             if (String.IsNullOrEmpty(password) || String.IsNullOrWhiteSpace(password))
             {
-                loginResult(false, "Slaptažodis negali būti tuščias");
+                loginResult(authStatus.passwordEmpty, null);
                 return;
             }
 
@@ -39,11 +49,22 @@ namespace StudyBuddy
 
 
         }
-
+        
         private void loginLogic(string username, string password)
         {
             Thread.Sleep(2000);
-            loginResult(true, "Success");
+            if(username == "test1" && password == "pass1")
+            {
+                loginResult(authStatus.success, new LocalUser() { username = "test", firstName = "Jonas", lastName = "Jonaitis", localKey = "key1" });
+            }
+            else if (username == "test2" && password == "pass2"){
+                loginResult(authStatus.success, new LocalUser() { username = "kitasTest", firstName = "Petras", lastName = "Petraitis", localKey = "key2" });
+            }
+            else
+            {
+                loginResult(authStatus.incorrectCredentials, null);
+            }
+
         }
     }
 }
