@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ Class responsible for handling karma 
+ */
 namespace StudyBuddy
 {
-    public class User
+   static class KarmaHandler
     {
-        //Fill this as we go along;
-        public string firstName;
-        public string lastName;
-        public string username;
+        //stuff happening here
     }
 }
