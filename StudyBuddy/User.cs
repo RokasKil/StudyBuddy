@@ -12,5 +12,6 @@ namespace StudyBuddy
         public string firstName;
         public string lastName;
         public string username;
+        public string profilePictureLocation;
     }
 }

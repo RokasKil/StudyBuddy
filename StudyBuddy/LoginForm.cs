@@ -33,6 +33,10 @@ namespace StudyBuddy
         {
             SendMessage(usernameField.Handle, EM_SETCUEBANNER, 0, "Vartotojas");// Kviečia low level nustatymą (Pretty much black magic kurią kažkada reiks pakeist)
             SendMessage(passwordField.Handle, EM_SETCUEBANNER, 0, "Slaptažodis");
+
+            //ChangeProfilePictureForm f = new ChangeProfilePictureForm();
+            //f.Show();
+
         }
 
         private void loginButton_Click(object sender, EventArgs e)
