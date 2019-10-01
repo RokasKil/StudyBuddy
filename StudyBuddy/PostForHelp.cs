@@ -24,7 +24,7 @@ namespace StudyBuddy
 
         private void PostForHelp_Load(object sender, EventArgs e)
         {
-
+            SendMessage(titleBox.Handle, EM_SETCUEBANNER, 0, "Pavadinimas");
         }
 
         private void button1_Click(object sender, EventArgs e)
