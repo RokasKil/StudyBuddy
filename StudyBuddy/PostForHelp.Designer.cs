@@ -28,39 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ComboBox kategorijos;
-            this.button1 = new System.Windows.Forms.Button();
+            this.kategorijos = new System.Windows.Forms.ComboBox();
+            this.okButton = new System.Windows.Forms.Button();
             this.tekstoLangas = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            kategorijos = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(506, 337);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 45);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // kategorijos
             // 
-            kategorijos.FormattingEnabled = true;
-            kategorijos.Items.AddRange(new object[] {
+            this.kategorijos.FormattingEnabled = true;
+            this.kategorijos.Items.AddRange(new object[] {
             "Kopiuterių Architektūra",
             "Matematinė Analizė",
             "Algoritmų Teorija",
             "Diskrečioji Matematika",
             "Logika"});
-            kategorijos.Location = new System.Drawing.Point(199, 46);
-            kategorijos.MinimumSize = new System.Drawing.Size(10, 0);
-            kategorijos.Name = "kategorijos";
-            kategorijos.Size = new System.Drawing.Size(430, 24);
-            kategorijos.TabIndex = 1;
-            kategorijos.Text = "Pasirinkti...";
-            kategorijos.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.kategorijos.Location = new System.Drawing.Point(12, 12);
+            this.kategorijos.MinimumSize = new System.Drawing.Size(10, 0);
+            this.kategorijos.Name = "kategorijos";
+            this.kategorijos.Size = new System.Drawing.Size(430, 24);
+            this.kategorijos.TabIndex = 1;
+            this.kategorijos.Text = "Pasirinkti...";
+            this.kategorijos.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // okButton
+            // 
+            this.okButton.Location = new System.Drawing.Point(320, 306);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(123, 45);
+            this.okButton.TabIndex = 0;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // tekstoLangas
             // 
@@ -68,7 +67,7 @@
             this.tekstoLangas.AcceptsTab = true;
             this.tekstoLangas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tekstoLangas.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tekstoLangas.Location = new System.Drawing.Point(199, 101);
+            this.tekstoLangas.Location = new System.Drawing.Point(13, 70);
             this.tekstoLangas.Multiline = true;
             this.tekstoLangas.Name = "tekstoLangas";
             this.tekstoLangas.Size = new System.Drawing.Size(430, 230);
@@ -77,7 +76,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(199, 75);
+            this.textBox1.Location = new System.Drawing.Point(13, 42);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(429, 22);
             this.textBox1.TabIndex = 3;
@@ -87,11 +86,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(464, 364);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.tekstoLangas);
-            this.Controls.Add(kategorijos);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.kategorijos);
+            this.Controls.Add(this.okButton);
             this.Name = "PostForHelp";
             this.Text = "Seach for help";
             this.Load += new System.EventHandler(this.PostForHelp_Load);
@@ -102,8 +101,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.TextBox tekstoLangas;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox kategorijos;
     }
 }
