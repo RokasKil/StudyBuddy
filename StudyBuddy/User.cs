@@ -13,5 +13,6 @@ namespace StudyBuddy
         public string lastName;
         public string username;
         public string profilePictureLocation;
+        public int karmaPoints { get; protected set; }
     }
 }

@@ -43,7 +43,7 @@ namespace StudyBuddy
 
         }
 
-        private void ProgressBar1_Update(int add)
+        private void ProgressBar1_Update(int add) // Perdaryt su nauja klase karmai ir delegatais
         {
             //When the profile is liked, add karma points
             //If the profile is disliked, take away karma points

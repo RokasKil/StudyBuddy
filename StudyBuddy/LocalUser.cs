@@ -9,8 +9,7 @@ namespace StudyBuddy
      public class LocalUser : User
     {
         public string localKey;
-        public int karmaPoints { get; private set; }
-        public Boolean advise { get; set; } = false;
+        public bool advise { get; set; } = false;
         public LocalUser()
         {
             karmaPoints = 100;
