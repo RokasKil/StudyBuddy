@@ -58,7 +58,7 @@ namespace StudyBuddy
                 loginResult(authStatus.success, new LocalUser() { username = "test", firstName = "Jonas", lastName = "Jonaitis", localKey = "key1" });
             }
             else if (username == "test2" && password == "pass2"){
-                loginResult(authStatus.success, new LocalUser() { username = "kitasTest", firstName = "Petras", lastName = "Petraitis", localKey = "key2" });
+                loginResult(authStatus.success, new LocalUser() { username = "kitasTest", firstName = "Petras", lastName = "Petraitis", localKey = "key2", isLecturer = true });
             }
             else
             {

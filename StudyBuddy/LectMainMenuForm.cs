@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace StudyBuddy
 {
-    public partial class MainMenuForm : Form
+    public partial class LectMainMenuForm : Form
     {
         LocalUser localUser;
-        public MainMenuForm(LocalUser localUser)
+        public LectMainMenuForm(LocalUser localUser)
         {
             this.localUser = localUser;
             InitializeComponent();

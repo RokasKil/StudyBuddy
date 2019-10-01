@@ -87,7 +87,7 @@ namespace StudyBuddy
                 if (status == Authenticator.authStatus.success)
                 {
                     //Switch to another form
-                    MainMenuForm mainForm = new MainMenuForm(user); // Create a the main form and show it
+                    StudMainMenuForm mainForm = new StudMainMenuForm(user); // Create a the main form and show it
                     mainForm.Show();
                     this.Hide();    // Hide this one
                     mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
