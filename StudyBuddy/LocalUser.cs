@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace StudyBuddy
 {
-    class LocalUser : User
+     public class LocalUser : User
     {
         public string localKey;
+        public bool advise { get; set; } = false;
+        public LocalUser()
+        {
+            karmaPoints = 100;
+            //Will have to probably take this from the database or
+            //KarmaHandler class
+        }
+
     }
 }

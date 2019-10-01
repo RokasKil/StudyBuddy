@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace StudyBuddy
 {
-    class User
+    public class User
     {
         //Fill this as we go along;
         public string firstName;
         public string lastName;
         public string username;
         public string profilePictureLocation;
+        public int karmaPoints { get; protected set; }
     }
 }
