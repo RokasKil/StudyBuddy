@@ -58,11 +58,11 @@
     <Compile Include="ConversationHistoryPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="messageForm.cs">
+    <Compile Include="MessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="messageForm.Designer.cs">
-      <DependentUpon>messageForm.cs</DependentUpon>
+    <Compile Include="MessageForm.Designer.cs">
+      <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="KarmaHandler.cs" />
     <Compile Include="ChangeProfilePictureForm.cs">
@@ -102,8 +102,8 @@
     <EmbeddedResource Include="ConversationHistoryPanel.resx">
       <DependentUpon>ConversationHistoryPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="messageForm.resx">
-      <DependentUpon>messageForm.cs</DependentUpon>
+    <EmbeddedResource Include="MessageForm.resx">
+      <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
