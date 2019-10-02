@@ -1,6 +1,6 @@
 ﻿namespace StudyBuddy
 {
-    partial class MainMenuForm
+    partial class StudMainMenuForm
     {
         /// <summary>
         /// Required designer variable.

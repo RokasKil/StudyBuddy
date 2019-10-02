@@ -10,13 +10,14 @@ using System.Windows.Forms;
 
 namespace StudyBuddy
 {
-    public partial class MainMenuForm : Form
+    public partial class StudMainMenuForm : Form
     {
         LocalUser localUser;
-        public MainMenuForm(LocalUser localUser)
+        public StudMainMenuForm(LocalUser localUser)
         {
             this.localUser = localUser;
             InitializeComponent();
+            this.Text = "Main menu";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -53,8 +54,8 @@ namespace StudyBuddy
         private void Button1_Click(object sender, EventArgs e)
         {
             //User nustatomas property kad jis siuo metu gali padeti kitiems
-            localUser.advise = !localUser.advise;
-            if (localUser.advise)
+            localUser.Advise = !localUser.Advise;
+            if (localUser.Advise)
                 adviseButton.BackColor = Color.Green;
             else
                 adviseButton.BackColor = Color.Yellow;
