@@ -14,8 +14,12 @@ namespace StudyBuddy
         [STAThread]
         static void Main()
         {
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            // un comment if you want to try messaging
+            //Application.Run(new messageForm());
+
             Application.Run(new LoginForm());
         }
     }
