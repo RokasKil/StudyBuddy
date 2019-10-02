@@ -54,8 +54,8 @@ namespace StudyBuddy
         private void Button1_Click(object sender, EventArgs e)
         {
             //User nustatomas property kad jis siuo metu gali padeti kitiems
-            localUser.advise = !localUser.advise;
-            if (localUser.advise)
+            localUser.Advise = !localUser.Advise;
+            if (localUser.Advise)
                 adviseButton.BackColor = Color.Green;
             else
                 adviseButton.BackColor = Color.Yellow;
