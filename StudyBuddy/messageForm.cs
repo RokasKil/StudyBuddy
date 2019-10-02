@@ -100,8 +100,9 @@ namespace StudyBuddy
 
                     ASCIIEncoding eEncoding = new ASCIIEncoding();
                     string receivedMessage = eEncoding.GetString(receivedData);
-
-                    messageListBox.Invoke((MethodInvoker)delegate { messageListBox.Items.Add("Other: " + receivedMessage); });
+                    // Iš kitų thread NEGALIMA liesti controls
+                    // Reikia naudoti Invoke metodą
+                    messageListBox.Invoke((MethodInvoker) delegate { messageListBox.Items.Add("Other: " + receivedMessage); }); 
 
                 }
 
