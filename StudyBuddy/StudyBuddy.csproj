@@ -48,6 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authenticator.cs" />
+    <Compile Include="Conversation.cs" />
+    <Compile Include="ConversationHistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConversationHistoryForm.Designer.cs">
+      <DependentUpon>ConversationHistoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConversationHistoryPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="KarmaHandler.cs" />
     <Compile Include="ChangeProfilePictureForm.cs">
       <SubType>Form</SubType>
@@ -79,6 +89,12 @@
     <Compile Include="User.cs" />
     <EmbeddedResource Include="ChangeProfilePictureForm.resx">
       <DependentUpon>ChangeProfilePictureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConversationHistoryForm.resx">
+      <DependentUpon>ConversationHistoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConversationHistoryPanel.resx">
+      <DependentUpon>ConversationHistoryPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
