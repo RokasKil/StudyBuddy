@@ -58,6 +58,12 @@
     <Compile Include="ConversationHistoryPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="HelpRequestListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpRequestListForm.Designer.cs">
+      <DependentUpon>HelpRequestListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConversationHistoryPanel.resx">
       <DependentUpon>ConversationHistoryPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpRequestListForm.resx">
+      <DependentUpon>HelpRequestListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
