@@ -36,6 +36,8 @@
             this.adviseButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,11 +122,33 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 15);
             this.toolStripStatusLabel1.Click += new System.EventHandler(this.ToolStripStatusLabel1_Click);
             // 
-            // MainMenuForm
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(16, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(187, 37);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "LECTURER";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(24, 69);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(237, 92);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Create new topic";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
+            // 
+            // LectMainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 808);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.adviseButton);
             this.Controls.Add(this.label3);
@@ -133,7 +157,7 @@
             this.Controls.Add(this.karmaProgressBar);
             this.Controls.Add(this.greetingsLabel);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "MainMenuForm";
+            this.Name = "LectMainMenuForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.statusStrip1.ResumeLayout(false);
@@ -153,5 +177,7 @@
         private System.Windows.Forms.Button adviseButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

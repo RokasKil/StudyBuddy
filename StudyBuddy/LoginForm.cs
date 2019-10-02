@@ -84,7 +84,15 @@ namespace StudyBuddy
                         break;
                 }
                 statusLabel.Text = message;
-                if (status == Authenticator.authStatus.success)
+                if ((status == Authenticator.authStatus.success)&&(user.isLecturer))
+                {
+                    //Switch to another form
+                    LectMainMenuForm mainForm = new LectMainMenuForm(user); // Create a the main form and show it
+                    mainForm.Show();
+                    this.Hide();    // Hide this one
+                    mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
+                }
+                else
                 {
                     //Switch to another form
                     StudMainMenuForm mainForm = new StudMainMenuForm(user); // Create a the main form and show it
@@ -92,7 +100,8 @@ namespace StudyBuddy
                     this.Hide();    // Hide this one
                     mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
                 }
-            }
+
+            }   
         }
     }
 }

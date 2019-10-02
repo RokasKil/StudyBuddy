@@ -17,6 +17,7 @@ namespace StudyBuddy
         {
             this.localUser = localUser;
             InitializeComponent();
+            this.Text = "Main menu";
         }
 
         private void MainForm_Load(object sender, EventArgs e)

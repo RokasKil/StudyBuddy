@@ -13,10 +13,12 @@ namespace StudyBuddy
     public partial class LectMainMenuForm : Form
     {
         LocalUser localUser;
+        
         public LectMainMenuForm(LocalUser localUser)
         {
             this.localUser = localUser;
             InitializeComponent();
+            this.Text = "Main menu";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -68,6 +70,12 @@ namespace StudyBuddy
         private void Label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Button1_Click_1(object sender, EventArgs e)
+        {
+            TopicListForm topicListForm = new TopicListForm();
+            topicListForm.Show();
         }
     }   
 }
