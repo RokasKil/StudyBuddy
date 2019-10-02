@@ -55,10 +55,10 @@ namespace StudyBuddy
             Thread.Sleep(2000);
             if(username == "test1" && password == "pass1")
             {
-                loginResult(authStatus.success, new LocalUser() { username = "test", firstName = "Jonas", lastName = "Jonaitis", localKey = "key1", isLecturer = false });
+                loginResult(authStatus.success, new LocalUser() { username = "test", firstName = "Jonas", lastName = "Jonaitis", localKey = "key1", IsLecturer = false });
             }
             else if (username == "test2" && password == "pass2"){
-                loginResult(authStatus.success, new LocalUser() { username = "kitasTest", firstName = "Petras", lastName = "Petraitis", localKey = "key2", isLecturer = true });
+                loginResult(authStatus.success, new LocalUser() { username = "kitasTest", firstName = "Petras", lastName = "Petraitis", localKey = "key2", IsLecturer = true });
             }
             else
             {

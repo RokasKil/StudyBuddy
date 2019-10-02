@@ -84,7 +84,7 @@ namespace StudyBuddy
                         break;
                 }
                 statusLabel.Text = message;
-                if ((status == Authenticator.authStatus.success)&&(user.isLecturer))
+                if ((status == Authenticator.authStatus.success)&&(user.IsLecturer))
                 {
                     //Switch to another form
                     LectMainMenuForm mainForm = new LectMainMenuForm(user); // Create a the main form and show it
