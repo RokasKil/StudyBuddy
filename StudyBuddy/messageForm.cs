@@ -12,11 +12,11 @@ using System.Net;
 using System.Net.Sockets;
 namespace StudyBuddy
 {
-    public partial class messageForm : Form
+    public partial class MessageForm : Form
     {
         Socket sck;
         EndPoint epLocal, epRemote;
-        public messageForm()
+        public MessageForm()
         {
             InitializeComponent();
 
@@ -100,8 +100,9 @@ namespace StudyBuddy
 
                     ASCIIEncoding eEncoding = new ASCIIEncoding();
                     string receivedMessage = eEncoding.GetString(receivedData);
-
-                    messageListBox.Items.Add("Other: "+ receivedMessage);
+                    // Iš kitų thread NEGALIMA liesti controls
+                    // Reikia naudoti Invoke metodą
+                    messageListBox.Invoke((MethodInvoker) delegate { messageListBox.Items.Add("Other: " + receivedMessage); }); 
 
                 }
 

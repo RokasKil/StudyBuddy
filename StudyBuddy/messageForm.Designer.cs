@@ -1,6 +1,6 @@
 ﻿namespace StudyBuddy
 {
-    partial class messageForm
+    partial class MessageForm
     {
         /// <summary>
         /// Required designer variable.
