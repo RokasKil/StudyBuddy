@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace StudyBuddy
 {
@@ -11,16 +8,17 @@ namespace StudyBuddy
     {
         public enum authStatus
         {
-            usernameEmpty,
-            passwordEmpty,
-            incorrectCredentials,
-            incorrectID,
-            failedToConnect,
-            success
+            UsernameEmpty,
+            PasswordEmpty,
+            InvalidUsernameOrPassword,
+            InvalidPrivateKey,
+            Success,
+            JsonReadException,
+            FailedToConnect,
+            UnknownError
         }
 
         public delegate void LoginResult(authStatus status, LocalUser user);
-        private delegate void LoginLogic(string username, string password);
         public LoginResult loginResult;
         private Thread loginThread;
 
@@ -33,13 +31,13 @@ namespace StudyBuddy
 
             if(String.IsNullOrEmpty(username) || String.IsNullOrWhiteSpace(username))
             {
-                loginResult(authStatus.usernameEmpty, null);
+                loginResult(authStatus.UsernameEmpty, null);
                 return;
             }
 
             if (String.IsNullOrEmpty(password) || String.IsNullOrWhiteSpace(password))
             {
-                loginResult(authStatus.passwordEmpty, null);
+                loginResult(authStatus.PasswordEmpty, null);
                 return;
             }
 
@@ -52,19 +50,30 @@ namespace StudyBuddy
         
         private void loginLogic(string username, string password)
         {
-            Thread.Sleep(2000);
-            if(username == "test1" && password == "pass1")
+            JObject obj = new APICaller("auth.php").addParam("username", username).addParam("password", password).call();
+            if(obj["status"].ToString() == "success")
             {
-                loginResult(authStatus.success, new LocalUser() { username = "test", firstName = "Jonas", lastName = "Jonaitis", localKey = "key1", IsLecturer = false });
-            }
-            else if (username == "test2" && password == "pass2"){
-                loginResult(authStatus.success, new LocalUser() { username = "kitasTest", firstName = "Petras", lastName = "Petraitis", localKey = "key2", IsLecturer = true });
+                LocalUser localUser = new LocalUser
+                {
+                    username = obj["user"]["username"].ToString(),
+                    firstName = obj["user"]["firstName"].ToString(),
+                    lastName = obj["user"]["lastName"].ToString(),
+                    KarmaPoints = obj["user"]["karmaPoints"].ToObject<int>(),
+                    IsLecturer = Convert.ToBoolean(obj["user"]["lecturer"].ToObject<int>()),
+                    privateKey = obj["user"]["privateKey"].ToString(),
+                };
+                loginResult(authStatus.Success, localUser);
             }
             else
             {
-                loginResult(authStatus.incorrectCredentials, null);
+                authStatus status = authStatus.UnknownError;
+                if (!Enum.TryParse<authStatus>(obj["message"].ToString(), out status))
+                {
+                    status = authStatus.UnknownError;
+                }
+                loginResult(status, null);
             }
-
         }
+        
     }
 }

@@ -33,7 +33,8 @@ namespace StudyBuddy
         {
             SendMessage(usernameField.Handle, EM_SETCUEBANNER, 0, "Vartotojas");// Kviečia low level nustatymą (Pretty much black magic kurią kažkada reiks pakeist)
             SendMessage(passwordField.Handle, EM_SETCUEBANNER, 0, "Slaptažodis");
-            new ConversationHistoryForm().Show();
+            //new ConversationHistoryForm().Show();
+            
             //ChangeProfilePictureForm f = new ChangeProfilePictureForm();
             //f.Show();
 
@@ -64,43 +65,47 @@ namespace StudyBuddy
                 string message = "";
                 switch (status)
                 {
-                    case Authenticator.authStatus.usernameEmpty:
+                    case Authenticator.authStatus.UsernameEmpty:
                         message = "Vartotojo vardas negali būti tuščias";
                         break;
-                    case Authenticator.authStatus.passwordEmpty:
+                    case Authenticator.authStatus.PasswordEmpty:
                         message = "Vartotojo slaptažodis negali būti tuščias";
                         break;
-                    case Authenticator.authStatus.failedToConnect:
+                    case Authenticator.authStatus.FailedToConnect:
                         message = "Nepavyko prisijungti prie serverio";
                         break;
-                    case Authenticator.authStatus.incorrectCredentials:
+                    case Authenticator.authStatus.InvalidUsernameOrPassword:
                         message = "Neteisingas vartotojo vardas/slaptažodis";
                         break;
-                    case Authenticator.authStatus.incorrectID://Remember login
+                    case Authenticator.authStatus.InvalidPrivateKey://Remember login
                         message = "Bandykite prisijungti išnaujo";
                         break;
-                    case Authenticator.authStatus.success:
+                    case Authenticator.authStatus.Success:
                         message = "Success";
+                        break;
+                    default:
+                        message = "Kažkas nepavyko";
                         break;
                 }
                 statusLabel.Text = message;
-                if ((status == Authenticator.authStatus.success)&&(user.IsLecturer))
+                if ((status == Authenticator.authStatus.Success))
                 {
-                    //Switch to another form
-                    LectMainMenuForm mainForm = new LectMainMenuForm(user); // Create a the main form and show it
-                    mainForm.Show();
-                    this.Hide();    // Hide this one
-                    mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
+                    if (user.IsLecturer) {
+                        //Switch to another form
+                        LectMainMenuForm mainForm = new LectMainMenuForm(user); // Create a the main form and show it
+                        mainForm.Show();
+                        this.Hide();    // Hide this one
+                        mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
+                    }
+                    else
+                    {
+                        //Switch to another form
+                        StudMainMenuForm mainForm = new StudMainMenuForm(user); // Create a the main form and show it
+                        mainForm.Show();
+                        this.Hide();    // Hide this one
+                        mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
+                    }
                 }
-                else
-                {
-                    //Switch to another form
-                    StudMainMenuForm mainForm = new StudMainMenuForm(user); // Create a the main form and show it
-                    mainForm.Show();
-                    this.Hide();    // Hide this one
-                    mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
-                }
-
             }   
         }
     }

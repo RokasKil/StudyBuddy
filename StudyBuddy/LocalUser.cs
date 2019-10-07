@@ -8,14 +8,11 @@ namespace StudyBuddy
 {
      public class LocalUser : User
     {
-        public string localKey;
+        public string privateKey;
         public bool Advise { get; set; } = false;
         public LocalUser()
         {
-            karmaPoints = 100;
-            //Will have to probably take this from the database or
-            //KarmaHandler class
+            
         }
-
     }
 }

@@ -24,7 +24,7 @@ namespace StudyBuddy
         {
             toolStripStatusLabel1.Text = DateTime.Now.ToLongDateString();
             greetingsLabel.Text = "Welcome back, " + localUser.firstName + " :)";
-            karmaProgressBar.Value = localUser.karmaPoints;
+            karmaProgressBar.Value = localUser.KarmaPoints;
             progressLabel.Text = "Your karma progress is " + karmaProgressBar.Value
                 + "/" + karmaProgressBar.Maximum;
         }
