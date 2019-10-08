@@ -7,15 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StudyBuddy.Entity;
 
 namespace StudyBuddy
 {
     public partial class ChangeProfilePictureForm : Form
     {
         string[] imageFormats = { ".jpg", ".jpeg", ".jpe", ".jfif", ".png"};
+        private LocalUser localUser;
+
         public ChangeProfilePictureForm()
         {
             InitializeComponent();
+        }
+
+        public ChangeProfilePictureForm(LocalUser localUser)
+        {
+            this.localUser = localUser;
+            InitializeComponent();
+            this.Text = "Keisti profilio nuotrauką";
         }
 
         private void ChangeProfilePictureForm_DragEnter(object sender, DragEventArgs e)
@@ -89,6 +99,13 @@ namespace StudyBuddy
             {
                 uploadButton.Enabled = true;
             }
+        }
+
+        private void ChangeProfilePictureForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            EditProfile editProfile1 = new EditProfile(localUser);
+            editProfile1.Show();
+            this.Hide();
         }
     }
 }

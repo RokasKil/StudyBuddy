@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Profile\EditProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\EditProfile.Designer.cs">
+      <DependentUpon>EditProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\HelpRequest.cs" />
     <Compile Include="Network\APICaller.cs" />
@@ -71,10 +77,10 @@
       <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="KarmaHandler.cs" />
-    <Compile Include="ChangeProfilePictureForm.cs">
+    <Compile Include="Profile\ChangeProfilePictureForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangeProfilePictureForm.Designer.cs">
+    <Compile Include="Profile\ChangeProfilePictureForm.Designer.cs">
       <DependentUpon>ChangeProfilePictureForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
@@ -107,11 +113,11 @@
     <Compile Include="PostForHelp.designer.cs">
       <DependentUpon>PostForHelp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Profile.cs">
+    <Compile Include="Profile\ProfileForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Profile.Designer.cs">
-      <DependentUpon>Profile.cs</DependentUpon>
+    <Compile Include="Profile\ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,7 +128,7 @@
       <DependentUpon>TopicListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\User.cs" />
-    <EmbeddedResource Include="ChangeProfilePictureForm.resx">
+    <EmbeddedResource Include="Profile\ChangeProfilePictureForm.resx">
       <DependentUpon>ChangeProfilePictureForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConversationHistoryForm.resx">
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConversationHistoryPanel.resx">
       <DependentUpon>ConversationHistoryPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile\EditProfile.resx">
+      <DependentUpon>EditProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
@@ -146,8 +155,8 @@
     <EmbeddedResource Include="PostForHelp.resx">
       <DependentUpon>PostForHelp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Profile.resx">
-      <DependentUpon>Profile.cs</DependentUpon>
+    <EmbeddedResource Include="Profile\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
