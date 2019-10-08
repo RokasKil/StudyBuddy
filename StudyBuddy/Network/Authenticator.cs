@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
+using StudyBuddy.Entity;
 using System;
 using System.Threading;
 
-namespace StudyBuddy
+namespace StudyBuddy.Network
 {
     class Authenticator
     {
-        public enum authStatus
+        public enum AuthStatus
         {
             UsernameEmpty,
             PasswordEmpty,
@@ -15,12 +16,17 @@ namespace StudyBuddy
             Success,
             JsonReadException,
             FailedToConnect,
-            UnknownError
+            UnknownError,
+            FieldsMissing
         }
 
-        public delegate void LoginResult(authStatus status, LocalUser user);
-        public LoginResult loginResult;
+        public delegate void LoginResultDelegate(AuthStatus status, LocalUser user);
+        public LoginResultDelegate LoginResult { get; set; }
         private Thread loginThread;
+        public Authenticator() { }
+        public Authenticator(LoginResultDelegate loginResult) {
+            LoginResult = loginResult;
+        }
 
         public void login(string username, string password)
         {
@@ -31,17 +37,16 @@ namespace StudyBuddy
 
             if(String.IsNullOrEmpty(username) || String.IsNullOrWhiteSpace(username))
             {
-                loginResult(authStatus.UsernameEmpty, null);
+                LoginResult(AuthStatus.UsernameEmpty, null);
                 return;
             }
 
             if (String.IsNullOrEmpty(password) || String.IsNullOrWhiteSpace(password))
             {
-                loginResult(authStatus.PasswordEmpty, null);
+                LoginResult(AuthStatus.PasswordEmpty, null);
                 return;
             }
-
-            //TODO: write actual logic need a server tho and stuff
+            
             loginThread = new Thread(() => loginLogic(username, password)); // There's probably a better way
             loginThread.Start();
 
@@ -62,16 +67,16 @@ namespace StudyBuddy
                     IsLecturer = Convert.ToBoolean(obj["user"]["lecturer"].ToObject<int>()),
                     privateKey = obj["user"]["privateKey"].ToString(),
                 };
-                loginResult(authStatus.Success, localUser);
+                LoginResult(AuthStatus.Success, localUser);
             }
             else
             {
-                authStatus status = authStatus.UnknownError;
-                if (!Enum.TryParse<authStatus>(obj["message"].ToString(), out status))
+                AuthStatus status = AuthStatus.UnknownError;
+                if (!Enum.TryParse<AuthStatus>(obj["message"].ToString(), out status))
                 {
-                    status = authStatus.UnknownError;
+                    status = AuthStatus.UnknownError;
                 }
-                loginResult(status, null);
+                LoginResult(status, null);
             }
         }
         

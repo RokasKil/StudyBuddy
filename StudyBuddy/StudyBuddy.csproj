@@ -50,9 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APICaller.cs" />
-    <Compile Include="Authenticator.cs" />
-    <Compile Include="Conversation.cs" />
+    <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\HelpRequest.cs" />
+    <Compile Include="Network\APICaller.cs" />
+    <Compile Include="Network\Authenticator.cs" />
+    <Compile Include="Entity\Conversation.cs" />
     <Compile Include="ConversationHistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,7 +83,12 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalUser.cs" />
+    <Compile Include="Entity\LocalUser.cs" />
+    <Compile Include="Network\CategoriesGetter.cs" />
+    <Compile Include="Network\CategoryManager.cs" />
+    <Compile Include="Network\HelpRequestGetter.cs" />
+    <Compile Include="Network\HelpRequestManager.cs" />
+    <Compile Include="Network\UserGetter.cs" />
     <Compile Include="StudMainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,7 +121,7 @@
     <Compile Include="TopicListForm.Designer.cs">
       <DependentUpon>TopicListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
+    <Compile Include="Entity\User.cs" />
     <EmbeddedResource Include="ChangeProfilePictureForm.resx">
       <DependentUpon>ChangeProfilePictureForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudyBuddy
+namespace StudyBuddy.Entity
 {
      public class LocalUser : User
     {

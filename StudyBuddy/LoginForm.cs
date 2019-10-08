@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StudyBuddy.Entity;
+using StudyBuddy.Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,14 +52,14 @@ namespace StudyBuddy
         private void LoginForm_Load(object sender, EventArgs e)
         {
             auth = new Authenticator();
-            auth.loginResult = new Authenticator.LoginResult(loginResultCallBack);
+            auth.LoginResult = new Authenticator.LoginResultDelegate(loginResultCallBack);
         }
         
-        private void loginResultCallBack(Authenticator.authStatus status, LocalUser user)
+        private void loginResultCallBack(Authenticator.AuthStatus status, LocalUser user)
         {
             if (loginButton.InvokeRequired) // Has to be same thread
             {
-                loginButton.Invoke(new Authenticator.LoginResult(loginResultCallBack), new object[] { status, user });
+                loginButton.Invoke(new Authenticator.LoginResultDelegate(loginResultCallBack), new object[] { status, user });
             }
             else
             {
@@ -65,22 +67,22 @@ namespace StudyBuddy
                 string message = "";
                 switch (status)
                 {
-                    case Authenticator.authStatus.UsernameEmpty:
+                    case Authenticator.AuthStatus.UsernameEmpty:
                         message = "Vartotojo vardas negali būti tuščias";
                         break;
-                    case Authenticator.authStatus.PasswordEmpty:
+                    case Authenticator.AuthStatus.PasswordEmpty:
                         message = "Vartotojo slaptažodis negali būti tuščias";
                         break;
-                    case Authenticator.authStatus.FailedToConnect:
+                    case Authenticator.AuthStatus.FailedToConnect:
                         message = "Nepavyko prisijungti prie serverio";
                         break;
-                    case Authenticator.authStatus.InvalidUsernameOrPassword:
+                    case Authenticator.AuthStatus.InvalidUsernameOrPassword:
                         message = "Neteisingas vartotojo vardas/slaptažodis";
                         break;
-                    case Authenticator.authStatus.InvalidPrivateKey://Remember login
+                    case Authenticator.AuthStatus.InvalidPrivateKey://Remember login
                         message = "Bandykite prisijungti išnaujo";
                         break;
-                    case Authenticator.authStatus.Success:
+                    case Authenticator.AuthStatus.Success:
                         message = "Success";
                         break;
                     default:
@@ -88,7 +90,7 @@ namespace StudyBuddy
                         break;
                 }
                 statusLabel.Text = message;
-                if ((status == Authenticator.authStatus.Success))
+                if ((status == Authenticator.AuthStatus.Success))
                 {
                     if (user.IsLecturer) {
                         //Switch to another form

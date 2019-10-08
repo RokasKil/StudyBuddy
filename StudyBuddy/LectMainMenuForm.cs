@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StudyBuddy.Entity;
+using StudyBuddy.Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +21,8 @@ namespace StudyBuddy
             this.localUser = localUser;
             InitializeComponent();
             this.Text = "Main menu";
+            
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
