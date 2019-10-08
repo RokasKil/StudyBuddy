@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StudyBuddy.Entity;
+using StudyBuddy.Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,13 +21,15 @@ namespace StudyBuddy
             this.localUser = localUser;
             InitializeComponent();
             this.Text = "Main menu";
+            
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = DateTime.Now.ToLongDateString();
             greetingsLabel.Text = "Welcome back, " + localUser.firstName + " :)";
-            karmaProgressBar.Value = localUser.karmaPoints;
+            karmaProgressBar.Value = localUser.KarmaPoints;
             progressLabel.Text = "Your karma progress is " + karmaProgressBar.Value
                 + "/" + karmaProgressBar.Maximum;
         }
