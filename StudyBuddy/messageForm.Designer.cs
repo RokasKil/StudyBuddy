@@ -28,187 +28,128 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.clientGroupBox1 = new System.Windows.Forms.GroupBox();
-            this.portLabel1 = new System.Windows.Forms.Label();
-            this.ipLabel1 = new System.Windows.Forms.Label();
-            this.portTextBox1 = new System.Windows.Forms.TextBox();
-            this.ipTextBox1 = new System.Windows.Forms.TextBox();
-            this.clientGroupBox2 = new System.Windows.Forms.GroupBox();
-            this.portLabel2 = new System.Windows.Forms.Label();
-            this.ipLabe2 = new System.Windows.Forms.Label();
-            this.portTextBox2 = new System.Windows.Forms.TextBox();
-            this.ipTextBox2 = new System.Windows.Forms.TextBox();
-            this.messageListBox = new System.Windows.Forms.ListBox();
-            this.writeMessagetextBox = new System.Windows.Forms.TextBox();
-            this.startButton = new System.Windows.Forms.Button();
-            this.sendButton = new System.Windows.Forms.Button();
-            this.clientGroupBox1.SuspendLayout();
-            this.clientGroupBox2.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.chat = new System.Windows.Forms.RichTextBox();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // clientGroupBox1
+            // panel1
             // 
-            this.clientGroupBox1.Controls.Add(this.portLabel1);
-            this.clientGroupBox1.Controls.Add(this.ipLabel1);
-            this.clientGroupBox1.Controls.Add(this.portTextBox1);
-            this.clientGroupBox1.Controls.Add(this.ipTextBox1);
-            this.clientGroupBox1.Location = new System.Drawing.Point(90, 56);
-            this.clientGroupBox1.Name = "clientGroupBox1";
-            this.clientGroupBox1.Size = new System.Drawing.Size(253, 119);
-            this.clientGroupBox1.TabIndex = 0;
-            this.clientGroupBox1.TabStop = false;
-            this.clientGroupBox1.Text = "Client1";
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(573, 69);
+            this.panel1.TabIndex = 2;
             // 
-            // portLabel1
+            // label2
             // 
-            this.portLabel1.AutoSize = true;
-            this.portLabel1.Location = new System.Drawing.Point(23, 62);
-            this.portLabel1.Name = "portLabel1";
-            this.portLabel1.Size = new System.Drawing.Size(34, 17);
-            this.portLabel1.TabIndex = 3;
-            this.portLabel1.Text = "Port";
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.label2.Location = new System.Drawing.Point(89, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(196, 29);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Username";
             // 
-            // ipLabel1
+            // pictureBox1
             // 
-            this.ipLabel1.AutoSize = true;
-            this.ipLabel1.Location = new System.Drawing.Point(23, 25);
-            this.ipLabel1.Name = "ipLabel1";
-            this.ipLabel1.Size = new System.Drawing.Size(20, 17);
-            this.ipLabel1.TabIndex = 2;
-            this.ipLabel1.Text = "IP";
+            this.pictureBox1.Location = new System.Drawing.Point(7, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
-            // portTextBox1
+            // panel2
             // 
-            this.portTextBox1.Location = new System.Drawing.Point(91, 62);
-            this.portTextBox1.Name = "portTextBox1";
-            this.portTextBox1.Size = new System.Drawing.Size(156, 22);
-            this.portTextBox1.TabIndex = 1;
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.richTextBox3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 449);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(573, 42);
+            this.panel2.TabIndex = 3;
             // 
-            // ipTextBox1
+            // button1
             // 
-            this.ipTextBox1.Location = new System.Drawing.Point(91, 22);
-            this.ipTextBox1.Name = "ipTextBox1";
-            this.ipTextBox1.Size = new System.Drawing.Size(156, 22);
-            this.ipTextBox1.TabIndex = 0;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button1.Location = new System.Drawing.Point(476, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 42);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Siųsti";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // clientGroupBox2
+            // richTextBox3
             // 
-            this.clientGroupBox2.Controls.Add(this.portLabel2);
-            this.clientGroupBox2.Controls.Add(this.ipLabe2);
-            this.clientGroupBox2.Controls.Add(this.portTextBox2);
-            this.clientGroupBox2.Controls.Add(this.ipTextBox2);
-            this.clientGroupBox2.Location = new System.Drawing.Point(403, 56);
-            this.clientGroupBox2.Name = "clientGroupBox2";
-            this.clientGroupBox2.Size = new System.Drawing.Size(237, 119);
-            this.clientGroupBox2.TabIndex = 1;
-            this.clientGroupBox2.TabStop = false;
-            this.clientGroupBox2.Text = "Client2";
+            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox3.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(573, 42);
+            this.richTextBox3.TabIndex = 4;
+            this.richTextBox3.Text = "";
             // 
-            // portLabel2
+            // panel3
             // 
-            this.portLabel2.AutoSize = true;
-            this.portLabel2.Location = new System.Drawing.Point(10, 62);
-            this.portLabel2.Name = "portLabel2";
-            this.portLabel2.Size = new System.Drawing.Size(34, 17);
-            this.portLabel2.TabIndex = 3;
-            this.portLabel2.Text = "Port";
+            this.panel3.Controls.Add(this.chat);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 69);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(573, 380);
+            this.panel3.TabIndex = 4;
             // 
-            // ipLabe2
+            // chat
             // 
-            this.ipLabe2.AutoSize = true;
-            this.ipLabe2.Location = new System.Drawing.Point(7, 26);
-            this.ipLabe2.Name = "ipLabe2";
-            this.ipLabe2.Size = new System.Drawing.Size(20, 17);
-            this.ipLabe2.TabIndex = 2;
-            this.ipLabe2.Text = "IP";
+            this.chat.BackColor = System.Drawing.Color.MintCream;
+            this.chat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.chat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chat.Enabled = false;
+            this.chat.Location = new System.Drawing.Point(0, 0);
+            this.chat.Name = "chat";
+            this.chat.ReadOnly = true;
+            this.chat.Size = new System.Drawing.Size(573, 380);
+            this.chat.TabIndex = 0;
+            this.chat.Text = "";
+
             // 
-            // portTextBox2
-            // 
-            this.portTextBox2.Location = new System.Drawing.Point(73, 62);
-            this.portTextBox2.Name = "portTextBox2";
-            this.portTextBox2.Size = new System.Drawing.Size(147, 22);
-            this.portTextBox2.TabIndex = 1;
-            // 
-            // ipTextBox2
-            // 
-            this.ipTextBox2.Location = new System.Drawing.Point(73, 26);
-            this.ipTextBox2.Name = "ipTextBox2";
-            this.ipTextBox2.Size = new System.Drawing.Size(147, 22);
-            this.ipTextBox2.TabIndex = 0;
-            // 
-            // messageListBox
-            // 
-            this.messageListBox.FormattingEnabled = true;
-            this.messageListBox.ItemHeight = 16;
-            this.messageListBox.Location = new System.Drawing.Point(90, 209);
-            this.messageListBox.Name = "messageListBox";
-            this.messageListBox.Size = new System.Drawing.Size(609, 132);
-            this.messageListBox.TabIndex = 2;
-            // 
-            // writeMessagetextBox
-            // 
-            this.writeMessagetextBox.Location = new System.Drawing.Point(90, 393);
-            this.writeMessagetextBox.Name = "writeMessagetextBox";
-            this.writeMessagetextBox.Size = new System.Drawing.Size(501, 22);
-            this.writeMessagetextBox.TabIndex = 3;
-            // 
-            // startButton
-            // 
-            this.startButton.Location = new System.Drawing.Point(674, 92);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(91, 43);
-            this.startButton.TabIndex = 4;
-            this.startButton.Text = "Start";
-            this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
-            // 
-            // sendButton
-            // 
-            this.sendButton.Location = new System.Drawing.Point(609, 372);
-            this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(90, 43);
-            this.sendButton.TabIndex = 5;
-            this.sendButton.Text = "Send";
-            this.sendButton.UseVisualStyleBackColor = true;
-            this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
-            // 
-            // messageForm
+            // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.sendButton);
-            this.Controls.Add(this.startButton);
-            this.Controls.Add(this.writeMessagetextBox);
-            this.Controls.Add(this.messageListBox);
-            this.Controls.Add(this.clientGroupBox2);
-            this.Controls.Add(this.clientGroupBox1);
-            this.Name = "messageForm";
-            this.Text = "Form1";
-            this.clientGroupBox1.ResumeLayout(false);
-            this.clientGroupBox1.PerformLayout();
-            this.clientGroupBox2.ResumeLayout(false);
-            this.clientGroupBox2.PerformLayout();
+            this.ClientSize = new System.Drawing.Size(573, 491);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Name = "MessageForm";
+            this.Text = "Pokalbiai";
+            this.Load += new System.EventHandler(this.MessageForm_Load);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox clientGroupBox1;
-        private System.Windows.Forms.Label portLabel1;
-        private System.Windows.Forms.Label ipLabel1;
-        private System.Windows.Forms.TextBox portTextBox1;
-        private System.Windows.Forms.TextBox ipTextBox1;
-        private System.Windows.Forms.GroupBox clientGroupBox2;
-        private System.Windows.Forms.Label portLabel2;
-        private System.Windows.Forms.Label ipLabe2;
-        private System.Windows.Forms.TextBox portTextBox2;
-        private System.Windows.Forms.TextBox ipTextBox2;
-        private System.Windows.Forms.ListBox messageListBox;
-        private System.Windows.Forms.TextBox writeMessagetextBox;
-        private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.Button sendButton;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.RichTextBox chat;
     }
 }
