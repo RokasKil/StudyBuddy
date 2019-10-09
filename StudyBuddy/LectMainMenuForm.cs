@@ -1,13 +1,6 @@
 ﻿using StudyBuddy.Entity;
-using StudyBuddy.Network;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StudyBuddy
@@ -85,6 +78,17 @@ namespace StudyBuddy
         private void ButtonConversations_Click(object sender, EventArgs e)
         {
             FormOpener.OpenForm(new ConversationHistoryForm());
+        }
+
+        private void CheckProfileButton_Click(object sender, EventArgs e)
+        {
+            //Switch to another form
+            ProfileForm profileForm = new ProfileForm(localUser, localUser); // Create profile form and show it
+            profileForm.Show();
+
+            checkProfileButton.Enabled = false;
+            profileForm.FormClosed += (a, b) => { checkProfileButton.Enabled = true; };
+            //checkProfileButton.Enabled = false; // prevents from opening a bunch of the same windows
         }
     }   
 }

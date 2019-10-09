@@ -103,6 +103,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ChangeProfilePictureForm";
             this.Text = "Profilio nuotrauka";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChangeProfilePictureForm_FormClosed);
             this.Load += new System.EventHandler(this.ChangeProfilePictureForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ChangeProfilePictureForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ChangeProfilePictureForm_DragEnter);
