@@ -58,6 +58,13 @@
     </Compile>
     <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\HelpRequest.cs" />
+    <Compile Include="FormOpener.cs" />
+    <Compile Include="HelpRequestDisplayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpRequestDisplayerForm.Designer.cs">
+      <DependentUpon>HelpRequestDisplayerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Network\APICaller.cs" />
     <Compile Include="Network\Authenticator.cs" />
     <Compile Include="Entity\Conversation.cs" />
@@ -107,11 +114,11 @@
     <Compile Include="LectMainMenuForm.Designer.cs">
       <DependentUpon>LectMainMenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PostForHelp.cs">
+    <Compile Include="PostForHelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PostForHelp.designer.cs">
-      <DependentUpon>PostForHelp.cs</DependentUpon>
+    <Compile Include="PostForHelpForm.designer.cs">
+      <DependentUpon>PostForHelpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Profile\ProfileForm.cs">
       <SubType>Form</SubType>
@@ -139,6 +146,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Profile\EditProfile.resx">
       <DependentUpon>EditProfile.cs</DependentUpon>
+    <EmbeddedResource Include="HelpRequestDisplayerForm.resx">
+      <DependentUpon>HelpRequestDisplayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
@@ -152,8 +161,8 @@
     <EmbeddedResource Include="LectMainMenuForm.resx">
       <DependentUpon>LectMainMenuForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PostForHelp.resx">
-      <DependentUpon>PostForHelp.cs</DependentUpon>
+    <EmbeddedResource Include="PostForHelpForm.resx">
+      <DependentUpon>PostForHelpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Profile\ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>

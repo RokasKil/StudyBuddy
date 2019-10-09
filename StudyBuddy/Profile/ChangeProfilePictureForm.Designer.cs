@@ -40,7 +40,7 @@
             // 
             this.pictureBox.BackColor = System.Drawing.SystemColors.ControlDark;
             this.pictureBox.Location = new System.Drawing.Point(16, 15);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(333, 308);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -71,7 +71,7 @@
             // browseButton
             // 
             this.browseButton.Location = new System.Drawing.Point(16, 340);
-            this.browseButton.Margin = new System.Windows.Forms.Padding(4);
+            this.browseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.browseButton.Name = "browseButton";
             this.browseButton.Size = new System.Drawing.Size(100, 28);
             this.browseButton.TabIndex = 3;
@@ -83,7 +83,7 @@
             // 
             this.uploadButton.Enabled = false;
             this.uploadButton.Location = new System.Drawing.Point(217, 340);
-            this.uploadButton.Margin = new System.Windows.Forms.Padding(4);
+            this.uploadButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uploadButton.Name = "uploadButton";
             this.uploadButton.Size = new System.Drawing.Size(131, 28);
             this.uploadButton.TabIndex = 4;
@@ -100,7 +100,7 @@
             this.Controls.Add(this.browseButton);
             this.Controls.Add(this.dragAndDropOverlay);
             this.Controls.Add(this.pictureBox);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ChangeProfilePictureForm";
             this.Text = "Profilio nuotrauka";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChangeProfilePictureForm_FormClosed);

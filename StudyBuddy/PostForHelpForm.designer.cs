@@ -1,6 +1,6 @@
 ﻿namespace StudyBuddy
 {
-    partial class PostForHelp
+    partial class PostForHelpForm
     {
         /// <summary>
         /// Required designer variable.

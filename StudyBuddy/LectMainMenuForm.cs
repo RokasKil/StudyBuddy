@@ -13,7 +13,7 @@ namespace StudyBuddy
         {
             this.localUser = localUser;
             InitializeComponent();
-            this.Text = "Main menu";
+            this.Text = "Pagrindinis meniu";
             
 
         }
@@ -21,9 +21,10 @@ namespace StudyBuddy
         private void MainForm_Load(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = DateTime.Now.ToLongDateString();
-            greetingsLabel.Text = "Welcome back, " + localUser.firstName + " :)";
+            greetingsLabel.Text = "Labas, " +
+                localUser.firstName.Substring(0, localUser.firstName.Length - 2) + "ai" + " :)";
             karmaProgressBar.Value = localUser.KarmaPoints;
-            progressLabel.Text = "Your karma progress is " + karmaProgressBar.Value
+            progressLabel.Text = "Tavo progresas " + karmaProgressBar.Value
                 + "/" + karmaProgressBar.Maximum;
         }
 
@@ -71,8 +72,12 @@ namespace StudyBuddy
 
         private void Button1_Click_1(object sender, EventArgs e)
         {
-            TopicListForm topicListForm = new TopicListForm();
-            topicListForm.Show();
+            FormOpener.OpenForm(new TopicListForm());
+        }
+
+        private void ButtonConversations_Click(object sender, EventArgs e)
+        {
+            FormOpener.OpenForm(new ConversationHistoryForm());
         }
 
         private void CheckProfileButton_Click(object sender, EventArgs e)
