@@ -78,7 +78,7 @@ namespace StudyBuddy
 
         private void Button1_Click_1(object sender, EventArgs e)
         {
-            FormOpener.OpenForm(new PostForHelp());
+            FormOpener.OpenForm(new PostForHelpForm());
         }
 
         private void ButtonTopic_Click(object sender, EventArgs e)
