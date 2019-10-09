@@ -146,6 +146,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Profile\EditProfile.resx">
       <DependentUpon>EditProfile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HelpRequestDisplayerForm.resx">
       <DependentUpon>HelpRequestDisplayerForm.cs</DependentUpon>
     </EmbeddedResource>
