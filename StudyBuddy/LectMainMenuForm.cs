@@ -78,8 +78,11 @@ namespace StudyBuddy
         private void CheckProfileButton_Click(object sender, EventArgs e)
         {
             //Switch to another form
-            ProfileForm profileForm = new ProfileForm(localUser); // Create profile form and show it
+            ProfileForm profileForm = new ProfileForm(localUser, localUser); // Create profile form and show it
             profileForm.Show();
+
+            checkProfileButton.Enabled = false;
+            profileForm.FormClosed += (a, b) => { checkProfileButton.Enabled = true; };
             //checkProfileButton.Enabled = false; // prevents from opening a bunch of the same windows
         }
     }   

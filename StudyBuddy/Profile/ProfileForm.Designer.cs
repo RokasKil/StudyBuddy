@@ -36,6 +36,8 @@
             this.karmaProgressBar = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
             this.status = new System.Windows.Forms.Label();
+            this.writeMessageButton = new System.Windows.Forms.Button();
+            this.leaveReviewButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,6 +46,7 @@
             this.profilePicture.Location = new System.Drawing.Point(58, 50);
             this.profilePicture.Name = "profilePicture";
             this.profilePicture.Size = new System.Drawing.Size(190, 184);
+            this.profilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profilePicture.TabIndex = 0;
             this.profilePicture.TabStop = false;
             // 
@@ -109,11 +112,31 @@
             this.status.TabIndex = 1;
             this.status.Text = "status";
             // 
+            // writeMessageButton
+            // 
+            this.writeMessageButton.Location = new System.Drawing.Point(58, 415);
+            this.writeMessageButton.Name = "writeMessageButton";
+            this.writeMessageButton.Size = new System.Drawing.Size(190, 40);
+            this.writeMessageButton.TabIndex = 12;
+            this.writeMessageButton.Text = "Parašyti žinutę";
+            this.writeMessageButton.UseVisualStyleBackColor = true;
+            // 
+            // leaveReviewButton
+            // 
+            this.leaveReviewButton.Location = new System.Drawing.Point(58, 461);
+            this.leaveReviewButton.Name = "leaveReviewButton";
+            this.leaveReviewButton.Size = new System.Drawing.Size(190, 40);
+            this.leaveReviewButton.TabIndex = 13;
+            this.leaveReviewButton.Text = "Palikti atsiliepimą";
+            this.leaveReviewButton.UseVisualStyleBackColor = true;
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 510);
+            this.ClientSize = new System.Drawing.Size(300, 516);
+            this.Controls.Add(this.leaveReviewButton);
+            this.Controls.Add(this.writeMessageButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.karmaProgressBar);
             this.Controls.Add(this.firstName);
@@ -141,5 +164,7 @@
         private System.Windows.Forms.ProgressBar karmaProgressBar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label status;
+        private System.Windows.Forms.Button writeMessageButton;
+        private System.Windows.Forms.Button leaveReviewButton;
     }
 }

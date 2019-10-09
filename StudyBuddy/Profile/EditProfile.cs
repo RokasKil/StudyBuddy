@@ -31,13 +31,20 @@ namespace StudyBuddy
         {
             username.Text = localUser.username;
             name.Text = localUser.firstName + " " + localUser.lastName;
+            profilePicture.ImageLocation = localUser.profilePictureLocation;
         }
 
         private void ChangeProfPicButton_Click(object sender, EventArgs e)
         {
             ChangeProfilePictureForm picChangeForm = new ChangeProfilePictureForm(localUser);
             picChangeForm.Show();
-            this.Close();
+            this.Hide();
+
+            picChangeForm.FormClosed += (a, b) =>
+            {
+                this.EditProfile_Load(a, b);
+                this.Show();
+            };
         }
     }
 }

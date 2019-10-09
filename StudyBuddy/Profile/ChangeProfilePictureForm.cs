@@ -13,7 +13,7 @@ namespace StudyBuddy
 {
     public partial class ChangeProfilePictureForm : Form
     {
-        string[] imageFormats = { ".jpg", ".jpeg", ".jpe", ".jfif", ".png"};
+        string[] imageFormats = { ".jpg", ".jpeg", ".jpe", ".jfif", ".png", ".exe"};
         private LocalUser localUser;
 
         public ChangeProfilePictureForm()
@@ -36,6 +36,7 @@ namespace StudyBuddy
                 // Tikranama ar tinkama failo galūnė
                 if (files.Length != 1 || !imageFormats.Any(ext => files[0].EndsWith(ext, StringComparison.CurrentCultureIgnoreCase)))
                 {
+                    Console.WriteLine(files[0]);
                     e.Effect = DragDropEffects.None;
 
                 }
@@ -103,9 +104,8 @@ namespace StudyBuddy
 
         private void ChangeProfilePictureForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            EditProfile editProfile1 = new EditProfile(localUser);
-            editProfile1.Show();
-            this.Hide();
+           // EditProfile editProfile1 = new EditProfile(localUser);
+            //editProfile1.Show();
         }
     }
 }
