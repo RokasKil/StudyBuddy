@@ -29,7 +29,7 @@ namespace StudyBuddy.Network
         public HelpRequestManagerDelegate RemoveHelpRequestResult { get; set; }
         public string PrivateKey { get; set; }
         private Thread helpRequestManagerThread;
-
+        
         public HelpRequestManager() : this("") { }
         public HelpRequestManager(LocalUser user) : this(user.privateKey) { }
         public HelpRequestManager(string privateKey)

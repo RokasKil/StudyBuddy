@@ -21,6 +21,7 @@ namespace StudyBuddy
         public ConversationHistoryForm()
         {
             InitializeComponent();
+            this.Text = "Pokalbiai";
         }
         bool loading = true;
         private void ConversationHistoryForm_Load(object sender, EventArgs e)
