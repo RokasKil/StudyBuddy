@@ -58,7 +58,7 @@ namespace StudyBuddy
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            //User nustatomas property kad jis siuo metu gali padeti kitiems
+            //User nustatomas property, kad jis siuo metu gali padeti kitiems
             localUser.Advise = !localUser.Advise;
             if (localUser.Advise)
                 adviseButton.BackColor = Color.Green;
@@ -75,9 +75,29 @@ namespace StudyBuddy
         {
 
         }
+        private void CheckProfileButton_Click(object sender, EventArgs e)
+        {
+            //Switch to another form
+            ProfileForm profileForm = new ProfileForm(localUser, localUser); // Create profile form and show it
+            profileForm.Show();
+
+            checkProfileButton.Enabled = false;
+            profileForm.FormClosed += (a, b) => { checkProfileButton.Enabled = true; };
+            /*
+            new UserGetter(localUser, (a, b) => {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    ProfileForm profileForm = new ProfileForm(localUser, b);
+                    profileForm.Show();
+                });
+            }).get("tekst2");
+            */
+            //checkProfileButton.Enabled = false; // prevents from opening a bunch of the same windows
+        }
 
         private void Button1_Click_1(object sender, EventArgs e)
         {
+
             FormOpener.OpenForm(new PostForHelpForm());
         }
 
