@@ -156,9 +156,6 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessageForm.resx">
-      <DependentUpon>MessageForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="StudMainMenuForm.resx">
       <DependentUpon>StudMainMenuForm.cs</DependentUpon>
     </EmbeddedResource>
