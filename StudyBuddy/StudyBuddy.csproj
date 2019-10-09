@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\HelpRequest.cs" />
+    <Compile Include="FormOpener.cs" />
     <Compile Include="HelpRequestDisplayerForm.cs">
       <SubType>Form</SubType>
     </Compile>

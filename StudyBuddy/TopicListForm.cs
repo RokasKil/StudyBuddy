@@ -15,6 +15,11 @@ namespace StudyBuddy
         public TopicListForm()
         {
             InitializeComponent();
+            this.Text = "Kurti naują temą";
+            /*foreach (ColumnHeader column in listView.Columns)
+            {
+                column.Width = -1;
+            }*/
         }
 
         private void TopicListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -62,10 +67,15 @@ namespace StudyBuddy
             if (string.IsNullOrEmpty(TopicTextBox.Text))
                 return;
             ListViewItem item = new ListViewItem(TopicTextBox.Text);
-            item.SubItems.Add(TopicTextBox.Text);
+            item.SubItems.Add(DateTime.Now.ToString("yyyy-mm-dd HH:mm"));
             listView.Items.Add(item);
             TopicTextBox.Clear();
             TopicTextBox.Focus();
+
+        }
+
+        private void TopicListForm_Load(object sender, EventArgs e)
+        {
 
         }
     }
