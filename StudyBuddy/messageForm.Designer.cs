@@ -114,14 +114,15 @@
             this.chat.BackColor = System.Drawing.Color.MintCream;
             this.chat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chat.Enabled = false;
             this.chat.Location = new System.Drawing.Point(0, 0);
             this.chat.Name = "chat";
             this.chat.ReadOnly = true;
             this.chat.Size = new System.Drawing.Size(573, 380);
             this.chat.TabIndex = 0;
             this.chat.Text = "";
-
+            this.chat.Enter += new System.EventHandler(this.TextBoxGotFocus);
+            this.chat.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chat_MouseDown);
+            this.chat.MouseUp += new System.Windows.Forms.MouseEventHandler(this.chat_MouseDown);
             // 
             // MessageForm
             // 
