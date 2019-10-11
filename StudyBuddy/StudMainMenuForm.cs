@@ -103,7 +103,7 @@ namespace StudyBuddy
 
         private void ButtonTopic_Click(object sender, EventArgs e)
         {
-            //FormOpener.OpenForm(new HelpRequestList()); Atkomentuosiu kai bus sukurta forma
+            FormOpener.OpenForm(new HelpRequestListForm(localUser));// Atkomentuosiu kai bus sukurta forma
         }
 
         private void ButtonConversations_Click(object sender, EventArgs e)

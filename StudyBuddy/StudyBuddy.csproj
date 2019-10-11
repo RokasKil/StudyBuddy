@@ -56,6 +56,15 @@
     <Compile Include="Profile\EditProfile.Designer.cs">
       <DependentUpon>EditProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConversationHistoryPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HelpRequestListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpRequestListForm.Designer.cs">
+      <DependentUpon>HelpRequestListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\HelpRequest.cs" />
     <Compile Include="MessageForm.cs">
@@ -80,9 +89,6 @@
     <Compile Include="ConversationHistoryForm.Designer.cs">
       <DependentUpon>ConversationHistoryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConversationHistoryPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="KarmaHandler.cs" />
     <Compile Include="Profile\ChangeProfilePictureForm.cs">
       <SubType>Form</SubType>
@@ -102,6 +108,9 @@
     <Compile Include="Network\HelpRequestGetter.cs" />
     <Compile Include="Network\HelpRequestManager.cs" />
     <Compile Include="Network\UserGetter.cs" />
+    <Compile Include="HelpRequestListPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="StudMainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConversationHistoryPanel.resx">
       <DependentUpon>ConversationHistoryPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpRequestListForm.resx">
+      <DependentUpon>HelpRequestListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Profile\EditProfile.resx">
       <DependentUpon>EditProfile.cs</DependentUpon>
