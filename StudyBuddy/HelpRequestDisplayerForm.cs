@@ -13,7 +13,9 @@ namespace StudyBuddy
 {
     public partial class HelpRequestDisplayerForm : Form
     {
-        public HelpRequestDisplayerForm(HelpRequest helpRequest, User user)
+        LocalUser localUser;
+        
+        public HelpRequestDisplayerForm(LocalUser localUser, HelpRequest helpRequest, User user)
         {
             InitializeComponent();
             categoryBox.Text = helpRequest.category;
@@ -21,6 +23,7 @@ namespace StudyBuddy
             descriptionBox.Text = helpRequest.description;
             nameBox.Text = user.firstName + " " + user.lastName;
             pictureBox.ImageLocation = user.profilePictureLocation;
+            this.localUser = localUser;
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -13,5 +13,6 @@ namespace StudyBuddy.Entity
         public string description;
         public string creatorUsername;
         public string category;
+        public DateTime timestamp;
     }
 }
