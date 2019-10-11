@@ -11,13 +11,13 @@ using System.Runtime.InteropServices;
 
 namespace StudyBuddy
 {
-    public partial class PostForHelp : Form
+    public partial class PostForHelpForm : Form
     {
         private const int EM_SETCUEBANNER = 0x1501;
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)]string lParam);
 
-        public PostForHelp()
+        public PostForHelpForm()
         {
             InitializeComponent();
         }

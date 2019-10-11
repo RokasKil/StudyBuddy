@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -47,13 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authenticator.cs" />
-    <Compile Include="Conversation.cs" />
-    <Compile Include="ConversationHistoryForm.cs">
+    <Compile Include="Profile\EditProfile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConversationHistoryForm.Designer.cs">
-      <DependentUpon>ConversationHistoryForm.cs</DependentUpon>
+    <Compile Include="Profile\EditProfile.Designer.cs">
+      <DependentUpon>EditProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="ConversationHistoryPanel.cs">
       <SubType>Component</SubType>
@@ -64,17 +65,38 @@
     <Compile Include="HelpRequestListForm.Designer.cs">
       <DependentUpon>HelpRequestListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\HelpRequest.cs" />
     <Compile Include="MessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MessageForm.Designer.cs">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="KarmaHandler.cs" />
-    <Compile Include="ChangeProfilePictureForm.cs">
+    <Compile Include="FormOpener.cs" />
+    <Compile Include="HelpRequestDisplayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangeProfilePictureForm.Designer.cs">
+    <Compile Include="HelpRequestDisplayerForm.Designer.cs">
+      <DependentUpon>HelpRequestDisplayerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Network\APICaller.cs" />
+    <Compile Include="Network\Authenticator.cs" />
+    <Compile Include="Entity\Conversation.cs" />
+    <Compile Include="ConversationHistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConversationHistoryForm.Designer.cs">
+      <DependentUpon>ConversationHistoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConversationHistoryPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KarmaHandler.cs" />
+    <Compile Include="Profile\ChangeProfilePictureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\ChangeProfilePictureForm.Designer.cs">
       <DependentUpon>ChangeProfilePictureForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
@@ -83,29 +105,46 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalUser.cs" />
-    <Compile Include="MainMenuForm.cs">
+    <Compile Include="Entity\LocalUser.cs" />
+    <Compile Include="Network\CategoriesGetter.cs" />
+    <Compile Include="Network\CategoryManager.cs" />
+    <Compile Include="Network\HelpRequestGetter.cs" />
+    <Compile Include="Network\HelpRequestManager.cs" />
+    <Compile Include="Network\UserGetter.cs" />
+    <Compile Include="StudMainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainMenuForm.Designer.cs">
-      <DependentUpon>MainMenuForm.cs</DependentUpon>
+    <Compile Include="StudMainMenuForm.Designer.cs">
+      <DependentUpon>StudMainMenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PostForHelp.cs">
+    <Compile Include="LectMainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PostForHelp.designer.cs">
-      <DependentUpon>PostForHelp.cs</DependentUpon>
+    <Compile Include="LectMainMenuForm.Designer.cs">
+      <DependentUpon>LectMainMenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Profile.cs">
+    <Compile Include="PostForHelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Profile.Designer.cs">
-      <DependentUpon>Profile.cs</DependentUpon>
+    <Compile Include="PostForHelpForm.designer.cs">
+      <DependentUpon>PostForHelpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
-    <EmbeddedResource Include="ChangeProfilePictureForm.resx">
+    <Compile Include="TopicListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TopicListForm.Designer.cs">
+      <DependentUpon>TopicListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\User.cs" />
+    <EmbeddedResource Include="Profile\ChangeProfilePictureForm.resx">
       <DependentUpon>ChangeProfilePictureForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConversationHistoryForm.resx">
@@ -117,20 +156,29 @@
     <EmbeddedResource Include="HelpRequestListForm.resx">
       <DependentUpon>HelpRequestListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Profile\EditProfile.resx">
+      <DependentUpon>EditProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpRequestDisplayerForm.resx">
+      <DependentUpon>HelpRequestDisplayerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainMenuForm.resx">
-      <DependentUpon>MainMenuForm.cs</DependentUpon>
+    <EmbeddedResource Include="StudMainMenuForm.resx">
+      <DependentUpon>StudMainMenuForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PostForHelp.resx">
-      <DependentUpon>PostForHelp.cs</DependentUpon>
+    <EmbeddedResource Include="LectMainMenuForm.resx">
+      <DependentUpon>LectMainMenuForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Profile.resx">
-      <DependentUpon>Profile.cs</DependentUpon>
+    <EmbeddedResource Include="PostForHelpForm.resx">
+      <DependentUpon>PostForHelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -141,6 +189,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TopicListForm.resx">
+      <DependentUpon>TopicListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StudyBuddy.Entity;
+using StudyBuddy.Network;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,7 +35,8 @@ namespace StudyBuddy
         {
             SendMessage(usernameField.Handle, EM_SETCUEBANNER, 0, "Vartotojas");// Kviečia low level nustatymą (Pretty much black magic kurią kažkada reiks pakeist)
             SendMessage(passwordField.Handle, EM_SETCUEBANNER, 0, "Slaptažodis");
-            new ConversationHistoryForm().Show();
+            //new ConversationHistoryForm().Show();
+            //new MessageForm().Show();
             //ChangeProfilePictureForm f = new ChangeProfilePictureForm();
             //f.Show();
 
@@ -49,14 +52,14 @@ namespace StudyBuddy
         private void LoginForm_Load(object sender, EventArgs e)
         {
             auth = new Authenticator();
-            auth.loginResult = new Authenticator.LoginResult(loginResultCallBack);
+            auth.LoginResult = new Authenticator.LoginResultDelegate(loginResultCallBack);
         }
         
-        private void loginResultCallBack(Authenticator.authStatus status, LocalUser user)
+        private void loginResultCallBack(Authenticator.AuthStatus status, LocalUser user)
         {
             if (loginButton.InvokeRequired) // Has to be same thread
             {
-                loginButton.Invoke(new Authenticator.LoginResult(loginResultCallBack), new object[] { status, user });
+                loginButton.Invoke(new Authenticator.LoginResultDelegate(loginResultCallBack), new object[] { status, user });
             }
             else
             {
@@ -64,35 +67,48 @@ namespace StudyBuddy
                 string message = "";
                 switch (status)
                 {
-                    case Authenticator.authStatus.usernameEmpty:
+                    case Authenticator.AuthStatus.UsernameEmpty:
                         message = "Vartotojo vardas negali būti tuščias";
                         break;
-                    case Authenticator.authStatus.passwordEmpty:
+                    case Authenticator.AuthStatus.PasswordEmpty:
                         message = "Vartotojo slaptažodis negali būti tuščias";
                         break;
-                    case Authenticator.authStatus.failedToConnect:
+                    case Authenticator.AuthStatus.FailedToConnect:
                         message = "Nepavyko prisijungti prie serverio";
                         break;
-                    case Authenticator.authStatus.incorrectCredentials:
+                    case Authenticator.AuthStatus.InvalidUsernameOrPassword:
                         message = "Neteisingas vartotojo vardas/slaptažodis";
                         break;
-                    case Authenticator.authStatus.incorrectID://Remember login
+                    case Authenticator.AuthStatus.InvalidPrivateKey://Remember login
                         message = "Bandykite prisijungti išnaujo";
                         break;
-                    case Authenticator.authStatus.success:
+                    case Authenticator.AuthStatus.Success:
                         message = "Success";
+                        break;
+                    default:
+                        message = "Kažkas nepavyko";
                         break;
                 }
                 statusLabel.Text = message;
-                if (status == Authenticator.authStatus.success)
+                if ((status == Authenticator.AuthStatus.Success))
                 {
-                    //Switch to another form
-                    MainMenuForm mainForm = new MainMenuForm(user); // Create a the main form and show it
-                    mainForm.Show();
-                    this.Hide();    // Hide this one
-                    mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
+                    if (user.IsLecturer) {
+                        //Switch to another form
+                        LectMainMenuForm mainForm = new LectMainMenuForm(user); // Create a the main form and show it
+                        mainForm.Show();
+                        this.Hide();    // Hide this one
+                        mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
+                    }
+                    else
+                    {
+                        //Switch to another form
+                        StudMainMenuForm mainForm = new StudMainMenuForm(user); // Create a the main form and show it
+                        mainForm.Show();
+                        this.Hide();    // Hide this one
+                        mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
+                    }
                 }
-            }
+            }   
         }
     }
 }

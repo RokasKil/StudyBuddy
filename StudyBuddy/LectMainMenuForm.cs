@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using StudyBuddy.Entity;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StudyBuddy
 {
-    public partial class MainMenuForm : Form
+    public partial class LectMainMenuForm : Form
     {
         LocalUser localUser;
-        public MainMenuForm(LocalUser localUser)
+        
+        public LectMainMenuForm(LocalUser localUser)
         {
             this.localUser = localUser;
             InitializeComponent();
+            this.Text = "Pagrindinis meniu";
+            
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = DateTime.Now.ToLongDateString();
-            greetingsLabel.Text = "Welcome back, " + localUser.firstName + " :)";
-            karmaProgressBar.Value = localUser.karmaPoints;
-            progressLabel.Text = "Your karma progress is " + karmaProgressBar.Value
+            greetingsLabel.Text = "Labas, " +
+                localUser.firstName.Substring(0, localUser.firstName.Length - 2) + "ai" + " :)";
+            karmaProgressBar.Value = localUser.KarmaPoints;
+            progressLabel.Text = "Tavo progresas " + karmaProgressBar.Value
                 + "/" + karmaProgressBar.Maximum;
         }
 
@@ -53,8 +53,8 @@ namespace StudyBuddy
         private void Button1_Click(object sender, EventArgs e)
         {
             //User nustatomas property kad jis siuo metu gali padeti kitiems
-            localUser.advise = !localUser.advise;
-            if (localUser.advise)
+            localUser.Advise = !localUser.Advise;
+            if (localUser.Advise)
                 adviseButton.BackColor = Color.Green;
             else
                 adviseButton.BackColor = Color.Yellow;
@@ -68,6 +68,27 @@ namespace StudyBuddy
         private void Label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Button1_Click_1(object sender, EventArgs e)
+        {
+            FormOpener.OpenForm(new TopicListForm());
+        }
+
+        private void ButtonConversations_Click(object sender, EventArgs e)
+        {
+            FormOpener.OpenForm(new ConversationHistoryForm());
+        }
+
+        private void CheckProfileButton_Click(object sender, EventArgs e)
+        {
+            //Switch to another form
+            ProfileForm profileForm = new ProfileForm(localUser, localUser); // Create profile form and show it
+            profileForm.Show();
+
+            checkProfileButton.Enabled = false;
+            profileForm.FormClosed += (a, b) => { checkProfileButton.Enabled = true; };
+            //checkProfileButton.Enabled = false; // prevents from opening a bunch of the same windows
         }
     }   
 }
