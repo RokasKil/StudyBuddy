@@ -11,5 +11,7 @@ namespace StudyBuddy.Entity
         public string title;
         public string description;
         public string creatorUsername;
+        public string createdDate;//Reikia pridet i duombaze
+        public string lastUpdatedDate;//Reikia pridet i duombaze
     }
 }

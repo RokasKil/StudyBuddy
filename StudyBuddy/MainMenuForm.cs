@@ -13,15 +13,19 @@ using System.Windows.Forms;
 
 namespace StudyBuddy
 {
-    public partial class StudMainMenuForm : Form
+    public partial class MainMenuForm : Form
     {
         LocalUser localUser;
-        public StudMainMenuForm(LocalUser localUser)
+        public MainMenuForm(LocalUser localUser)
         {
-            this.localUser = localUser;
             InitializeComponent();
+            this.localUser = localUser;
             this.Text = "Pagrindinis meniu";
-            
+            labelLecturer.Visible = localUser.IsLecturer;
+            buttonTopicList.Visible = localUser.IsLecturer;
+            MessageBoxManager.Yes = "Taip";
+            MessageBoxManager.No = "Ne";
+            MessageBoxManager.Register();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -61,9 +65,9 @@ namespace StudyBuddy
             //User nustatomas property, kad jis siuo metu gali padeti kitiems
             localUser.Advise = !localUser.Advise;
             if (localUser.Advise)
-                adviseButton.BackColor = Color.Green;
+                buttonAdvise.BackColor = Color.Green;
             else
-                adviseButton.BackColor = Color.Yellow;
+                buttonAdvise.BackColor = Color.Yellow;
         }
 
         private void ToolStripStatusLabel1_Click(object sender, EventArgs e)
@@ -81,8 +85,8 @@ namespace StudyBuddy
             ProfileForm profileForm = new ProfileForm(localUser, localUser); // Create profile form and show it
             profileForm.Show();
 
-            checkProfileButton.Enabled = false;
-            profileForm.FormClosed += (a, b) => { checkProfileButton.Enabled = true; };
+            buttonCheckProfile.Enabled = false;
+            profileForm.FormClosed += (a, b) => { buttonCheckProfile.Enabled = true; };
             /*
             new UserGetter(localUser, (a, b) => {
                 this.Invoke((MethodInvoker)delegate
@@ -103,12 +107,17 @@ namespace StudyBuddy
 
         private void ButtonTopic_Click(object sender, EventArgs e)
         {
-            FormOpener.OpenForm(new HelpRequestListForm(localUser));// Atkomentuosiu kai bus sukurta forma
+            FormOpener.OpenForm(new HelpRequestListForm(localUser));
         }
 
         private void ButtonConversations_Click(object sender, EventArgs e)
         {
             FormOpener.OpenForm(new ConversationHistoryForm());
+        }
+
+        private void buttonTopicList_Click(object sender, EventArgs e)
+        {
+            FormOpener.OpenForm(new TopicListForm(localUser));
         }
     }   
 }

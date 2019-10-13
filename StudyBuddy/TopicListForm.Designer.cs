@@ -32,11 +32,12 @@
             this.Topic = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Creation_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastUpdated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AddButton = new System.Windows.Forms.Button();
+            this.buttonAddTopic = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.TopicTextBox = new System.Windows.Forms.TextBox();
-            this.RemoveButton = new System.Windows.Forms.Button();
-            this.OpenButton = new System.Windows.Forms.Button();
+            this.textBoxTopic = new System.Windows.Forms.TextBox();
+            this.buttonRemoveTopic = new System.Windows.Forms.Button();
+            this.buttonEditTopic = new System.Windows.Forms.Button();
+            this.labelStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView
@@ -48,13 +49,16 @@
             this.listView.GridLines = true;
             this.listView.HideSelection = false;
             this.listView.LabelEdit = true;
-            this.listView.Location = new System.Drawing.Point(12, 84);
+            this.listView.Location = new System.Drawing.Point(11, 67);
+            this.listView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(802, 469);
+            this.listView.Size = new System.Drawing.Size(759, 376);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
-            this.listView.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged_1);
+            this.listView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
+            this.listView.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.listView_ColumnWidthChanging);
+            this.listView.SelectedIndexChanged += new System.EventHandler(this.ListView_SelectedIndexChanged);
             // 
             // Topic
             // 
@@ -64,72 +68,87 @@
             // Creation_date
             // 
             this.Creation_date.Text = "Sukūrimo data";
-            this.Creation_date.Width = 269;
+            this.Creation_date.Width = 235;
             // 
             // LastUpdated
             // 
             this.LastUpdated.Text = "Atnaujinta";
-            this.LastUpdated.Width = 302;
+            this.LastUpdated.Width = 398;
             // 
-            // AddButton
+            // buttonAddTopic
             // 
-            this.AddButton.Location = new System.Drawing.Point(12, 44);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(112, 34);
-            this.AddButton.TabIndex = 1;
-            this.AddButton.Text = "Pridėti";
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            this.buttonAddTopic.Location = new System.Drawing.Point(11, 35);
+            this.buttonAddTopic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAddTopic.Name = "buttonAddTopic";
+            this.buttonAddTopic.Size = new System.Drawing.Size(100, 27);
+            this.buttonAddTopic.TabIndex = 1;
+            this.buttonAddTopic.Text = "Pridėti";
+            this.buttonAddTopic.UseVisualStyleBackColor = true;
+            this.buttonAddTopic.Click += new System.EventHandler(this.buttonAddTopic_click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 15);
+            this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 20);
+            this.label1.Size = new System.Drawing.Size(48, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Tema:";
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
-            // TopicTextBox
+            // textBoxTopic
             // 
-            this.TopicTextBox.Location = new System.Drawing.Point(66, 12);
-            this.TopicTextBox.Name = "TopicTextBox";
-            this.TopicTextBox.Size = new System.Drawing.Size(176, 26);
-            this.TopicTextBox.TabIndex = 3;
-            this.TopicTextBox.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
+            this.textBoxTopic.Location = new System.Drawing.Point(59, 9);
+            this.textBoxTopic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxTopic.Name = "textBoxTopic";
+            this.textBoxTopic.Size = new System.Drawing.Size(157, 22);
+            this.textBoxTopic.TabIndex = 3;
             // 
-            // RemoveButton
+            // buttonRemoveTopic
             // 
-            this.RemoveButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.RemoveButton.Location = new System.Drawing.Point(130, 44);
-            this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(112, 34);
-            this.RemoveButton.TabIndex = 4;
-            this.RemoveButton.Text = "Ištrinti";
-            this.RemoveButton.UseVisualStyleBackColor = true;
-            this.RemoveButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            this.buttonRemoveTopic.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.buttonRemoveTopic.Location = new System.Drawing.Point(116, 35);
+            this.buttonRemoveTopic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonRemoveTopic.Name = "buttonRemoveTopic";
+            this.buttonRemoveTopic.Size = new System.Drawing.Size(100, 27);
+            this.buttonRemoveTopic.TabIndex = 4;
+            this.buttonRemoveTopic.Text = "Ištrinti";
+            this.buttonRemoveTopic.UseVisualStyleBackColor = true;
+            this.buttonRemoveTopic.Click += new System.EventHandler(this.buttonRemoveTopic_click);
             // 
-            // OpenButton
+            // buttonEditTopic
             // 
-            this.OpenButton.Location = new System.Drawing.Point(713, 567);
-            this.OpenButton.Name = "OpenButton";
-            this.OpenButton.Size = new System.Drawing.Size(147, 36);
-            this.OpenButton.TabIndex = 5;
-            this.OpenButton.Text = "Redaguoti";
-            this.OpenButton.UseVisualStyleBackColor = true;
+            this.buttonEditTopic.Location = new System.Drawing.Point(553, 447);
+            this.buttonEditTopic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonEditTopic.Name = "buttonEditTopic";
+            this.buttonEditTopic.Size = new System.Drawing.Size(217, 36);
+            this.buttonEditTopic.TabIndex = 5;
+            this.buttonEditTopic.Text = "Atidaryti temos aprašą";
+            this.buttonEditTopic.UseVisualStyleBackColor = true;
+            this.buttonEditTopic.Click += new System.EventHandler(this.buttonEditTopic_Click);
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatus.Location = new System.Drawing.Point(6, 458);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(190, 25);
+            this.labelStatus.TabIndex = 6;
+            this.labelStatus.Text = "Nepavyko užkrauti";
             // 
             // TopicListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 611);
-            this.Controls.Add(this.OpenButton);
-            this.Controls.Add(this.RemoveButton);
-            this.Controls.Add(this.TopicTextBox);
+            this.ClientSize = new System.Drawing.Size(776, 489);
+            this.Controls.Add(this.labelStatus);
+            this.Controls.Add(this.buttonEditTopic);
+            this.Controls.Add(this.buttonRemoveTopic);
+            this.Controls.Add(this.textBoxTopic);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.AddButton);
+            this.Controls.Add(this.buttonAddTopic);
             this.Controls.Add(this.listView);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TopicListForm";
             this.Text = "TopicList";
             this.Load += new System.EventHandler(this.TopicListForm_Load);
@@ -143,11 +162,12 @@
         private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.ColumnHeader Topic;
         private System.Windows.Forms.ColumnHeader Creation_date;
-        private System.Windows.Forms.Button AddButton;
+        private System.Windows.Forms.Button buttonAddTopic;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TopicTextBox;
+        private System.Windows.Forms.TextBox textBoxTopic;
         private System.Windows.Forms.ColumnHeader LastUpdated;
-        private System.Windows.Forms.Button RemoveButton;
-        private System.Windows.Forms.Button OpenButton;
+        private System.Windows.Forms.Button buttonRemoveTopic;
+        private System.Windows.Forms.Button buttonEditTopic;
+        private System.Windows.Forms.Label labelStatus;
     }
 }
