@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListViewColumnSorter.cs" />
+    <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Profile\EditProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,17 +113,11 @@
     <Compile Include="HelpRequestListPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="StudMainMenuForm.cs">
+    <Compile Include="MainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StudMainMenuForm.Designer.cs">
-      <DependentUpon>StudMainMenuForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LectMainMenuForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LectMainMenuForm.Designer.cs">
-      <DependentUpon>LectMainMenuForm.cs</DependentUpon>
+    <Compile Include="MainMenuForm.Designer.cs">
+      <DependentUpon>MainMenuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PostForHelpForm.cs">
       <SubType>Form</SubType>
@@ -137,6 +133,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TopicDescriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TopicDescriptionForm.Designer.cs">
+      <DependentUpon>TopicDescriptionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TopicListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,11 +170,8 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StudMainMenuForm.resx">
-      <DependentUpon>StudMainMenuForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LectMainMenuForm.resx">
-      <DependentUpon>LectMainMenuForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainMenuForm.resx">
+      <DependentUpon>MainMenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PostForHelpForm.resx">
       <DependentUpon>PostForHelpForm.cs</DependentUpon>
@@ -189,6 +188,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TopicDescriptionForm.resx">
+      <DependentUpon>TopicDescriptionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TopicListForm.resx">
       <DependentUpon>TopicListForm.cs</DependentUpon>
     </EmbeddedResource>

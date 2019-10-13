@@ -62,8 +62,10 @@ namespace StudyBuddy.Network
                     {
                         title = category["title"].ToString(),
                         description = category["description"].ToString(),
-                        creatorUsername = category["username"].ToString()
-                    });
+                        creatorUsername = category["username"].ToString(),
+                        //createdDate = category["createdDate"].ToString(), Atkomentuoti kai atsiras laukai
+                        //lastUpdatedDate = category["lastUpdatedDate"].ToString() Atkomentuoti kai atsiras laukai
+                    }) ;
                 });
                 GetCategoriesResult(GetStatus.Success, categories);
             }
