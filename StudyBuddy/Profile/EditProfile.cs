@@ -29,9 +29,13 @@ namespace StudyBuddy
 
         private void EditProfile_Load(object sender, EventArgs e)
         {
-            username.Text = localUser.username;
-            name.Text = localUser.firstName + " " + localUser.lastName;
+            //username.Text = localUser.username;
+            //name.Text = localUser.firstName + " " + localUser.lastName;
             profilePicture.ImageLocation = localUser.profilePictureLocation;
+            firstNameBox.Text = localUser.firstName;
+            lastNameBox.Text = localUser.lastName;
+            //usernameBox.Text = localUser.username;
+
         }
 
         private void ChangeProfPicButton_Click(object sender, EventArgs e)
@@ -45,6 +49,11 @@ namespace StudyBuddy
                 this.EditProfile_Load(a, b);
                 this.Show();
             };
+        }
+
+        private void SaveChangesButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

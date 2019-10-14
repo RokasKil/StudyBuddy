@@ -30,9 +30,11 @@
         {
             this.profilePicture = new System.Windows.Forms.PictureBox();
             this.changeProfPicButton = new System.Windows.Forms.Button();
-            this.name = new System.Windows.Forms.Label();
-            this.username = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.saveChangesButton = new System.Windows.Forms.Button();
+            this.firstNameBox = new System.Windows.Forms.TextBox();
+            this.firstNameLabel = new System.Windows.Forms.Label();
+            this.lastNameLabel = new System.Windows.Forms.Label();
+            this.lastNameBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,42 +57,58 @@
             this.changeProfPicButton.UseVisualStyleBackColor = true;
             this.changeProfPicButton.Click += new System.EventHandler(this.ChangeProfPicButton_Click);
             // 
-            // name
+            // saveChangesButton
             // 
-            this.name.AutoSize = true;
-            this.name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.name.Location = new System.Drawing.Point(241, 29);
-            this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(50, 20);
-            this.name.TabIndex = 3;
-            this.name.Text = "name";
+            this.saveChangesButton.Location = new System.Drawing.Point(304, 85);
+            this.saveChangesButton.Name = "saveChangesButton";
+            this.saveChangesButton.Size = new System.Drawing.Size(194, 33);
+            this.saveChangesButton.TabIndex = 6;
+            this.saveChangesButton.Text = "Išsaugoti pakeitimus";
+            this.saveChangesButton.UseVisualStyleBackColor = true;
+            this.saveChangesButton.Click += new System.EventHandler(this.SaveChangesButton_Click);
             // 
-            // username
+            // firstNameBox
             // 
-            this.username.AutoSize = true;
-            this.username.Location = new System.Drawing.Point(242, 66);
-            this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(71, 17);
-            this.username.TabIndex = 5;
-            this.username.Text = "username";
+            this.firstNameBox.Location = new System.Drawing.Point(304, 29);
+            this.firstNameBox.Name = "firstNameBox";
+            this.firstNameBox.Size = new System.Drawing.Size(194, 22);
+            this.firstNameBox.TabIndex = 7;
             // 
-            // button2
+            // firstNameLabel
             // 
-            this.button2.Location = new System.Drawing.Point(245, 109);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(296, 33);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Redaguoti asmeninę informaciją";
-            this.button2.UseVisualStyleBackColor = true;
+            this.firstNameLabel.AutoSize = true;
+            this.firstNameLabel.Location = new System.Drawing.Point(241, 32);
+            this.firstNameLabel.Name = "firstNameLabel";
+            this.firstNameLabel.Size = new System.Drawing.Size(57, 17);
+            this.firstNameLabel.TabIndex = 8;
+            this.firstNameLabel.Text = "Vardas:";
+            // 
+            // lastNameLabel
+            // 
+            this.lastNameLabel.AutoSize = true;
+            this.lastNameLabel.Location = new System.Drawing.Point(233, 60);
+            this.lastNameLabel.Name = "lastNameLabel";
+            this.lastNameLabel.Size = new System.Drawing.Size(65, 17);
+            this.lastNameLabel.TabIndex = 9;
+            this.lastNameLabel.Text = "Pavardė:";
+            // 
+            // lastNameBox
+            // 
+            this.lastNameBox.Location = new System.Drawing.Point(304, 57);
+            this.lastNameBox.Name = "lastNameBox";
+            this.lastNameBox.Size = new System.Drawing.Size(194, 22);
+            this.lastNameBox.TabIndex = 10;
             // 
             // EditProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 318);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.username);
-            this.Controls.Add(this.name);
+            this.ClientSize = new System.Drawing.Size(568, 318);
+            this.Controls.Add(this.lastNameBox);
+            this.Controls.Add(this.lastNameLabel);
+            this.Controls.Add(this.firstNameLabel);
+            this.Controls.Add(this.firstNameBox);
+            this.Controls.Add(this.saveChangesButton);
             this.Controls.Add(this.changeProfPicButton);
             this.Controls.Add(this.profilePicture);
             this.Name = "EditProfile";
@@ -106,8 +124,10 @@
 
         private System.Windows.Forms.PictureBox profilePicture;
         private System.Windows.Forms.Button changeProfPicButton;
-        private System.Windows.Forms.Label name;
-        private System.Windows.Forms.Label username;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button saveChangesButton;
+        private System.Windows.Forms.TextBox firstNameBox;
+        private System.Windows.Forms.Label firstNameLabel;
+        private System.Windows.Forms.Label lastNameLabel;
+        private System.Windows.Forms.TextBox lastNameBox;
     }
 }

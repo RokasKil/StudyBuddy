@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,6 +107,13 @@ namespace StudyBuddy
         {
            // EditProfile editProfile1 = new EditProfile(localUser);
             //editProfile1.Show();
+        }
+
+        private void UploadButton_Click(object sender, EventArgs e)
+        {
+            var base64String = Convert.ToBase64String(File.ReadAllBytes(pictureBox.ImageLocation));
+            //NU IR SITA base64String PERKELIAM I DUOMBAZE
+            //kazkaip
         }
     }
 }
