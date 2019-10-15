@@ -119,5 +119,10 @@ namespace StudyBuddy
         {
             FormOpener.OpenForm(new TopicListForm(localUser));
         }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+
+        }
     }   
 }

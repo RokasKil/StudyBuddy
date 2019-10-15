@@ -40,6 +40,7 @@
             this.buttonTopic = new System.Windows.Forms.Button();
             this.buttonTopicList = new System.Windows.Forms.Button();
             this.labelLecturer = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -179,11 +180,23 @@
             this.labelLecturer.TabIndex = 11;
             this.labelLecturer.Text = "Dėstytojas";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.button1.Location = new System.Drawing.Point(848, 551);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(253, 92);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Atsijungti";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 702);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelLecturer);
             this.Controls.Add(this.buttonTopicList);
             this.Controls.Add(this.buttonCheckProfile);
@@ -220,5 +233,6 @@
         private System.Windows.Forms.Button buttonTopic;
         private System.Windows.Forms.Button buttonTopicList;
         private System.Windows.Forms.Label labelLecturer;
+        private System.Windows.Forms.Button button1;
     }
 }
