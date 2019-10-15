@@ -122,6 +122,10 @@ namespace StudyBuddy
 
         private void button1_Click_2(object sender, EventArgs e)
         {
+        
+        }
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
 
         }
     }   

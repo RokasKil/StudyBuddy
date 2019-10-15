@@ -145,6 +145,8 @@ namespace StudyBuddy
                 Properties.Settings.Default.remember = false;
                 Properties.Settings.Default.Save();
             }
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
         }
     }
 }
