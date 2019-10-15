@@ -52,8 +52,14 @@ namespace StudyBuddy.Network
 
 
         }
+
         public void login(string privateKey)
         {
+            if (loginThread != null && loginThread.IsAlive) // Jau vyksta užklausa
+            {
+                return;
+            }
+
             loginThread = new Thread(() => loginLogic(privateKey));
             loginThread.Start();
         }
