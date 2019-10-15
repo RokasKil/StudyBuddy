@@ -112,7 +112,7 @@ namespace StudyBuddy
 
         private void ButtonConversations_Click(object sender, EventArgs e)
         {
-            FormOpener.OpenForm(new ConversationHistoryForm());
+            FormOpener.OpenForm(new ConversationHistoryForm(localUser));
         }
 
         private void buttonTopicList_Click(object sender, EventArgs e)

@@ -65,7 +65,7 @@ namespace StudyBuddy.Network
                 caller.addParam("wait", "");
             }
             var obj = caller.call();
-            Console.Write(obj);
+            //Console.Write(obj);
             if (obj["status"].ToString() == "success")
             {
                 List<Message> messages = new List<Message>();

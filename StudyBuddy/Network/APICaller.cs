@@ -76,7 +76,6 @@ namespace StudyBuddy.Network
                     }
                     try
                     {
-                        Console.WriteLine(response);
                         return JObject.Parse(response);
 
                     }

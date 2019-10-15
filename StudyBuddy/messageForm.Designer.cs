@@ -57,19 +57,19 @@
             // name
             // 
             this.name.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.name.Location = new System.Drawing.Point(57, 9);
+            this.name.Location = new System.Drawing.Point(57, 0);
             this.name.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(325, 24);
+            this.name.Size = new System.Drawing.Size(325, 54);
             this.name.TabIndex = 2;
-            this.name.Text = "Username";
+            this.name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(2, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(48, 52);
+            this.pictureBox1.Size = new System.Drawing.Size(56, 56);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;

@@ -29,9 +29,9 @@ namespace StudyBuddy
                 }
             }
         }
-        public ConversationHistoryPanel(Conversation conversation) : this(conversation, 0) { }
+        public ConversationHistoryPanel(Conversation conversation, User user) : this(conversation, user, 0) { }
 
-        public ConversationHistoryPanel(Conversation conversation, int position)
+        public ConversationHistoryPanel(Conversation conversation, User user, int position)
         {
             //Dinamiškai užpildoma panel
             Size = new Size(370, 85);
@@ -39,19 +39,19 @@ namespace StudyBuddy
             Position = position;
 
             Label username = new Label();
-            //username.Text = conversation.user.firstName + " " + conversation.user.lastName;
-            username.Location = new Point(84, 3);
+            username.Text = user.firstName + " " + user.lastName;
+            username.Location = new Point(90, 3);
             username.Font = new Font(FontFamily.GenericSansSerif, 16);
             username.AutoSize = true;
 
             Label lastMessage = new Label();
             lastMessage.Text = conversation.lastMessage;
-            lastMessage.Location = new Point(86, 28);
+            lastMessage.Location = new Point(92, 28);
             lastMessage.Font = new Font(FontFamily.GenericSansSerif, 14);
             lastMessage.AutoSize = true;
 
             Label time = new Label();
-            //time.Text = conversation.timestamp.ToLongTimeString(); // Padaryt normaliai šitą dalį
+            time.Text = DateTimeOffset.FromUnixTimeSeconds(conversation.lastActivity / 1000).LocalDateTime.ToString(" HH:mm:ss yyyy-MM-dd"); ; // Padaryt normaliai šitą dalį
             time.RightToLeft = RightToLeft.Yes;
             time.Font = new Font(FontFamily.GenericSansSerif, 12);
             time.AutoSize = false;
@@ -60,15 +60,15 @@ namespace StudyBuddy
 
 
             PictureBox profilePicture = new PictureBox();
-            profilePicture.Size = new Size(85, 85);
-            profilePicture.Location = new Point(5, 5);
-            //profilePicture.ImageLocation = conversation.user.profilePictureLocation;
+            profilePicture.Size = new Size(83, 83);
+            profilePicture.Location = new Point(1, 1);
+            profilePicture.ImageLocation = user.profilePictureLocation;
             profilePicture.SizeMode = PictureBoxSizeMode.Zoom;
 
+            Controls.Add(profilePicture);
             Controls.Add(username);
             Controls.Add(lastMessage);
             Controls.Add(time);
-            Controls.Add(profilePicture);
 
             foreach(Control control in Controls) // Persiunčiami paspaudimai iš labels į panel
             {

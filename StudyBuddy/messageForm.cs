@@ -26,6 +26,7 @@ namespace StudyBuddy
         Queue<string> messagesToSend = new Queue<string>();
         List<Entity.Message> messages = new List<Entity.Message>();
         long timestamp = 0;
+        Font mainFont = new Font(FontFamily.GenericSansSerif, 10);
         private void TextBoxGotFocus(object sender, EventArgs args)
         {
             HideCaret(chat.Handle);
@@ -122,7 +123,7 @@ namespace StudyBuddy
             {
                 this.BeginInvoke((MethodInvoker)delegate
                 {
-                    Console.Write(status);
+                    //Console.Write(status);
                     if (status == MessageGetter.MessageStatus.Success)
                     {
                         parseMessages(messages);
@@ -147,19 +148,41 @@ namespace StudyBuddy
             {
 
                 User user;
+                Color color;
                 if ( message.username == localUser.username)
                 {
                     user = localUser;
+                    color = Color.Black;
                 }
                 else
                 {
                     user = users[message.username];
+                    color = Color.FromArgb(0xFF, 0x00, 0x66, 0x99);
                 }
                 var date = DateTimeOffset.FromUnixTimeSeconds(message.timestamp / 1000).LocalDateTime;
-                messageStyle("[" + date.ToShortTimeString() + "]" + user.firstName + " " + user.lastName + ": " + message.message + "\n", Color.Blue);
+                messageStyle("[" + date.ToShortTimeString() + "] " + user.firstName + " " + user.lastName + ": " + message.message + "\n", color, mainFont);
                 timestamp = Math.Max(timestamp, message.timestamp);
+                
             });
+            //Console.WriteLine(chat.GetPositionFromCharIndex(chat.TextLength - 1));
+            if (messages.Count != 0)
+                scrollToEnd();
 
+        }
+
+        private void scrollToEnd()
+        {
+
+            int selectionStart = chat.SelectionStart;
+            int selectionLength = chat.SelectionLength;
+
+            chat.SelectionStart = chat.TextLength;
+            chat.SelectionLength = 0;
+            chat.ScrollToCaret();
+
+            chat.SelectionStart = selectionStart;
+            chat.SelectionLength = selectionLength;
+            
         }
 
         private void postMessageResponseHandler(MessagePoster.MessageStatus status, Conversation conversation, string message)
@@ -168,7 +191,7 @@ namespace StudyBuddy
             {
                 this.BeginInvoke((MethodInvoker)delegate
                 {
-                    Console.Write(status +  " " + message + "\n");
+                    //Console.Write(status +  " " + message + "\n");
                     if (status == MessagePoster.MessageStatus.Success || status == MessagePoster.MessageStatus.ConversationNotFound || status == MessagePoster.MessageStatus.MessageEmpty)
                     {
                         messagesToSend.Dequeue();

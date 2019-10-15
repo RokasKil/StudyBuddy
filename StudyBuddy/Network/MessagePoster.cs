@@ -66,10 +66,10 @@ namespace StudyBuddy.Network
 
         private void postLogic(Conversation conversation, string message)
         {
-            Console.Write("Starting to send " + message + "\n");
+            //Console.Write("Starting to send " + message + "\n");
             JObject obj = new APICaller("postMessage.php").addParam("conversation", conversation.id.ToString()).addParam("message", message).addParam("privateKey", PrivateKey).call();
 
-            Console.Write("Sent " + message + "\n");
+            //Console.Write("Sent " + message + "\n");
             //Console.Write(obj);
             if (obj["status"].ToString() == "success")
             {
