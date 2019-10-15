@@ -50,8 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Message.cs" />
     <Compile Include="ListViewColumnSorter.cs" />
     <Compile Include="MessageBoxManager.cs" />
+    <Compile Include="Network\ConversationStarter.cs" />
+    <Compile Include="Network\MessagesGetter.cs" />
+    <Compile Include="Network\MessagePoster.cs" />
     <Compile Include="Profile\EditProfile.cs">
       <SubType>Form</SubType>
     </Compile>

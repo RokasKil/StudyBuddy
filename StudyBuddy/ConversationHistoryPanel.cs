@@ -39,7 +39,7 @@ namespace StudyBuddy
             Position = position;
 
             Label username = new Label();
-            username.Text = conversation.user.firstName + " " + conversation.user.lastName;
+            //username.Text = conversation.user.firstName + " " + conversation.user.lastName;
             username.Location = new Point(84, 3);
             username.Font = new Font(FontFamily.GenericSansSerif, 16);
             username.AutoSize = true;
@@ -51,7 +51,7 @@ namespace StudyBuddy
             lastMessage.AutoSize = true;
 
             Label time = new Label();
-            time.Text = conversation.timestamp.ToLongTimeString(); // Padaryt normaliai šitą dalį
+            //time.Text = conversation.timestamp.ToLongTimeString(); // Padaryt normaliai šitą dalį
             time.RightToLeft = RightToLeft.Yes;
             time.Font = new Font(FontFamily.GenericSansSerif, 12);
             time.AutoSize = false;
@@ -62,7 +62,7 @@ namespace StudyBuddy
             PictureBox profilePicture = new PictureBox();
             profilePicture.Size = new Size(85, 85);
             profilePicture.Location = new Point(5, 5);
-            profilePicture.ImageLocation = conversation.user.profilePictureLocation;
+            //profilePicture.ImageLocation = conversation.user.profilePictureLocation;
             profilePicture.SizeMode = PictureBoxSizeMode.Zoom;
 
             Controls.Add(username);
