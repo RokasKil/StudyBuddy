@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace StudyBuddy
 {
@@ -20,9 +21,11 @@ namespace StudyBuddy
         /// </summary>
         private const int EM_SETCUEBANNER = 0x1501; 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        
         private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)]string lParam);
 
         Authenticator auth;
+
 
         public LoginForm()
         {
@@ -53,6 +56,13 @@ namespace StudyBuddy
         {
             auth = new Authenticator();
             auth.LoginResult = new Authenticator.LoginResultDelegate(loginResultCallBack);
+            rememberMe.Checked = Properties.Settings.Default.remember;
+            if (rememberMe.Checked)
+            {
+                usernameField.Text = Properties.Settings.Default.username;
+                passwordField.Text = Properties.Settings.Default.password;
+            }
+
         }
         
         private void loginResultCallBack(Authenticator.AuthStatus status, LocalUser user)
@@ -99,6 +109,24 @@ namespace StudyBuddy
                         mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
                 }
             }   
+        }
+
+        private void rememberMe_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rememberMe.Checked)
+            {
+                Properties.Settings.Default.username = usernameField.Text;
+                Properties.Settings.Default.password = passwordField.Text;
+                Properties.Settings.Default.remember = true;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.username ="";
+                Properties.Settings.Default.password = "";
+                Properties.Settings.Default.remember = false;
+                Properties.Settings.Default.Save();
+            }
         }
     }
 }
