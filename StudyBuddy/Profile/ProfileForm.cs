@@ -66,5 +66,10 @@ namespace StudyBuddy
                 this.Profile_Load(a, b);
             };
         }
+
+        private void writeMessageButton_Click(object sender, EventArgs e)
+        {
+            new MessageForm(localUser, user.username).Show();
+        }
     }
 }

@@ -62,7 +62,7 @@ namespace StudyBuddy
             rememberMe.Checked = Properties.Settings.Default.remember;
             
             // uzkomentuoti zemiau eilute kad veiktu auto log in
-            rememberMe.Checked = false;
+            //rememberMe.Checked = false;
 
             if (rememberMe.Checked == true)
             {

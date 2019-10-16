@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudyBuddy.Entity
 {
-    class Category
+    public class Category
     {
         public string title;
         public string description;

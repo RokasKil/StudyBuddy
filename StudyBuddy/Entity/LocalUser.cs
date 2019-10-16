@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace StudyBuddy.Entity
 {
      public class LocalUser : User
-    {
+     {
         public string privateKey;
         public bool Advise { get; set; } = false;
         public LocalUser()
         {
             
         }
-    }
+     }
 }

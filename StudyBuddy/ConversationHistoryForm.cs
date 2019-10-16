@@ -1,4 +1,5 @@
 ﻿using StudyBuddy.Entity;
+using StudyBuddy.Network;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,10 +19,16 @@ namespace StudyBuddy
         int widthWithScroll;
         int widthWithoutScroll;
 
-        public ConversationHistoryForm()
+        LocalUser localUser;
+
+        Dictionary<string, User> users;
+        List<Conversation> conversations;
+
+        public ConversationHistoryForm(LocalUser localUser)
         {
             InitializeComponent();
             this.Text = "Pokalbiai";
+            this.localUser = localUser;
         }
         bool loading = true;
         private void ConversationHistoryForm_Load(object sender, EventArgs e)
@@ -31,17 +38,34 @@ namespace StudyBuddy
             widthWithScroll = Size.Width;
             ClientSize = new Size(370, 400);
             widthWithoutScroll = Size.Width;
-            //Place holder panels
-            panels.Add(new ConversationHistoryPanel(new Conversation() { user = new User() { firstName = "Jonas", lastName = "Jonauskas", profilePictureLocation = "https://ichef.bbci.co.uk/news/660/cpsprodpb/EF37/production/_108993216_ok-hand.jpg" }, timestamp = DateTime.Now.AddMinutes(-5), lastMessage = "Hello World(0)!" }, 0));
-            panels.Add(new ConversationHistoryPanel(new Conversation() { user = new User() { firstName = "Jonas1", lastName = "Jonauskas1" }, timestamp = DateTime.Now.AddMinutes(-25), lastMessage = "Hello World(1)!" }, 1));
-            panels.Add(new ConversationHistoryPanel(new Conversation() { user = new User() { firstName = "Jonas2", lastName = "Jonauskas2" }, timestamp = DateTime.Now.AddMinutes(-55), lastMessage = "Hello World(2)!" }, 2));
-            panels.Add(new ConversationHistoryPanel(new Conversation() { user = new User() { firstName = "Jonas3", lastName = "Jonauskas3" }, timestamp = DateTime.Now.AddMinutes(-56), lastMessage = "Hello World(3)!" }, 3));
-            panels.Add(new ConversationHistoryPanel(new Conversation() { user = new User() { firstName = "Jonas4", lastName = "Jonauskas4" }, timestamp = DateTime.Now.AddMinutes(-57), lastMessage = "Hello World(4)!" }, 4));
-            panels.Add(new ConversationHistoryPanel(new Conversation() { user = new User() { firstName = "Jonas5", lastName = "Jonauskas5" }, timestamp = DateTime.Now.AddMinutes(-59), lastMessage = "Hello World(5)!" }, 5));
-            panels.Add(new ConversationHistoryPanel(new Conversation() { user = new User() { firstName = "Jonas6", lastName = "Jonauskas6" }, timestamp = DateTime.Now.AddMinutes(-65), lastMessage = "Hello World(6)!" }, 6));
-            Controls.AddRange(panels.ToArray());
+            statusLabel.Text = "Kraunama...";
+            new ConversationGetter(localUser,
+                (status, conversations, users) =>
+                {
+                    this.Invoke((MethodInvoker)delegate //Grįžtama į main Thread !! SVARBU
+                    {
+                        if (status == ConversationGetter.GetStatus.Success) // Pavyko
+                        {
+                            statusLabel.Hide();
+                            this.conversations = conversations;
+                            this.users = users;
+                            this.conversations.ForEach((conversation) =>
+                            {
+                                var panel = new ConversationHistoryPanel(conversation, users[conversation.users[0]], panels.Count());
+                                panel.Click += (o, a) => new MessageForm(localUser, conversation, users).Show();
+                                panels.Add(panel);
+                            });
+                            Controls.AddRange(panels.ToArray());
+                        }
+                        else // Ne
+                        {
+                            statusLabel.Text = "Nepavyko užkrauti";
+                        }
+                    });
+                }
+                ).get(true);
 
-            if(panels.Count * 85 > ClientSize.Height) // Tikrinama ar turi pradėti su scroll bar
+            if (panels.Count * 85 > ClientSize.Height) // Tikrinama ar turi pradėti su scroll bar
             {
                 ClientSize = new Size(370 + System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 400);
                 MinimumSize = new Size(widthWithScroll, 200);

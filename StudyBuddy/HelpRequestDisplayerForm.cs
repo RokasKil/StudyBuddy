@@ -14,7 +14,7 @@ namespace StudyBuddy
     public partial class HelpRequestDisplayerForm : Form
     {
         LocalUser localUser;
-        
+        User user;
         public HelpRequestDisplayerForm(LocalUser localUser, HelpRequest helpRequest, User user)
         {
             InitializeComponent();
@@ -24,6 +24,7 @@ namespace StudyBuddy
             nameBox.Text = user.firstName + " " + user.lastName;
             pictureBox.ImageLocation = user.profilePictureLocation;
             this.localUser = localUser;
+            this.user = user;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -74,6 +75,11 @@ namespace StudyBuddy
         private void kategorija_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void profile_Click(object sender, EventArgs e)
+        {
+            new ProfileForm(localUser, user).Show();
         }
     }
 }

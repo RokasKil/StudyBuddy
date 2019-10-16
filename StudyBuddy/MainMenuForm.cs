@@ -112,7 +112,7 @@ namespace StudyBuddy
 
         private void ButtonConversations_Click(object sender, EventArgs e)
         {
-            FormOpener.OpenForm(new ConversationHistoryForm());
+            FormOpener.OpenForm(new ConversationHistoryForm(localUser));
         }
 
         private void buttonTopicList_Click(object sender, EventArgs e)
@@ -122,7 +122,10 @@ namespace StudyBuddy
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-        
+            Properties.Settings.Default.privateKey = "";
+            Properties.Settings.Default.remember = false;
+            Properties.Settings.Default.Save();
+            Application.Restart();
         }
         private void PictureBox1_Click(object sender, EventArgs e)
         {
