@@ -122,7 +122,10 @@ namespace StudyBuddy
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-        
+            Properties.Settings.Default.privateKey = "";
+            Properties.Settings.Default.remember = false;
+            Properties.Settings.Default.Save();
+            Application.Restart();
         }
         private void PictureBox1_Click(object sender, EventArgs e)
         {
