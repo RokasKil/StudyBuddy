@@ -49,11 +49,6 @@ namespace StudyBuddy
             //mainForm.checkProfileButton.Enabled = true;
         }
 
-        private void ProgressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Button1_Click(object sender, EventArgs e)
         {
             EditProfile editProfile = new EditProfile(localUser);

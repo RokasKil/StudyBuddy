@@ -89,7 +89,6 @@
             this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logo.TabIndex = 5;
             this.logo.TabStop = false;
-            this.logo.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // rememberMe
             // 
