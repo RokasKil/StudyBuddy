@@ -40,19 +40,19 @@ namespace StudyBuddy.Network
             GetUserReviewResult = getUserReviewResult;
         }
 
-        public void get(bool getUsers)
+        public void get(bool getUsers, string username)
         {
             if (getUserReviewThread != null && getUserReviewThread.IsAlive) // Jau vyksta užklausa
             {
                 return;
             }
-            getUserReviewThread = new Thread(() => getLogic(getUsers));
+            getUserReviewThread = new Thread(() => getLogic(getUsers, username));
             getUserReviewThread.Start();
         }
 
-        private void getLogic(bool getUsers)
+        private void getLogic(bool getUsers, string username)
         {
-            APICaller caller = new APICaller("getReviews.php").addParam("privateKey", PrivateKey);
+            APICaller caller = new APICaller("getReviews.php").addParam("privateKey", PrivateKey).addParam("username", username);
             if (getUsers)
             {
                 caller.addParam("user", "");
@@ -85,6 +85,9 @@ namespace StudyBuddy.Network
                             lastName = user.First["lastName"].ToString(),
                             KarmaPoints = user.First["karmaPoints"].ToObject<int>(),
                             IsLecturer = Convert.ToBoolean(user.First["lecturer"].ToObject<int>()),
+
+                            //gender = Convert.ToBoolean(user.First["gender"].ToObject<int>()),
+                            profilePictureLocation = user.First["profilePicture"].ToString()
                         };
                     });
                 }
@@ -93,10 +96,12 @@ namespace StudyBuddy.Network
             else
             {
                 GetStatus status = GetStatus.UnknownError;
+                
                 if (!Enum.TryParse<GetStatus>(obj["message"].ToString(), out status))
                 {
                     status = GetStatus.UnknownError;
                 }
+                
                 GetUserReviewResult(status, null, null);
             }
         }

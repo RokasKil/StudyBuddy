@@ -19,34 +19,50 @@ namespace StudyBuddy
         List<UserReview> userReviews;
         Dictionary<string, User> users;
 
-        public UserReviewTest()
+        public UserReviewTest(LocalUser localUser)
         {
             InitializeComponent();
+            this.localUser = localUser;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+
             new UserReviewGetter(localUser,
-                (status, helpRequests, users) =>
+                (status, userReviews, users) =>
                 {
                     this.Invoke((MethodInvoker)delegate //Grįžtama į main Thread !! SVARBU
                     {
                         if (status == UserReviewGetter.GetStatus.Success) // Pavyko
                         {
-                            this.helpRequests = helpRequests;
+                            this.userReviews = userReviews;
                             this.users = users;
-                            filter(null, null);
-                            searchTextBox.Text = "";
-                            searchTextBox.Enabled = true;
+                            Console.WriteLine("success");
+                            //filter(null, null);
+                            //searchTextBox.Text = "";
+                            //searchTextBox.Enabled = true;
                         }
                         else // Ne
                         {
-                            searchTextBox.Text = "Nepavyko užkrauti";
-                            searchTextBox.Enabled = false;
+                            Console.WriteLine("error");
+                            //searchTextBox.Text = "Nepavyko užkrauti";
+                            //searchTextBox.Enabled = false;
                         }
                     });
                 }
-                ).get(true);
+                ).get(true, "test2");
+            /*
+            foreach (UserReview userReview in userReviews)
+            {
+                Console.WriteLine(userReview.username );
+                Console.WriteLine(userReview.karma);
+                Console.WriteLine(userReview.message);
+                Console.WriteLine(userReview.postDate);
+                Console.WriteLine();
+            }*/
         }
+
+        
     }
 }
