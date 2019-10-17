@@ -36,7 +36,7 @@ namespace StudyBuddy
             karmaProgressBar.Value = localUser.KarmaPoints;
             progressLabel.Text = "Tavo progresas " + karmaProgressBar.Value
                 + "/" + karmaProgressBar.Maximum;
-            new UserReviewTest(localUser).Show();
+            //new UserReviewTest(localUser).Show();
         }
 
         private void Label2_Click(object sender, EventArgs e)

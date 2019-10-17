@@ -42,6 +42,15 @@ namespace StudyBuddy
                             //filter(null, null);
                             //searchTextBox.Text = "";
                             //searchTextBox.Enabled = true;
+
+                            foreach (UserReview userReview in userReviews)
+                            {
+                                Console.WriteLine(userReview.username);
+                                Console.WriteLine(userReview.karma);
+                                Console.WriteLine(userReview.message);
+                                Console.WriteLine(userReview.postDate);
+                                Console.WriteLine();
+                            }
                         }
                         else // Ne
                         {
@@ -51,16 +60,15 @@ namespace StudyBuddy
                         }
                     });
                 }
-                ).get(true, "test2");
-            /*
-            foreach (UserReview userReview in userReviews)
+                ).get(false, "test1");
+
+
+            if (userReviews == null || users == null) // Dar nėra informacijos
             {
-                Console.WriteLine(userReview.username );
-                Console.WriteLine(userReview.karma);
-                Console.WriteLine(userReview.message);
-                Console.WriteLine(userReview.postDate);
-                Console.WriteLine();
-            }*/
+                return;
+            }
+
+            
         }
 
         

@@ -57,6 +57,7 @@ namespace StudyBuddy.Network
             {
                 caller.addParam("user", "");
             }
+
             JObject obj = caller.call();
             Console.WriteLine(obj);
             if (obj["status"].ToString() == "success")
