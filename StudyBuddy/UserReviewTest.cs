@@ -71,9 +71,24 @@ namespace StudyBuddy
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-           
+            var mngr = new UserReviewManager(localUser);
+            mngr.PostUserReviewResult += (status, review) =>
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    if (status == UserReviewManager.ManagerStatus.Success)
+                    {
+                        Console.WriteLine("success in posting");
+                    }
+                    else
+                    {
+                        Console.WriteLine("failure in posting");
+                    }
+                });
+            };
+            mngr.postReview(new UserReview { username = "test1", message = "Asfsfs", karma = 1 });
         }
     }
 }
