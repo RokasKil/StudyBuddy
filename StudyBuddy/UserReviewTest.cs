@@ -60,7 +60,7 @@ namespace StudyBuddy
                         }
                     });
                 }
-                ).get(false, "test1");
+                ).get(true, "test1");
 
 
             if (userReviews == null || users == null) // Dar nėra informacijos
@@ -71,6 +71,9 @@ namespace StudyBuddy
             
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
