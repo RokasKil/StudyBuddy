@@ -35,6 +35,7 @@
             this.firstNameLabel = new System.Windows.Forms.Label();
             this.lastNameLabel = new System.Windows.Forms.Label();
             this.lastNameBox = new System.Windows.Forms.TextBox();
+            this.resultLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,11 +100,22 @@
             this.lastNameBox.Size = new System.Drawing.Size(194, 22);
             this.lastNameBox.TabIndex = 10;
             // 
+            // resultLabel
+            // 
+            this.resultLabel.AutoSize = true;
+            this.resultLabel.Location = new System.Drawing.Point(331, 121);
+            this.resultLabel.Name = "resultLabel";
+            this.resultLabel.Size = new System.Drawing.Size(132, 17);
+            this.resultLabel.TabIndex = 11;
+            this.resultLabel.Text = "Pakeitimai išsaugoti";
+            this.resultLabel.Visible = false;
+            // 
             // EditProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 318);
+            this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.lastNameBox);
             this.Controls.Add(this.lastNameLabel);
             this.Controls.Add(this.firstNameLabel);
@@ -129,5 +141,6 @@
         private System.Windows.Forms.Label firstNameLabel;
         private System.Windows.Forms.Label lastNameLabel;
         private System.Windows.Forms.TextBox lastNameBox;
+        private System.Windows.Forms.Label resultLabel;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StudyBuddy.Entity;
+using StudyBuddy.Network;
 
 namespace StudyBuddy
 {
@@ -34,6 +35,7 @@ namespace StudyBuddy
             profilePicture.ImageLocation = localUser.profilePictureLocation;
             firstNameBox.Text = localUser.firstName;
             lastNameBox.Text = localUser.lastName;
+            resultLabel.Visible = false;
             //usernameBox.Text = localUser.username;
 
         }
@@ -53,7 +55,30 @@ namespace StudyBuddy
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
+            resultLabel.Visible = false;
+            saveChangesButton.Enabled = false;
 
+            new UserUpdater(localUser,
+                (status, firstName, lastName) =>
+                {
+                    this.Invoke((MethodInvoker)delegate //Grįžtama į main Thread !! SVARBU
+                    {
+                        if (status == UserUpdater.GetStatus.Success) //Pavyko
+                        {
+                            localUser.firstName = firstName;
+                            localUser.lastName = lastName;
+                            saveChangesButton.Enabled = true;
+                            resultLabel.Visible = true;
+
+                        }
+                        else //Ne
+                        {
+                            MessageBox.Show("Įvyko klaida","oof", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            saveChangesButton.Enabled = true;
+                        }
+                    });
+                }
+                ).get(firstNameBox.Text, lastNameBox.Text);
         }
     }
 }

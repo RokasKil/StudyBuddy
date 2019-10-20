@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="ListViewColumnSorter.cs" />
     <Compile Include="MessageBoxManager.cs" />
+    <Compile Include="Network\ProfilePictureUpdater.cs" />
+    <Compile Include="Network\UserUpdater.cs" />
     <Compile Include="Profile\EditProfile.cs">
       <SubType>Form</SubType>
     </Compile>
