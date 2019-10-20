@@ -46,8 +46,6 @@
             this.descriptionBox.ReadOnly = true;
             this.descriptionBox.Size = new System.Drawing.Size(272, 219);
             this.descriptionBox.TabIndex = 0;
-            this.descriptionBox.Click += new System.EventHandler(this.problemosApibudinimas_Click);
-            this.descriptionBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // categoryBox
             // 
@@ -58,7 +56,6 @@
             this.categoryBox.ReadOnly = true;
             this.categoryBox.Size = new System.Drawing.Size(272, 27);
             this.categoryBox.TabIndex = 1;
-            this.categoryBox.TextChanged += new System.EventHandler(this.kategorija_TextChanged);
             // 
             // titleBox
             // 
@@ -69,7 +66,6 @@
             this.titleBox.ReadOnly = true;
             this.titleBox.Size = new System.Drawing.Size(272, 24);
             this.titleBox.TabIndex = 2;
-            this.titleBox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // pictureBox
             // 
@@ -79,7 +75,6 @@
             this.pictureBox.Size = new System.Drawing.Size(197, 180);
             this.pictureBox.TabIndex = 3;
             this.pictureBox.TabStop = false;
-            this.pictureBox.Click += new System.EventHandler(this.nuotraukaBox);
             // 
             // nameBox
             // 
@@ -90,7 +85,6 @@
             this.nameBox.ReadOnly = true;
             this.nameBox.Size = new System.Drawing.Size(198, 25);
             this.nameBox.TabIndex = 4;
-            this.nameBox.TextChanged += new System.EventHandler(this.vardasPavardeBox);
             // 
             // profile
             // 
@@ -116,7 +110,6 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "HelpRequestDisplayerForm";
             this.Text = "Help Request";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -96,7 +96,6 @@
             this.karmaProgressBar.Size = new System.Drawing.Size(142, 15);
             this.karmaProgressBar.TabIndex = 10;
             this.karmaProgressBar.Value = 20;
-            this.karmaProgressBar.Click += new System.EventHandler(this.ProgressBar1_Click);
             // 
             // button1
             // 

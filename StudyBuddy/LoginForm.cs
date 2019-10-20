@@ -40,6 +40,7 @@ namespace StudyBuddy
             SendMessage(passwordField.Handle, EM_SETCUEBANNER, 0, "Slaptažodis");
             //new ConversationHistoryForm().Show();
             //new MessageForm().Show();
+            
             //ChangeProfilePictureForm f = new ChangeProfilePictureForm();
             //f.Show();
 
