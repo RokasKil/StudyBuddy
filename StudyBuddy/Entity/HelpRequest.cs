@@ -9,10 +9,10 @@ namespace StudyBuddy.Entity
     public class HelpRequest
     {
         public int id;
-        public string title;
-        public string description;
-        public string creatorUsername;
-        public string category;
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string CreatorUsername { get; set; }
+        public string Category { get; set; }
         public DateTime timestamp;
     }
 }
