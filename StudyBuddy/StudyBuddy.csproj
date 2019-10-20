@@ -60,8 +60,6 @@
     <Compile Include="UserReviewTest.Designer.cs">
       <DependentUpon>UserReviewTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListViewColumnSorter.cs" />
-    <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Network\UserReviewManager.cs" />
     <Compile Include="Network\UserReviewGetter.cs" />
     <Compile Include="Network\ConversationGetter.cs" />
