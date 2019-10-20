@@ -31,6 +31,7 @@
             this.textBoxTopicDescription = new System.Windows.Forms.TextBox();
             this.labelTopicDescription = new System.Windows.Forms.Label();
             this.buttonEditTopicDescription = new System.Windows.Forms.Button();
+            this.labelUpdated = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxTopicDescription
@@ -61,11 +62,22 @@
             this.buttonEditTopicDescription.UseVisualStyleBackColor = true;
             this.buttonEditTopicDescription.Click += new System.EventHandler(this.buttonEditTopicDescription_Click);
             // 
+            // labelUpdated
+            // 
+            this.labelUpdated.AutoSize = true;
+            this.labelUpdated.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUpdated.Location = new System.Drawing.Point(7, 416);
+            this.labelUpdated.Name = "labelUpdated";
+            this.labelUpdated.Size = new System.Drawing.Size(116, 25);
+            this.labelUpdated.TabIndex = 3;
+            this.labelUpdated.Text = "Atnaujinta!";
+            // 
             // TopicDescriptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelUpdated);
             this.Controls.Add(this.buttonEditTopicDescription);
             this.Controls.Add(this.labelTopicDescription);
             this.Controls.Add(this.textBoxTopicDescription);
@@ -81,5 +93,6 @@
         private System.Windows.Forms.TextBox textBoxTopicDescription;
         private System.Windows.Forms.Label labelTopicDescription;
         private System.Windows.Forms.Button buttonEditTopicDescription;
+        private System.Windows.Forms.Label labelUpdated;
     }
 }

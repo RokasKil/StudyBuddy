@@ -23,9 +23,16 @@ namespace StudyBuddy.Network
             FieldsMissing,
             FailedToFindCategory     // Failed to find the category you were going to delete
         }
+        public enum CategoryModification
+        {
+            Add = 0,
+            Remove = 1,
+            Update = 2
+        }
         public delegate void CategoryManagerDelegate(ManagerStatus status, Category category);
         public CategoryManagerDelegate AddCategoryResult { get; set; }
         public CategoryManagerDelegate RemoveCategoryResult { get; set; }
+        public CategoryManagerDelegate UpdateCategoryResult { get; set; }
         public string PrivateKey { get; set; }
         private Thread categoryManagerThread;
 
@@ -41,12 +48,12 @@ namespace StudyBuddy.Network
             {
                 return;
             }
-            if (String.IsNullOrEmpty(category.title) || String.IsNullOrWhiteSpace(category.title))
+            if (String.IsNullOrEmpty(category.Title) || String.IsNullOrWhiteSpace(category.Title))
             {
                 AddCategoryResult(ManagerStatus.TitleMissing, null);
                 return;
             }
-            categoryManagerThread = new Thread(() => apiLogic(true, category)); // There's probably a better way
+            categoryManagerThread = new Thread(() => apiLogic(CategoryModification.Add, category)); // There's probably a better way
             categoryManagerThread.Start();
         }
 
@@ -56,36 +63,69 @@ namespace StudyBuddy.Network
             {
                 return;
             }
-            if (String.IsNullOrEmpty(category.title) || String.IsNullOrWhiteSpace(category.title))
+            if (String.IsNullOrEmpty(category.Title) || String.IsNullOrWhiteSpace(category.Title))
             {
                 RemoveCategoryResult(ManagerStatus.TitleMissing, null);
                 return;
             }
-            categoryManagerThread = new Thread(() => apiLogic(false, category)); // There's probably a better way
+            categoryManagerThread = new Thread(() => apiLogic(CategoryModification.Remove, category)); // There's probably a better way
             categoryManagerThread.Start();
         }
 
-        public void apiLogic(bool add, Category category)
+        public void updateCategory(Category category)
         {
-            JObject obj = new APICaller((add ? "addCategory.php" : "removeCategory.php"))
+            if (categoryManagerThread != null && categoryManagerThread.IsAlive) // Jau vyksta užklausa
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(category.Title) || String.IsNullOrWhiteSpace(category.Title))
+            {
+                RemoveCategoryResult(ManagerStatus.TitleMissing, null);
+                return;
+            }
+            categoryManagerThread = new Thread(() => apiLogic(CategoryModification.Update, category)); // There's probably a better way
+            categoryManagerThread.Start();
+        }
+        public void apiLogic(CategoryModification categoryStatus, Category category)
+        {   
+            string modificationType;
+            switch((int) categoryStatus)
+            {
+                case 0:
+                    modificationType = "addCategory.php";
+                    break;
+                case 1:
+                    modificationType = "removeCategory.php";
+                    break;
+                case 2:
+                    modificationType = "updateCategory.php";
+                    break;
+                default:
+                    modificationType = "false";
+                    break;
+            }
+            JObject obj = new APICaller(modificationType)
                 .addParam("privateKey", PrivateKey)
-                .addParam("title", category.title)
-                .addParam("description", category.description)
+                .addParam("title", category.Title)
+                .addParam("description", category.Description)
                 .call();
             ManagerStatus status = ManagerStatus.UnknownError;
             if (!Enum.TryParse<ManagerStatus>(obj["message"].ToString(), out status))
             {
                 status = ManagerStatus.UnknownError;
             }
-            if (add)
+            switch((int) categoryStatus)
             {
-                AddCategoryResult(status, category);
+                case 0:
+                    AddCategoryResult(status, category);
+                    break;
+                case 1:
+                    RemoveCategoryResult(status, category);
+                    break;
+                case 2:
+                    UpdateCategoryResult(status, category);
+                    break;
             }
-            else
-            {
-                RemoveCategoryResult(status, category);
-            }
-
         }
     }
 }

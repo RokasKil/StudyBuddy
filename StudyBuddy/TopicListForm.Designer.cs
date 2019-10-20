@@ -36,7 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxTopic = new System.Windows.Forms.TextBox();
             this.buttonRemoveTopic = new System.Windows.Forms.Button();
-            this.buttonEditTopic = new System.Windows.Forms.Button();
+            this.buttonOpenTopicDescription = new System.Windows.Forms.Button();
             this.labelStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -115,22 +115,22 @@
             this.buttonRemoveTopic.UseVisualStyleBackColor = true;
             this.buttonRemoveTopic.Click += new System.EventHandler(this.buttonRemoveTopic_click);
             // 
-            // buttonEditTopic
+            // buttonOpenTopicDescription
             // 
-            this.buttonEditTopic.Location = new System.Drawing.Point(553, 447);
-            this.buttonEditTopic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonEditTopic.Name = "buttonEditTopic";
-            this.buttonEditTopic.Size = new System.Drawing.Size(217, 36);
-            this.buttonEditTopic.TabIndex = 5;
-            this.buttonEditTopic.Text = "Atidaryti temos aprašą";
-            this.buttonEditTopic.UseVisualStyleBackColor = true;
-            this.buttonEditTopic.Click += new System.EventHandler(this.buttonEditTopic_Click);
+            this.buttonOpenTopicDescription.Location = new System.Drawing.Point(553, 447);
+            this.buttonOpenTopicDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonOpenTopicDescription.Name = "buttonOpenTopicDescription";
+            this.buttonOpenTopicDescription.Size = new System.Drawing.Size(217, 36);
+            this.buttonOpenTopicDescription.TabIndex = 5;
+            this.buttonOpenTopicDescription.Text = "Atidaryti temos aprašą";
+            this.buttonOpenTopicDescription.UseVisualStyleBackColor = true;
+            this.buttonOpenTopicDescription.Click += new System.EventHandler(this.buttonOpenTopicDescription_Click);
             // 
             // labelStatus
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.Location = new System.Drawing.Point(6, 458);
+            this.labelStatus.Location = new System.Drawing.Point(6, 455);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(190, 25);
             this.labelStatus.TabIndex = 6;
@@ -142,7 +142,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 489);
             this.Controls.Add(this.labelStatus);
-            this.Controls.Add(this.buttonEditTopic);
+            this.Controls.Add(this.buttonOpenTopicDescription);
             this.Controls.Add(this.buttonRemoveTopic);
             this.Controls.Add(this.textBoxTopic);
             this.Controls.Add(this.label1);
@@ -167,7 +167,7 @@
         private System.Windows.Forms.TextBox textBoxTopic;
         private System.Windows.Forms.ColumnHeader LastUpdated;
         private System.Windows.Forms.Button buttonRemoveTopic;
-        private System.Windows.Forms.Button buttonEditTopic;
+        private System.Windows.Forms.Button buttonOpenTopicDescription;
         private System.Windows.Forms.Label labelStatus;
     }
 }

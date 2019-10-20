@@ -50,8 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ListViewColumnSorter.cs" />
-    <Compile Include="MessageBoxManager.cs" />
+    <Compile Include="Utility\ListViewColumnSorter.cs" />
+    <Compile Include="Utility\MessageBoxManager.cs" />
     <Compile Include="Profile\EditProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,7 +75,7 @@
     <Compile Include="MessageForm.Designer.cs">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormOpener.cs" />
+    <Compile Include="Utility\FormOpener.cs" />
     <Compile Include="HelpRequestDisplayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,7 +91,7 @@
     <Compile Include="ConversationHistoryForm.Designer.cs">
       <DependentUpon>ConversationHistoryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="KarmaHandler.cs" />
+    <Compile Include="Utility\KarmaHandler.cs" />
     <Compile Include="Profile\ChangeProfilePictureForm.cs">
       <SubType>Form</SubType>
     </Compile>
