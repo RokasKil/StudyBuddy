@@ -50,7 +50,7 @@ namespace StudyBuddy
                             categoriesComboBox.SelectedIndex = 0;
                             categories.ForEach((category) =>
                             {
-                                categoriesComboBox.Items.Add(category.title);
+                                categoriesComboBox.Items.Add(category.Title);
                             });
                             categoriesComboBox.Enabled = true;
                         }
@@ -141,7 +141,7 @@ namespace StudyBuddy
             }
             else
             {
-                filter(lastSearch, categories.ElementAt(categoriesComboBox.SelectedIndex - 1).title);
+                filter(lastSearch, categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title);
             }
         }
 
@@ -155,7 +155,7 @@ namespace StudyBuddy
                 }
                 else
                 {
-                    filter(searchTextBox.Text, categories.ElementAt(categoriesComboBox.SelectedIndex - 1).title);
+                    filter(searchTextBox.Text, categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title);
                 }
             }
         }
