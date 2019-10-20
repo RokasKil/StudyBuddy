@@ -52,6 +52,13 @@
   <ItemGroup>
     <Compile Include="Utility\ListViewColumnSorter.cs" />
     <Compile Include="Utility\MessageBoxManager.cs" />
+    <Compile Include="Entity\Message.cs" />
+    <Compile Include="ListViewColumnSorter.cs" />
+    <Compile Include="MessageBoxManager.cs" />
+    <Compile Include="Network\ConversationGetter.cs" />
+    <Compile Include="Network\ConversationStarter.cs" />
+    <Compile Include="Network\MessagesGetter.cs" />
+    <Compile Include="Network\MessagePoster.cs" />
     <Compile Include="Profile\EditProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +194,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="TopicDescriptionForm.resx">
       <DependentUpon>TopicDescriptionForm.cs</DependentUpon>
@@ -207,6 +215,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\study buddy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

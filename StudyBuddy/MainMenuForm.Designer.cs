@@ -40,14 +40,17 @@
             this.buttonTopic = new System.Windows.Forms.Button();
             this.buttonTopicList = new System.Windows.Forms.Button();
             this.labelLecturer = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.logo = new System.Windows.Forms.PictureBox();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
             // greetingsLabel
             // 
             this.greetingsLabel.AutoSize = true;
             this.greetingsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.greetingsLabel.Location = new System.Drawing.Point(412, 195);
+            this.greetingsLabel.Location = new System.Drawing.Point(430, 241);
             this.greetingsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.greetingsLabel.Name = "greetingsLabel";
             this.greetingsLabel.Size = new System.Drawing.Size(249, 39);
@@ -58,7 +61,7 @@
             // 
             // karmaProgressBar
             // 
-            this.karmaProgressBar.Location = new System.Drawing.Point(416, 98);
+            this.karmaProgressBar.Location = new System.Drawing.Point(437, 370);
             this.karmaProgressBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.karmaProgressBar.Maximum = 1000;
             this.karmaProgressBar.Name = "karmaProgressBar";
@@ -72,7 +75,7 @@
             // 
             this.progressLabel.AutoSize = true;
             this.progressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.progressLabel.Location = new System.Drawing.Point(411, 71);
+            this.progressLabel.Location = new System.Drawing.Point(432, 343);
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.Size = new System.Drawing.Size(193, 25);
             this.progressLabel.TabIndex = 2;
@@ -179,11 +182,33 @@
             this.labelLecturer.TabIndex = 11;
             this.labelLecturer.Text = "Dėstytojas";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.button1.Location = new System.Drawing.Point(848, 551);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(253, 92);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Atsijungti";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // logo
+            // 
+            this.logo.Image = global::StudyBuddy.Properties.Resources.study_buddy;
+            this.logo.Location = new System.Drawing.Point(337, 46);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(448, 152);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo.TabIndex = 13;
+            this.logo.TabStop = false;
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 702);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.logo);
             this.Controls.Add(this.labelLecturer);
             this.Controls.Add(this.buttonTopicList);
             this.Controls.Add(this.buttonCheckProfile);
@@ -201,6 +226,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,5 +246,7 @@
         private System.Windows.Forms.Button buttonTopic;
         private System.Windows.Forms.Button buttonTopicList;
         private System.Windows.Forms.Label labelLecturer;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox logo;
     }
 }
