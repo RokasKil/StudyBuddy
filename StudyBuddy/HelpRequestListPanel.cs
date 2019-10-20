@@ -45,7 +45,7 @@ namespace StudyBuddy
             title.BorderStyle = BorderStyle.None;
             title.ReadOnly = true;
             title.Size = new Size(416, 28);
-            title.Text = helpRequest.title;
+            title.Text = helpRequest.Title;
             title.BackColor = this.BackColor;
 
 
@@ -57,14 +57,14 @@ namespace StudyBuddy
             description.Multiline = true;
             description.ReadOnly = true;
             description.Size = new Size(416, 40);
-            description.Text = helpRequest.description;
+            description.Text = helpRequest.Description;
             description.BackColor = this.BackColor;
 
             Label category = new Label();
             category.AutoSize = true;
             category.Location = new Point(3, 75);
             category.Size = new Size(35, 13);
-            category.Text = helpRequest.category;
+            category.Text = helpRequest.Category;
 
             Label time = new Label();
             time.Text = helpRequest.timestamp.ToString(" HH:mm:ss yyyy-MM-dd"); // Padaryt normaliai šitą dalį

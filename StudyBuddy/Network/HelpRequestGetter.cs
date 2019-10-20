@@ -67,10 +67,10 @@ namespace StudyBuddy.Network
                     helpRequests.Add(new HelpRequest
                     {
                         id = helpRequest["id"].ToObject<int>(),
-                        title = helpRequest["title"].ToString(),
-                        description = helpRequest["description"].ToString(),
-                        creatorUsername = helpRequest["username"].ToString(),
-                        category = helpRequest["category"].ToString(),
+                        Title = helpRequest["title"].ToString(),
+                        Description = helpRequest["description"].ToString(),
+                        CreatorUsername = helpRequest["username"].ToString(),
+                        Category = helpRequest["category"].ToString(),
                         timestamp = DateTimeOffset.FromUnixTimeSeconds(helpRequest["postDate"].ToObject<long>()).DateTime
                     });
                 });

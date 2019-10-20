@@ -18,9 +18,9 @@ namespace StudyBuddy
         public HelpRequestDisplayerForm(LocalUser localUser, HelpRequest helpRequest, User user)
         {
             InitializeComponent();
-            categoryBox.Text = helpRequest.category;
-            titleBox.Text = helpRequest.title;
-            descriptionBox.Text = helpRequest.description;
+            categoryBox.Text = helpRequest.Category;
+            titleBox.Text = helpRequest.Title;
+            descriptionBox.Text = helpRequest.Description;
             nameBox.Text = user.firstName + " " + user.lastName;
             pictureBox.ImageLocation = user.profilePictureLocation;
             this.localUser = localUser;
