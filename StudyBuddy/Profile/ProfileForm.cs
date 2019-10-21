@@ -69,7 +69,7 @@ namespace StudyBuddy
 
         private void leaveReviewButton_Click(object sender, EventArgs e)
         {
-            new UserReviewForm(localUser, user).Show();
+            new WriteUserReviewForm(localUser, user).Show();
         }
     }
 }
