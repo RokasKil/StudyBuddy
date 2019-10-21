@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StudyBuddy.Entity;
+using StudyBuddy.Network;
 
 namespace StudyBuddy
 {
     public partial class ChangeProfilePictureForm : Form
     {
-        string[] imageFormats = { ".jpg", ".jpeg", ".jpe", ".jfif", ".png", ".exe"};
+        string[] imageFormats = { ".jpg", ".jpeg", ".jpe", ".jfif", ".png", ".gif"};
         private LocalUser localUser;
 
         public ChangeProfilePictureForm()
@@ -74,7 +76,7 @@ namespace StudyBuddy
             //Pradiniai nustatymai
             dragAndDropOverlay.AutoSize = false;
             dragAndDropOverlay.BringToFront();
-            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png" ;
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png, *.gif) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.gif" ;
         }
 
         private void browseButton_Click(object sender, EventArgs e)
@@ -106,6 +108,34 @@ namespace StudyBuddy
         {
            // EditProfile editProfile1 = new EditProfile(localUser);
             //editProfile1.Show();
+        }
+
+        private void UploadButton_Click(object sender, EventArgs e)
+        {
+            var base64String = Convert.ToBase64String(File.ReadAllBytes(pictureBox.ImageLocation));
+            uploadButton.Enabled = false;
+
+            new ProfilePictureUpdater(localUser,
+                (status, pictureLocation) =>
+                {
+                    this.Invoke((MethodInvoker)delegate //Grįžtama į main Thread !! SVARBU
+                    {
+                        if (status == ProfilePictureUpdater.GetStatus.Success) //Pavyko
+                        {
+                            localUser.profilePictureLocation = pictureLocation;
+                            uploadButton.Enabled = true;
+                            //resultLabel.Visible = true;
+
+                        }
+                        else //Ne
+                        {
+                            Console.WriteLine(status);
+                            MessageBox.Show("Nepavyko įkelti nuotrauką:(", "oof", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            uploadButton.Enabled = true;
+                        }
+                    });
+                }
+                ).get(base64String);
         }
     }
 }

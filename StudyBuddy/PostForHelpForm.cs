@@ -27,6 +27,7 @@ namespace StudyBuddy
             labelStatus.Visible = false;
             this.localUser = localUser;
             buttonConfirmHelpRequest.Enabled = false;
+            this.Text = "Ieškoti pagalbos";
         }
 
         private void PostForHelp_Load(object sender, EventArgs e)

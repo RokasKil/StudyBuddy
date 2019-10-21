@@ -31,6 +31,7 @@ namespace StudyBuddy
         {
             InitializeComponent();
             AcceptButton = loginButton;
+            this.Text = "Prisijungimas";
         }
 
 
