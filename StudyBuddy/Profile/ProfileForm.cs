@@ -66,5 +66,10 @@ namespace StudyBuddy
         {
             new MessageForm(localUser, user.username).Show();
         }
+
+        private void leaveReviewButton_Click(object sender, EventArgs e)
+        {
+            new UserReviewForm(localUser, user).Show();
+        }
     }
 }
