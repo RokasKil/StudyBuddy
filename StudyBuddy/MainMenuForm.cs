@@ -135,7 +135,7 @@ namespace StudyBuddy
 
         private void buttonUserReviews_Click(object sender, EventArgs e)
         {
-            FormOpener.OpenForm(new UserReviewForm(localUser));
+            FormOpener.OpenForm(new ViewUserReviewsForm(localUser));
         }
     }   
 }

@@ -12,25 +12,28 @@ using System.Windows.Forms;
 
 namespace StudyBuddy
 {
-    public partial class UserReviewForm : Form
+    public partial class ViewUserReviewsForm : Form
     {
         List<UserReview> userReviews;
         LocalUser localUser;
         User user;
         Dictionary<string, User> users;
         private ListViewColumnSorter listViewColumnSorter;
-        public UserReviewForm(LocalUser localUser)
+        public ViewUserReviewsForm(LocalUser localUser)
         {
             InitializeComponent();
             this.localUser = localUser;
             progressBarKarma.Visible = false;
+            labelKarmaProgress.Visible = false;
             this.AcceptButton = buttonSortReviews;
             listViewColumnSorter = new ListViewColumnSorter();
             this.listViewUserReviews.ListViewItemSorter = listViewColumnSorter;
+            ResizeColumnWidth();
         }
 
         private void buttonSortReviews_Click(object sender, EventArgs e)
         {
+            listViewUserReviews.Items.Clear();
             new UserGetter(localUser,
                 (status, user) =>
                 {
@@ -43,11 +46,13 @@ namespace StudyBuddy
                             labelKarmaProgress.Text = user.username + " progresas " + progressBarKarma.Value
                                 + "/" + progressBarKarma.Maximum;
                             progressBarKarma.Visible = true;
+                            labelKarmaProgress.Visible = true;
                             LoadUserReviews();
                         }
                         else //Ne
                         {
                             progressBarKarma.Visible = false;
+                            labelKarmaProgress.Visible = false;
                             MessageBox.Show(
                             "Vartotojas " + richTextBoxUsername.Text + " nerastas",
                             "Įvyko klaida",

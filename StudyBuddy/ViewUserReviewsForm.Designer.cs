@@ -1,6 +1,6 @@
 ﻿namespace StudyBuddy
 {
-    partial class UserReviewForm
+    partial class ViewUserReviewsForm
     {
         /// <summary>
         /// Required designer variable.
