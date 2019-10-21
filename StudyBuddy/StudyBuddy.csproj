@@ -52,6 +52,12 @@
   <ItemGroup>
     <Compile Include="Network\ProfilePictureUpdater.cs" />
     <Compile Include="Network\UserUpdater.cs" />
+    <Compile Include="UserReviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserReviewForm.Designer.cs">
+      <DependentUpon>UserReviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\ListViewColumnSorter.cs" />
     <Compile Include="Utility\MessageBoxManager.cs" />
     <Compile Include="Entity\UserReview.cs" />
@@ -162,6 +168,9 @@
       <DependentUpon>TopicListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\User.cs" />
+    <EmbeddedResource Include="UserReviewForm.resx">
+      <DependentUpon>UserReviewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserReviewTest.resx">
       <DependentUpon>UserReviewTest.cs</DependentUpon>
     </EmbeddedResource>
