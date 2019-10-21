@@ -50,12 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+
+    <Compile Include="WriteUserReviewForm.cs">
+
     <Compile Include="DateTimeExtender.cs" />
     <Compile Include="UserReviewForm.cs">
+
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserReviewForm.Designer.cs">
-      <DependentUpon>UserReviewForm.cs</DependentUpon>
+    <Compile Include="WriteUserReviewForm.Designer.cs">
+      <DependentUpon>WriteUserReviewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Network\ProfilePictureUpdater.cs" />
     <Compile Include="Network\UserUpdater.cs" />
@@ -175,8 +179,13 @@
       <DependentUpon>TopicListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\User.cs" />
+
+    <EmbeddedResource Include="WriteUserReviewForm.resx">
+      <DependentUpon>WriteUserReviewForm.cs</DependentUpon>
+
     <EmbeddedResource Include="ViewUserReviewsForm.resx">
       <DependentUpon>ViewUserReviewsForm.cs</DependentUpon>
+
     </EmbeddedResource>
     <EmbeddedResource Include="UserReviewTest.resx">
       <DependentUpon>UserReviewTest.cs</DependentUpon>

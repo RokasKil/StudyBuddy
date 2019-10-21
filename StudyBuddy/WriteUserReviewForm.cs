@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace StudyBuddy
 {
-    public partial class UserReviewForm : Form
+    public partial class WriteUserReviewForm : Form
     {
         LocalUser localUser;
         User user;
         UserReview userReview;
 
-        public UserReviewForm(LocalUser localUser, User user)
+        public WriteUserReviewForm(LocalUser localUser, User user)
         {
             this.localUser = localUser;
             this.user = user;
