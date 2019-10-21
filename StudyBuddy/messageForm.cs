@@ -27,10 +27,11 @@ namespace StudyBuddy
         List<Entity.Message> messages = new List<Entity.Message>();
         long timestamp = 0;
         Font mainFont = new Font(FontFamily.GenericSansSerif, 10);
+        Font mainFontBold = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
+
         private void TextBoxGotFocus(object sender, EventArgs args)
         {
             HideCaret(chat.Handle);
-            //ActiveControl = richTextBox3;
         }
         
         public MessageForm(LocalUser localUser, string username) : this()
@@ -69,6 +70,7 @@ namespace StudyBuddy
             //Color color = Color.Blue;
             //Color color2 = Color.Red;
             //messageStyle("message\n", color, fBold);
+            chat.MouseDown += chat_MouseDown;
             sendButton.Enabled = false;
             if(conversation != null)
             {
@@ -160,7 +162,8 @@ namespace StudyBuddy
                     color = Color.FromArgb(0xFF, 0x00, 0x66, 0x99);
                 }
                 var date = DateTimeOffset.FromUnixTimeSeconds(message.timestamp / 1000).LocalDateTime;
-                messageStyle("[" + date.ToShortTimeString() + "] " + user.firstName + " " + user.lastName + ": " + message.message + "\n", color, mainFont);
+                messageStyle("[" + date.ToShortTimeString() + "] " + user.firstName + " " + user.lastName + ": ", color, mainFontBold);
+                messageStyle(message.message + "\n", color, mainFont);
                 timestamp = Math.Max(timestamp, message.timestamp);
                 
             });

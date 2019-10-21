@@ -73,7 +73,7 @@ namespace StudyBuddy.Network
                         title = conversation["title"].ToString(),
                         messages = conversation["messages"].ToObject<int>(),
                         lastActivity = conversation["lastActivity"].ToObject<long>(),
-                        lastMessage = ""
+                        lastMessage = conversation["lastMessage"].ToString()
                     };
                     try
                     {

@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeExtender.cs" />
     <Compile Include="Network\ProfilePictureUpdater.cs" />
     <Compile Include="Network\UserUpdater.cs" />
     <Compile Include="Utility\ListViewColumnSorter.cs" />

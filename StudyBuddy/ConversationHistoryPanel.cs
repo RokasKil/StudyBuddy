@@ -48,11 +48,12 @@ namespace StudyBuddy
             lastMessage.Text = conversation.lastMessage;
             lastMessage.Location = new Point(92, 28);
             lastMessage.Font = new Font(FontFamily.GenericSansSerif, 14);
-            lastMessage.AutoSize = true;
+            lastMessage.AutoSize = false;
+            lastMessage.Size = new Size(400, 25);
 
             Label time = new Label();
-            time.Text = DateTimeOffset.FromUnixTimeSeconds(conversation.lastActivity / 1000).LocalDateTime.ToString(" HH:mm:ss yyyy-MM-dd"); ; // Padaryt normaliai šitą dalį
-            time.RightToLeft = RightToLeft.Yes;
+            time.Text = DateTimeOffset.FromUnixTimeSeconds(conversation.lastActivity / 1000).LocalDateTime.ToFullDate(); // Padaryt normaliai šitą dalį
+            time.TextAlign = ContentAlignment.MiddleRight;
             time.Font = new Font(FontFamily.GenericSansSerif, 12);
             time.AutoSize = false;
             time.Size = new Size(281, 22);
@@ -67,10 +68,10 @@ namespace StudyBuddy
 
             Controls.Add(profilePicture);
             Controls.Add(username);
-            Controls.Add(lastMessage);
             Controls.Add(time);
+            Controls.Add(lastMessage);
 
-            foreach(Control control in Controls) // Persiunčiami paspaudimai iš labels į panel
+            foreach (Control control in Controls) // Persiunčiami paspaudimai iš labels į panel
             {
                 control.Click += (s, args) => OnClick(args);
             }
