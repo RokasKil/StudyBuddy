@@ -134,6 +134,7 @@
             this.leaveReviewButton.TabIndex = 13;
             this.leaveReviewButton.Text = "Palikti atsiliepimą";
             this.leaveReviewButton.UseVisualStyleBackColor = true;
+            this.leaveReviewButton.Click += new System.EventHandler(this.leaveReviewButton_Click);
             // 
             // ProfileForm
             // 

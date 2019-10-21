@@ -32,10 +32,11 @@
             this.firstName = new System.Windows.Forms.Label();
             this.username = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.reviewBox1 = new System.Windows.Forms.RichTextBox();
+            this.negativeButton = new System.Windows.Forms.Button();
+            this.positiveButton = new System.Windows.Forms.Button();
+            this.sendButton = new System.Windows.Forms.Button();
+            this.messageToUser = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,56 +78,71 @@
             this.status.TabIndex = 12;
             this.status.Text = "status";
             // 
-            // richTextBox1
+            // reviewBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(207, 11);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(575, 240);
-            this.richTextBox1.TabIndex = 13;
-            this.richTextBox1.Text = "";
+            this.reviewBox1.Location = new System.Drawing.Point(207, 11);
+            this.reviewBox1.Name = "reviewBox1";
+            this.reviewBox1.Size = new System.Drawing.Size(575, 250);
+            this.reviewBox1.TabIndex = 13;
+            this.reviewBox1.Text = "";
             // 
-            // button1
+            // negativeButton
             // 
-            this.button1.Location = new System.Drawing.Point(207, 267);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 41);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.negativeButton.BackColor = System.Drawing.Color.Tomato;
+            this.negativeButton.Location = new System.Drawing.Point(207, 267);
+            this.negativeButton.Name = "negativeButton";
+            this.negativeButton.Size = new System.Drawing.Size(104, 41);
+            this.negativeButton.TabIndex = 14;
+            this.negativeButton.Text = "Neigiamai";
+            this.negativeButton.UseVisualStyleBackColor = false;
+            this.negativeButton.Click += new System.EventHandler(this.negativeButton_Click);
             // 
-            // button2
+            // positiveButton
             // 
-            this.button2.Location = new System.Drawing.Point(552, 267);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 41);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.positiveButton.BackColor = System.Drawing.Color.PaleGreen;
+            this.positiveButton.Location = new System.Drawing.Point(552, 267);
+            this.positiveButton.Name = "positiveButton";
+            this.positiveButton.Size = new System.Drawing.Size(107, 41);
+            this.positiveButton.TabIndex = 15;
+            this.positiveButton.Text = "Teigiamai";
+            this.positiveButton.UseVisualStyleBackColor = false;
+            this.positiveButton.Click += new System.EventHandler(this.positiveButton_Click);
             // 
-            // button3
+            // sendButton
             // 
-            this.button3.Location = new System.Drawing.Point(691, 267);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(91, 41);
-            this.button3.TabIndex = 16;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.sendButton.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.sendButton.Location = new System.Drawing.Point(665, 267);
+            this.sendButton.Name = "sendButton";
+            this.sendButton.Size = new System.Drawing.Size(107, 41);
+            this.sendButton.TabIndex = 16;
+            this.sendButton.Text = "Siųsti";
+            this.sendButton.UseVisualStyleBackColor = false;
+            this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
+            // 
+            // messageToUser
+            // 
+            this.messageToUser.Location = new System.Drawing.Point(317, 279);
+            this.messageToUser.Name = "messageToUser";
+            this.messageToUser.Size = new System.Drawing.Size(229, 27);
+            this.messageToUser.TabIndex = 17;
             // 
             // UserReviewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 315);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.messageToUser);
+            this.Controls.Add(this.sendButton);
+            this.Controls.Add(this.positiveButton);
+            this.Controls.Add(this.negativeButton);
+            this.Controls.Add(this.reviewBox1);
             this.Controls.Add(this.status);
             this.Controls.Add(this.username);
             this.Controls.Add(this.firstName);
             this.Controls.Add(this.profilePicture);
             this.Name = "UserReviewForm";
-            this.Text = "UserReviewForm";
+            this.Text = "Atsiliepimas";
+            this.Load += new System.EventHandler(this.UserReviewForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -139,9 +155,10 @@
         private System.Windows.Forms.Label firstName;
         private System.Windows.Forms.Label username;
         private System.Windows.Forms.Label status;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RichTextBox reviewBox1;
+        private System.Windows.Forms.Button negativeButton;
+        private System.Windows.Forms.Button positiveButton;
+        private System.Windows.Forms.Button sendButton;
+        private System.Windows.Forms.Label messageToUser;
     }
 }
