@@ -31,6 +31,7 @@ namespace StudyBuddy
             pictureBox.ImageLocation = user.profilePictureLocation;
             this.localUser = localUser;
             this.user = user;
+            this.Text = "Pagalbos prašymas";
 
             titleBox.MouseDown += TextBox_MouseDown;
             titleBox.MouseUp += TextBox_MouseDown;
