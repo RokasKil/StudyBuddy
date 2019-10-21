@@ -43,6 +43,8 @@ namespace StudyBuddy
             userReview.username = user.username;
             userReview.message = reviewBox1.Text;
             sendingReview(userReview);
+
+            //this.Close();
         }
 
         private void positiveButton_Click(object sender, EventArgs e)
