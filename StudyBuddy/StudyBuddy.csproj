@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeExtender.cs" />
     <Compile Include="UserReviewForm.cs">
       <SubType>Form</SubType>
     </Compile>

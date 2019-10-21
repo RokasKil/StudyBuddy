@@ -88,7 +88,7 @@ namespace StudyBuddy
                 ).get(true);
         }
 
-        void filter(string search, string category)
+        void filter(string search = null, string category = null)
         {
             if(helpRequests == null || users == null) // Dar nėra informacijos
             {
@@ -138,11 +138,11 @@ namespace StudyBuddy
         {
             if(categoriesComboBox.SelectedIndex == 0) // Pirmas yra betkoks
             {
-                filter(lastSearch, null);
+                filter(search: lastSearch);
             }
             else
             {
-                filter(lastSearch, categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title);
+                filter(search : lastSearch, category : categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title);
             }
         }
 
@@ -152,11 +152,11 @@ namespace StudyBuddy
             {
                 if (categoriesComboBox.SelectedIndex == 0) // Pirmas yra betkoks
                 {
-                    filter(searchTextBox.Text, null);
+                    filter(search : searchTextBox.Text);
                 }
                 else
                 {
-                    filter(searchTextBox.Text, categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title);
+                    filter(search : searchTextBox.Text, category : categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title);
                 }
             }
         }

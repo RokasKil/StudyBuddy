@@ -58,7 +58,7 @@ namespace StudyBuddy
         }
         private void UpdateListViewAdd()
         {
-            string timestamp = DateTime.Now.ToLongDateString();
+            string timestamp = DateTime.Now.ToFullDate();
             listView.Items.Add(
                 new ListViewItem(
                     new[] { category.Title, timestamp, timestamp }));
