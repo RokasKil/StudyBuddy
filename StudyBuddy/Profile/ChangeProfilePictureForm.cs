@@ -15,7 +15,7 @@ namespace StudyBuddy
 {
     public partial class ChangeProfilePictureForm : Form
     {
-        string[] imageFormats = { ".jpg", ".jpeg", ".jpe", ".jfif", ".png", ".exe"};
+        string[] imageFormats = { ".jpg", ".jpeg", ".jpe", ".jfif", ".png", ".gif"};
         private LocalUser localUser;
 
         public ChangeProfilePictureForm()
@@ -76,7 +76,7 @@ namespace StudyBuddy
             //Pradiniai nustatymai
             dragAndDropOverlay.AutoSize = false;
             dragAndDropOverlay.BringToFront();
-            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png" ;
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png, *.gif) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.gif" ;
         }
 
         private void browseButton_Click(object sender, EventArgs e)

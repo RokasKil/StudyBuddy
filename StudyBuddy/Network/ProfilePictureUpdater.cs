@@ -22,7 +22,8 @@ namespace StudyBuddy.Network
             UsernameEmpty,
             FieldsMissing,
             InvalidBase64,
-            InvalidFileType
+            InvalidFileType,
+            FailedToUpload
         }
 
         public delegate void UpdatePictureResultDelegate(GetStatus status, string pictureLocation);
