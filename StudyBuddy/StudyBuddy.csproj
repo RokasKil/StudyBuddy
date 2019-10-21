@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserReviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserReviewForm.Designer.cs">
+      <DependentUpon>UserReviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Network\ProfilePictureUpdater.cs" />
     <Compile Include="Network\UserUpdater.cs" />
     <Compile Include="ViewUserReviewsForm.cs">
