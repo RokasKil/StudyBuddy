@@ -56,6 +56,8 @@
     <Compile Include="WriteUserReviewForm.Designer.cs">
       <DependentUpon>WriteUserReviewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Network\ProfilePictureUpdater.cs" />
+    <Compile Include="Network\UserUpdater.cs" />
     <Compile Include="Utility\ListViewColumnSorter.cs" />
     <Compile Include="Utility\MessageBoxManager.cs" />
     <Compile Include="Entity\UserReview.cs" />
