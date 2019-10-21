@@ -31,6 +31,7 @@ namespace StudyBuddy
             categoriesComboBox.SelectedIndex = 0;
             searchTextBox.Text = "Kraunama...";
             searchTextBox.Enabled = false;
+            this.Text = "Pagalbos prašymai";
         }
 
         private void HelpRequestListForm_Load(object sender, EventArgs e)

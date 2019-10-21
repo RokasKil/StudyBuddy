@@ -51,6 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DateTimeExtender.cs" />
+    <Compile Include="UserReviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserReviewForm.Designer.cs">
+      <DependentUpon>UserReviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Network\ProfilePictureUpdater.cs" />
     <Compile Include="Network\UserUpdater.cs" />
     <Compile Include="Utility\ListViewColumnSorter.cs" />
@@ -163,6 +169,9 @@
       <DependentUpon>TopicListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\User.cs" />
+    <EmbeddedResource Include="UserReviewForm.resx">
+      <DependentUpon>UserReviewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserReviewTest.resx">
       <DependentUpon>UserReviewTest.cs</DependentUpon>
     </EmbeddedResource>
