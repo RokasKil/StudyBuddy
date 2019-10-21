@@ -42,6 +42,7 @@
             this.labelLecturer = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
+            this.buttonUserReviews = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
@@ -192,6 +193,7 @@
             this.button1.Text = "Atsijungti";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // logo
             // 
             this.logo.Image = global::StudyBuddy.Properties.Resources.study_buddy;
@@ -202,11 +204,23 @@
             this.logo.TabIndex = 13;
             this.logo.TabStop = false;
             // 
+            // buttonUserReviews
+            // 
+            this.buttonUserReviews.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUserReviews.Location = new System.Drawing.Point(12, 241);
+            this.buttonUserReviews.Name = "buttonUserReviews";
+            this.buttonUserReviews.Size = new System.Drawing.Size(253, 92);
+            this.buttonUserReviews.TabIndex = 14;
+            this.buttonUserReviews.Text = "Peržiūrėti vartotojų atsiliepimus";
+            this.buttonUserReviews.UseVisualStyleBackColor = true;
+            this.buttonUserReviews.Click += new System.EventHandler(this.buttonUserReviews_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 702);
+            this.Controls.Add(this.buttonUserReviews);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.logo);
             this.Controls.Add(this.labelLecturer);
@@ -248,5 +262,6 @@
         private System.Windows.Forms.Label labelLecturer;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.Button buttonUserReviews;
     }
 }

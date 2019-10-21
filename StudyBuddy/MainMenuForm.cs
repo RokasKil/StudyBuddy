@@ -25,6 +25,7 @@ namespace StudyBuddy
             buttonTopicList.Visible = localUser.IsLecturer;
             MessageBoxManager.Yes = "Taip";
             MessageBoxManager.No = "Ne";
+            MessageBoxManager.OK = "Tęsti";
             MessageBoxManager.Register();
         }
 
@@ -130,6 +131,11 @@ namespace StudyBuddy
         private void PictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonUserReviews_Click(object sender, EventArgs e)
+        {
+            FormOpener.OpenForm(new ViewUserReviewsForm(localUser));
         }
     }   
 }

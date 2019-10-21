@@ -59,6 +59,12 @@
     </Compile>
     <Compile Include="Network\ProfilePictureUpdater.cs" />
     <Compile Include="Network\UserUpdater.cs" />
+    <Compile Include="ViewUserReviewsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewUserReviewsForm.Designer.cs">
+      <DependentUpon>ViewUserReviewsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\ListViewColumnSorter.cs" />
     <Compile Include="Utility\MessageBoxManager.cs" />
     <Compile Include="Entity\UserReview.cs" />
@@ -169,8 +175,8 @@
       <DependentUpon>TopicListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\User.cs" />
-    <EmbeddedResource Include="UserReviewForm.resx">
-      <DependentUpon>UserReviewForm.cs</DependentUpon>
+    <EmbeddedResource Include="ViewUserReviewsForm.resx">
+      <DependentUpon>ViewUserReviewsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserReviewTest.resx">
       <DependentUpon>UserReviewTest.cs</DependentUpon>
