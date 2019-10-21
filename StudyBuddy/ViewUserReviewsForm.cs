@@ -29,6 +29,7 @@ namespace StudyBuddy
             listViewColumnSorter = new ListViewColumnSorter();
             this.listViewUserReviews.ListViewItemSorter = listViewColumnSorter;
             ResizeColumnWidth();
+            this.Text = "Atsiliepimai";
         }
 
         private void buttonSortReviews_Click(object sender, EventArgs e)
