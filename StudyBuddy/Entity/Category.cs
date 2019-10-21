@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace StudyBuddy.Entity
 {
-    class Category
+    public class Category
     {
-        public string title;
-        public string description;
-        public string creatorUsername;
-        public string createdDate;//Reikia pridet i duombaze
-        public string lastUpdatedDate;//Reikia pridet i duombaze
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string CreatorUsername { get; set; }
+        public string CreatedDate { get; set; }
+        public string LastUpdatedDate { get; set; }
     }
 }

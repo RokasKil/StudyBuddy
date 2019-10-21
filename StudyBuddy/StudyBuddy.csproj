@@ -50,10 +50,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ListViewColumnSorter.cs" />
-    <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Network\ProfilePictureUpdater.cs" />
     <Compile Include="Network\UserUpdater.cs" />
+    <Compile Include="Utility\ListViewColumnSorter.cs" />
+    <Compile Include="Utility\MessageBoxManager.cs" />
+    <Compile Include="Entity\UserReview.cs" />
+    <Compile Include="Entity\Message.cs" />
+    <Compile Include="UserReviewTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserReviewTest.Designer.cs">
+      <DependentUpon>UserReviewTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Network\UserReviewManager.cs" />
+    <Compile Include="Network\UserReviewGetter.cs" />
+    <Compile Include="Network\ConversationGetter.cs" />
+    <Compile Include="Network\ConversationStarter.cs" />
+    <Compile Include="Network\MessagesGetter.cs" />
+    <Compile Include="Network\MessagePoster.cs" />
     <Compile Include="Profile\EditProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,7 +91,7 @@
     <Compile Include="MessageForm.Designer.cs">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormOpener.cs" />
+    <Compile Include="Utility\FormOpener.cs" />
     <Compile Include="HelpRequestDisplayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,7 +107,7 @@
     <Compile Include="ConversationHistoryForm.Designer.cs">
       <DependentUpon>ConversationHistoryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="KarmaHandler.cs" />
+    <Compile Include="Utility\KarmaHandler.cs" />
     <Compile Include="Profile\ChangeProfilePictureForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +162,9 @@
       <DependentUpon>TopicListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\User.cs" />
+    <EmbeddedResource Include="UserReviewTest.resx">
+      <DependentUpon>UserReviewTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Profile\ChangeProfilePictureForm.resx">
       <DependentUpon>ChangeProfilePictureForm.cs</DependentUpon>
     </EmbeddedResource>

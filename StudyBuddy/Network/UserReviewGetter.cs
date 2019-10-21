@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StudyBuddy.Network
 {
-    class HelpRequestGetter
+    class UserReviewGetter
     {
         public enum GetStatus
         {
@@ -20,58 +20,58 @@ namespace StudyBuddy.Network
             UnknownError,
             FieldsMissing
         }
-        public delegate void GetHelpRequestsDelegate(GetStatus status, List<HelpRequest> helpRequests, Dictionary<string, User> users);
-        public GetHelpRequestsDelegate GetHelpRequestsResult { get; set; }
-        public string PrivateKey { get; set; }
-        private Thread getHelpRequestsThread;
+        public delegate void GetUserReviewDelegate(GetStatus status, List<UserReview> userReviews, Dictionary<string, User> users);
+        public GetUserReviewDelegate GetUserReviewResult { get; set; }
 
-        public HelpRequestGetter() : this("") { }
-        public HelpRequestGetter(LocalUser user) : this(user.privateKey) { }
-        public HelpRequestGetter(string privateKey)
+        public string PrivateKey { get; set; }
+        private Thread getUserReviewThread;
+
+        public UserReviewGetter() : this("") { }
+        public UserReviewGetter(LocalUser user) : this(user.privateKey) { }
+        public UserReviewGetter(string privateKey)
         {
             PrivateKey = privateKey;
         }
 
-        public HelpRequestGetter(GetHelpRequestsDelegate getHelpRequestsResult) : this("", getHelpRequestsResult) { }
-        public HelpRequestGetter(LocalUser user, GetHelpRequestsDelegate getHelpRequestsResult) : this(user.privateKey, getHelpRequestsResult) { }
-        public HelpRequestGetter(string privateKey, GetHelpRequestsDelegate getHelpRequestsResult) : this(privateKey)
+        public UserReviewGetter(GetUserReviewDelegate getUserReviewResult) : this("", getUserReviewResult) { }
+        public UserReviewGetter(LocalUser user, GetUserReviewDelegate getUserReviewResult) : this(user.privateKey, getUserReviewResult) { }
+        public UserReviewGetter(string privateKey, GetUserReviewDelegate getUserReviewResult) : this(privateKey)
         {
-            GetHelpRequestsResult = getHelpRequestsResult;
+            GetUserReviewResult = getUserReviewResult;
         }
 
-        public void get(bool getUsers)
+        public void get(bool getUsers, string username)
         {
-            if (getHelpRequestsThread != null && getHelpRequestsThread.IsAlive) // Jau vyksta užklausa
+            if (getUserReviewThread != null && getUserReviewThread.IsAlive) // Jau vyksta užklausa
             {
                 return;
             }
-            getHelpRequestsThread = new Thread(() => getLogic(getUsers));
-            getHelpRequestsThread.Start();
+            getUserReviewThread = new Thread(() => getLogic(getUsers, username));
+            getUserReviewThread.Start();
         }
 
-        private void getLogic(bool getUsers)
+        private void getLogic(bool getUsers, string username)
         {
-            APICaller caller = new APICaller("getHelpRequests.php").addParam("privateKey", PrivateKey);
+            APICaller caller = new APICaller("getReviews.php").addParam("privateKey", PrivateKey).addParam("username", username);
             if (getUsers)
             {
                 caller.addParam("user", "");
             }
+
             JObject obj = caller.call();
             Console.WriteLine(obj);
             if (obj["status"].ToString() == "success")
             {
-                List<HelpRequest> helpRequests = new List<HelpRequest>();
+                List<UserReview> userReviews = new List<UserReview>();
                 Dictionary<string, User> users = null;
-                obj["helpRequests"].ToList().ForEach((helpRequest) =>
+                obj["reviews"].ToList().ForEach((userReview) =>
                 {
-                    helpRequests.Add(new HelpRequest
+                    userReviews.Add(new UserReview
                     {
-                        id = helpRequest["id"].ToObject<int>(),
-                        Title = helpRequest["title"].ToString(),
-                        Description = helpRequest["description"].ToString(),
-                        CreatorUsername = helpRequest["username"].ToString(),
-                        Category = helpRequest["category"].ToString(),
-                        timestamp = DateTimeOffset.FromUnixTimeSeconds(helpRequest["postDate"].ToObject<long>()).DateTime
+                        message = userReview["message"].ToString(),
+                        karma = userReview["karma"].ToObject<int>(),
+                        username = userReview["username"].ToString(),
+                        postDate = DateTimeOffset.FromUnixTimeSeconds(userReview["postDate"].ToObject<long>()).DateTime
                     });
                 });
                 if (getUsers)
@@ -86,21 +86,26 @@ namespace StudyBuddy.Network
                             lastName = user.First["lastName"].ToString(),
                             KarmaPoints = user.First["karmaPoints"].ToObject<int>(),
                             IsLecturer = Convert.ToBoolean(user.First["lecturer"].ToObject<int>()),
+
+                            //gender = Convert.ToBoolean(user.First["gender"].ToObject<int>()),
                             profilePictureLocation = user.First["profilePicture"].ToString()
                         };
                     });
                 }
-                GetHelpRequestsResult(GetStatus.Success, helpRequests, users);
+                GetUserReviewResult(GetStatus.Success, userReviews, users);
             }
             else
             {
                 GetStatus status = GetStatus.UnknownError;
+                
                 if (!Enum.TryParse<GetStatus>(obj["message"].ToString(), out status))
                 {
                     status = GetStatus.UnknownError;
                 }
-                GetHelpRequestsResult(status, null, null);
+                
+                GetUserReviewResult(status, null, null);
             }
         }
+
     }
 }

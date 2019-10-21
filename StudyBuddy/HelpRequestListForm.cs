@@ -50,7 +50,7 @@ namespace StudyBuddy
                             categoriesComboBox.SelectedIndex = 0;
                             categories.ForEach((category) =>
                             {
-                                categoriesComboBox.Items.Add(category.title);
+                                categoriesComboBox.Items.Add(category.Title);
                             });
                             categoriesComboBox.Enabled = true;
                         }
@@ -107,12 +107,12 @@ namespace StudyBuddy
             helpRequests.ForEach((helpRequest) =>
             {
                 //Simple paieška su ignore case
-                if ((String.IsNullOrEmpty(category) || category == helpRequest.category) &&
-                    (String.IsNullOrEmpty(search) || helpRequest.title.ToLower().Contains(search) || helpRequest.description.ToLower().Contains(search)))
+                if ((String.IsNullOrEmpty(category) || category == helpRequest.Category) &&
+                    (String.IsNullOrEmpty(search) || helpRequest.Title.ToLower().Contains(search) || helpRequest.Description.ToLower().Contains(search)))
                 {
                     var panel = new HelpRequestListPanel(helpRequest, panels.Count); // Naujas panel
                     panel.Click += (o, e) => { //Sukuriamas onClickListener
-                        new HelpRequestDisplayerForm(localUser, helpRequest, users[helpRequest.creatorUsername]).Show();
+                        new HelpRequestDisplayerForm(localUser, helpRequest, users[helpRequest.CreatorUsername]).Show();
                     };
                     panels.Add(panel); //Pridedmas
                 }
@@ -141,7 +141,7 @@ namespace StudyBuddy
             }
             else
             {
-                filter(lastSearch, categories.ElementAt(categoriesComboBox.SelectedIndex - 1).title);
+                filter(lastSearch, categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title);
             }
         }
 
@@ -155,7 +155,7 @@ namespace StudyBuddy
                 }
                 else
                 {
-                    filter(searchTextBox.Text, categories.ElementAt(categoriesComboBox.SelectedIndex - 1).title);
+                    filter(searchTextBox.Text, categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title);
                 }
             }
         }

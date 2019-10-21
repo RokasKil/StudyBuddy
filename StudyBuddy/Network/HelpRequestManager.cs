@@ -43,17 +43,17 @@ namespace StudyBuddy.Network
             {
                 return;
             }
-            if (String.IsNullOrEmpty(helpRequest.title) || String.IsNullOrWhiteSpace(helpRequest.title))
+            if (String.IsNullOrEmpty(helpRequest.Title) || String.IsNullOrWhiteSpace(helpRequest.Title))
             {
                 RemoveHelpRequestResult(ManagerStatus.TitleMissing, null);
                 return;
             }
-            if (String.IsNullOrEmpty(helpRequest.category) || String.IsNullOrWhiteSpace(helpRequest.category))
+            if (String.IsNullOrEmpty(helpRequest.Category) || String.IsNullOrWhiteSpace(helpRequest.Category))
             {
                 RemoveHelpRequestResult(ManagerStatus.CategoryMissing, null);
                 return;
             }
-            if (String.IsNullOrEmpty(helpRequest.description) || String.IsNullOrWhiteSpace(helpRequest.description))
+            if (String.IsNullOrEmpty(helpRequest.Description) || String.IsNullOrWhiteSpace(helpRequest.Description))
             {
                 RemoveHelpRequestResult(ManagerStatus.DescriptionMissing, null);
                 return;
@@ -79,9 +79,9 @@ namespace StudyBuddy.Network
             {
                 obj = new APICaller("postHelpRequest.php")
                 .addParam("privateKey", PrivateKey)
-                .addParam("title", helpRequest.title)
-                .addParam("description", helpRequest.description)
-                .addParam("category", helpRequest.category)
+                .addParam("title", helpRequest.Title)
+                .addParam("description", helpRequest.Description)
+                .addParam("category", helpRequest.Category)
                 .call();
             }
             else

@@ -43,9 +43,10 @@
             // 
             // profilePicture
             // 
-            this.profilePicture.Location = new System.Drawing.Point(58, 50);
+            this.profilePicture.Location = new System.Drawing.Point(44, 41);
+            this.profilePicture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.profilePicture.Name = "profilePicture";
-            this.profilePicture.Size = new System.Drawing.Size(190, 184);
+            this.profilePicture.Size = new System.Drawing.Size(142, 150);
             this.profilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profilePicture.TabIndex = 0;
             this.profilePicture.TabStop = false;
@@ -53,18 +54,20 @@
             // username
             // 
             this.username.AutoSize = true;
-            this.username.Location = new System.Drawing.Point(60, 273);
+            this.username.Location = new System.Drawing.Point(45, 222);
+            this.username.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(71, 17);
+            this.username.Size = new System.Drawing.Size(53, 13);
             this.username.TabIndex = 1;
             this.username.Text = "username";
             // 
             // karma
             // 
             this.karma.AutoSize = true;
-            this.karma.Location = new System.Drawing.Point(60, 361);
+            this.karma.Location = new System.Drawing.Point(45, 293);
+            this.karma.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.karma.Name = "karma";
-            this.karma.Size = new System.Drawing.Size(101, 17);
+            this.karma.Size = new System.Drawing.Size(76, 13);
             this.karma.TabIndex = 2;
             this.karma.Text = "Karmos taškai:";
             // 
@@ -78,26 +81,28 @@
             // 
             this.firstName.AutoSize = true;
             this.firstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.firstName.Location = new System.Drawing.Point(57, 237);
+            this.firstName.Location = new System.Drawing.Point(43, 193);
+            this.firstName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.firstName.Name = "firstName";
-            this.firstName.Size = new System.Drawing.Size(87, 36);
+            this.firstName.Size = new System.Drawing.Size(73, 29);
             this.firstName.TabIndex = 9;
             this.firstName.Text = "name";
             // 
             // karmaProgressBar
             // 
-            this.karmaProgressBar.Location = new System.Drawing.Point(58, 381);
+            this.karmaProgressBar.Location = new System.Drawing.Point(44, 310);
+            this.karmaProgressBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.karmaProgressBar.Name = "karmaProgressBar";
-            this.karmaProgressBar.Size = new System.Drawing.Size(190, 18);
+            this.karmaProgressBar.Size = new System.Drawing.Size(142, 15);
             this.karmaProgressBar.TabIndex = 10;
             this.karmaProgressBar.Value = 20;
-            this.karmaProgressBar.Click += new System.EventHandler(this.ProgressBar1_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(58, 425);
+            this.button1.Location = new System.Drawing.Point(44, 345);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(190, 40);
+            this.button1.Size = new System.Drawing.Size(142, 32);
             this.button1.TabIndex = 11;
             this.button1.Text = "Redaguoti profilį";
             this.button1.UseVisualStyleBackColor = true;
@@ -106,35 +111,39 @@
             // status
             // 
             this.status.AutoSize = true;
-            this.status.Location = new System.Drawing.Point(60, 299);
+            this.status.Location = new System.Drawing.Point(45, 243);
+            this.status.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(46, 17);
+            this.status.Size = new System.Drawing.Size(35, 13);
             this.status.TabIndex = 1;
             this.status.Text = "status";
             // 
             // writeMessageButton
             // 
-            this.writeMessageButton.Location = new System.Drawing.Point(58, 415);
+            this.writeMessageButton.Location = new System.Drawing.Point(44, 337);
+            this.writeMessageButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.writeMessageButton.Name = "writeMessageButton";
-            this.writeMessageButton.Size = new System.Drawing.Size(190, 40);
+            this.writeMessageButton.Size = new System.Drawing.Size(142, 32);
             this.writeMessageButton.TabIndex = 12;
             this.writeMessageButton.Text = "Parašyti žinutę";
             this.writeMessageButton.UseVisualStyleBackColor = true;
+            this.writeMessageButton.Click += new System.EventHandler(this.writeMessageButton_Click);
             // 
             // leaveReviewButton
             // 
-            this.leaveReviewButton.Location = new System.Drawing.Point(58, 461);
+            this.leaveReviewButton.Location = new System.Drawing.Point(44, 375);
+            this.leaveReviewButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.leaveReviewButton.Name = "leaveReviewButton";
-            this.leaveReviewButton.Size = new System.Drawing.Size(190, 40);
+            this.leaveReviewButton.Size = new System.Drawing.Size(142, 32);
             this.leaveReviewButton.TabIndex = 13;
             this.leaveReviewButton.Text = "Palikti atsiliepimą";
             this.leaveReviewButton.UseVisualStyleBackColor = true;
             // 
             // ProfileForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 516);
+            this.ClientSize = new System.Drawing.Size(225, 419);
             this.Controls.Add(this.leaveReviewButton);
             this.Controls.Add(this.writeMessageButton);
             this.Controls.Add(this.button1);
@@ -144,6 +153,7 @@
             this.Controls.Add(this.status);
             this.Controls.Add(this.username);
             this.Controls.Add(this.profilePicture);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ProfileForm";
             this.Text = "Profile";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Profile_FormClosed);

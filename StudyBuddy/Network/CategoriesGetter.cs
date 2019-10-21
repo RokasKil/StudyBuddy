@@ -60,11 +60,11 @@ namespace StudyBuddy.Network
                 {
                     categories.Add(new Category
                     {
-                        title = category["title"].ToString(),
-                        description = category["description"].ToString(),
-                        creatorUsername = category["username"].ToString(),
-                        //createdDate = category["createdDate"].ToString(), Atkomentuoti kai atsiras laukai
-                        //lastUpdatedDate = category["lastUpdatedDate"].ToString() Atkomentuoti kai atsiras laukai
+                        Title = category["title"].ToString(),
+                        Description = category["description"].ToString(),
+                        CreatorUsername = category["username"].ToString(),
+                        CreatedDate = DateTimeOffset.FromUnixTimeSeconds(category["createdDate"].ToObject<long>()).ToString(" HH:mm:ss yyyy-MM-dd"),
+                        LastUpdatedDate = DateTimeOffset.FromUnixTimeSeconds(category["lastUpdatedDate"].ToObject<long>()).ToString(" HH:mm:ss yyyy-MM-dd")
                     }) ;
                 });
                 GetCategoriesResult(GetStatus.Success, categories);

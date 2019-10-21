@@ -20,13 +20,13 @@ namespace StudyBuddy
         public TopicListForm(LocalUser localUser)
         {
             InitializeComponent();
-            this.localUser = localUser; 
+            this.localUser = localUser;
             this.Text = "Kurti naują temą";
             this.AcceptButton = buttonAddTopic;
             listViewColumnSorter = new ListViewColumnSorter();
             this.listView.ListViewItemSorter = listViewColumnSorter;
             ResizeColumnWidth();
-            buttonEditTopic.Enabled = false;
+            buttonOpenTopicDescription.Enabled = false;
             buttonRemoveTopic.Enabled = false;
         }
 
@@ -40,7 +40,7 @@ namespace StudyBuddy
                                  MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.Yes)
                 {
-                    listView.SelectedItems[0].Remove();
+                    RemoveTopic(listView.SelectedItems[0].Text);
                 }
             }
             else return;
@@ -49,12 +49,12 @@ namespace StudyBuddy
         {
             if (string.IsNullOrEmpty(textBoxTopic.Text))
                 return;
-            string timestamp = DateTime.Now.ToString("yyyy-mm-dd HH:mm");
-            listView.Items.Add(
-                new ListViewItem(
-                    new[] { textBoxTopic.Text, timestamp, timestamp }));
+            FormOpener.OpenForm(new TopicDescriptionForm(localUser, listView, categories, new Category()
+            {
+                Title = textBoxTopic.Text,
+                CreatorUsername = localUser.username
+            }));
             textBoxTopic.Clear();
-            textBoxTopic.Focus();
             ResizeColumnWidth();
         }
 
@@ -73,7 +73,8 @@ namespace StudyBuddy
                             {
                                 listView.Items.Add(
                                     new ListViewItem(
-                                        new[] { category.title, category.createdDate, category.lastUpdatedDate }));
+                                        new[] { category.Title, category.CreatedDate, category.LastUpdatedDate }));
+                                ResizeColumnWidth();
 
                             });
                             listView.Enabled = true;
@@ -102,22 +103,22 @@ namespace StudyBuddy
             if (listView.SelectedItems.Count > 0)
             {
                 buttonRemoveTopic.Enabled = true;
-                buttonEditTopic.Enabled = true;
+                buttonOpenTopicDescription.Enabled = true;
             }
             else
             {
                 buttonRemoveTopic.Enabled = false;
-                buttonEditTopic.Enabled = false;
+                buttonOpenTopicDescription.Enabled = false;
             }
         }
 
-        private void buttonEditTopic_Click(object sender, EventArgs e)
+        private void buttonOpenTopicDescription_Click(object sender, EventArgs e)
         {
-            foreach(Category category in categories)
+            foreach (Category category in categories)
             {
-                if (category.title.Equals(listView.SelectedItems[0].Text))
+                if (category.Title.Equals(listView.SelectedItems[0].Text))
                 {
-                    FormOpener.OpenForm(new TopicDescriptionForm(listView.SelectedItems[0].Text, category.description));
+                    FormOpener.OpenForm(new TopicDescriptionForm(localUser, listView, categories, category));
                     break;
                 }
             }
@@ -155,6 +156,35 @@ namespace StudyBuddy
             {
                 column.Width = -2;
             }
+        }
+
+        private void RemoveTopic(string title)
+        {
+            listView.SelectedItems[0].Remove();
+            var categoryManager = new CategoryManager(localUser);
+            categoryManager.RemoveCategoryResult += (status, category) =>
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    if (status == CategoryManager.ManagerStatus.Success)
+                    {
+                        Console.WriteLine("Success");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Epic fail");
+                    }
+                });
+            };
+            foreach(Category category in categories)
+                {
+                    if(category.Title.Equals(title))
+                    {
+                        categoryManager.removeCategory(category);
+                        categories.Remove(category);
+                        return;
+                    }
+                }
         }
     }
 }

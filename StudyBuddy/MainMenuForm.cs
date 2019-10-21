@@ -36,6 +36,7 @@ namespace StudyBuddy
             karmaProgressBar.Value = localUser.KarmaPoints;
             progressLabel.Text = "Tavo progresas " + karmaProgressBar.Value
                 + "/" + karmaProgressBar.Maximum;
+            //new UserReviewTest(localUser).Show();
         }
 
         private void Label2_Click(object sender, EventArgs e)
@@ -101,8 +102,7 @@ namespace StudyBuddy
 
         private void Button1_Click_1(object sender, EventArgs e)
         {
-
-            FormOpener.OpenForm(new PostForHelpForm());
+            FormOpener.OpenForm(new PostForHelpForm(localUser));
         }
 
         private void ButtonTopic_Click(object sender, EventArgs e)
@@ -112,7 +112,7 @@ namespace StudyBuddy
 
         private void ButtonConversations_Click(object sender, EventArgs e)
         {
-            FormOpener.OpenForm(new ConversationHistoryForm());
+            FormOpener.OpenForm(new ConversationHistoryForm(localUser));
         }
 
         private void buttonTopicList_Click(object sender, EventArgs e)
@@ -120,6 +120,13 @@ namespace StudyBuddy
             FormOpener.OpenForm(new TopicListForm(localUser));
         }
 
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.privateKey = "";
+            Properties.Settings.Default.remember = false;
+            Properties.Settings.Default.Save();
+            Application.Restart();
+        }
         private void PictureBox1_Click(object sender, EventArgs e)
         {
 

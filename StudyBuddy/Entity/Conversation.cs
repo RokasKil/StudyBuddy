@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace StudyBuddy.Entity
 {
-    class Conversation
+    public class Conversation
     {
-        public User user;
-        public DateTime timestamp;
+        public int id;
+        public string title;
+        public List<string> users = new List<string>();
+        public int messages;
+        public long lastActivity;
         public string lastMessage;
     }
 }

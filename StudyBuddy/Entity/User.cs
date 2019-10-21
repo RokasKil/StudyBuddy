@@ -13,6 +13,7 @@ namespace StudyBuddy.Entity
         public string lastName;
         public string username;
         public string profilePictureLocation;
+        public bool gender;
         public int KarmaPoints { get; set; }
         public bool IsLecturer { get; set; } = false;
     }

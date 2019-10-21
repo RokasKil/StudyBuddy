@@ -52,7 +52,19 @@ namespace StudyBuddy.Network
 
 
         }
-        
+
+        public void login(string privateKey)
+        {
+            if (loginThread != null && loginThread.IsAlive) // Jau vyksta užklausa
+            {
+                return;
+            }
+
+            loginThread = new Thread(() => loginLogic(privateKey));
+            loginThread.Start();
+        }
+
+
         private void loginLogic(string username, string password)
         {
             JObject obj = new APICaller("auth.php").addParam("username", username).addParam("password", password).call();
@@ -67,6 +79,32 @@ namespace StudyBuddy.Network
                     IsLecturer = Convert.ToBoolean(obj["user"]["lecturer"].ToObject<int>()),
                     privateKey = obj["user"]["privateKey"].ToString(),
                     profilePictureLocation = obj["user"]["profilePicture"].ToString()
+                };
+                LoginResult(AuthStatus.Success, localUser);
+            }
+            else
+            {
+                AuthStatus status = AuthStatus.UnknownError;
+                if (!Enum.TryParse<AuthStatus>(obj["message"].ToString(), out status))
+                {
+                    status = AuthStatus.UnknownError;
+                }
+                LoginResult(status, null);
+            }
+        }
+        private void loginLogic(string privateKey)
+        {
+            JObject obj = new APICaller("auth.php").addParam("privateKey", privateKey).call();
+            if(obj["status"].ToString() == "success")
+            {
+                LocalUser localUser = new LocalUser
+                {
+                    username = obj["user"]["username"].ToString(),
+                    firstName = obj["user"]["firstName"].ToString(),
+                    lastName = obj["user"]["lastName"].ToString(),
+                    KarmaPoints = obj["user"]["karmaPoints"].ToObject<int>(),
+                    IsLecturer = Convert.ToBoolean(obj["user"]["lecturer"].ToObject<int>()),
+                    privateKey = obj["user"]["privateKey"].ToString(),
                 };
                 LoginResult(AuthStatus.Success, localUser);
             }
