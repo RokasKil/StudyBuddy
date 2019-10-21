@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Network\ProfilePictureUpdater.cs" />
+    <Compile Include="Network\UserUpdater.cs" />
     <Compile Include="Utility\ListViewColumnSorter.cs" />
     <Compile Include="Utility\MessageBoxManager.cs" />
     <Compile Include="Entity\UserReview.cs" />

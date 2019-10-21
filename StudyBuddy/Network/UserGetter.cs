@@ -68,6 +68,7 @@ namespace StudyBuddy.Network
                     lastName = obj["user"]["lastName"].ToString(),
                     KarmaPoints = obj["user"]["karmaPoints"].ToObject<int>(),
                     IsLecturer = Convert.ToBoolean(obj["user"]["lecturer"].ToObject<int>()),
+                    profilePictureLocation = obj["user"]["profilePicture"].ToString()
                 };
                 GetUserResult(GetStatus.Success, user);
             }

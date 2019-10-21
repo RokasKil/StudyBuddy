@@ -43,7 +43,7 @@ namespace StudyBuddy
                             comboBoxCategories.Items.Clear();
                             categories.ForEach((category) =>
                             {
-                                comboBoxCategories.Items.Add(category.title);
+                                comboBoxCategories.Items.Add(category.Title);
 
                             });
                         }
