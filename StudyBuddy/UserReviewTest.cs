@@ -45,10 +45,10 @@ namespace StudyBuddy
 
                             foreach (UserReview userReview in userReviews)
                             {
-                                Console.WriteLine(userReview.username);
-                                Console.WriteLine(userReview.karma);
-                                Console.WriteLine(userReview.message);
-                                Console.WriteLine(userReview.postDate);
+                                Console.WriteLine(userReview.Username);
+                                Console.WriteLine(userReview.Karma);
+                                Console.WriteLine(userReview.Message);
+                                Console.WriteLine(userReview.PostDate);
                                 Console.WriteLine();
                             }
                         }
@@ -88,7 +88,7 @@ namespace StudyBuddy
                     }
                 });
             };
-            mngr.postReview(new UserReview { username = "test1", message = "Asfsfs", karma = 1 });
+            mngr.postReview(new UserReview { Username = "test1", Message = "Asfsfs", Karma = 1 });
         }
     }
 }

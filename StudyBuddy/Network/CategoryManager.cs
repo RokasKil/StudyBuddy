@@ -37,7 +37,7 @@ namespace StudyBuddy.Network
         private Thread categoryManagerThread;
 
         public CategoryManager() : this("") { }
-        public CategoryManager(LocalUser user) : this(user.privateKey) { }
+        public CategoryManager(LocalUser user) : this(user.PrivateKey) { }
         public CategoryManager(string privateKey)
         {
             PrivateKey = privateKey;

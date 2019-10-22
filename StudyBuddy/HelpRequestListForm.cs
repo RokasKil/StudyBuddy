@@ -74,7 +74,7 @@ namespace StudyBuddy
                         {
                             this.helpRequests = helpRequests;
                             this.users = users;
-                            filter(null, null);
+                            filter();
                             searchTextBox.Text = "";
                             searchTextBox.Enabled = true;
                         }
@@ -110,7 +110,7 @@ namespace StudyBuddy
                 //Simple paieška su ignore case
                 if ((String.IsNullOrEmpty(category) || category == helpRequest.Category) &&
                     (String.IsNullOrEmpty(search) || helpRequest.Title.ToLower().Contains(search) || helpRequest.Description.ToLower().Contains(search)) &&
-                    (!own || helpRequest.CreatorUsername == localUser.username))
+                    (!own || helpRequest.CreatorUsername == localUser.Username))
                 {
                     var panel = new HelpRequestListPanel(helpRequest, panels.Count); // Naujas panel
                     panel.Click += (o, e) => { //Sukuriamas onClickListener
@@ -131,6 +131,7 @@ namespace StudyBuddy
             if (panels.Count * 106 > helpRequestsPanel.Size.Height) //Jeigu yra scroll bar keičiame dydį
             {
                 helpRequestsPanel.Size = new Size(425 + SystemInformation.VerticalScrollBarWidth, helpRequestsPanel.ClientSize.Height + SystemInformation.HorizontalScrollBarHeight);
+                //helpRequestsPanel.Size = new Size(425 + SystemInformation.VerticalScrollBarWidth, helpRequestsPanel.ClientSize.Height);
                 ClientSize = new Size(425 + SystemInformation.VerticalScrollBarWidth, ClientSize.Height);
             }
             else

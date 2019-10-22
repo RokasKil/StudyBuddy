@@ -29,6 +29,11 @@ namespace StudyBuddy
                 }
             }
         }
+
+        public Label LastMessage { get; set; }
+        public Label Username { get; set; }
+        public Label Time { get; set; }
+        public PictureBox ProfilePicture { get; set; }
         public ConversationHistoryPanel(Conversation conversation, User user) : this(conversation, user, 0) { }
 
         public ConversationHistoryPanel(Conversation conversation, User user, int position)
@@ -38,38 +43,38 @@ namespace StudyBuddy
             Margin = new Padding(0, 0, 0, 0);
             Position = position;
 
-            Label username = new Label();
-            username.Text = user.firstName + " " + user.lastName;
-            username.Location = new Point(90, 3);
-            username.Font = new Font(FontFamily.GenericSansSerif, 16);
-            username.AutoSize = true;
+            Username = new Label();
+            Username.Text = user.FirstName + " " + user.LastName;
+            Username.Location = new Point(90, 3);
+            Username.Font = new Font(FontFamily.GenericSansSerif, 16);
+            Username.AutoSize = true;
 
-            Label lastMessage = new Label();
-            lastMessage.Text = conversation.lastMessage;
-            lastMessage.Location = new Point(92, 28);
-            lastMessage.Font = new Font(FontFamily.GenericSansSerif, 14);
-            lastMessage.AutoSize = false;
-            lastMessage.Size = new Size(400, 25);
+            LastMessage = new Label();
+            LastMessage.Text = conversation.LastMessage;
+            LastMessage.Location = new Point(92, 28);
+            LastMessage.Font = new Font(FontFamily.GenericSansSerif, 14);
+            LastMessage.AutoSize = false;
+            LastMessage.Size = new Size(400, 25);
 
-            Label time = new Label();
-            time.Text = DateTimeOffset.FromUnixTimeSeconds(conversation.lastActivity / 1000).LocalDateTime.ToFullDate(); // Padaryt normaliai šitą dalį
-            time.TextAlign = ContentAlignment.MiddleRight;
-            time.Font = new Font(FontFamily.GenericSansSerif, 12);
-            time.AutoSize = false;
-            time.Size = new Size(281, 22);
-            time.Location = new Point(86, 58);
+            Time = new Label();
+            Time.Text = DateTimeOffset.FromUnixTimeSeconds(conversation.LastActivity / 1000).LocalDateTime.ToFullDate(); // Padaryt normaliai šitą dalį
+            Time.TextAlign = ContentAlignment.MiddleRight;
+            Time.Font = new Font(FontFamily.GenericSansSerif, 12);
+            Time.AutoSize = false;
+            Time.Size = new Size(281, 22);
+            Time.Location = new Point(86, 58);
 
 
-            PictureBox profilePicture = new PictureBox();
-            profilePicture.Size = new Size(83, 83);
-            profilePicture.Location = new Point(1, 1);
-            profilePicture.ImageLocation = user.profilePictureLocation;
-            profilePicture.SizeMode = PictureBoxSizeMode.Zoom;
+            ProfilePicture = new PictureBox();
+            ProfilePicture.Size = new Size(83, 83);
+            ProfilePicture.Location = new Point(1, 1);
+            ProfilePicture.ImageLocation = user.ProfilePictureLocation;
+            ProfilePicture.SizeMode = PictureBoxSizeMode.Zoom;
 
-            Controls.Add(profilePicture);
-            Controls.Add(username);
-            Controls.Add(time);
-            Controls.Add(lastMessage);
+            Controls.Add(ProfilePicture);
+            Controls.Add(Username);
+            Controls.Add(Time);
+            Controls.Add(LastMessage);
 
             foreach (Control control in Controls) // Persiunčiami paspaudimai iš labels į panel
             {

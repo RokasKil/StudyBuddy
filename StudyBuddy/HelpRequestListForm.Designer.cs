@@ -70,7 +70,7 @@
             this.helpRequestsPanel.Controls.Add(this.panel2);
             this.helpRequestsPanel.Location = new System.Drawing.Point(2, 89);
             this.helpRequestsPanel.Name = "helpRequestsPanel";
-            this.helpRequestsPanel.Size = new System.Drawing.Size(425, 390);
+            this.helpRequestsPanel.Size = new System.Drawing.Size(425, 389);
             this.helpRequestsPanel.TabIndex = 2;
             // 
             // panel2

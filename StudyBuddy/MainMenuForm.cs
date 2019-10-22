@@ -33,13 +33,14 @@ namespace StudyBuddy
         {
             toolStripStatusLabel1.Text = DateTime.Now.ToLongDateString();
             fillUserValues();
-            localUser.OnUpdate += (user) => { fillUserValues(); };
+            localUser.OnUpdateHandler += (user) => { fillUserValues(); };
             //new UserReviewTest(localUser).Show();
         }
         public void fillUserValues()
         {
-            greetingsLabel.Text = "Labas, " +
-                localUser.firstName.Substring(0, localUser.firstName.Length - 2) + "ai" + " :)";
+            greetingsLabel.Text = "Labas, " + localUser.Username + " :)";
+            //greetingsLabel.Text = "Labas, " +
+            //    localUser.FirstName.Substring(0, localUser.FirstName.Length - 2) + "ai" + " :)";
             karmaProgressBar.Value = localUser.KarmaPoints;
             progressLabel.Text = "Tavo progresas " + karmaProgressBar.Value
                 + "/" + karmaProgressBar.Maximum;

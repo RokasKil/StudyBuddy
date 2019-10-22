@@ -44,7 +44,7 @@ namespace StudyBuddy
                         {
                             this.user = user;
                             progressBarKarma.Value = user.KarmaPoints;
-                            labelKarmaProgress.Text = user.username + " progresas " + progressBarKarma.Value
+                            labelKarmaProgress.Text = user.Username + " progresas " + progressBarKarma.Value
                                 + "/" + progressBarKarma.Maximum;
                             progressBarKarma.Visible = true;
                             labelKarmaProgress.Visible = true;
@@ -85,7 +85,7 @@ namespace StudyBuddy
                             bool karmaAdd = false;
                             foreach (UserReview userReview in userReviews)
                             {
-                                switch(userReview.karma)
+                                switch(userReview.Karma)
                                 {
                                     case 0:
                                         karmaAdd = false;
@@ -97,10 +97,10 @@ namespace StudyBuddy
                                 listViewUserReviews.Items.Add(
                                     new ListViewItem(
                                         new[] { 
-                                            userReview.username,
-                                            userReview.message,
+                                            userReview.Username,
+                                            userReview.Message,
                                             ((karmaAdd)? "+" : "-"),
-                                            userReview.postDate.ToString()}));
+                                            userReview.PostDate.ToString()}));
                             }
                             ResizeColumnWidth();
                         }
@@ -115,7 +115,7 @@ namespace StudyBuddy
                         }
                     });
                 }
-                ).get(true, user.username);
+                ).get(true, user.Username);
 
             if (userReviews == null || users == null) // Dar nėra informacijos
             {
