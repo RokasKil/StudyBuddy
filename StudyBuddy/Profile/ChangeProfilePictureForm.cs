@@ -124,6 +124,7 @@ namespace StudyBuddy
                         {
                             localUser.profilePictureLocation = pictureLocation;
                             uploadButton.Enabled = true;
+                            localUser.OnUpdate?.Invoke(localUser);
                             //resultLabel.Visible = true;
 
                         }

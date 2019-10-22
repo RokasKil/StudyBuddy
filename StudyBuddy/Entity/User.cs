@@ -16,5 +16,7 @@ namespace StudyBuddy.Entity
         public bool gender;
         public int KarmaPoints { get; set; }
         public bool IsLecturer { get; set; } = false;
+        public delegate void onUpdate(User user);
+        public onUpdate OnUpdate;
     }
 }

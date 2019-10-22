@@ -88,7 +88,7 @@ namespace StudyBuddy
                 ).get(true);
         }
 
-        void filter(string search = null, string category = null)
+        void filter(string search = null, string category = null, bool own = false)
         {
             if(helpRequests == null || users == null) // Dar nėra informacijos
             {
@@ -109,11 +109,18 @@ namespace StudyBuddy
             {
                 //Simple paieška su ignore case
                 if ((String.IsNullOrEmpty(category) || category == helpRequest.Category) &&
-                    (String.IsNullOrEmpty(search) || helpRequest.Title.ToLower().Contains(search) || helpRequest.Description.ToLower().Contains(search)))
+                    (String.IsNullOrEmpty(search) || helpRequest.Title.ToLower().Contains(search) || helpRequest.Description.ToLower().Contains(search)) &&
+                    (!own || helpRequest.CreatorUsername == localUser.username))
                 {
                     var panel = new HelpRequestListPanel(helpRequest, panels.Count); // Naujas panel
                     panel.Click += (o, e) => { //Sukuriamas onClickListener
-                        new HelpRequestDisplayerForm(localUser, helpRequest, users[helpRequest.CreatorUsername]).Show();
+                        var displayer = new HelpRequestDisplayerForm(localUser, helpRequest, users[helpRequest.CreatorUsername]);
+                        displayer.OnDelete += (_helpRequest) =>
+                        {
+                            helpRequests.Remove(_helpRequest);
+                            filterWithControls();
+                        };
+                        displayer.Show();
                     };
                     panels.Add(panel); //Pridedmas
                 }
@@ -133,32 +140,34 @@ namespace StudyBuddy
             }
             lastSearch = search;
         }
-
-        private void categoriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void filterWithControls()
         {
-            if(categoriesComboBox.SelectedIndex == 0) // Pirmas yra betkoks
+            if (categoriesComboBox.SelectedIndex == 0) // Pirmas yra betkoks
             {
-                filter(search: lastSearch);
+                filter(search: lastSearch, own: ownCheckBox.Checked);
             }
             else
             {
-                filter(search : lastSearch, category : categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title);
+                filter(search: lastSearch, category: categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title, own: ownCheckBox.Checked);
             }
+        }
+        private void categoriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filterWithControls();
         }
 
         private void searchTextBox_KeyDown(object sender, KeyEventArgs e) // Paspaudus enter filtruojama
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (categoriesComboBox.SelectedIndex == 0) // Pirmas yra betkoks
-                {
-                    filter(search : searchTextBox.Text);
-                }
-                else
-                {
-                    filter(search : searchTextBox.Text, category : categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title);
-                }
+                lastSearch = searchTextBox.Text;
+                filterWithControls();
             }
+        }
+
+        private void ownCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterWithControls();
         }
     }
 }

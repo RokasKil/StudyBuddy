@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.ownCheckBox = new System.Windows.Forms.CheckBox();
             this.helpRequestsPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -67,9 +68,9 @@
             // 
             this.helpRequestsPanel.AutoScroll = true;
             this.helpRequestsPanel.Controls.Add(this.panel2);
-            this.helpRequestsPanel.Location = new System.Drawing.Point(1, 66);
+            this.helpRequestsPanel.Location = new System.Drawing.Point(2, 89);
             this.helpRequestsPanel.Name = "helpRequestsPanel";
-            this.helpRequestsPanel.Size = new System.Drawing.Size(425, 384);
+            this.helpRequestsPanel.Size = new System.Drawing.Size(425, 390);
             this.helpRequestsPanel.TabIndex = 2;
             // 
             // panel2
@@ -127,11 +128,23 @@
             this.textBox2.TabIndex = 0;
             this.textBox2.Text = "GHGSGFFGg";
             // 
+            // ownCheckBox
+            // 
+            this.ownCheckBox.AutoSize = true;
+            this.ownCheckBox.Location = new System.Drawing.Point(13, 66);
+            this.ownCheckBox.Name = "ownCheckBox";
+            this.ownCheckBox.Size = new System.Drawing.Size(109, 17);
+            this.ownCheckBox.TabIndex = 3;
+            this.ownCheckBox.Text = "Tik tavo prašymai";
+            this.ownCheckBox.UseVisualStyleBackColor = true;
+            this.ownCheckBox.CheckedChanged += new System.EventHandler(this.ownCheckBox_CheckedChanged);
+            // 
             // HelpRequestListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 450);
+            this.ClientSize = new System.Drawing.Size(429, 480);
+            this.Controls.Add(this.ownCheckBox);
             this.Controls.Add(this.helpRequestsPanel);
             this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.categoriesComboBox);
@@ -158,5 +171,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox ownCheckBox;
     }
 }

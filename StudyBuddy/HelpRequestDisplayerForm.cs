@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StudyBuddy.Entity;
+using StudyBuddy.Network;
 
 namespace StudyBuddy
 {
@@ -20,10 +21,13 @@ namespace StudyBuddy
         [DllImport("user32.dll")]
         static extern bool HideCaret(IntPtr hWnd);
 
-
+        public delegate void onDelete(HelpRequest helpRequest);
+        public onDelete OnDelete;
+        public HelpRequest helpRequest;
         public HelpRequestDisplayerForm(LocalUser localUser, HelpRequest helpRequest, User user)
         {
             InitializeComponent();
+            this.helpRequest = helpRequest;
             categoryBox.Text = helpRequest.Category;
             titleBox.Text = helpRequest.Title;
             descriptionBox.Text = helpRequest.Description;
@@ -48,6 +52,16 @@ namespace StudyBuddy
             nameBox.MouseDown += TextBox_MouseDown;
             nameBox.MouseUp += TextBox_MouseDown;
             nameBox.GotFocus += TextBox_GotFocus;
+            if(user.username == localUser.username)
+            {
+                profile.Hide();
+                writeMessageButton.Hide();
+
+            }
+            else
+            {
+                removeButton.Hide();
+            }
         }
 
         private void TextBox_GotFocus(object sender, EventArgs args)
@@ -63,6 +77,48 @@ namespace StudyBuddy
         private void profile_Click(object sender, EventArgs e)
         {
             new ProfileForm(localUser, user).Show();
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            removeButton.Enabled = false;
+            var confirmResult = MessageBox.Show(
+                                 "Ar tikrai norite ištrinti šį prašymą?",
+                                "Ištrinti šį prašymą?",
+                                 MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                statusLabel.Text = "Trinama";
+                var manager = new HelpRequestManager(localUser);
+                manager.RemoveHelpRequestResult += (status, helpRequest) =>
+                {
+                    try
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            if(status == HelpRequestManager.ManagerStatus.Success)
+                            {
+                                OnDelete?.Invoke(helpRequest);
+                                this.Close();
+                            }
+                            else
+                            {
+                                statusLabel.Text = "Nepavyko ištrinti";
+                                removeButton.Enabled = true;
+                            }
+                        });
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                };
+                manager.removeHelpRequest(helpRequest);
+            }
+            else
+            {
+                removeButton.Enabled = true;
+            }
         }
     }
 }

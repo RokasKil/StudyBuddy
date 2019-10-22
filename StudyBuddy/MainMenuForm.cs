@@ -32,14 +32,19 @@ namespace StudyBuddy
         private void MainForm_Load(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = DateTime.Now.ToLongDateString();
-            greetingsLabel.Text = "Labas, " + 
+            fillUserValues();
+            localUser.OnUpdate += (user) => { fillUserValues(); };
+            //new UserReviewTest(localUser).Show();
+        }
+        public void fillUserValues()
+        {
+            greetingsLabel.Text = "Labas, " +
                 localUser.firstName.Substring(0, localUser.firstName.Length - 2) + "ai" + " :)";
             karmaProgressBar.Value = localUser.KarmaPoints;
             progressLabel.Text = "Tavo progresas " + karmaProgressBar.Value
                 + "/" + karmaProgressBar.Maximum;
-            //new UserReviewTest(localUser).Show();
+            
         }
-
         private void Label2_Click(object sender, EventArgs e)
         {
 

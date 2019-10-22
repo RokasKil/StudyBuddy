@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,6 +12,9 @@ namespace StudyBuddy
 {
     class HelpRequestListPanel : Panel
     {
+        [DllImport("user32.dll")]
+        static extern bool HideCaret(IntPtr hWnd);
+
         private int position;
         public int Position
         {
@@ -47,6 +51,9 @@ namespace StudyBuddy
             title.Size = new Size(416, 28);
             title.Text = helpRequest.Title;
             title.BackColor = this.BackColor;
+            title.MouseDown += (a, b) => { HideCaret(title.Handle); };
+            title.MouseUp += (a, b) => { HideCaret(title.Handle); };
+            title.GotFocus += (a, b) => { HideCaret(title.Handle); };
 
 
             TextBox description = new TextBox();

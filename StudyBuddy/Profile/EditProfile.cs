@@ -69,6 +69,7 @@ namespace StudyBuddy
                             localUser.lastName = lastName;
                             saveChangesButton.Enabled = true;
                             resultLabel.Visible = true;
+                            localUser.OnUpdate?.Invoke(localUser);
 
                         }
                         else //Ne
