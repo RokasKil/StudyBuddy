@@ -10,6 +10,7 @@ namespace UnitTests
 
         
         [TestMethod]
+        [Timeout(1000)]
         public void LoginTest()
         {
             Login();
@@ -23,21 +24,20 @@ namespace UnitTests
             LocalUser user = null;
             bool done = false;
             var auth = new Authenticator((_status, _user) => {
-                //Assert.AreEqual(status, Authenticator.AuthStatus.UnknownError);
                 done = true;
                 status = _status;
-                //Console.WriteLine("test2");
                 user = _user;
             });
             auth.login("test1", "pass1");
             while (!done) { }
             Assert.AreEqual(status, Authenticator.AuthStatus.Success);
             Assert.AreNotEqual(user, null);
-            Assert.AreEqual(user.username, "test1");
+            Assert.AreEqual(user.Username, "test1");
             return user;
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void PrivateKey()
         {
             LocalUser user = Login();
@@ -46,18 +46,19 @@ namespace UnitTests
             Authenticator.AuthStatus status = Authenticator.AuthStatus.UnknownError;
             
             var auth = new Authenticator((_status, _user) => {
-                done = true;
                 status = _status;
                 user1 = _user;
+                done = true;
             });
-            auth.login(user.privateKey);
+            auth.login(user.PrivateKey);
             while (!done) { }
             Assert.AreEqual(status, Authenticator.AuthStatus.Success);
-            Assert.AreEqual(user.privateKey, user1.privateKey);
-            Assert.AreEqual(user.username, user1.username);
+            Assert.AreEqual(user.PrivateKey, user1.PrivateKey);
+            Assert.AreEqual(user.Username, user1.Username);
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void UserGetterTest()
         {
             LocalUser user = Login();
@@ -66,14 +67,14 @@ namespace UnitTests
             User user1 = null;
 
             var getter = new UserGetter(user, (_status, _user) => {
-                done = true;
                 status = _status;
                 user1 = _user;
+                done = true;
             });
-            getter.get(user.username);
+            getter.get(user.Username);
             while (!done) { }
             Assert.AreEqual(status, UserGetter.GetStatus.Success);
-            Assert.AreEqual(user.username, user1.username);
+            Assert.AreEqual(user.Username, user1.Username);
         }
     }
 }

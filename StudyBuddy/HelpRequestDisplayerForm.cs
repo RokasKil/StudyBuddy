@@ -31,8 +31,8 @@ namespace StudyBuddy
             categoryBox.Text = helpRequest.Category;
             titleBox.Text = helpRequest.Title;
             descriptionBox.Text = helpRequest.Description;
-            nameBox.Text = user.firstName + " " + user.lastName;
-            pictureBox.ImageLocation = user.profilePictureLocation;
+            nameBox.Text = user.FirstName + " " + user.LastName;
+            pictureBox.ImageLocation = user.ProfilePictureLocation;
             this.localUser = localUser;
             this.user = user;
             this.Text = "Pagalbos prašymas";
@@ -52,7 +52,7 @@ namespace StudyBuddy
             nameBox.MouseDown += TextBox_MouseDown;
             nameBox.MouseUp += TextBox_MouseDown;
             nameBox.GotFocus += TextBox_GotFocus;
-            if(user.username == localUser.username)
+            if(user.Username == localUser.Username)
             {
                 profile.Hide();
                 writeMessageButton.Hide();
@@ -119,6 +119,11 @@ namespace StudyBuddy
             {
                 removeButton.Enabled = true;
             }
+        }
+
+        private void writeMessageButton_Click(object sender, EventArgs e)
+        {
+            new MessageForm(localUser, user.Username).Show();
         }
     }
 }

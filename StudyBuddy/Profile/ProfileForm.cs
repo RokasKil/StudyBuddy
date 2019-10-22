@@ -26,16 +26,15 @@ namespace StudyBuddy
 
         private void Profile_Load(object sender, EventArgs e)
         {
-            username.Text = user.username;
-            firstName.Text = user.firstName;
-            lastName.Text = user.lastName;
-            karmaProgressBar.Value = user.KarmaPoints;
-            profilePicture.ImageLocation = user.profilePictureLocation;
+            lastName.Text = user.LastName;
             karmaLabel.Text = karmaProgressBar.Value + "/" + karmaProgressBar.Maximum;
-
+            username.Text = user.Username;
+            firstName.Text = user.FirstName;
+            profilePicture.ImageLocation = user.ProfilePictureLocation;
+            
             if (user.IsLecturer) status.Text = "Dėstytojas";
             else status.Text = "Studentas";
-            if(user.username == localUser.username)
+            if(user.Username == localUser.Username)
             {
                 writeMessageButton.Hide();
                 leaveReviewButton.Hide();
@@ -66,7 +65,7 @@ namespace StudyBuddy
 
         private void writeMessageButton_Click(object sender, EventArgs e)
         {
-            new MessageForm(localUser, user.username).Show();
+            new MessageForm(localUser, user.Username).Show();
         }
 
         private void leaveReviewButton_Click(object sender, EventArgs e)

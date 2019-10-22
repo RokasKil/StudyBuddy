@@ -72,13 +72,13 @@ namespace StudyBuddy.Network
             {
                 LocalUser localUser = new LocalUser
                 {
-                    username = obj["user"]["username"].ToString(),
-                    firstName = obj["user"]["firstName"].ToString(),
-                    lastName = obj["user"]["lastName"].ToString(),
+                    Username = obj["user"]["username"].ToString(),
+                    FirstName = obj["user"]["firstName"].ToString(),
+                    LastName = obj["user"]["lastName"].ToString(),
                     KarmaPoints = obj["user"]["karmaPoints"].ToObject<int>(),
                     IsLecturer = Convert.ToBoolean(obj["user"]["lecturer"].ToObject<int>()),
-                    privateKey = obj["user"]["privateKey"].ToString(),
-                    profilePictureLocation = obj["user"]["profilePicture"].ToString()
+                    PrivateKey = obj["user"]["privateKey"].ToString(),
+                    ProfilePictureLocation = obj["user"]["profilePicture"].ToString()
                 };
                 LoginResult(AuthStatus.Success, localUser);
             }
@@ -99,12 +99,12 @@ namespace StudyBuddy.Network
             {
                 LocalUser localUser = new LocalUser
                 {
-                    username = obj["user"]["username"].ToString(),
-                    firstName = obj["user"]["firstName"].ToString(),
-                    lastName = obj["user"]["lastName"].ToString(),
+                    Username = obj["user"]["username"].ToString(),
+                    FirstName = obj["user"]["firstName"].ToString(),
+                    LastName = obj["user"]["lastName"].ToString(),
                     KarmaPoints = obj["user"]["karmaPoints"].ToObject<int>(),
                     IsLecturer = Convert.ToBoolean(obj["user"]["lecturer"].ToObject<int>()),
-                    privateKey = obj["user"]["privateKey"].ToString(),
+                    PrivateKey = obj["user"]["privateKey"].ToString(),
                 };
                 LoginResult(AuthStatus.Success, localUser);
             }

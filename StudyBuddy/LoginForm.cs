@@ -116,7 +116,7 @@ namespace StudyBuddy
 
                     if(rememberMe.Checked == true)
                     {
-                        Properties.Settings.Default.privateKey = user.privateKey;
+                        Properties.Settings.Default.privateKey = user.PrivateKey;
                         Properties.Settings.Default.Save();
                     }
                     else

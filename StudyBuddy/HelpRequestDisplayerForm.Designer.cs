@@ -44,7 +44,7 @@
             // 
             this.descriptionBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.descriptionBox.Location = new System.Drawing.Point(16, 69);
-            this.descriptionBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.descriptionBox.Margin = new System.Windows.Forms.Padding(2);
             this.descriptionBox.Multiline = true;
             this.descriptionBox.Name = "descriptionBox";
             this.descriptionBox.ReadOnly = true;
@@ -56,7 +56,7 @@
             // 
             this.categoryBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.categoryBox.Location = new System.Drawing.Point(16, 47);
-            this.categoryBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.categoryBox.Margin = new System.Windows.Forms.Padding(2);
             this.categoryBox.Multiline = true;
             this.categoryBox.Name = "categoryBox";
             this.categoryBox.ReadOnly = true;
@@ -69,7 +69,7 @@
             this.titleBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.titleBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.titleBox.Location = new System.Drawing.Point(16, 10);
-            this.titleBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.titleBox.Margin = new System.Windows.Forms.Padding(2);
             this.titleBox.Multiline = true;
             this.titleBox.Name = "titleBox";
             this.titleBox.ReadOnly = true;
@@ -80,7 +80,7 @@
             // pictureBox
             // 
             this.pictureBox.Location = new System.Drawing.Point(301, 10);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(172, 187);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -92,7 +92,7 @@
             this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameBox.Location = new System.Drawing.Point(301, 200);
-            this.nameBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nameBox.Margin = new System.Windows.Forms.Padding(2);
             this.nameBox.Multiline = true;
             this.nameBox.Name = "nameBox";
             this.nameBox.ReadOnly = true;
@@ -119,6 +119,7 @@
             this.writeMessageButton.TabIndex = 6;
             this.writeMessageButton.Text = "Parašyti žinutę";
             this.writeMessageButton.UseVisualStyleBackColor = true;
+            this.writeMessageButton.Click += new System.EventHandler(this.writeMessageButton_Click);
             // 
             // removeButton
             // 
@@ -152,7 +153,7 @@
             this.Controls.Add(this.titleBox);
             this.Controls.Add(this.categoryBox);
             this.Controls.Add(this.descriptionBox);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "HelpRequestDisplayerForm";
             this.Text = "Help Request";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();

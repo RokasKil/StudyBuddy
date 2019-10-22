@@ -8,8 +8,8 @@ namespace StudyBuddy.Entity
 {
     public class Message
     {
-        public string username;
-        public string message;
-        public long timestamp;
+        public string Username { get; set; }
+        public string Text { get; set; }
+        public long Timestamp { get; set; }
     }
 }

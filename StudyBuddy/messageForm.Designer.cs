@@ -146,7 +146,7 @@
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MessageForm";
-            this.Text = "Pokalbiai";
+            this.Text = "Pokalbis";
             this.Load += new System.EventHandler(this.MessageForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

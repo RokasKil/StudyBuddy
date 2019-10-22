@@ -29,13 +29,13 @@ namespace StudyBuddy.Network
         private Thread getUserThread;
 
         public UserGetter() : this("") { }
-        public UserGetter(LocalUser user) : this(user.privateKey) { }
+        public UserGetter(LocalUser user) : this(user.PrivateKey) { }
         public UserGetter(string privateKey) {
             PrivateKey = privateKey;
         }
 
         public UserGetter(GetUserResultDelegate getUserResult) : this("", getUserResult) { }
-        public UserGetter(LocalUser user, GetUserResultDelegate getUserResult) : this(user.privateKey, getUserResult) { }
+        public UserGetter(LocalUser user, GetUserResultDelegate getUserResult) : this(user.PrivateKey, getUserResult) { }
         public UserGetter(string privateKey, GetUserResultDelegate getUserResult) : this(privateKey)
         {
             GetUserResult = getUserResult;
@@ -63,12 +63,12 @@ namespace StudyBuddy.Network
             {
                 User user = new User
                 {
-                    username = obj["user"]["username"].ToString(),
-                    firstName = obj["user"]["firstName"].ToString(),
-                    lastName = obj["user"]["lastName"].ToString(),
+                    Username = obj["user"]["username"].ToString(),
+                    FirstName = obj["user"]["firstName"].ToString(),
+                    LastName = obj["user"]["lastName"].ToString(),
                     KarmaPoints = obj["user"]["karmaPoints"].ToObject<int>(),
                     IsLecturer = Convert.ToBoolean(obj["user"]["lecturer"].ToObject<int>()),
-                    profilePictureLocation = obj["user"]["profilePicture"].ToString()
+                    ProfilePictureLocation = obj["user"]["profilePicture"].ToString()
                 };
                 GetUserResult(GetStatus.Success, user);
             }

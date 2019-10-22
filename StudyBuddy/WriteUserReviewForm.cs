@@ -29,19 +29,19 @@ namespace StudyBuddy
 
         private void UserReviewForm_Load(object sender, EventArgs e)
         {
-            username.Text = user.username;
-            firstName.Text = user.firstName;
+            username.Text = user.Username;
+            firstName.Text = user.FirstName;
             if (user.IsLecturer) status.Text = "Dėstytojas";
             else status.Text = "Studentas";
-            profilePicture.ImageLocation = user.profilePictureLocation;
+            profilePicture.ImageLocation = user.ProfilePictureLocation;
             sendButton.Hide();
 
         }
 
         private void sendButton_Click(object sender, EventArgs e)
         {
-            userReview.username = user.username;
-            userReview.message = reviewBox1.Text;
+            userReview.Username = user.Username;
+            userReview.Message = reviewBox1.Text;
             sendingReview(userReview);
 
             //this.Close();
@@ -49,13 +49,13 @@ namespace StudyBuddy
 
         private void positiveButton_Click(object sender, EventArgs e)
         {
-            userReview.karma = 1;
+            userReview.Karma = 1;
             sendButton.Show();
         }
 
         private void negativeButton_Click(object sender, EventArgs e)
         {
-            userReview.karma = -1;
+            userReview.Karma = -1;
             sendButton.Show();
         }
 

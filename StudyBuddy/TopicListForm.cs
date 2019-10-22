@@ -52,7 +52,7 @@ namespace StudyBuddy
             FormOpener.OpenForm(new TopicDescriptionForm(localUser, listView, categories, new Category()
             {
                 Title = textBoxTopic.Text,
-                CreatorUsername = localUser.username
+                CreatorUsername = localUser.Username
             }));
             textBoxTopic.Clear();
             ResizeColumnWidth();

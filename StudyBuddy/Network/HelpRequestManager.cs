@@ -31,7 +31,7 @@ namespace StudyBuddy.Network
         private Thread helpRequestManagerThread;
         
         public HelpRequestManager() : this("") { }
-        public HelpRequestManager(LocalUser user) : this(user.privateKey) { }
+        public HelpRequestManager(LocalUser user) : this(user.PrivateKey) { }
         public HelpRequestManager(string privateKey)
         {
             PrivateKey = privateKey;
@@ -88,7 +88,7 @@ namespace StudyBuddy.Network
             {
                 obj = new APICaller("removeHelpRequest.php")
                 .addParam("privateKey", PrivateKey)
-                .addParam("id", helpRequest.id.ToString())
+                .addParam("id", helpRequest.Id.ToString())
                 .call();
             }
             ManagerStatus status = ManagerStatus.UnknownError;
