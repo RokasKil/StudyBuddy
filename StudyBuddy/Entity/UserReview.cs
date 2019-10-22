@@ -8,9 +8,9 @@ namespace StudyBuddy.Entity
 {
     public class UserReview
     {
-        public string message;
-        public int karma;
-        public string username;
-        public DateTime postDate;
+        public string Message { get; set; }
+        public int Karma { get; set; }
+        public string Username { get; set; }
+        public DateTime PostDate { get; set; }
     }
 }

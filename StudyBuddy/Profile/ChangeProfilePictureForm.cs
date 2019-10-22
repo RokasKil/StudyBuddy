@@ -122,9 +122,9 @@ namespace StudyBuddy
                     {
                         if (status == ProfilePictureUpdater.GetStatus.Success) //Pavyko
                         {
-                            localUser.profilePictureLocation = pictureLocation;
+                            localUser.ProfilePictureLocation = pictureLocation;
                             uploadButton.Enabled = true;
-                            localUser.OnUpdate?.Invoke(localUser);
+                            localUser.OnUpdateHandler?.Invoke(localUser);
                             //resultLabel.Visible = true;
 
                         }

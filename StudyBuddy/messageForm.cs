@@ -22,6 +22,9 @@ namespace StudyBuddy
         [DllImport("user32.dll")]
         static extern bool HideCaret(IntPtr hWnd);
 
+        public delegate void NewMessage(Entity.Message message);
+        public NewMessage NewMessageHandler { get; set; }
+
         string username = null;
         Conversation conversation = null;
         Dictionary<string, User> users = null;
@@ -103,9 +106,10 @@ namespace StudyBuddy
 
         private void getMessages()
         {
-            var user = users[conversation.users[0]];
-            pictureBox1.ImageLocation = user.profilePictureLocation;
-            name.Text = user.firstName + " " + user.lastName;
+            var user = users[conversation.Users[0]];
+            pictureBox1.ImageLocation = user.ProfilePictureLocation;
+            name.Text = user.FirstName + " " + user.LastName;
+            this.Text += " - " + user.FirstName + " " + user.LastName;
             sendButton.Enabled = true;
             new MessageGetter(localUser, getMessageResponseHandler).get(conversation, timestamp, false);
         }
@@ -155,21 +159,21 @@ namespace StudyBuddy
 
                 User user;
                 Color color;
-                if ( message.username == localUser.username)
+                if ( message.Username == localUser.Username)
                 {
                     user = localUser;
                     color = Color.Black;
                 }
                 else
                 {
-                    user = users[message.username];
+                    user = users[message.Username];
                     color = Color.FromArgb(0xFF, 0x00, 0x66, 0x99);
                 }
-                var date = DateTimeOffset.FromUnixTimeSeconds(message.timestamp / 1000).LocalDateTime;
-                messageStyle("[" + date.ToShortTimeString() + "] " + user.firstName + " " + user.lastName + ": ", color, mainFontBold);
-                messageStyle(message.message + "\n", color);
-                timestamp = Math.Max(timestamp, message.timestamp);
-                
+                var date = DateTimeOffset.FromUnixTimeSeconds(message.Timestamp / 1000).LocalDateTime;
+                messageStyle("[" + date.ToShortTimeString() + "] " + user.FirstName + " " + user.LastName + ": ", color, mainFontBold);
+                messageStyle(message.Text + "\n", color);
+                timestamp = Math.Max(timestamp, message.Timestamp);
+                NewMessageHandler?.Invoke(message);
             });
             //Console.WriteLine(chat.GetPositionFromCharIndex(chat.TextLength - 1));
             if (messages.Count != 0)

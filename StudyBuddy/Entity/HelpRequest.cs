@@ -8,7 +8,7 @@ namespace StudyBuddy.Entity
 {
     public class HelpRequest
     {
-        public int id;
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string CreatorUsername { get; set; }

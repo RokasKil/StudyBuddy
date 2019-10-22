@@ -8,7 +8,7 @@ namespace StudyBuddy.Entity
 {
      public class LocalUser : User
      {
-        public string privateKey;
+        public string PrivateKey { get; set; }
         public bool Advise { get; set; } = false;
         public LocalUser()
         {

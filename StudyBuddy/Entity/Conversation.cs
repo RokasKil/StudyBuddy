@@ -8,11 +8,11 @@ namespace StudyBuddy.Entity
 {
     public class Conversation
     {
-        public int id;
-        public string title;
-        public List<string> users = new List<string>();
-        public int messages;
-        public long lastActivity;
-        public string lastMessage;
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public List<string> Users { get; set; } = new List<string>();
+        public int Messages { get; set; }
+        public long LastActivity { get; set; }
+        public string LastMessage { get; set; }
     }
 }

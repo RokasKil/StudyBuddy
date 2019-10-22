@@ -82,7 +82,7 @@ namespace StudyBuddy
             {
                 Title = textBoxPostForHelpTitle.Text,
                 Description = textBoxPostForHelpDescription.Text,
-                CreatorUsername = localUser.username,
+                CreatorUsername = localUser.Username,
                 Category = comboBoxCategories.SelectedItem.ToString()
             });
         }
@@ -90,14 +90,26 @@ namespace StudyBuddy
         private void textBoxPostForHelpTitle_TextChanged(object sender, EventArgs e)
         {
             buttonConfirmHelpRequest.Enabled = (
-                (textBoxPostForHelpTitle.TextLength > 0) && (textBoxPostForHelpDescription.TextLength > 0));
-               
+                (textBoxPostForHelpTitle.TextLength > 0) &&
+                (textBoxPostForHelpDescription.TextLength > 0) &&
+                comboBoxCategories.SelectedItem != null);
+
         }
 
         private void textBoxPostForHelpDescription_TextChanged(object sender, EventArgs e)
         {
             buttonConfirmHelpRequest.Enabled = (
-                (textBoxPostForHelpTitle.TextLength > 0) && (textBoxPostForHelpDescription.TextLength > 0));
+                (textBoxPostForHelpTitle.TextLength > 0) &&
+                (textBoxPostForHelpDescription.TextLength > 0) &&
+                comboBoxCategories.SelectedItem != null);
+        }
+
+        private void comboBoxCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buttonConfirmHelpRequest.Enabled = (
+                (textBoxPostForHelpTitle.TextLength > 0) &&
+                (textBoxPostForHelpDescription.TextLength > 0) &&
+                comboBoxCategories.SelectedItem != null);
         }
     }
 }

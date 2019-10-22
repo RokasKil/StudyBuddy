@@ -28,14 +28,14 @@ namespace StudyBuddy.Network
         private Thread getConversationsThread;
 
         public ConversationGetter() : this("") { }
-        public ConversationGetter(LocalUser user) : this(user.privateKey) { }
+        public ConversationGetter(LocalUser user) : this(user.PrivateKey) { }
         public ConversationGetter(string privateKey)
         {
             PrivateKey = privateKey;
         }
 
         public ConversationGetter(GetConversationsDelegate getConversationsResult) : this("", getConversationsResult) { }
-        public ConversationGetter(LocalUser user, GetConversationsDelegate getConversationsResult) : this(user.privateKey, getConversationsResult) { }
+        public ConversationGetter(LocalUser user, GetConversationsDelegate getConversationsResult) : this(user.PrivateKey, getConversationsResult) { }
         public ConversationGetter(string privateKey, GetConversationsDelegate getConversationsResult) : this(privateKey)
         {
             GetConversationsResult = getConversationsResult;
@@ -69,24 +69,24 @@ namespace StudyBuddy.Network
                 {
                     var conv = new Conversation
                     {
-                        id = conversation["id"].ToObject<int>(),
-                        title = conversation["title"].ToString(),
-                        messages = conversation["messages"].ToObject<int>(),
-                        lastActivity = conversation["lastActivity"].ToObject<long>(),
-                        lastMessage = conversation["lastMessage"].ToString()
+                        Id = conversation["id"].ToObject<int>(),
+                        Title = conversation["title"].ToString(),
+                        Messages = conversation["messages"].ToObject<int>(),
+                        LastActivity = conversation["lastActivity"].ToObject<long>(),
+                        LastMessage = conversation["lastMessage"].ToString()
                     };
                     try
                     {
                         conversation["users"].ToList().ForEach((user) =>
                         {
-                            conv.users.Add(user.First.ToString());
+                            conv.Users.Add(user.First.ToString());
                         });
                     }
                     catch (InvalidOperationException e)
                     {
                         conversation["users"].ToList().ForEach((user) =>
                         {
-                            conv.users.Add(user.ToString());
+                            conv.Users.Add(user.ToString());
                         });
                     }
                     conversations.Add(conv);
@@ -100,12 +100,12 @@ namespace StudyBuddy.Network
                     {
                         users[user.First["username"].ToString()] = new User
                         {
-                            username = user.First["username"].ToString(),
-                            firstName = user.First["firstName"].ToString(),
-                            lastName = user.First["lastName"].ToString(),
+                            Username = user.First["username"].ToString(),
+                            FirstName = user.First["firstName"].ToString(),
+                            LastName = user.First["lastName"].ToString(),
                             KarmaPoints = user.First["karmaPoints"].ToObject<int>(),
                             IsLecturer = Convert.ToBoolean(user.First["lecturer"].ToObject<int>()),
-                            profilePictureLocation = user.First["profilePicture"].ToString(),
+                            ProfilePictureLocation = user.First["profilePicture"].ToString(),
                         };
                     });
                 }

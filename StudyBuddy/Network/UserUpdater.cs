@@ -30,14 +30,14 @@ namespace StudyBuddy.Network
         private Thread updateUserThread;
 
         public UserUpdater () : this("") { }
-        public UserUpdater(LocalUser user) : this(user.privateKey) { }
+        public UserUpdater(LocalUser user) : this(user.PrivateKey) { }
         public UserUpdater(string privateKey)
         {
             PrivateKey = privateKey;
         }
 
         public UserUpdater(UpdateUserResultDelegate updateUserResult) : this("", updateUserResult) { }
-        public UserUpdater(LocalUser user, UpdateUserResultDelegate updateUserResult) : this(user.privateKey, updateUserResult) { }
+        public UserUpdater(LocalUser user, UpdateUserResultDelegate updateUserResult) : this(user.PrivateKey, updateUserResult) { }
         public UserUpdater(string privateKey, UpdateUserResultDelegate updateUserResult) : this(privateKey)
         {
             UpdateUserResult = updateUserResult;

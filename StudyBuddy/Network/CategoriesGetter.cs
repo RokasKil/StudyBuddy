@@ -26,14 +26,14 @@ namespace StudyBuddy.Network
         private Thread getCategoriesThread;
 
         public CategoriesGetter() : this("") { }
-        public CategoriesGetter(LocalUser user) : this(user.privateKey) { }
+        public CategoriesGetter(LocalUser user) : this(user.PrivateKey) { }
         public CategoriesGetter(string privateKey)
         {
             PrivateKey = privateKey;
         }
 
         public CategoriesGetter(GetCategoriesDelegate getCategoriesResult) : this("", getCategoriesResult) { }
-        public CategoriesGetter(LocalUser user, GetCategoriesDelegate getCategoriesResult) : this(user.privateKey, getCategoriesResult) { }
+        public CategoriesGetter(LocalUser user, GetCategoriesDelegate getCategoriesResult) : this(user.PrivateKey, getCategoriesResult) { }
         public CategoriesGetter(string privateKey, GetCategoriesDelegate getCategoriesResult) : this(privateKey)
         {
             GetCategoriesResult = getCategoriesResult;

@@ -30,14 +30,14 @@ namespace StudyBuddy.Network
         private Thread startConversationThread;
 
         public ConversationStarter() : this("") { }
-        public ConversationStarter(LocalUser user) : this(user.privateKey) { }
+        public ConversationStarter(LocalUser user) : this(user.PrivateKey) { }
         public ConversationStarter(string privateKey)
         {
             PrivateKey = privateKey;
         }
 
         public ConversationStarter(ConversationStartDelegate conversationStartResult) : this("", conversationStartResult) { }
-        public ConversationStarter(LocalUser user, ConversationStartDelegate conversationStartResult) : this(user.privateKey, conversationStartResult) { }
+        public ConversationStarter(LocalUser user, ConversationStartDelegate conversationStartResult) : this(user.PrivateKey, conversationStartResult) { }
         public ConversationStarter(string privateKey, ConversationStartDelegate conversationStartResult) : this(privateKey)
         {
             ConversationStartResult = conversationStartResult;
@@ -66,37 +66,37 @@ namespace StudyBuddy.Network
                 Dictionary<string, User>  users = new Dictionary<string, User>();
                 Conversation conversation = new Conversation
                 {
-                    id = obj["conversation"]["id"].ToObject<int>(),
-                    title = obj["conversation"]["title"].ToString(),
-                    messages = obj["conversation"]["messages"].ToObject<int>(),
-                    lastActivity = obj["conversation"]["lastActivity"].ToObject<long>(),
-                    lastMessage = "",
+                    Id = obj["conversation"]["id"].ToObject<int>(),
+                    Title = obj["conversation"]["title"].ToString(),
+                    Messages = obj["conversation"]["messages"].ToObject<int>(),
+                    LastActivity = obj["conversation"]["lastActivity"].ToObject<long>(),
+                    LastMessage = "",
 
                 };
                 try
                 {
                     obj["conversation"]["users"].ToList().ForEach((user) =>
                     {
-                        conversation.users.Add(user.First.ToString());
+                        conversation.Users.Add(user.First.ToString());
                     });
                 }
                 catch(InvalidOperationException e)
                 {
                     obj["conversation"]["users"].ToList().ForEach((user) =>
                     {
-                        conversation.users.Add(user.ToString());
+                        conversation.Users.Add(user.ToString());
                     });
                 }
                 obj["users"].ToList().ForEach((user) =>
                 {
                     users[user.First["username"].ToString()] = new User
                     {
-                        username = user.First["username"].ToString(),
-                        firstName = user.First["firstName"].ToString(),
-                        lastName = user.First["lastName"].ToString(),
+                        Username = user.First["username"].ToString(),
+                        FirstName = user.First["firstName"].ToString(),
+                        LastName = user.First["lastName"].ToString(),
                         KarmaPoints = user.First["karmaPoints"].ToObject<int>(),
                         IsLecturer = Convert.ToBoolean(user.First["lecturer"].ToObject<int>()),
-                        profilePictureLocation = user.First["profilePicture"].ToString(),
+                        ProfilePictureLocation = user.First["profilePicture"].ToString(),
                     };
                 });
                 ConversationStartResult(ConversationStatus.Success, conversation, users);
