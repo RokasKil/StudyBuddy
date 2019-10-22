@@ -17,9 +17,11 @@ namespace StudyBuddy
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            // un comment if you want to try messaging
+            //Atkomentuoti jeigu norim pabandyt siųsti žinutę
             //Application.Run(new messageForm());
             //Application.Run(new HelpRequestDisplayerForm(new Entity.HelpRequest(), new Entity.User()));
+            //Atkomentuoti regex`o parodymui
+            //Application.Run(new RegexForm());
             Application.Run(new LoginForm());
         }
     }
