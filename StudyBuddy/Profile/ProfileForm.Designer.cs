@@ -39,6 +39,8 @@
             this.writeMessageButton = new System.Windows.Forms.Button();
             this.leaveReviewButton = new System.Windows.Forms.Button();
             this.readReviewsButton = new System.Windows.Forms.Button();
+            this.lastName = new System.Windows.Forms.Label();
+            this.karmaLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,16 +57,17 @@
             // username
             // 
             this.username.AutoSize = true;
-            this.username.Location = new System.Drawing.Point(60, 273);
+            this.username.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.username.Location = new System.Drawing.Point(60, 303);
             this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(71, 17);
+            this.username.Size = new System.Drawing.Size(83, 20);
             this.username.TabIndex = 1;
             this.username.Text = "username";
             // 
             // karma
             // 
             this.karma.AutoSize = true;
-            this.karma.Location = new System.Drawing.Point(60, 361);
+            this.karma.Location = new System.Drawing.Point(56, 346);
             this.karma.Name = "karma";
             this.karma.Size = new System.Drawing.Size(101, 17);
             this.karma.TabIndex = 2;
@@ -79,21 +82,22 @@
             // firstName
             // 
             this.firstName.AutoSize = true;
-            this.firstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.firstName.Location = new System.Drawing.Point(57, 238);
+            this.firstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.firstName.Location = new System.Drawing.Point(57, 245);
             this.firstName.Name = "firstName";
-            this.firstName.Size = new System.Drawing.Size(87, 36);
+            this.firstName.Size = new System.Drawing.Size(88, 29);
             this.firstName.TabIndex = 9;
-            this.firstName.Text = "name";
+            this.firstName.Text = "Vardas";
             // 
             // karmaProgressBar
             // 
-            this.karmaProgressBar.Location = new System.Drawing.Point(59, 382);
+            this.karmaProgressBar.Location = new System.Drawing.Point(59, 365);
             this.karmaProgressBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.karmaProgressBar.Maximum = 10;
             this.karmaProgressBar.Name = "karmaProgressBar";
             this.karmaProgressBar.Size = new System.Drawing.Size(189, 18);
             this.karmaProgressBar.TabIndex = 10;
-            this.karmaProgressBar.Value = 20;
+            this.karmaProgressBar.Value = 4;
             // 
             // button1
             // 
@@ -109,7 +113,7 @@
             // status
             // 
             this.status.AutoSize = true;
-            this.status.Location = new System.Drawing.Point(60, 299);
+            this.status.Location = new System.Drawing.Point(115, 31);
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(46, 17);
             this.status.TabIndex = 1;
@@ -148,11 +152,32 @@
             this.readReviewsButton.UseVisualStyleBackColor = true;
             this.readReviewsButton.Click += new System.EventHandler(this.ReadReviewsButton_Click);
             // 
+            // lastName
+            // 
+            this.lastName.AutoSize = true;
+            this.lastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lastName.Location = new System.Drawing.Point(57, 274);
+            this.lastName.Name = "lastName";
+            this.lastName.Size = new System.Drawing.Size(102, 29);
+            this.lastName.TabIndex = 15;
+            this.lastName.Text = "Pavardė";
+            // 
+            // karmaLabel
+            // 
+            this.karmaLabel.AutoSize = true;
+            this.karmaLabel.Location = new System.Drawing.Point(56, 385);
+            this.karmaLabel.Name = "karmaLabel";
+            this.karmaLabel.Size = new System.Drawing.Size(36, 17);
+            this.karmaLabel.TabIndex = 16;
+            this.karmaLabel.Text = "4/10";
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 559);
+            this.Controls.Add(this.karmaLabel);
+            this.Controls.Add(this.lastName);
             this.Controls.Add(this.readReviewsButton);
             this.Controls.Add(this.leaveReviewButton);
             this.Controls.Add(this.writeMessageButton);
@@ -187,5 +212,7 @@
         private System.Windows.Forms.Button writeMessageButton;
         private System.Windows.Forms.Button leaveReviewButton;
         private System.Windows.Forms.Button readReviewsButton;
+        private System.Windows.Forms.Label lastName;
+        private System.Windows.Forms.Label karmaLabel;
     }
 }

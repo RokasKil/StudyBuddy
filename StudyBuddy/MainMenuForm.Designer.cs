@@ -64,12 +64,12 @@
             // 
             this.karmaProgressBar.Location = new System.Drawing.Point(437, 370);
             this.karmaProgressBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.karmaProgressBar.Maximum = 1000;
+            this.karmaProgressBar.Maximum = 10;
             this.karmaProgressBar.Name = "karmaProgressBar";
             this.karmaProgressBar.Size = new System.Drawing.Size(245, 26);
             this.karmaProgressBar.Step = 1;
             this.karmaProgressBar.TabIndex = 1;
-            this.karmaProgressBar.Value = 100;
+            this.karmaProgressBar.Value = 4;
             this.karmaProgressBar.Click += new System.EventHandler(this.ProgressBar1_Click);
             // 
             // progressLabel

@@ -77,6 +77,7 @@ namespace StudyBuddy
                                 ResizeColumnWidth();
 
                             });
+
                             listView.Enabled = true;
                             labelStatus.Visible = false;
                         }

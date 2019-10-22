@@ -28,8 +28,10 @@ namespace StudyBuddy
         {
             username.Text = user.username;
             firstName.Text = user.firstName;
+            lastName.Text = user.lastName;
             karmaProgressBar.Value = user.KarmaPoints;
             profilePicture.ImageLocation = user.profilePictureLocation;
+            karmaLabel.Text = karmaProgressBar.Value + "/" + karmaProgressBar.Maximum;
 
             if (user.IsLecturer) status.Text = "Dėstytojas";
             else status.Text = "Studentas";
