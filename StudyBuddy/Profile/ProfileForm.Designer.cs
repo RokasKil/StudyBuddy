@@ -38,6 +38,7 @@
             this.status = new System.Windows.Forms.Label();
             this.writeMessageButton = new System.Windows.Forms.Button();
             this.leaveReviewButton = new System.Windows.Forms.Button();
+            this.readReviewsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,7 +97,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(59, 425);
+            this.button1.Location = new System.Drawing.Point(59, 464);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(189, 39);
@@ -116,7 +117,7 @@
             // 
             // writeMessageButton
             // 
-            this.writeMessageButton.Location = new System.Drawing.Point(59, 415);
+            this.writeMessageButton.Location = new System.Drawing.Point(59, 507);
             this.writeMessageButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.writeMessageButton.Name = "writeMessageButton";
             this.writeMessageButton.Size = new System.Drawing.Size(189, 39);
@@ -127,7 +128,7 @@
             // 
             // leaveReviewButton
             // 
-            this.leaveReviewButton.Location = new System.Drawing.Point(59, 462);
+            this.leaveReviewButton.Location = new System.Drawing.Point(59, 464);
             this.leaveReviewButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.leaveReviewButton.Name = "leaveReviewButton";
             this.leaveReviewButton.Size = new System.Drawing.Size(189, 39);
@@ -136,11 +137,23 @@
             this.leaveReviewButton.UseVisualStyleBackColor = true;
             this.leaveReviewButton.Click += new System.EventHandler(this.leaveReviewButton_Click);
             // 
+            // readReviewsButton
+            // 
+            this.readReviewsButton.Location = new System.Drawing.Point(59, 421);
+            this.readReviewsButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.readReviewsButton.Name = "readReviewsButton";
+            this.readReviewsButton.Size = new System.Drawing.Size(189, 39);
+            this.readReviewsButton.TabIndex = 14;
+            this.readReviewsButton.Text = "Skaityti atsiliepimus";
+            this.readReviewsButton.UseVisualStyleBackColor = true;
+            this.readReviewsButton.Click += new System.EventHandler(this.ReadReviewsButton_Click);
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 516);
+            this.ClientSize = new System.Drawing.Size(300, 559);
+            this.Controls.Add(this.readReviewsButton);
             this.Controls.Add(this.leaveReviewButton);
             this.Controls.Add(this.writeMessageButton);
             this.Controls.Add(this.button1);
@@ -173,5 +186,6 @@
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.Button writeMessageButton;
         private System.Windows.Forms.Button leaveReviewButton;
+        private System.Windows.Forms.Button readReviewsButton;
     }
 }

@@ -71,5 +71,23 @@ namespace StudyBuddy
         {
             new WriteUserReviewForm(localUser, user).Show();
         }
+
+        private void ReadReviewsButton_Click(object sender, EventArgs e)
+        {
+
+            if (user.username == localUser.username)
+            {
+                ViewUserReviewsForm viewUserReviews = new ViewUserReviewsForm(localUser, localUser.username);
+                viewUserReviews.Show();
+            }
+            else
+            {
+                ViewUserReviewsForm viewUserReviews = new ViewUserReviewsForm(localUser, user.username);
+                viewUserReviews.Show();
+            }
+            
+
+
+        }
     }
 }

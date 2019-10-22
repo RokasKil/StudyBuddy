@@ -32,6 +32,12 @@ namespace StudyBuddy
             this.Text = "Atsiliepimai";
         }
 
+        public ViewUserReviewsForm(LocalUser localUser, String username) : this(localUser)
+        {
+            richTextBoxUsername.Text = username;
+            buttonSortReviews_Click(buttonSortReviews, EventArgs.Empty);
+        }
+
         private void buttonSortReviews_Click(object sender, EventArgs e)
         {
             listViewUserReviews.Items.Clear();
