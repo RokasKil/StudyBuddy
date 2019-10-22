@@ -29,11 +29,9 @@ namespace StudyBuddy
             this.Text = "Temos aprašas";
             textBoxTopicDescription.Text = category.Description;
             labelUpdated.Visible = false;
-
         }
         private void buttonEditTopicDescription_Click(object sender, EventArgs e)
         {
-            //string timestamp = DateTime.Now.ToString("yyyy-mm-dd HH:mm");
             string timestamp = DateTime.Now.ToLongDateString();
             foreach (Category category in categories)
             {
@@ -88,7 +86,6 @@ namespace StudyBuddy
                      {
                          Console.WriteLine("Epic fail");
                      }
-
                  });
              };
             categoryManager.addCategory(category);

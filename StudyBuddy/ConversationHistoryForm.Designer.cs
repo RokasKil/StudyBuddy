@@ -28,28 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.statusLabel = new System.Windows.Forms.Label();
+            this.statusLabelLoading = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // statusLabel
+            // statusLabelLoading
             // 
-            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.statusLabelLoading.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.statusLabel.Location = new System.Drawing.Point(12, 9);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(330, 23);
-            this.statusLabel.TabIndex = 0;
-            this.statusLabel.Text = "Kraunama...";
-            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.statusLabelLoading.Location = new System.Drawing.Point(16, 11);
+            this.statusLabelLoading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.statusLabelLoading.Name = "statusLabelLoading";
+            this.statusLabelLoading.Size = new System.Drawing.Size(440, 28);
+            this.statusLabelLoading.TabIndex = 0;
+            this.statusLabelLoading.Text = "Kraunama...";
+            this.statusLabelLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ConversationHistoryForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMinSize = new System.Drawing.Size(0, 250);
-            this.ClientSize = new System.Drawing.Size(354, 361);
-            this.Controls.Add(this.statusLabel);
+            this.ClientSize = new System.Drawing.Size(472, 444);
+            this.Controls.Add(this.statusLabelLoading);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ConversationHistoryForm";
             this.Text = "ConversationHistoryForm";
             this.Load += new System.EventHandler(this.ConversationHistoryForm_Load);
@@ -60,6 +62,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Label statusLabelLoading;
     }
 }

@@ -132,10 +132,10 @@ namespace StudyBuddy
 
         private void listViewUserReviews_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            //Determine if clicked column is already the column that is being sorted.
+            //Nustatyti ar paclickintas stulpelis jau yra rikiuojamas
             if (e.Column == listViewColumnSorter.SortColumn)
             {
-                // Reverse the current sort direction for this column.
+                //Pakeisti dabartinę stulpelio rikiavimo tvarką
                 if (listViewColumnSorter.Order == SortOrder.Ascending)
                 {
                     listViewColumnSorter.Order = SortOrder.Descending;
@@ -147,12 +147,12 @@ namespace StudyBuddy
             }
             else
             {
-                // Set the column number that is to be sorted; default to ascending.
+                //Nustatyti stulpelio, kuris bus rikiuojamas numerį. Pagal nutylėjimą rikiuojama didėjančia tvarka
                 listViewColumnSorter.SortColumn = e.Column;
                 listViewColumnSorter.Order = SortOrder.Ascending;
             }
 
-            // Perform the sort with these new sort options.
+            //Atlikti rikiavimą su naujais rikiavimo nustatymais
             this.listViewUserReviews.Sort();
         }
 

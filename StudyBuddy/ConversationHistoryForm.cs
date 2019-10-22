@@ -15,12 +15,9 @@ namespace StudyBuddy
     public partial class ConversationHistoryForm : Form
     {
         List<ConversationHistoryPanel> panels = new List<ConversationHistoryPanel>();
-
         int widthWithScroll;
         int widthWithoutScroll;
-
         LocalUser localUser;
-
         Dictionary<string, User> users;
         List<Conversation> conversations;
 
@@ -38,7 +35,7 @@ namespace StudyBuddy
             widthWithScroll = Size.Width;
             ClientSize = new Size(370, 400);
             widthWithoutScroll = Size.Width;
-            statusLabel.Text = "Kraunama...";
+            statusLabelLoading.Text = "Kraunama...";
             new ConversationGetter(localUser,
                 (status, conversations, users) =>
                 {
@@ -46,7 +43,7 @@ namespace StudyBuddy
                     {
                         if (status == ConversationGetter.GetStatus.Success) // Pavyko
                         {
-                            statusLabel.Hide();
+                            statusLabelLoading.Hide();
                             this.conversations = conversations;
                             this.users = users;
                             this.conversations.ForEach((conversation) =>
@@ -98,7 +95,7 @@ namespace StudyBuddy
                         }
                         else // Ne
                         {
-                            statusLabel.Text = "Nepavyko užkrauti";
+                            statusLabelLoading.Text = "Nepavyko užkrauti";
                         }
                     });
                 }
@@ -143,9 +140,7 @@ namespace StudyBuddy
                     MinimumSize = new Size(widthWithoutScroll, 200);
                     MaximumSize = new Size(widthWithoutScroll, 2000);
                 }
-                
             }
         }
-        
     }
 }
