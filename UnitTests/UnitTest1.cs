@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StudyBuddy.Entity;
 using StudyBuddy.Network;
@@ -74,6 +75,25 @@ namespace UnitTests
             while (!done) { }
             Assert.AreEqual(status, UserGetter.GetStatus.Success);
             Assert.AreEqual(user.username, user1.username);
+        }
+
+        [TestMethod]
+        public void CategoriesGetterTest()
+        {
+            LocalUser user = Login();
+            var status = CategoriesGetter.GetStatus.UnknownError;
+            bool done = false;
+            List<Category> categories = null;
+
+            var getter = new CategoriesGetter(user, (_status, _categories) => {
+                done = true;
+                status = _status;
+                categories = _categories;
+            });
+            getter.get();
+            while (!done) { }
+            Assert.AreEqual(status, CategoriesGetter.GetStatus.Success);
+            Assert.AreEqual(categories[0].Title, -categories[0].Title);
         }
     }
 }
