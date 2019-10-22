@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StudyBuddy.Network
 {
-    class MessageGetter
+    public class MessageGetter
     {
         public enum MessageStatus
         {

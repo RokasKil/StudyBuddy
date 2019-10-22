@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StudyBuddy.Network
 {
-    class ConversationGetter
+    public class ConversationGetter
     {
         public enum GetStatus
         {

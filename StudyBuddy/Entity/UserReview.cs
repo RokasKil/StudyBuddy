@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudyBuddy.Entity
 {
-    class UserReview
+    public class UserReview
     {
         public string message;
         public int karma;

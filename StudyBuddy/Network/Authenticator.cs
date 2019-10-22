@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace StudyBuddy.Network
 {
-    class Authenticator
+    public class Authenticator
     {
         public enum AuthStatus
         {
