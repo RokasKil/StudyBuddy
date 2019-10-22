@@ -26,11 +26,13 @@ namespace StudyBuddy
 
         private void Profile_Load(object sender, EventArgs e)
         {
+            
             username.Text = user.Username;
+            lastName.Text = user.LastName;
             firstName.Text = user.FirstName;
-            karmaProgressBar.Value = user.KarmaPoints;
             profilePicture.ImageLocation = user.ProfilePictureLocation;
-
+            karmaProgressBar.Value = user.KarmaPoints;
+            karmaLabel.Text = karmaProgressBar.Value + "/" + karmaProgressBar.Maximum;
             if (user.IsLecturer) status.Text = "Dėstytojas";
             else status.Text = "Studentas";
             if(user.Username == localUser.Username)
@@ -70,6 +72,24 @@ namespace StudyBuddy
         private void leaveReviewButton_Click(object sender, EventArgs e)
         {
             new WriteUserReviewForm(localUser, user).Show();
+        }
+
+        private void ReadReviewsButton_Click(object sender, EventArgs e)
+        {
+
+            if (user.Username == localUser.Username)
+            {
+                ViewUserReviewsForm viewUserReviews = new ViewUserReviewsForm(localUser, localUser.Username);
+                viewUserReviews.Show();
+            }
+            else
+            {
+                ViewUserReviewsForm viewUserReviews = new ViewUserReviewsForm(localUser, user.Username);
+                viewUserReviews.Show();
+            }
+            
+
+
         }
     }
 }
