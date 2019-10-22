@@ -93,7 +93,105 @@ namespace UnitTests
             getter.get();
             while (!done) { }
             Assert.AreEqual(status, CategoriesGetter.GetStatus.Success);
-            Assert.AreEqual(categories[0].Title, -categories[0].Title);
+            Assert.AreNotEqual(categories, null);
+        }
+
+        [TestMethod]
+        public List<Conversation> ConversationGetterTest()
+        {
+            LocalUser user = Login();
+            var status = ConversationGetter.GetStatus.UnknownError;
+            bool done = false;
+
+            List<Conversation> conversations = null;
+            Dictionary<String, User> users = null;
+
+
+            var getter = new ConversationGetter(user, (_status, _conversations, _users) => {
+                done = true;
+                status = _status;
+                conversations = _conversations;
+                users = _users;
+                
+            });
+            getter.get(true);
+            while (!done) { }
+            Assert.AreEqual(status, ConversationGetter.GetStatus.Success);
+            Assert.AreNotEqual(users, null);
+            Assert.AreNotEqual(conversations, null);
+            return conversations;
+        }
+
+
+        [TestMethod]
+        public void HelpRequestGetterTest()
+        {
+            LocalUser user = Login();
+            var status = HelpRequestGetter.GetStatus.UnknownError;
+            bool done = false;
+
+            List<HelpRequest> helpRequests = null;
+            Dictionary<String, User> users = null;
+
+
+            var getter = new HelpRequestGetter(user, (_status, _helpRequests, _users) => {
+                done = true;
+                status = _status;
+                helpRequests = _helpRequests;
+                users = _users;
+
+            });
+            getter.get(true);
+            while (!done) { }
+            Assert.AreEqual(status, HelpRequestGetter.GetStatus.Success);
+            Assert.AreNotEqual(users, null);
+            Assert.AreNotEqual(helpRequests, null);
+        }
+
+        [TestMethod]
+        public void MessagesGetterTest()
+        {
+            LocalUser user = Login();
+            var status = MessageGetter.MessageStatus.UnknownError;
+            bool done = false;
+            List<Message> messages = null;
+            List<Conversation> conversations = ConversationGetterTest();
+
+            var getter = new MessageGetter(user, (_status, _messages) => {
+                done = true;
+                status = _status;
+                messages = _messages;
+
+            });
+            getter.get(conversations[0], 0, false);
+            while (!done) { }
+            Assert.AreEqual(status, MessageGetter.MessageStatus.Success);
+            Assert.AreNotEqual(messages, null);
+        }
+
+        [TestMethod]
+        public void UserReviewGetterTest()
+        {
+            LocalUser user = Login();
+            var status = UserReviewGetter.GetStatus.UnknownError;
+            bool done = false;
+
+            List<UserReview> userReviews = null;
+            Dictionary<String, User> users = null;
+
+
+            var getter = new UserReviewGetter(user, (_status, _userReviews, _users) => {
+                done = true;
+                status = _status;
+                userReviews = _userReviews;
+                users = _users;
+
+            });
+            getter.get(true, user.username);
+            while (!done) { }
+            Assert.AreEqual(status, UserReviewGetter.GetStatus.Success);
+            Assert.AreNotEqual(users, null);
+            Assert.AreNotEqual(userReviews, null);
         }
     }
 }
