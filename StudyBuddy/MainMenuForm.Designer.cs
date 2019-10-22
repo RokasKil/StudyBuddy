@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.greetingsLabel = new System.Windows.Forms.Label();
-            this.karmaProgressBar = new System.Windows.Forms.ProgressBar();
-            this.progressLabel = new System.Windows.Forms.Label();
+            this.labelGreetings = new System.Windows.Forms.Label();
+            this.progressBarKarma = new System.Windows.Forms.ProgressBar();
+            this.labelKarmaProgress = new System.Windows.Forms.Label();
             this.buttonAdvise = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -40,48 +40,45 @@
             this.buttonTopic = new System.Windows.Forms.Button();
             this.buttonTopicList = new System.Windows.Forms.Button();
             this.labelLecturer = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.logo = new System.Windows.Forms.PictureBox();
+            this.buttonDisconnect = new System.Windows.Forms.Button();
+            this.pictureBoxStudyBuddyLogo = new System.Windows.Forms.PictureBox();
             this.buttonUserReviews = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStudyBuddyLogo)).BeginInit();
             this.SuspendLayout();
             // 
-            // greetingsLabel
+            // labelGreetings
             // 
-            this.greetingsLabel.AutoSize = true;
-            this.greetingsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.greetingsLabel.Location = new System.Drawing.Point(430, 241);
-            this.greetingsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.greetingsLabel.Name = "greetingsLabel";
-            this.greetingsLabel.Size = new System.Drawing.Size(249, 39);
-            this.greetingsLabel.TabIndex = 0;
-            this.greetingsLabel.Text = "Welcome back!";
-            this.greetingsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.greetingsLabel.Click += new System.EventHandler(this.Label1_Click);
+            this.labelGreetings.AutoSize = true;
+            this.labelGreetings.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.labelGreetings.Location = new System.Drawing.Point(430, 241);
+            this.labelGreetings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelGreetings.Name = "labelGreetings";
+            this.labelGreetings.Size = new System.Drawing.Size(249, 39);
+            this.labelGreetings.TabIndex = 0;
+            this.labelGreetings.Text = "Welcome back!";
+            this.labelGreetings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // karmaProgressBar
+            // progressBarKarma
             // 
-            this.karmaProgressBar.Location = new System.Drawing.Point(437, 370);
-            this.karmaProgressBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.karmaProgressBar.Maximum = 10;
-            this.karmaProgressBar.Name = "karmaProgressBar";
-            this.karmaProgressBar.Size = new System.Drawing.Size(245, 26);
-            this.karmaProgressBar.Step = 1;
-            this.karmaProgressBar.TabIndex = 1;
-            this.karmaProgressBar.Value = 4;
-            this.karmaProgressBar.Click += new System.EventHandler(this.ProgressBar1_Click);
+            this.progressBarKarma.Location = new System.Drawing.Point(437, 370);
+            this.progressBarKarma.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.progressBarKarma.Maximum = 1000;
+            this.progressBarKarma.Name = "progressBarKarma";
+            this.progressBarKarma.Size = new System.Drawing.Size(245, 26);
+            this.progressBarKarma.Step = 1;
+            this.progressBarKarma.TabIndex = 1;
+            this.progressBarKarma.Value = 100;
             // 
-            // progressLabel
+            // labelKarmaProgress
             // 
-            this.progressLabel.AutoSize = true;
-            this.progressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.progressLabel.Location = new System.Drawing.Point(432, 343);
-            this.progressLabel.Name = "progressLabel";
-            this.progressLabel.Size = new System.Drawing.Size(193, 25);
-            this.progressLabel.TabIndex = 2;
-            this.progressLabel.Text = "Your karma progress";
-            this.progressLabel.Click += new System.EventHandler(this.Label2_Click);
+            this.labelKarmaProgress.AutoSize = true;
+            this.labelKarmaProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKarmaProgress.Location = new System.Drawing.Point(432, 343);
+            this.labelKarmaProgress.Name = "labelKarmaProgress";
+            this.labelKarmaProgress.Size = new System.Drawing.Size(193, 25);
+            this.labelKarmaProgress.TabIndex = 2;
+            this.labelKarmaProgress.Text = "Your karma progress";
             // 
             // buttonAdvise
             // 
@@ -183,26 +180,26 @@
             this.labelLecturer.TabIndex = 11;
             this.labelLecturer.Text = "Dėstytojas";
             // 
-            // button1
+            // buttonDisconnect
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.button1.Location = new System.Drawing.Point(848, 551);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(253, 92);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Atsijungti";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.buttonDisconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.buttonDisconnect.Location = new System.Drawing.Point(848, 551);
+            this.buttonDisconnect.Name = "buttonDisconnect";
+            this.buttonDisconnect.Size = new System.Drawing.Size(253, 92);
+            this.buttonDisconnect.TabIndex = 12;
+            this.buttonDisconnect.Text = "Atsijungti";
+            this.buttonDisconnect.UseVisualStyleBackColor = true;
+            this.buttonDisconnect.Click += new System.EventHandler(this.button1_Click_2);
             // 
-            // logo
+            // pictureBoxStudyBuddyLogo
             // 
-            this.logo.Image = global::StudyBuddy.Properties.Resources.study_buddy;
-            this.logo.Location = new System.Drawing.Point(337, 46);
-            this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(448, 152);
-            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logo.TabIndex = 13;
-            this.logo.TabStop = false;
+            this.pictureBoxStudyBuddyLogo.Image = global::StudyBuddy.Properties.Resources.study_buddy;
+            this.pictureBoxStudyBuddyLogo.Location = new System.Drawing.Point(337, 46);
+            this.pictureBoxStudyBuddyLogo.Name = "pictureBoxStudyBuddyLogo";
+            this.pictureBoxStudyBuddyLogo.Size = new System.Drawing.Size(448, 152);
+            this.pictureBoxStudyBuddyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxStudyBuddyLogo.TabIndex = 13;
+            this.pictureBoxStudyBuddyLogo.TabStop = false;
             // 
             // buttonUserReviews
             // 
@@ -221,8 +218,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 702);
             this.Controls.Add(this.buttonUserReviews);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.logo);
+            this.Controls.Add(this.buttonDisconnect);
+            this.Controls.Add(this.pictureBoxStudyBuddyLogo);
             this.Controls.Add(this.labelLecturer);
             this.Controls.Add(this.buttonTopicList);
             this.Controls.Add(this.buttonCheckProfile);
@@ -231,16 +228,16 @@
             this.Controls.Add(this.buttonPostForHelp);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.buttonAdvise);
-            this.Controls.Add(this.progressLabel);
-            this.Controls.Add(this.karmaProgressBar);
-            this.Controls.Add(this.greetingsLabel);
+            this.Controls.Add(this.labelKarmaProgress);
+            this.Controls.Add(this.progressBarKarma);
+            this.Controls.Add(this.labelGreetings);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainMenuForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStudyBuddyLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,9 +245,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label greetingsLabel;
-        private System.Windows.Forms.ProgressBar karmaProgressBar;
-        private System.Windows.Forms.Label progressLabel;
+        private System.Windows.Forms.Label labelGreetings;
+        private System.Windows.Forms.ProgressBar progressBarKarma;
+        private System.Windows.Forms.Label labelKarmaProgress;
         private System.Windows.Forms.Button buttonAdvise;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -260,8 +257,8 @@
         private System.Windows.Forms.Button buttonTopic;
         private System.Windows.Forms.Button buttonTopicList;
         private System.Windows.Forms.Label labelLecturer;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.Button buttonDisconnect;
+        private System.Windows.Forms.PictureBox pictureBoxStudyBuddyLogo;
         private System.Windows.Forms.Button buttonUserReviews;
     }
 }

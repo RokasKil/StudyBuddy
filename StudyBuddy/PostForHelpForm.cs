@@ -54,8 +54,7 @@ namespace StudyBuddy
                             labelStatus.Visible = true;
                         }
                     });
-                }
-                ).get();
+                }).get();
         }
 
         private void buttonConfirmHelpRequest_Click(object sender, EventArgs e)
@@ -93,7 +92,6 @@ namespace StudyBuddy
                 (textBoxPostForHelpTitle.TextLength > 0) &&
                 (textBoxPostForHelpDescription.TextLength > 0) &&
                 comboBoxCategories.SelectedItem != null);
-
         }
 
         private void textBoxPostForHelpDescription_TextChanged(object sender, EventArgs e)

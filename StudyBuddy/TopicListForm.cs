@@ -17,6 +17,7 @@ namespace StudyBuddy
         List<Category> categories;
         LocalUser localUser;
         private ListViewColumnSorter listViewColumnSorter;
+
         public TopicListForm(LocalUser localUser)
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace StudyBuddy
             this.Text = "Kurti naują temą";
             this.AcceptButton = buttonAddTopic;
             listViewColumnSorter = new ListViewColumnSorter();
-            this.listView.ListViewItemSorter = listViewColumnSorter;
+            this.listViewTopics.ListViewItemSorter = listViewColumnSorter;
             ResizeColumnWidth();
             buttonOpenTopicDescription.Enabled = false;
             buttonRemoveTopic.Enabled = false;
@@ -32,15 +33,15 @@ namespace StudyBuddy
 
         private void buttonRemoveTopic_click(object sender, EventArgs e)
         {
-            if (listView.Items.Count > 0)
+            if (listViewTopics.Items.Count > 0)
             {
                 var confirmResult = MessageBox.Show(
-                                 listView.SelectedItems[0].Text,
+                                 listViewTopics.SelectedItems[0].Text,
                                 "Ištrinti šią temą?",
                                  MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.Yes)
                 {
-                    RemoveTopic(listView.SelectedItems[0].Text);
+                    RemoveTopic(listViewTopics.SelectedItems[0].Text);
                 }
             }
             else return;
@@ -49,7 +50,7 @@ namespace StudyBuddy
         {
             if (string.IsNullOrEmpty(textBoxTopic.Text))
                 return;
-            FormOpener.OpenForm(new TopicDescriptionForm(localUser, listView, categories, new Category()
+            FormOpener.OpenForm(new TopicDescriptionForm(localUser, listViewTopics, categories, new Category()
             {
                 Title = textBoxTopic.Text,
                 CreatorUsername = localUser.Username
@@ -68,22 +69,21 @@ namespace StudyBuddy
                         if (status == CategoriesGetter.GetStatus.Success) //Pavyko
                         {
                             this.categories = categories;
-                            listView.Items.Clear();
+                            listViewTopics.Items.Clear();
                             categories.ForEach((category) =>
                             {
-                                listView.Items.Add(
+                                listViewTopics.Items.Add(
                                     new ListViewItem(
                                         new[] { category.Title, category.CreatedDate, category.LastUpdatedDate }));
                                 ResizeColumnWidth();
 
                             });
-
-                            listView.Enabled = true;
+                            listViewTopics.Enabled = true;
                             labelStatus.Visible = false;
                         }
                         else //Ne
                         {
-                            listView.Items.Clear();
+                            listViewTopics.Items.Clear();
                             labelStatus.Visible = true;
                         }
                     });
@@ -96,12 +96,12 @@ namespace StudyBuddy
         private void listView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             e.Cancel = true;
-            e.NewWidth = listView.Columns[e.ColumnIndex].Width;
+            e.NewWidth = listViewTopics.Columns[e.ColumnIndex].Width;
         }
 
         private void ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView.SelectedItems.Count > 0)
+            if (listViewTopics.SelectedItems.Count > 0)
             {
                 buttonRemoveTopic.Enabled = true;
                 buttonOpenTopicDescription.Enabled = true;
@@ -117,9 +117,9 @@ namespace StudyBuddy
         {
             foreach (Category category in categories)
             {
-                if (category.Title.Equals(listView.SelectedItems[0].Text))
+                if (category.Title.Equals(listViewTopics.SelectedItems[0].Text))
                 {
-                    FormOpener.OpenForm(new TopicDescriptionForm(localUser, listView, categories, category));
+                    FormOpener.OpenForm(new TopicDescriptionForm(localUser, listViewTopics, categories, category));
                     break;
                 }
             }
@@ -127,10 +127,10 @@ namespace StudyBuddy
 
         private void listView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            // Determine if clicked column is already the column that is being sorted.
+            //Nustatyti ar paclickintas stulpelis jau yra rikiuojamas
             if (e.Column == listViewColumnSorter.SortColumn)
             {
-                // Reverse the current sort direction for this column.
+                //Pakeisti dabartinę stulpelio rikiavimo tvarką
                 if (listViewColumnSorter.Order == SortOrder.Ascending)
                 {
                     listViewColumnSorter.Order = SortOrder.Descending;
@@ -142,18 +142,17 @@ namespace StudyBuddy
             }
             else
             {
-                // Set the column number that is to be sorted; default to ascending.
+                //Nustatyti stulpelio, kuris bus rikiuojamas numerį. Pagal nutylėjimą rikiuojama didėjančia tvarka
                 listViewColumnSorter.SortColumn = e.Column;
                 listViewColumnSorter.Order = SortOrder.Ascending;
             }
-
-            // Perform the sort with these new sort options.
-            this.listView.Sort();
+            //Atlikti rikiavimą su naujais rikiavimo nustatymais
+            this.listViewTopics.Sort();
         }
 
         private void ResizeColumnWidth()
         {
-            foreach (ColumnHeader column in listView.Columns)
+            foreach (ColumnHeader column in listViewTopics.Columns)
             {
                 column.Width = -2;
             }
@@ -161,7 +160,7 @@ namespace StudyBuddy
 
         private void RemoveTopic(string title)
         {
-            listView.SelectedItems[0].Remove();
+            listViewTopics.SelectedItems[0].Remove();
             var categoryManager = new CategoryManager(localUser);
             categoryManager.RemoveCategoryResult += (status, category) =>
             {
@@ -178,14 +177,14 @@ namespace StudyBuddy
                 });
             };
             foreach(Category category in categories)
+            {
+                if(category.Title.Equals(title))
                 {
-                    if(category.Title.Equals(title))
-                    {
-                        categoryManager.removeCategory(category);
-                        categories.Remove(category);
-                        return;
-                    }
+                    categoryManager.removeCategory(category);
+                    categories.Remove(category);
+                    return;
                 }
+            }
         }
     }
 }

@@ -24,39 +24,36 @@ namespace StudyBuddy
             this.user = user;
             InitializeComponent();
             userReview = new UserReview();
-
         }
 
         private void UserReviewForm_Load(object sender, EventArgs e)
         {
-            username.Text = user.Username;
-            firstName.Text = user.FirstName;
-            if (user.IsLecturer) status.Text = "Dėstytojas";
-            else status.Text = "Studentas";
-            profilePicture.ImageLocation = user.ProfilePictureLocation;
-            sendButton.Hide();
-
+            labelUsername.Text = user.Username;
+            labelFirstName.Text = user.FirstName;
+            if (user.IsLecturer) labelStatus.Text = "Dėstytojas";
+            else labelStatus.Text = "Studentas";
+            pictureBoxProfilePicture.ImageLocation = user.ProfilePictureLocation;
+            buttonSendReview.Hide();
         }
 
         private void sendButton_Click(object sender, EventArgs e)
         {
             userReview.Username = user.Username;
-            userReview.Message = reviewBox1.Text;
+            userReview.Message = richTextBoxReviewDescription.Text;
             sendingReview(userReview);
-
             //this.Close();
         }
 
         private void positiveButton_Click(object sender, EventArgs e)
         {
             userReview.Karma = 1;
-            sendButton.Show();
+            buttonSendReview.Show();
         }
 
         private void negativeButton_Click(object sender, EventArgs e)
         {
             userReview.Karma = -1;
-            sendButton.Show();
+            buttonSendReview.Show();
         }
 
         private void sendingReview(UserReview userReview)

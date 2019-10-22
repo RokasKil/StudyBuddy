@@ -26,11 +26,11 @@ namespace StudyBuddy
             InitializeComponent();
             ClientSize = new Size(425, ClientSize.Height);
             this.localUser = localUser;
-            this.categoriesComboBox.Enabled = false;
-            categoriesComboBox.Items.Add("Kraunama...");
-            categoriesComboBox.SelectedIndex = 0;
-            searchTextBox.Text = "Kraunama...";
-            searchTextBox.Enabled = false;
+            this.comboBoxCategories.Enabled = false;
+            comboBoxCategories.Items.Add("Kraunama...");
+            comboBoxCategories.SelectedIndex = 0;
+            textBoxSearch.Text = "Kraunama...";
+            textBoxSearch.Enabled = false;
             this.Text = "Pagalbos prašymai";
         }
 
@@ -46,20 +46,20 @@ namespace StudyBuddy
                         if(status == CategoriesGetter.GetStatus.Success) // Pavyko
                         {
                             this.categories = categories;
-                            categoriesComboBox.Items.Clear();
-                            categoriesComboBox.Items.Add("Betkokia kategorija");
-                            categoriesComboBox.SelectedIndex = 0;
+                            comboBoxCategories.Items.Clear();
+                            comboBoxCategories.Items.Add("Betkokia kategorija");
+                            comboBoxCategories.SelectedIndex = 0;
                             categories.ForEach((category) =>
                             {
-                                categoriesComboBox.Items.Add(category.Title);
+                                comboBoxCategories.Items.Add(category.Title);
                             });
-                            categoriesComboBox.Enabled = true;
+                            comboBoxCategories.Enabled = true;
                         }
                         else // Ne
                         {
-                            categoriesComboBox.Items.Clear();
-                            categoriesComboBox.Items.Add("Nepavyko užkrauti");
-                            categoriesComboBox.SelectedIndex = 0;
+                            comboBoxCategories.Items.Clear();
+                            comboBoxCategories.Items.Add("Nepavyko užkrauti");
+                            comboBoxCategories.SelectedIndex = 0;
                         }
                     });
                 }
@@ -75,13 +75,13 @@ namespace StudyBuddy
                             this.helpRequests = helpRequests;
                             this.users = users;
                             filter();
-                            searchTextBox.Text = "";
-                            searchTextBox.Enabled = true;
+                            textBoxSearch.Text = "";
+                            textBoxSearch.Enabled = true;
                         }
                         else // Ne
                         {
-                            searchTextBox.Text = "Nepavyko užkrauti";
-                            searchTextBox.Enabled = false;
+                            textBoxSearch.Text = "Nepavyko užkrauti";
+                            textBoxSearch.Enabled = false;
                         }
                     });
                 }
@@ -143,13 +143,13 @@ namespace StudyBuddy
         }
         private void filterWithControls()
         {
-            if (categoriesComboBox.SelectedIndex == 0) // Pirmas yra betkoks
+            if (comboBoxCategories.SelectedIndex == 0) // Pirmas yra betkoks
             {
-                filter(search: lastSearch, own: ownCheckBox.Checked);
+                filter(search: lastSearch, own: checkBoxOwn.Checked);
             }
             else
             {
-                filter(search: lastSearch, category: categories.ElementAt(categoriesComboBox.SelectedIndex - 1).Title, own: ownCheckBox.Checked);
+                filter(search: lastSearch, category: categories.ElementAt(comboBoxCategories.SelectedIndex - 1).Title, own: checkBoxOwn.Checked);
             }
         }
         private void categoriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -161,7 +161,7 @@ namespace StudyBuddy
         {
             if (e.KeyCode == Keys.Enter)
             {
-                lastSearch = searchTextBox.Text;
+                lastSearch = textBoxSearch.Text;
                 filterWithControls();
             }
         }
