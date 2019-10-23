@@ -38,7 +38,7 @@ namespace UnitTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void PrivateKey()
+        public void PrivateKeyTest()
         {
             LocalUser user = Login();
             bool done = false;
