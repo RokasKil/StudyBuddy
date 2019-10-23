@@ -15,12 +15,9 @@ namespace StudyBuddy
     public partial class ConversationHistoryForm : Form
     {
         List<ConversationHistoryPanel> panels = new List<ConversationHistoryPanel>();
-
         int widthWithScroll;
         int widthWithoutScroll;
-
         LocalUser localUser;
-
         Dictionary<string, User> users;
         List<Conversation> conversations;
 
@@ -38,7 +35,7 @@ namespace StudyBuddy
             widthWithScroll = Size.Width;
             ClientSize = new Size(370, 400);
             widthWithoutScroll = Size.Width;
-            statusLabel.Text = "Kraunama...";
+            statusLabelLoading.Text = "Kraunama...";
             new ConversationGetter(localUser,
                 (status, conversations, users) =>
                 {
@@ -46,20 +43,59 @@ namespace StudyBuddy
                     {
                         if (status == ConversationGetter.GetStatus.Success) // Pavyko
                         {
-                            statusLabel.Hide();
+                            statusLabelLoading.Hide();
                             this.conversations = conversations;
                             this.users = users;
                             this.conversations.ForEach((conversation) =>
                             {
-                                var panel = new ConversationHistoryPanel(conversation, users[conversation.users[0]], panels.Count());
-                                panel.Click += (o, a) => new MessageForm(localUser, conversation, users).Show();
+                                var panel = new ConversationHistoryPanel(conversation, users[conversation.Users[0]], panels.Count());
+                                MessageForm Form = null;
+                                MessageForm.NewMessage handler = (message) =>
+                                {
+                                    if(message.Username == localUser.Username)
+                                    {
+                                        panel.LastMessage.Text = "Tu: " + message.Text;
+                                    }
+                                    else
+                                    {
+                                        panel.LastMessage.Text = message.Text;
+                                    }
+                                    /*panel.Time.Text = DateTimeOffset.FromUnixTimeSeconds(message.Timestamp / 1000).LocalDateTime.ToFullDate();
+                                    if(panel.Position != 0)
+                                    {
+                                        panels.ForEach((panelEntry) =>
+                                        {
+                                            if(panel.Position > panelEntry.Position)
+                                            {
+                                                panelEntry.Position++;
+                                            }
+                                        });
+                                        panel.Position = 0;
+                                    }*/
+                                };
+                                panel.Click += (o, a) =>
+                                {
+                                    Form = new MessageForm(localUser, conversation, users);
+                                    
+                                    Form.NewMessageHandler += handler;
+                                    Form.Show();
+
+                                };
+                                panel.HandleDestroyed += (a, b) =>
+                                {
+                                    if(Form != null)
+                                    {
+                                        Form.NewMessageHandler -= handler;
+                                        Console.WriteLine("Handler removed");
+                                    }
+                                };
                                 panels.Add(panel);
                             });
                             Controls.AddRange(panels.ToArray());
                         }
                         else // Ne
                         {
-                            statusLabel.Text = "Nepavyko užkrauti";
+                            statusLabelLoading.Text = "Nepavyko užkrauti";
                         }
                     });
                 }
@@ -104,9 +140,7 @@ namespace StudyBuddy
                     MinimumSize = new Size(widthWithoutScroll, 200);
                     MaximumSize = new Size(widthWithoutScroll, 2000);
                 }
-                
             }
         }
-        
     }
 }

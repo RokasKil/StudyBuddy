@@ -32,6 +32,12 @@ namespace StudyBuddy
             this.Text = "Atsiliepimai";
         }
 
+        public ViewUserReviewsForm(LocalUser localUser, String username) : this(localUser)
+        {
+            richTextBoxUsername.Text = username;
+            buttonSortReviews_Click(buttonSortReviews, EventArgs.Empty);
+        }
+
         private void buttonSortReviews_Click(object sender, EventArgs e)
         {
             listViewUserReviews.Items.Clear();
@@ -44,7 +50,7 @@ namespace StudyBuddy
                         {
                             this.user = user;
                             progressBarKarma.Value = user.KarmaPoints;
-                            labelKarmaProgress.Text = user.username + " progresas " + progressBarKarma.Value
+                            labelKarmaProgress.Text = user.Username + " progresas " + progressBarKarma.Value
                                 + "/" + progressBarKarma.Maximum;
                             progressBarKarma.Visible = true;
                             labelKarmaProgress.Visible = true;
@@ -85,7 +91,7 @@ namespace StudyBuddy
                             bool karmaAdd = false;
                             foreach (UserReview userReview in userReviews)
                             {
-                                switch(userReview.karma)
+                                switch(userReview.Karma)
                                 {
                                     case 0:
                                         karmaAdd = false;
@@ -97,10 +103,10 @@ namespace StudyBuddy
                                 listViewUserReviews.Items.Add(
                                     new ListViewItem(
                                         new[] { 
-                                            userReview.username,
-                                            userReview.message,
+                                            userReview.Username,
+                                            userReview.Message,
                                             ((karmaAdd)? "+" : "-"),
-                                            userReview.postDate.ToString()}));
+                                            userReview.PostDate.ToString()}));
                             }
                             ResizeColumnWidth();
                         }
@@ -115,7 +121,7 @@ namespace StudyBuddy
                         }
                     });
                 }
-                ).get(true, user.username);
+                ).get(true, user.Username);
 
             if (userReviews == null || users == null) // Dar nėra informacijos
             {
@@ -132,10 +138,10 @@ namespace StudyBuddy
 
         private void listViewUserReviews_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            //Determine if clicked column is already the column that is being sorted.
+            //Nustatyti ar paclickintas stulpelis jau yra rikiuojamas
             if (e.Column == listViewColumnSorter.SortColumn)
             {
-                // Reverse the current sort direction for this column.
+                //Pakeisti dabartinę stulpelio rikiavimo tvarką
                 if (listViewColumnSorter.Order == SortOrder.Ascending)
                 {
                     listViewColumnSorter.Order = SortOrder.Descending;
@@ -147,12 +153,12 @@ namespace StudyBuddy
             }
             else
             {
-                // Set the column number that is to be sorted; default to ascending.
+                //Nustatyti stulpelio, kuris bus rikiuojamas numerį. Pagal nutylėjimą rikiuojama didėjančia tvarka
                 listViewColumnSorter.SortColumn = e.Column;
                 listViewColumnSorter.Order = SortOrder.Ascending;
             }
 
-            // Perform the sort with these new sort options.
+            //Atlikti rikiavimą su naujais rikiavimo nustatymais
             this.listViewUserReviews.Sort();
         }
 

@@ -13,15 +13,12 @@ using System.Windows.Forms;
 
 namespace StudyBuddy
 {
- 
-
-
-  
     public partial class MessageForm : Form
     {
         [DllImport("user32.dll")]
         static extern bool HideCaret(IntPtr hWnd);
-
+        public delegate void NewMessage(Entity.Message message);
+        public NewMessage NewMessageHandler { get; set; }
         string username = null;
         Conversation conversation = null;
         Dictionary<string, User> users = null;
@@ -35,7 +32,7 @@ namespace StudyBuddy
 
         private void TextBoxGotFocus(object sender, EventArgs args)
         {
-            HideCaret(chat.Handle);
+            HideCaret(richTextBoxChat.Handle);
         }
         
         public MessageForm(LocalUser localUser, string username) : this()
@@ -56,16 +53,14 @@ namespace StudyBuddy
             InitializeComponent();
         }
 
- 
-
         private void sendButton_Click(object sender, EventArgs e)
         {
-            messagesToSend.Enqueue(chatMessageText.Text);
+            messagesToSend.Enqueue(richTextBoxChatMessageText.Text);
             if (poster == null)
             {
                 sendEnqueuedMessage();
             }
-            chatMessageText.Text = "";
+            richTextBoxChatMessageText.Text = "";
         }
 
         private void MessageForm_Load(object sender, EventArgs e)
@@ -74,8 +69,8 @@ namespace StudyBuddy
             //Color color = Color.Blue;
             //Color color2 = Color.Red;
             //messageStyle("message\n", color, fBold);
-            chat.MouseDown += chat_MouseDown;
-            sendButton.Enabled = false;
+            richTextBoxChat.MouseDown += chat_MouseDown;
+            buttonSendMessage.Enabled = false;
             if(conversation != null)
             {
                 getMessages();
@@ -86,13 +81,13 @@ namespace StudyBuddy
                 {
                     this.Invoke((MethodInvoker)delegate //Grįžtama į main Thread !! SVARBU
                     {
-                        if (status == ConversationStarter.ConversationStatus.Success) // Pavyko
+                        if (status == ConversationStarter.ConversationStatus.Success) //Pavyko
                         {
                             this.conversation = conv;
                             this.users = users;
                             getMessages();
                         }
-                        else // Ne
+                        else //Ne
                         {
                             messageStyle("Nepavyko užkrauti", Color.Red);
                         }
@@ -103,10 +98,11 @@ namespace StudyBuddy
 
         private void getMessages()
         {
-            var user = users[conversation.users[0]];
-            pictureBox1.ImageLocation = user.profilePictureLocation;
-            name.Text = user.firstName + " " + user.lastName;
-            sendButton.Enabled = true;
+            var user = users[conversation.Users[0]];
+            pictureBoxProfilePicture.ImageLocation = user.ProfilePictureLocation;
+            labelChatUsername.Text = user.FirstName + " " + user.LastName;
+            this.Text += " - " + user.FirstName + " " + user.LastName;
+            buttonSendMessage.Enabled = true;
             new MessageGetter(localUser, getMessageResponseHandler).get(conversation, timestamp, false);
         }
 
@@ -115,10 +111,9 @@ namespace StudyBuddy
             if (e.KeyCode == Keys.Enter && !e.Shift)
             {
                 e.Handled = true;
-                if (sendButton.Enabled)
+                if (buttonSendMessage.Enabled)
                 {
-                    sendButton.PerformClick();
-                    
+                    buttonSendMessage.PerformClick();
                 }
             }
         }
@@ -152,44 +147,38 @@ namespace StudyBuddy
         {
             messages.ForEach(message =>
             {
-
                 User user;
                 Color color;
-                if ( message.username == localUser.username)
+                if ( message.Username == localUser.Username)
                 {
                     user = localUser;
                     color = Color.Black;
                 }
                 else
                 {
-                    user = users[message.username];
+                    user = users[message.Username];
                     color = Color.FromArgb(0xFF, 0x00, 0x66, 0x99);
                 }
-                var date = DateTimeOffset.FromUnixTimeSeconds(message.timestamp / 1000).LocalDateTime;
-                messageStyle("[" + date.ToShortTimeString() + "] " + user.firstName + " " + user.lastName + ": ", color, mainFontBold);
-                messageStyle(message.message + "\n", color);
-                timestamp = Math.Max(timestamp, message.timestamp);
-                
+                var date = DateTimeOffset.FromUnixTimeSeconds(message.Timestamp / 1000).LocalDateTime;
+                messageStyle("[" + date.ToShortTimeString() + "] " + user.FirstName + " " + user.LastName + ": ", color, mainFontBold);
+                messageStyle(message.Text + "\n", color);
+                timestamp = Math.Max(timestamp, message.Timestamp);
+                NewMessageHandler?.Invoke(message);
             });
             //Console.WriteLine(chat.GetPositionFromCharIndex(chat.TextLength - 1));
             if (messages.Count != 0)
                 scrollToEnd();
-
         }
 
         private void scrollToEnd()
         {
-
-            int selectionStart = chat.SelectionStart;
-            int selectionLength = chat.SelectionLength;
-
-            chat.SelectionStart = chat.TextLength;
-            chat.SelectionLength = 0;
-            chat.ScrollToCaret();
-
-            chat.SelectionStart = selectionStart;
-            chat.SelectionLength = selectionLength;
-            
+            int selectionStart = richTextBoxChat.SelectionStart;
+            int selectionLength = richTextBoxChat.SelectionLength;
+            richTextBoxChat.SelectionStart = richTextBoxChat.TextLength;
+            richTextBoxChat.SelectionLength = 0;
+            richTextBoxChat.ScrollToCaret();
+            richTextBoxChat.SelectionStart = selectionStart;
+            richTextBoxChat.SelectionLength = selectionLength;
         }
 
         private void postMessageResponseHandler(MessagePoster.MessageStatus status, Conversation conversation, string message)
@@ -217,7 +206,7 @@ namespace StudyBuddy
             {
                 //form closed
             }
-}
+        }
 
         void sendEnqueuedMessage()
         {
@@ -229,29 +218,28 @@ namespace StudyBuddy
         private void messageStyle(string message, Color userColor, Font userFont = null)
         {
             // Font fBold = new Font("Tahoma", 8, FontStyle.Bold);
-            int selectionStart = chat.SelectionStart;
-            int selectionLength = chat.SelectionLength;
+            int selectionStart = richTextBoxChat.SelectionStart;
+            int selectionLength = richTextBoxChat.SelectionLength;
 
-            chat.SelectionStart = chat.TextLength;
-            chat.SelectionLength = 0;
+            richTextBoxChat.SelectionStart = richTextBoxChat.TextLength;
+            richTextBoxChat.SelectionLength = 0;
             if (userFont == null)
             {
-                chat.SelectionFont = mainFont;
+                richTextBoxChat.SelectionFont = mainFont;
             }
             else
             {
-                chat.SelectionFont = userFont;
+                richTextBoxChat.SelectionFont = userFont;
             }
 
-            chat.SelectionColor = userColor;
-            chat.SelectedText = message;
-
-            chat.SelectionStart = selectionStart;
-            chat.SelectionLength = selectionLength;
+            richTextBoxChat.SelectionColor = userColor;
+            richTextBoxChat.SelectedText = message;
+            richTextBoxChat.SelectionStart = selectionStart;
+            richTextBoxChat.SelectionLength = selectionLength;
         }
         private void chat_MouseDown(object sender, MouseEventArgs e)
         {
-            HideCaret(chat.Handle);
+            HideCaret(richTextBoxChat.Handle);
         }
     }
 }

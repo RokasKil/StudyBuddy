@@ -28,37 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView = new System.Windows.Forms.ListView();
+            this.listViewTopics = new System.Windows.Forms.ListView();
             this.Topic = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Creation_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastUpdated = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonAddTopic = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelTopic = new System.Windows.Forms.Label();
             this.textBoxTopic = new System.Windows.Forms.TextBox();
             this.buttonRemoveTopic = new System.Windows.Forms.Button();
             this.buttonOpenTopicDescription = new System.Windows.Forms.Button();
             this.labelStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listView
+            // listViewTopics
             // 
-            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewTopics.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Topic,
             this.Creation_date,
             this.LastUpdated});
-            this.listView.GridLines = true;
-            this.listView.HideSelection = false;
-            this.listView.LabelEdit = true;
-            this.listView.Location = new System.Drawing.Point(11, 67);
-            this.listView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(759, 376);
-            this.listView.TabIndex = 0;
-            this.listView.UseCompatibleStateImageBehavior = false;
-            this.listView.View = System.Windows.Forms.View.Details;
-            this.listView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
-            this.listView.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.listView_ColumnWidthChanging);
-            this.listView.SelectedIndexChanged += new System.EventHandler(this.ListView_SelectedIndexChanged);
+            this.listViewTopics.GridLines = true;
+            this.listViewTopics.HideSelection = false;
+            this.listViewTopics.LabelEdit = true;
+            this.listViewTopics.Location = new System.Drawing.Point(11, 67);
+            this.listViewTopics.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listViewTopics.Name = "listViewTopics";
+            this.listViewTopics.Size = new System.Drawing.Size(759, 376);
+            this.listViewTopics.TabIndex = 0;
+            this.listViewTopics.UseCompatibleStateImageBehavior = false;
+            this.listViewTopics.View = System.Windows.Forms.View.Details;
+            this.listViewTopics.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
+            this.listViewTopics.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.listView_ColumnWidthChanging);
+            this.listViewTopics.SelectedIndexChanged += new System.EventHandler(this.ListView_SelectedIndexChanged);
             // 
             // Topic
             // 
@@ -86,14 +86,14 @@
             this.buttonAddTopic.UseVisualStyleBackColor = true;
             this.buttonAddTopic.Click += new System.EventHandler(this.buttonAddTopic_click);
             // 
-            // label1
+            // labelTopic
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Tema:";
+            this.labelTopic.AutoSize = true;
+            this.labelTopic.Location = new System.Drawing.Point(8, 12);
+            this.labelTopic.Name = "labelTopic";
+            this.labelTopic.Size = new System.Drawing.Size(48, 17);
+            this.labelTopic.TabIndex = 2;
+            this.labelTopic.Text = "Tema:";
             // 
             // textBoxTopic
             // 
@@ -145,9 +145,9 @@
             this.Controls.Add(this.buttonOpenTopicDescription);
             this.Controls.Add(this.buttonRemoveTopic);
             this.Controls.Add(this.textBoxTopic);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelTopic);
             this.Controls.Add(this.buttonAddTopic);
-            this.Controls.Add(this.listView);
+            this.Controls.Add(this.listViewTopics);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TopicListForm";
             this.Text = "TopicList";
@@ -159,11 +159,11 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.ListView listViewTopics;
         private System.Windows.Forms.ColumnHeader Topic;
         private System.Windows.Forms.ColumnHeader Creation_date;
         private System.Windows.Forms.Button buttonAddTopic;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTopic;
         private System.Windows.Forms.TextBox textBoxTopic;
         private System.Windows.Forms.ColumnHeader LastUpdated;
         private System.Windows.Forms.Button buttonRemoveTopic;

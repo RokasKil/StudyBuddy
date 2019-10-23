@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.listViewUserReviews = new System.Windows.Forms.ListView();
-            this.buttonSortReviews = new System.Windows.Forms.Button();
-            this.richTextBoxUsername = new System.Windows.Forms.RichTextBox();
-            this.progressBarKarma = new System.Windows.Forms.ProgressBar();
-            this.labelKarmaProgress = new System.Windows.Forms.Label();
             this.Reviewer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ReviewMessage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ReviewKarma = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ReviewPostDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonSortReviews = new System.Windows.Forms.Button();
+            this.richTextBoxUsername = new System.Windows.Forms.RichTextBox();
+            this.progressBarKarma = new System.Windows.Forms.ProgressBar();
+            this.labelKarmaProgress = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listViewUserReviews
@@ -56,6 +56,22 @@
             this.listViewUserReviews.View = System.Windows.Forms.View.Details;
             this.listViewUserReviews.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewUserReviews_ColumnClick);
             this.listViewUserReviews.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.listViewUserReviews_ColumnWidthChanging);
+            // 
+            // Reviewer
+            // 
+            this.Reviewer.Text = "Vartotojas";
+            // 
+            // ReviewMessage
+            // 
+            this.ReviewMessage.Text = "Atsiliepimas";
+            // 
+            // ReviewKarma
+            // 
+            this.ReviewKarma.Text = "Karma";
+            // 
+            // ReviewPostDate
+            // 
+            this.ReviewPostDate.Text = "Atsiliepimo data";
             // 
             // buttonSortReviews
             // 
@@ -80,11 +96,11 @@
             // progressBarKarma
             // 
             this.progressBarKarma.Location = new System.Drawing.Point(657, 17);
-            this.progressBarKarma.Maximum = 1000;
+            this.progressBarKarma.Maximum = 10;
             this.progressBarKarma.Name = "progressBarKarma";
             this.progressBarKarma.Size = new System.Drawing.Size(149, 29);
             this.progressBarKarma.TabIndex = 3;
-            this.progressBarKarma.Value = 150;
+            this.progressBarKarma.Value = 4;
             // 
             // labelKarmaProgress
             // 
@@ -95,23 +111,7 @@
             this.labelKarmaProgress.Size = new System.Drawing.Size(0, 25);
             this.labelKarmaProgress.TabIndex = 4;
             // 
-            // Reviewer
-            // 
-            this.Reviewer.Text = "Vartotojas";
-            // 
-            // ReviewMessage
-            // 
-            this.ReviewMessage.Text = "Atsiliepimas";
-            // 
-            // ReviewKarma
-            // 
-            this.ReviewKarma.Text = "Karma";
-            // 
-            // ReviewPostDate
-            // 
-            this.ReviewPostDate.Text = "Atsiliepimo data";
-            // 
-            // UserReviewForm
+            // ViewUserReviewsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -121,7 +121,7 @@
             this.Controls.Add(this.richTextBoxUsername);
             this.Controls.Add(this.buttonSortReviews);
             this.Controls.Add(this.listViewUserReviews);
-            this.Name = "UserReviewForm";
+            this.Name = "ViewUserReviewsForm";
             this.Text = "UserReviewForm";
             this.ResumeLayout(false);
             this.PerformLayout();

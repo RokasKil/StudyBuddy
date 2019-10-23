@@ -21,70 +21,57 @@ namespace StudyBuddy
         /// </summary>
         private const int EM_SETCUEBANNER = 0x1501; 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        
         private static extern Int32 SendMessage(IntPtr hWnd, int msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)]string lParam);
-
         Authenticator auth;
-
-
         public LoginForm()
         {
             InitializeComponent();
-            AcceptButton = loginButton;
+            AcceptButton = buttonLogin;
             this.Text = "Prisijungimas";
         }
 
-
         private void LoginForm_Shown(object sender, EventArgs e)
         {
-            SendMessage(usernameField.Handle, EM_SETCUEBANNER, 0, "Vartotojas");// Kviečia low level nustatymą (Pretty much black magic kurią kažkada reiks pakeist)
-            SendMessage(passwordField.Handle, EM_SETCUEBANNER, 0, "Slaptažodis");
+            SendMessage(textBoxUsernameField.Handle, EM_SETCUEBANNER, 0, "Vartotojas");// Kviečia low level nustatymą (Pretty much black magic kurią kažkada reiks pakeist)
+            SendMessage(textBoxPasswordField.Handle, EM_SETCUEBANNER, 0, "Slaptažodis");
             //new ConversationHistoryForm().Show();
             //new MessageForm().Show();
-            
             //ChangeProfilePictureForm f = new ChangeProfilePictureForm();
             //f.Show();
-
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
             statusLabel.Text = "Jungiamasi...";
-            loginButton.Enabled = false;
-            auth.login(usernameField.Text, passwordField.Text);
+            buttonLogin.Enabled = false;
+            auth.login(textBoxUsernameField.Text, textBoxPasswordField.Text);
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-
-
             auth = new Authenticator();
             auth.LoginResult = new Authenticator.LoginResultDelegate(loginResultCallBack);
-
-            rememberMe.Checked = Properties.Settings.Default.remember;
-            
+            checkBoxRememberLogin.Checked = Properties.Settings.Default.remember;
             // uzkomentuoti zemiau eilute kad veiktu auto log in
             //rememberMe.Checked = false;
-
-            if (rememberMe.Checked == true)
+            if (checkBoxRememberLogin.Checked == true)
             {
                 statusLabel.Text = "Jungiamasi...";
-                loginButton.Enabled = false;
+                buttonLogin.Enabled = false;
                 string privateKey = Properties.Settings.Default.privateKey;
                 auth.login(privateKey);
             }
-
         }
         
         private void loginResultCallBack(Authenticator.AuthStatus status, LocalUser user)
         {
-            if (loginButton.InvokeRequired) // Has to be same thread
+            if (buttonLogin.InvokeRequired) //Turi būti tas pats thread
             {
-                loginButton.Invoke(new Authenticator.LoginResultDelegate(loginResultCallBack), new object[] { status, user });
+                buttonLogin.Invoke(new Authenticator.LoginResultDelegate(loginResultCallBack), new object[] { status, user });
             }
             else
             {
-                loginButton.Enabled = true;
+                buttonLogin.Enabled = true;
                 string message = "";
                 switch (status)
                 {
@@ -100,7 +87,7 @@ namespace StudyBuddy
                     case Authenticator.AuthStatus.InvalidUsernameOrPassword:
                         message = "Neteisingas vartotojo vardas/slaptažodis";
                         break;
-                    case Authenticator.AuthStatus.InvalidPrivateKey://Remember login
+                    case Authenticator.AuthStatus.InvalidPrivateKey: //Prisiminti login
                         message = "Bandykite prisijungti išnaujo";
                         break;
                     case Authenticator.AuthStatus.Success:
@@ -114,9 +101,9 @@ namespace StudyBuddy
                 if ((status == Authenticator.AuthStatus.Success))
                 { 
 
-                    if(rememberMe.Checked == true)
+                    if(checkBoxRememberLogin.Checked == true)
                     {
-                        Properties.Settings.Default.privateKey = user.privateKey;
+                        Properties.Settings.Default.privateKey = user.PrivateKey;
                         Properties.Settings.Default.Save();
                     }
                     else
@@ -124,18 +111,18 @@ namespace StudyBuddy
                         Properties.Settings.Default.privateKey = "";
                         Properties.Settings.Default.Save();
                     }
-                    //Switch to another form
-                    MainMenuForm mainForm = new MainMenuForm(user); // Create a the main form and show it
+                    //Perjungiama į main menu formą
+                    MainMenuForm mainForm = new MainMenuForm(user); //Sukurti pagrindinę formą ir parodyti
                     mainForm.Show();
                     this.Hide();    // Hide this one
-                    mainForm.FormClosed += (s, args) => this.Close(); // When the main form closes close this one too
+                    mainForm.FormClosed += (s, args) => this.Close(); //Kai užsidaro pagrindinė forma, uždaryti ir šitą
                 }
             }   
         }
 
         private void rememberMe_CheckedChanged(object sender, EventArgs e)
         {
-            if (rememberMe.Checked)
+            if (checkBoxRememberLogin.Checked)
             {
                 //Properties.Settings.Default.privateKey = passwordField.Text;
                 Properties.Settings.Default.remember = true;
@@ -147,11 +134,6 @@ namespace StudyBuddy
                 Properties.Settings.Default.remember = false;
                 Properties.Settings.Default.Save();
             }
-        }
-
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

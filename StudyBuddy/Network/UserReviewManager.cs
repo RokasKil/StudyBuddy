@@ -33,7 +33,7 @@ namespace StudyBuddy.Network
         private Thread UserReviewManagerThread;
 
         public UserReviewManager() : this("") { }
-        public UserReviewManager(LocalUser user) : this(user.privateKey) { }
+        public UserReviewManager(LocalUser user) : this(user.PrivateKey) { }
         public UserReviewManager(string privateKey)
         {
             PrivateKey = privateKey;
@@ -45,17 +45,17 @@ namespace StudyBuddy.Network
             {
                 return;
             }
-            if (String.IsNullOrEmpty(userReview.username) || String.IsNullOrWhiteSpace(userReview.username))
+            if (String.IsNullOrEmpty(userReview.Username) || String.IsNullOrWhiteSpace(userReview.Username))
             {
                 PostUserReviewResult(ManagerStatus.UsernameEmpty, null);
                 return;
             }
-            if (String.IsNullOrEmpty(userReview.message) || String.IsNullOrWhiteSpace(userReview.message))
+            if (String.IsNullOrEmpty(userReview.Message) || String.IsNullOrWhiteSpace(userReview.Message))
             {
                 PostUserReviewResult(ManagerStatus.MessageEmpty, null);
                 return;
             }
-            if (userReview.message.Length > 2000)
+            if (userReview.Message.Length > 2000)
             {
                 PostUserReviewResult(ManagerStatus.MessageTooLong, null);
                 return;
@@ -83,16 +83,16 @@ namespace StudyBuddy.Network
             {
                 obj = new APICaller("postReview.php")
                 .addParam("privateKey", PrivateKey)
-                .addParam("message", userReview.message)
-                .addParam("username", userReview.username)
-                .addParam("positive", (userReview.karma > 0).ToString())
+                .addParam("message", userReview.Message)
+                .addParam("username", userReview.Username)
+                .addParam("positive", (userReview.Karma > 0).ToString())
                 .call();
             }
             else
             {
                 obj = new APICaller("removeReview.php")
                 .addParam("privateKey", PrivateKey)
-                .addParam("username", userReview.username)
+                .addParam("username", userReview.Username)
                 .call();
             }
             ManagerStatus status = ManagerStatus.UnknownError;

@@ -9,14 +9,14 @@ namespace StudyBuddy.Entity
     public class User
     {
         //Fill this as we go along;
-        public string firstName;
-        public string lastName;
-        public string username;
-        public string profilePictureLocation;
-        public bool gender;
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Username { get; set; }
+        public string ProfilePictureLocation { get; set; }
+        public bool Gender { get; set; }
         public int KarmaPoints { get; set; }
         public bool IsLecturer { get; set; } = false;
-        public delegate void onUpdate(User user);
-        public onUpdate OnUpdate;
+        public delegate void OnUpdate(User user);
+        public OnUpdate OnUpdateHandler;
     }
 }

@@ -27,14 +27,14 @@ namespace StudyBuddy.Network
         private Thread getUserReviewThread;
 
         public UserReviewGetter() : this("") { }
-        public UserReviewGetter(LocalUser user) : this(user.privateKey) { }
+        public UserReviewGetter(LocalUser user) : this(user.PrivateKey) { }
         public UserReviewGetter(string privateKey)
         {
             PrivateKey = privateKey;
         }
 
         public UserReviewGetter(GetUserReviewDelegate getUserReviewResult) : this("", getUserReviewResult) { }
-        public UserReviewGetter(LocalUser user, GetUserReviewDelegate getUserReviewResult) : this(user.privateKey, getUserReviewResult) { }
+        public UserReviewGetter(LocalUser user, GetUserReviewDelegate getUserReviewResult) : this(user.PrivateKey, getUserReviewResult) { }
         public UserReviewGetter(string privateKey, GetUserReviewDelegate getUserReviewResult) : this(privateKey)
         {
             GetUserReviewResult = getUserReviewResult;
@@ -68,10 +68,10 @@ namespace StudyBuddy.Network
                 {
                     userReviews.Add(new UserReview
                     {
-                        message = userReview["message"].ToString(),
-                        karma = userReview["karma"].ToObject<int>(),
-                        username = userReview["username"].ToString(),
-                        postDate = DateTimeOffset.FromUnixTimeSeconds(userReview["postDate"].ToObject<long>()).DateTime
+                        Message = userReview["message"].ToString(),
+                        Karma = userReview["karma"].ToObject<int>(),
+                        Username = userReview["username"].ToString(),
+                        PostDate = DateTimeOffset.FromUnixTimeSeconds(userReview["postDate"].ToObject<long>()).DateTime
                     });
                 });
                 if (getUsers)
@@ -81,14 +81,14 @@ namespace StudyBuddy.Network
                     {
                         users[user.First["username"].ToString()] = new User
                         {
-                            username = user.First["username"].ToString(),
-                            firstName = user.First["firstName"].ToString(),
-                            lastName = user.First["lastName"].ToString(),
+                            Username = user.First["username"].ToString(),
+                            FirstName = user.First["firstName"].ToString(),
+                            LastName = user.First["lastName"].ToString(),
                             KarmaPoints = user.First["karmaPoints"].ToObject<int>(),
                             IsLecturer = Convert.ToBoolean(user.First["lecturer"].ToObject<int>()),
 
                             //gender = Convert.ToBoolean(user.First["gender"].ToObject<int>()),
-                            profilePictureLocation = user.First["profilePicture"].ToString()
+                            ProfilePictureLocation = user.First["profilePicture"].ToString()
                         };
                     });
                 }

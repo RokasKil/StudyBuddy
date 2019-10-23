@@ -31,14 +31,14 @@ namespace StudyBuddy.Network
         private Thread postMessageThread;
 
         public MessagePoster() : this("") { }
-        public MessagePoster(LocalUser user) : this(user.privateKey) { }
+        public MessagePoster(LocalUser user) : this(user.PrivateKey) { }
         public MessagePoster(string privateKey)
         {
             PrivateKey = privateKey;
         }
 
         public MessagePoster(MessagePostDelegate postMessageResult) : this("", postMessageResult) { }
-        public MessagePoster(LocalUser user, MessagePostDelegate postMessageResult) : this(user.privateKey, postMessageResult) { }
+        public MessagePoster(LocalUser user, MessagePostDelegate postMessageResult) : this(user.PrivateKey, postMessageResult) { }
         public MessagePoster(string privateKey, MessagePostDelegate postMessageResult) : this(privateKey)
         {
             PostMessageResult = postMessageResult;
@@ -67,7 +67,7 @@ namespace StudyBuddy.Network
         private void postLogic(Conversation conversation, string message)
         {
             //Console.Write("Starting to send " + message + "\n");
-            JObject obj = new APICaller("postMessage.php").addParam("conversation", conversation.id.ToString()).addParam("message", message).addParam("privateKey", PrivateKey).call();
+            JObject obj = new APICaller("postMessage.php").addParam("conversation", conversation.Id.ToString()).addParam("message", message).addParam("privateKey", PrivateKey).call();
 
             //Console.Write("Sent " + message + "\n");
             //Console.Write(obj);

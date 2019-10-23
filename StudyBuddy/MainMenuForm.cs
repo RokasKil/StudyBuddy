@@ -33,43 +33,23 @@ namespace StudyBuddy
         {
             toolStripStatusLabel1.Text = DateTime.Now.ToLongDateString();
             fillUserValues();
-            localUser.OnUpdate += (user) => { fillUserValues(); };
+            localUser.OnUpdateHandler += (user) => { fillUserValues(); };
             //new UserReviewTest(localUser).Show();
         }
+
         public void fillUserValues()
         {
-            greetingsLabel.Text = "Labas, " +
-                localUser.firstName.Substring(0, localUser.firstName.Length - 2) + "ai" + " :)";
-            karmaProgressBar.Value = localUser.KarmaPoints;
-            progressLabel.Text = "Tavo progresas " + karmaProgressBar.Value
-                + "/" + karmaProgressBar.Maximum;
-            
-        }
-        private void Label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ProgressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ProgressBar1_Update(int add) // Perdaryt su nauja klase karmai ir delegatais
-        {
-            //When the profile is liked, add karma points
-            //If the profile is disliked, take away karma points
-            karmaProgressBar.Value += add;
+            labelGreetings.Text = "Labas, " + localUser.Username + " :)";
+            //greetingsLabel.Text = "Labas, " +
+            //    localUser.FirstName.Substring(0, localUser.FirstName.Length - 2) + "ai" + " :)";
+            progressBarKarma.Value = localUser.KarmaPoints;
+            labelKarmaProgress.Text = "Tavo progresas " + progressBarKarma.Value
+                + "/" + progressBarKarma.Maximum;
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            //User nustatomas property, kad jis siuo metu gali padeti kitiems
+            //User nustatomas property, kad jis šiuo metu gali padėti kitiems
             localUser.Advise = !localUser.Advise;
             if (localUser.Advise)
                 buttonAdvise.BackColor = Color.Green;
@@ -82,16 +62,11 @@ namespace StudyBuddy
             toolStripStatusLabel1.Text = DateTime.Now.ToLongDateString();
         }
 
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
         private void CheckProfileButton_Click(object sender, EventArgs e)
         {
-            //Switch to another form
-            ProfileForm profileForm = new ProfileForm(localUser, localUser); // Create profile form and show it
+            //Perjungiama į kitą formą
+            ProfileForm profileForm = new ProfileForm(localUser, localUser); //Sukurti ir parodyti profilį
             profileForm.Show();
-
             buttonCheckProfile.Enabled = false;
             profileForm.FormClosed += (a, b) => { buttonCheckProfile.Enabled = true; };
             /*
@@ -105,7 +80,6 @@ namespace StudyBuddy
             */
             //checkProfileButton.Enabled = false; // prevents from opening a bunch of the same windows
         }
-
         private void Button1_Click_1(object sender, EventArgs e)
         {
             FormOpener.OpenForm(new PostForHelpForm(localUser));
@@ -132,10 +106,6 @@ namespace StudyBuddy
             Properties.Settings.Default.remember = false;
             Properties.Settings.Default.Save();
             Application.Restart();
-        }
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonUserReviews_Click(object sender, EventArgs e)

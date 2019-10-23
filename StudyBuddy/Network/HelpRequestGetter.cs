@@ -26,14 +26,14 @@ namespace StudyBuddy.Network
         private Thread getHelpRequestsThread;
 
         public HelpRequestGetter() : this("") { }
-        public HelpRequestGetter(LocalUser user) : this(user.privateKey) { }
+        public HelpRequestGetter(LocalUser user) : this(user.PrivateKey) { }
         public HelpRequestGetter(string privateKey)
         {
             PrivateKey = privateKey;
         }
 
         public HelpRequestGetter(GetHelpRequestsDelegate getHelpRequestsResult) : this("", getHelpRequestsResult) { }
-        public HelpRequestGetter(LocalUser user, GetHelpRequestsDelegate getHelpRequestsResult) : this(user.privateKey, getHelpRequestsResult) { }
+        public HelpRequestGetter(LocalUser user, GetHelpRequestsDelegate getHelpRequestsResult) : this(user.PrivateKey, getHelpRequestsResult) { }
         public HelpRequestGetter(string privateKey, GetHelpRequestsDelegate getHelpRequestsResult) : this(privateKey)
         {
             GetHelpRequestsResult = getHelpRequestsResult;
@@ -66,7 +66,7 @@ namespace StudyBuddy.Network
                 {
                     helpRequests.Add(new HelpRequest
                     {
-                        id = helpRequest["id"].ToObject<int>(),
+                        Id = helpRequest["id"].ToObject<int>(),
                         Title = helpRequest["title"].ToString(),
                         Description = helpRequest["description"].ToString(),
                         CreatorUsername = helpRequest["username"].ToString(),
@@ -81,12 +81,12 @@ namespace StudyBuddy.Network
                     {
                         users[user.First["username"].ToString()] = new User
                         {
-                            username = user.First["username"].ToString(),
-                            firstName = user.First["firstName"].ToString(),
-                            lastName = user.First["lastName"].ToString(),
+                            Username = user.First["username"].ToString(),
+                            FirstName = user.First["firstName"].ToString(),
+                            LastName = user.First["lastName"].ToString(),
                             KarmaPoints = user.First["karmaPoints"].ToObject<int>(),
                             IsLecturer = Convert.ToBoolean(user.First["lecturer"].ToObject<int>()),
-                            profilePictureLocation = user.First["profilePicture"].ToString()
+                            ProfilePictureLocation = user.First["profilePicture"].ToString()
                         };
                     });
                 }

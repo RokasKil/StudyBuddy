@@ -32,14 +32,14 @@ namespace StudyBuddy.Network
         private Thread UpdatePictureThread;
 
         public ProfilePictureUpdater() : this("") { }
-        public ProfilePictureUpdater(LocalUser user) : this(user.privateKey) { }
+        public ProfilePictureUpdater(LocalUser user) : this(user.PrivateKey) { }
         public ProfilePictureUpdater(string privateKey)
         {
             PrivateKey = privateKey;
         }
 
         public ProfilePictureUpdater(UpdatePictureResultDelegate updatePictureResult) : this("", updatePictureResult) { }
-        public ProfilePictureUpdater(LocalUser user, UpdatePictureResultDelegate updatePictureResult) : this(user.privateKey, updatePictureResult) { }
+        public ProfilePictureUpdater(LocalUser user, UpdatePictureResultDelegate updatePictureResult) : this(user.PrivateKey, updatePictureResult) { }
         public ProfilePictureUpdater(string privateKey, UpdatePictureResultDelegate updatePictureResult) : this(privateKey)
         {
             UpdatePictureResult = updatePictureResult;

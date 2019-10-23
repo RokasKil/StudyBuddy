@@ -32,9 +32,9 @@ namespace StudyBuddy
         {
             //username.Text = localUser.username;
             //name.Text = localUser.firstName + " " + localUser.lastName;
-            profilePicture.ImageLocation = localUser.profilePictureLocation;
-            firstNameBox.Text = localUser.firstName;
-            lastNameBox.Text = localUser.lastName;
+            profilePicture.ImageLocation = localUser.ProfilePictureLocation;
+            firstNameBox.Text = localUser.FirstName;
+            lastNameBox.Text = localUser.LastName;
             resultLabel.Visible = false;
             //usernameBox.Text = localUser.username;
 
@@ -65,11 +65,11 @@ namespace StudyBuddy
                     {
                         if (status == UserUpdater.GetStatus.Success) //Pavyko
                         {
-                            localUser.firstName = firstName;
-                            localUser.lastName = lastName;
+                            localUser.FirstName = firstName;
+                            localUser.LastName = lastName;
                             saveChangesButton.Enabled = true;
                             resultLabel.Visible = true;
-                            localUser.OnUpdate?.Invoke(localUser);
+                            localUser.OnUpdateHandler?.Invoke(localUser);
 
                         }
                         else //Ne

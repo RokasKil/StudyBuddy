@@ -28,39 +28,38 @@ namespace StudyBuddy
         {
             InitializeComponent();
             this.helpRequest = helpRequest;
-            categoryBox.Text = helpRequest.Category;
-            titleBox.Text = helpRequest.Title;
-            descriptionBox.Text = helpRequest.Description;
-            nameBox.Text = user.firstName + " " + user.lastName;
-            pictureBox.ImageLocation = user.profilePictureLocation;
+            textBoxCategoryTitle.Text = helpRequest.Category;
+            textBoxHelpRequestTitle.Text = helpRequest.Title;
+            TextBoxHelpRequestDescription.Text = helpRequest.Description;
+            textBoxProfileName.Text = user.FirstName + " " + user.LastName;
+            pictureBoxProfilePicture.ImageLocation = user.ProfilePictureLocation;
             this.localUser = localUser;
             this.user = user;
             this.Text = "Pagalbos prašymas";
 
-            titleBox.MouseDown += TextBox_MouseDown;
-            titleBox.MouseUp += TextBox_MouseDown;
-            titleBox.GotFocus += TextBox_GotFocus;
+            textBoxHelpRequestTitle.MouseDown += TextBox_MouseDown;
+            textBoxHelpRequestTitle.MouseUp += TextBox_MouseDown;
+            textBoxHelpRequestTitle.GotFocus += TextBox_GotFocus;
 
-            categoryBox.MouseDown += TextBox_MouseDown;
-            categoryBox.MouseUp += TextBox_MouseDown;
-            categoryBox.GotFocus += TextBox_GotFocus;
+            textBoxCategoryTitle.MouseDown += TextBox_MouseDown;
+            textBoxCategoryTitle.MouseUp += TextBox_MouseDown;
+            textBoxCategoryTitle.GotFocus += TextBox_GotFocus;
 
-            descriptionBox.MouseDown += TextBox_MouseDown;
-            descriptionBox.MouseUp += TextBox_MouseDown;
-            descriptionBox.GotFocus += TextBox_GotFocus;
+            TextBoxHelpRequestDescription.MouseDown += TextBox_MouseDown;
+            TextBoxHelpRequestDescription.MouseUp += TextBox_MouseDown;
+            TextBoxHelpRequestDescription.GotFocus += TextBox_GotFocus;
 
-            nameBox.MouseDown += TextBox_MouseDown;
-            nameBox.MouseUp += TextBox_MouseDown;
-            nameBox.GotFocus += TextBox_GotFocus;
-            if(user.username == localUser.username)
+            textBoxProfileName.MouseDown += TextBox_MouseDown;
+            textBoxProfileName.MouseUp += TextBox_MouseDown;
+            textBoxProfileName.GotFocus += TextBox_GotFocus;
+            if(user.Username == localUser.Username)
             {
-                profile.Hide();
-                writeMessageButton.Hide();
-
+                buttonProfile.Hide();
+                buttonWriteMessage.Hide();
             }
             else
             {
-                removeButton.Hide();
+                buttonRemove.Hide();
             }
         }
 
@@ -81,7 +80,7 @@ namespace StudyBuddy
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            removeButton.Enabled = false;
+            buttonRemove.Enabled = false;
             var confirmResult = MessageBox.Show(
                                  "Ar tikrai norite ištrinti šį prašymą?",
                                 "Ištrinti šį prašymą?",
@@ -104,7 +103,7 @@ namespace StudyBuddy
                             else
                             {
                                 statusLabel.Text = "Nepavyko ištrinti";
-                                removeButton.Enabled = true;
+                                buttonRemove.Enabled = true;
                             }
                         });
                     }
@@ -117,8 +116,13 @@ namespace StudyBuddy
             }
             else
             {
-                removeButton.Enabled = true;
+                buttonRemove.Enabled = true;
             }
+        }
+
+        private void writeMessageButton_Click(object sender, EventArgs e)
+        {
+            new MessageForm(localUser, user.Username).Show();
         }
     }
 }

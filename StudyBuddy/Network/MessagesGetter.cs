@@ -29,14 +29,14 @@ namespace StudyBuddy.Network
         private Thread getMessageThread;
 
         public MessageGetter() : this("") { }
-        public MessageGetter(LocalUser user) : this(user.privateKey) { }
+        public MessageGetter(LocalUser user) : this(user.PrivateKey) { }
         public MessageGetter(string privateKey)
         {
             PrivateKey = privateKey;
         }
 
         public MessageGetter(MessageGetDelegate getMessageResult) : this("", getMessageResult) { }
-        public MessageGetter(LocalUser user, MessageGetDelegate getMessageResult) : this(user.privateKey, getMessageResult) { }
+        public MessageGetter(LocalUser user, MessageGetDelegate getMessageResult) : this(user.PrivateKey, getMessageResult) { }
         public MessageGetter(string privateKey, MessageGetDelegate getMessageResult) : this(privateKey)
         {
             GetMessageResult = getMessageResult;
@@ -59,7 +59,7 @@ namespace StudyBuddy.Network
 
         private void getLogic(Conversation conversation, long timestamp, bool wait)
         {
-            APICaller caller = new APICaller("getMessages.php").addParam("privateKey", PrivateKey).addParam("conversation", conversation.id.ToString()).addParam("timestamp", timestamp.ToString());
+            APICaller caller = new APICaller("getMessages.php").addParam("privateKey", PrivateKey).addParam("conversation", conversation.Id.ToString()).addParam("timestamp", timestamp.ToString());
             if (wait)
             {
                 caller.addParam("wait", "");
@@ -74,9 +74,9 @@ namespace StudyBuddy.Network
                 {
                     messages.Add(new Message
                     {
-                        username = message["username"].ToString(),
-                        message = message["message"].ToString(),
-                        timestamp = message["timestamp"].ToObject<long>()
+                        Username = message["username"].ToString(),
+                        Text = message["message"].ToString(),
+                        Timestamp = message["timestamp"].ToObject<long>()
                     });
                 });
                 GetMessageResult(MessageStatus.Success, messages);
