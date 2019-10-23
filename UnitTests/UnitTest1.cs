@@ -21,13 +21,12 @@ namespace UnitTests
         {
             
             Authenticator.AuthStatus status = Authenticator.AuthStatus.UnknownError;
-            Console.WriteLine("test1");
             LocalUser user = null;
             bool done = false;
             var auth = new Authenticator((_status, _user) => {
-                done = true;
                 status = _status;
                 user = _user;
+                done = true;
             });
             auth.login("test1", "pass1");
             while (!done) { }
@@ -79,6 +78,7 @@ namespace UnitTests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void CategoriesGetterTest()
         {
             LocalUser user = Login();
@@ -87,9 +87,9 @@ namespace UnitTests
             List<Category> categories = null;
 
             var getter = new CategoriesGetter(user, (_status, _categories) => {
-                done = true;
                 status = _status;
                 categories = _categories;
+                done = true;
             });
             getter.get();
             while (!done) { }
@@ -98,6 +98,7 @@ namespace UnitTests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public List<Conversation> ConversationGetterTest()
         {
             LocalUser user = Login();
@@ -109,11 +110,11 @@ namespace UnitTests
 
 
             var getter = new ConversationGetter(user, (_status, _conversations, _users) => {
-                done = true;
                 status = _status;
                 conversations = _conversations;
                 users = _users;
-                
+                done = true;
+
             });
             getter.get(true);
             while (!done) { }
@@ -125,6 +126,7 @@ namespace UnitTests
 
 
         [TestMethod]
+        [Timeout(1000)]
         public void HelpRequestGetterTest()
         {
             LocalUser user = Login();
@@ -136,10 +138,10 @@ namespace UnitTests
 
 
             var getter = new HelpRequestGetter(user, (_status, _helpRequests, _users) => {
-                done = true;
                 status = _status;
                 helpRequests = _helpRequests;
                 users = _users;
+                done = true;
 
             });
             getter.get(true);
@@ -150,6 +152,7 @@ namespace UnitTests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void MessagesGetterTest()
         {
             LocalUser user = Login();
@@ -159,9 +162,9 @@ namespace UnitTests
             List<Conversation> conversations = ConversationGetterTest();
 
             var getter = new MessageGetter(user, (_status, _messages) => {
-                done = true;
                 status = _status;
                 messages = _messages;
+                done = true;
 
             });
             getter.get(conversations[0], 0, false);
@@ -171,6 +174,7 @@ namespace UnitTests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void UserReviewGetterTest()
         {
             LocalUser user = Login();
@@ -182,13 +186,13 @@ namespace UnitTests
 
 
             var getter = new UserReviewGetter(user, (_status, _userReviews, _users) => {
-                done = true;
                 status = _status;
                 userReviews = _userReviews;
                 users = _users;
+                done = true;
 
             });
-            getter.get(true, user.username);
+            getter.get(true, user.Username);
             while (!done) { }
             Assert.AreEqual(status, UserReviewGetter.GetStatus.Success);
             Assert.AreNotEqual(users, null);
