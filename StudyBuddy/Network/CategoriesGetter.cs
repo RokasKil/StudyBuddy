@@ -52,7 +52,7 @@ namespace StudyBuddy.Network
         private void getLogic()
         {
             JObject obj = new APICaller("getCategories.php").addParam("privateKey", PrivateKey).call();
-            Console.WriteLine(obj);
+            //Console.WriteLine(obj);
             if (obj["status"].ToString() == "success")
             {
                 List<Category> categories = new List<Category>();

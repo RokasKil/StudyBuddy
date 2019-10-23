@@ -98,7 +98,11 @@ namespace StudyBuddy.Network
             }
             if (post)
             {
-                PostHelpRequestResult(status, helpRequest);
+                if (status == ManagerStatus.Success)
+                {
+                    helpRequest.Id = obj["id"].ToObject<int>(); 
+                }
+                    PostHelpRequestResult(status, helpRequest);
             }
             else
             {

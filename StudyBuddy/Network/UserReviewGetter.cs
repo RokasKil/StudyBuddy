@@ -59,7 +59,7 @@ namespace StudyBuddy.Network
             }
 
             JObject obj = caller.call();
-            Console.WriteLine(obj);
+            //Console.WriteLine(obj);
             if (obj["status"].ToString() == "success")
             {
                 List<UserReview> userReviews = new List<UserReview>();
