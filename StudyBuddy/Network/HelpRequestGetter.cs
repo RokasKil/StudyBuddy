@@ -57,7 +57,7 @@ namespace StudyBuddy.Network
                 caller.addParam("user", "");
             }
             JObject obj = caller.call();
-            Console.WriteLine(obj);
+            //Console.WriteLine(obj);
             if (obj["status"].ToString() == "success")
             {
                 List<HelpRequest> helpRequests = new List<HelpRequest>();
@@ -71,7 +71,7 @@ namespace StudyBuddy.Network
                         Description = helpRequest["description"].ToString(),
                         CreatorUsername = helpRequest["username"].ToString(),
                         Category = helpRequest["category"].ToString(),
-                        timestamp = DateTimeOffset.FromUnixTimeSeconds(helpRequest["postDate"].ToObject<long>()).DateTime
+                        Timestamp = DateTimeOffset.FromUnixTimeSeconds(helpRequest["postDate"].ToObject<long>()).DateTime
                     });
                 });
                 if (getUsers)

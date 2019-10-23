@@ -13,6 +13,6 @@ namespace StudyBuddy.Entity
         public string Description { get; set; }
         public string CreatorUsername { get; set; }
         public string Category { get; set; }
-        public DateTime timestamp;
+        public DateTime Timestamp { get; set; }
     }
 }

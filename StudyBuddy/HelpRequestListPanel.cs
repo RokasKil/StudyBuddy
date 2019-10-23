@@ -74,7 +74,7 @@ namespace StudyBuddy
             category.Text = helpRequest.Category;
 
             Label time = new Label();
-            time.Text = helpRequest.timestamp.ToFullDate(); // Padaryt normaliai šitą dalį
+            time.Text = helpRequest.Timestamp.ToFullDate(); // Padaryt normaliai šitą dalį
             time.TextAlign = ContentAlignment.MiddleRight;
             time.AutoSize = false;
             time.Size = new Size(416, 15);
