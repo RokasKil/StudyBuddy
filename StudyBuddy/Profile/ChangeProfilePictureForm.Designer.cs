@@ -33,6 +33,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.browseButton = new System.Windows.Forms.Button();
             this.uploadButton = new System.Windows.Forms.Button();
+            this.resultLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,7 +41,7 @@
             // 
             this.pictureBox.BackColor = System.Drawing.SystemColors.ControlDark;
             this.pictureBox.Location = new System.Drawing.Point(16, 15);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(333, 308);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -71,7 +72,7 @@
             // browseButton
             // 
             this.browseButton.Location = new System.Drawing.Point(16, 340);
-            this.browseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.browseButton.Margin = new System.Windows.Forms.Padding(4);
             this.browseButton.Name = "browseButton";
             this.browseButton.Size = new System.Drawing.Size(100, 28);
             this.browseButton.TabIndex = 3;
@@ -83,12 +84,23 @@
             // 
             this.uploadButton.Enabled = false;
             this.uploadButton.Location = new System.Drawing.Point(217, 340);
-            this.uploadButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uploadButton.Margin = new System.Windows.Forms.Padding(4);
             this.uploadButton.Name = "uploadButton";
             this.uploadButton.Size = new System.Drawing.Size(131, 28);
             this.uploadButton.TabIndex = 4;
             this.uploadButton.Text = "Keisti nuotrauką";
             this.uploadButton.UseVisualStyleBackColor = true;
+            this.uploadButton.Click += new System.EventHandler(this.UploadButton_Click);
+            // 
+            // resultLabel
+            // 
+            this.resultLabel.AutoSize = true;
+            this.resultLabel.Location = new System.Drawing.Point(141, 346);
+            this.resultLabel.Name = "resultLabel";
+            this.resultLabel.Size = new System.Drawing.Size(54, 17);
+            this.resultLabel.TabIndex = 12;
+            this.resultLabel.Text = "Pavyko";
+            this.resultLabel.Visible = false;
             // 
             // ChangeProfilePictureForm
             // 
@@ -96,11 +108,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 383);
+            this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.uploadButton);
             this.Controls.Add(this.browseButton);
             this.Controls.Add(this.dragAndDropOverlay);
             this.Controls.Add(this.pictureBox);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "ChangeProfilePictureForm";
             this.Text = "Profilio nuotrauka";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChangeProfilePictureForm_FormClosed);
@@ -121,5 +136,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.Button uploadButton;
+        private System.Windows.Forms.Label resultLabel;
     }
 }

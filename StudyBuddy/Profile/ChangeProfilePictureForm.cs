@@ -76,6 +76,7 @@ namespace StudyBuddy
             //Pradiniai nustatymai
             dragAndDropOverlay.AutoSize = false;
             dragAndDropOverlay.BringToFront();
+            resultLabel.Visible = false;
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png, *.gif) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.gif" ;
         }
 
@@ -114,6 +115,7 @@ namespace StudyBuddy
         {
             var base64String = Convert.ToBase64String(File.ReadAllBytes(pictureBox.ImageLocation));
             uploadButton.Enabled = false;
+            resultLabel.Visible = false;
 
             new ProfilePictureUpdater(localUser,
                 (status, pictureLocation) =>
@@ -124,6 +126,7 @@ namespace StudyBuddy
                         {
                             localUser.ProfilePictureLocation = pictureLocation;
                             uploadButton.Enabled = true;
+                            resultLabel.Visible = true;
                             localUser.OnUpdateHandler?.Invoke(localUser);
                             //resultLabel.Visible = true;
 
@@ -131,8 +134,9 @@ namespace StudyBuddy
                         else //Ne
                         {
                             Console.WriteLine(status);
-                            MessageBox.Show("Nepavyko įkelti nuotrauką:(", "oof", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Nepavyko įkelti pic:(", "oof", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             uploadButton.Enabled = true;
+                            resultLabel.Visible = false;
                         }
                     });
                 }

@@ -123,6 +123,8 @@
             this.Controls.Add(this.saveChangesButton);
             this.Controls.Add(this.changeProfPicButton);
             this.Controls.Add(this.profilePicture);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "EditProfile";
             this.Text = "EditProfile";
             this.Load += new System.EventHandler(this.EditProfile_Load);

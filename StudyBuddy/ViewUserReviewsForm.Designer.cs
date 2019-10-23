@@ -121,6 +121,8 @@
             this.Controls.Add(this.richTextBoxUsername);
             this.Controls.Add(this.buttonSortReviews);
             this.Controls.Add(this.listViewUserReviews);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ViewUserReviewsForm";
             this.Text = "UserReviewForm";
             this.ResumeLayout(false);

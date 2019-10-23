@@ -30,11 +30,13 @@ namespace StudyBuddy
             this.listViewUserReviews.ListViewItemSorter = listViewColumnSorter;
             ResizeColumnWidth();
             this.Text = "Atsiliepimai";
+
         }
 
         public ViewUserReviewsForm(LocalUser localUser, String username) : this(localUser)
         {
             richTextBoxUsername.Text = username;
+            //buttonSortReviews.PerformClick();
             buttonSortReviews_Click(buttonSortReviews, EventArgs.Empty);
         }
 
@@ -49,8 +51,13 @@ namespace StudyBuddy
                         if (status == UserGetter.GetStatus.Success) //Pavyko
                         {
                             this.user = user;
-                            progressBarKarma.Value = user.KarmaPoints;
-                            labelKarmaProgress.Text = user.Username + " progresas " + progressBarKarma.Value
+
+                            if (localUser.KarmaPoints < 0)
+                                progressBarKarma.Value = 0;
+                            else
+                                progressBarKarma.Value = localUser.KarmaPoints;
+
+                            labelKarmaProgress.Text = user.Username + " progresas " + localUser.KarmaPoints
                                 + "/" + progressBarKarma.Maximum;
                             progressBarKarma.Visible = true;
                             labelKarmaProgress.Visible = true;
