@@ -31,8 +31,14 @@ namespace StudyBuddy
             lastName.Text = user.LastName;
             firstName.Text = user.FirstName;
             profilePicture.ImageLocation = user.ProfilePictureLocation;
-            karmaProgressBar.Value = user.KarmaPoints;
-            karmaLabel.Text = karmaProgressBar.Value + "/" + karmaProgressBar.Maximum;
+
+            if (localUser.KarmaPoints < 0)
+                karmaProgressBar.Value = 0;
+            else
+                karmaProgressBar.Value = localUser.KarmaPoints;
+
+            karmaLabel.Text = localUser.KarmaPoints + "/" + karmaProgressBar.Maximum;
+
             if (user.IsLecturer) status.Text = "Dėstytojas";
             else status.Text = "Studentas";
             if(user.Username == localUser.Username)

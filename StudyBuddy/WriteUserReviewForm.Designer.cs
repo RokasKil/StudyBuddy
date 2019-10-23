@@ -140,6 +140,8 @@
             this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.labelFirstName);
             this.Controls.Add(this.pictureBoxProfilePicture);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "WriteUserReviewForm";
             this.Text = "Atsiliepimas";
             this.Load += new System.EventHandler(this.UserReviewForm_Load);

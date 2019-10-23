@@ -42,8 +42,12 @@ namespace StudyBuddy
             labelGreetings.Text = "Labas, " + localUser.Username + " :)";
             //greetingsLabel.Text = "Labas, " +
             //    localUser.FirstName.Substring(0, localUser.FirstName.Length - 2) + "ai" + " :)";
-            progressBarKarma.Value = localUser.KarmaPoints;
-            labelKarmaProgress.Text = "Tavo progresas " + progressBarKarma.Value
+            if (localUser.KarmaPoints < 0)
+                progressBarKarma.Value = 0;
+            else
+                progressBarKarma.Value = localUser.KarmaPoints;
+
+            labelKarmaProgress.Text = "Tavo progresas " + localUser.KarmaPoints
                 + "/" + progressBarKarma.Maximum;
         }
 

@@ -81,6 +81,8 @@
             this.Controls.Add(this.buttonEditTopicDescription);
             this.Controls.Add(this.labelTopicDescription);
             this.Controls.Add(this.textBoxTopicDescription);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "TopicDescriptionForm";
             this.Text = "TopicDescriptionForm";
             this.ResumeLayout(false);

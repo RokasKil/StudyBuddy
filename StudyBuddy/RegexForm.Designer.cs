@@ -87,6 +87,8 @@
             this.Controls.Add(this.labelData);
             this.Controls.Add(this.textBoxPattern);
             this.Controls.Add(this.textBoxData);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "RegexForm";
             this.Text = "RegexForm";
             this.ResumeLayout(false);

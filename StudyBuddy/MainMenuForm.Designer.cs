@@ -63,12 +63,12 @@
             // 
             this.progressBarKarma.Location = new System.Drawing.Point(437, 370);
             this.progressBarKarma.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.progressBarKarma.Maximum = 1000;
+            this.progressBarKarma.Maximum = 10;
             this.progressBarKarma.Name = "progressBarKarma";
             this.progressBarKarma.Size = new System.Drawing.Size(245, 26);
             this.progressBarKarma.Step = 1;
             this.progressBarKarma.TabIndex = 1;
-            this.progressBarKarma.Value = 100;
+            this.progressBarKarma.Value = 4;
             // 
             // labelKarmaProgress
             // 
@@ -231,7 +231,9 @@
             this.Controls.Add(this.labelKarmaProgress);
             this.Controls.Add(this.progressBarKarma);
             this.Controls.Add(this.labelGreetings);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "MainMenuForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
