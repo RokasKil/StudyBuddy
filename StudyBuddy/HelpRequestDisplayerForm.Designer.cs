@@ -44,7 +44,7 @@
             // 
             this.TextBoxHelpRequestDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxHelpRequestDescription.Location = new System.Drawing.Point(16, 69);
-            this.TextBoxHelpRequestDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxHelpRequestDescription.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxHelpRequestDescription.Multiline = true;
             this.TextBoxHelpRequestDescription.Name = "TextBoxHelpRequestDescription";
             this.TextBoxHelpRequestDescription.ReadOnly = true;
@@ -56,12 +56,12 @@
             // 
             this.textBoxCategoryTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxCategoryTitle.Location = new System.Drawing.Point(16, 47);
-            this.textBoxCategoryTitle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxCategoryTitle.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCategoryTitle.Multiline = true;
             this.textBoxCategoryTitle.Name = "textBoxCategoryTitle";
             this.textBoxCategoryTitle.ReadOnly = true;
             this.textBoxCategoryTitle.Size = new System.Drawing.Size(264, 19);
-            this.textBoxCategoryTitle.TabIndex = 1;
+            this.textBoxCategoryTitle.TabIndex = 7;
             this.textBoxCategoryTitle.Text = "Kategorija";
             // 
             // textBoxHelpRequestTitle
@@ -69,7 +69,7 @@
             this.textBoxHelpRequestTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxHelpRequestTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxHelpRequestTitle.Location = new System.Drawing.Point(16, 10);
-            this.textBoxHelpRequestTitle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxHelpRequestTitle.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxHelpRequestTitle.Multiline = true;
             this.textBoxHelpRequestTitle.Name = "textBoxHelpRequestTitle";
             this.textBoxHelpRequestTitle.ReadOnly = true;
@@ -80,7 +80,7 @@
             // pictureBoxProfilePicture
             // 
             this.pictureBoxProfilePicture.Location = new System.Drawing.Point(301, 10);
-            this.pictureBoxProfilePicture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBoxProfilePicture.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxProfilePicture.Name = "pictureBoxProfilePicture";
             this.pictureBoxProfilePicture.Size = new System.Drawing.Size(172, 187);
             this.pictureBoxProfilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -92,7 +92,7 @@
             this.textBoxProfileName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxProfileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxProfileName.Location = new System.Drawing.Point(301, 200);
-            this.textBoxProfileName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxProfileName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxProfileName.Multiline = true;
             this.textBoxProfileName.Name = "textBoxProfileName";
             this.textBoxProfileName.ReadOnly = true;
@@ -126,7 +126,7 @@
             this.buttonRemove.Location = new System.Drawing.Point(353, 229);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(75, 37);
-            this.buttonRemove.TabIndex = 7;
+            this.buttonRemove.TabIndex = 1;
             this.buttonRemove.Text = "Pašalinti";
             this.buttonRemove.UseVisualStyleBackColor = true;
             this.buttonRemove.Click += new System.EventHandler(this.removeButton_Click);
@@ -153,7 +153,9 @@
             this.Controls.Add(this.textBoxHelpRequestTitle);
             this.Controls.Add(this.textBoxCategoryTitle);
             this.Controls.Add(this.TextBoxHelpRequestDescription);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "HelpRequestDisplayerForm";
             this.Text = "Help Request";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfilePicture)).EndInit();

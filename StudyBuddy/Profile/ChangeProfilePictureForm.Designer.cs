@@ -40,10 +40,9 @@
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pictureBox.Location = new System.Drawing.Point(16, 15);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox.Location = new System.Drawing.Point(12, 12);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(333, 308);
+            this.pictureBox.Size = new System.Drawing.Size(250, 250);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -57,9 +56,8 @@
             this.dragAndDropOverlay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dragAndDropOverlay.ForeColor = System.Drawing.SystemColors.ControlText;
             this.dragAndDropOverlay.Location = new System.Drawing.Point(0, 0);
-            this.dragAndDropOverlay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.dragAndDropOverlay.Name = "dragAndDropOverlay";
-            this.dragAndDropOverlay.Size = new System.Drawing.Size(135, 17);
+            this.dragAndDropOverlay.Size = new System.Drawing.Size(103, 13);
             this.dragAndDropOverlay.TabIndex = 2;
             this.dragAndDropOverlay.Text = "Vilkite nuotrauką čia";
             this.dragAndDropOverlay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -71,10 +69,9 @@
             // 
             // browseButton
             // 
-            this.browseButton.Location = new System.Drawing.Point(16, 340);
-            this.browseButton.Margin = new System.Windows.Forms.Padding(4);
+            this.browseButton.Location = new System.Drawing.Point(12, 276);
             this.browseButton.Name = "browseButton";
-            this.browseButton.Size = new System.Drawing.Size(100, 28);
+            this.browseButton.Size = new System.Drawing.Size(75, 23);
             this.browseButton.TabIndex = 3;
             this.browseButton.Text = "Naršyti";
             this.browseButton.UseVisualStyleBackColor = true;
@@ -83,10 +80,9 @@
             // uploadButton
             // 
             this.uploadButton.Enabled = false;
-            this.uploadButton.Location = new System.Drawing.Point(217, 340);
-            this.uploadButton.Margin = new System.Windows.Forms.Padding(4);
+            this.uploadButton.Location = new System.Drawing.Point(163, 276);
             this.uploadButton.Name = "uploadButton";
-            this.uploadButton.Size = new System.Drawing.Size(131, 28);
+            this.uploadButton.Size = new System.Drawing.Size(98, 23);
             this.uploadButton.TabIndex = 4;
             this.uploadButton.Text = "Keisti nuotrauką";
             this.uploadButton.UseVisualStyleBackColor = true;
@@ -95,9 +91,10 @@
             // resultLabel
             // 
             this.resultLabel.AutoSize = true;
-            this.resultLabel.Location = new System.Drawing.Point(141, 346);
+            this.resultLabel.Location = new System.Drawing.Point(106, 281);
+            this.resultLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new System.Drawing.Size(54, 17);
+            this.resultLabel.Size = new System.Drawing.Size(43, 13);
             this.resultLabel.TabIndex = 12;
             this.resultLabel.Text = "Pavyko";
             this.resultLabel.Visible = false;
@@ -105,16 +102,15 @@
             // ChangeProfilePictureForm
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 383);
+            this.ClientSize = new System.Drawing.Size(274, 311);
             this.Controls.Add(this.resultLabel);
             this.Controls.Add(this.uploadButton);
             this.Controls.Add(this.browseButton);
             this.Controls.Add(this.dragAndDropOverlay);
             this.Controls.Add(this.pictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "ChangeProfilePictureForm";
             this.Text = "Profilio nuotrauka";
