@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5f3c7262-10ba-4917-9623-605108b6f165</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>StudyBuddyShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\Conversation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\HelpRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\LocalUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\Message.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\UserReview.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\APICaller.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\Authenticator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\CategoriesGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\CategoryManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\ConversationGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\ConversationStarter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\HelpRequestGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\HelpRequestManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\MessagePoster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\MessagesGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\ProfilePictureUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\UserGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\UserUpdater.cs" />
+  </ItemGroup>
+</Project>
