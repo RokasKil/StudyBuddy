@@ -17,12 +17,16 @@ namespace StudyBuddyApp
 		public LoginPage ()
 		{
 			InitializeComponent ();
-            Username.Completed += (o, e) =>
+            UsernameEntry.Completed += (o, e) =>
             {
-                Password.Focus();
+                PasswordEntry.Focus();
             };
-            Password.Completed += (o, e) =>
+            PasswordEntry.Completed += (o, e) =>
             {
+                UsernameEntry.IsEnabled = false;
+                PasswordEntry.IsEnabled = false;
+                LoadingIndicator.IsRunning = true;
+                StatusLabel.IsVisible = false;
                 new Authenticator((status, user) =>
                 {
                     Device.BeginInvokeOnMainThread(() =>
@@ -35,10 +39,14 @@ namespace StudyBuddyApp
                         }
                         else
                         {
-                            Username.Text = status.ToString();
+                            UsernameEntry.IsEnabled = true;
+                            PasswordEntry.IsEnabled = true;
+                            StatusLabel.IsVisible = true;
+                            StatusLabel.Text = status.ToString(); // TODO: Localization
+                            LoadingIndicator.IsRunning = false;
                         }
                     });
-                }).login(Username.Text, Password.Text);
+                }).login(UsernameEntry.Text, PasswordEntry.Text);
             };
         }
 	}

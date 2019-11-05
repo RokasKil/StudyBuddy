@@ -18,11 +18,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddyApp.Android", "St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddyApp.iOS", "StudyBuddyApp\StudyBuddyApp.iOS\StudyBuddyApp.iOS.csproj", "{33FD38F4-F3E0-4E1C-8A8C-E109A2C17BD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddyApp", "StudyBuddyApp\StudyBuddyApp\StudyBuddyApp.csproj", "{AF6A8D57-27C6-42B9-9C8C-EF9059005D82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyBuddyApp", "StudyBuddyApp\StudyBuddyApp\StudyBuddyApp.csproj", "{AF6A8D57-27C6-42B9-9C8C-EF9059005D82}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		StudyBuddyShared\StudyBuddyShared.projitems*{5f3c7262-10ba-4917-9623-605108b6f165}*SharedItemsImports = 13
+		StudyBuddyShared\StudyBuddyShared.projitems*{a9905bcd-94ec-432a-a049-12c0fc8eb857}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU

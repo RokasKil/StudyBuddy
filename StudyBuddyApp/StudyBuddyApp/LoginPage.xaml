@@ -8,7 +8,7 @@
                 VerticalOptions="Center" 
                 HorizontalOptions="CenterAndExpand" />
             <Entry Placeholder="Username"
-                x:Name="Username"
+                x:Name="UsernameEntry"
                 HorizontalTextAlignment="Center"
                 ReturnType="Next"
                 VerticalOptions="Center" 
@@ -16,12 +16,19 @@
                 HorizontalOptions="CenterAndExpand" />
             <Entry Placeholder="Password"
                 IsPassword="True"
-                x:Name="Password"
+                x:Name="PasswordEntry"
                 ReturnType="Go"
                 HorizontalTextAlignment="Center"
                 VerticalOptions="Center" 
                 WidthRequest="200"
                 HorizontalOptions="CenterAndExpand" />
+            <Label Text="Status"
+                x:Name="StatusLabel"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="False"/>
+            <ActivityIndicator x:Name="LoadingIndicator"
+                />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
