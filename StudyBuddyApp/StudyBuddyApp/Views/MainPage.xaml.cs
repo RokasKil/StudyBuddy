@@ -33,8 +33,16 @@ namespace StudyBuddyApp.Views
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
                     case (int)MenuItemType.Profile:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        MenuPages.Add(id, new NavigationPage(new MyProfilePage()));
                         break;
+                    case (int)MenuItemType.HelpRequestList:
+                        MenuPages.Add(id, new NavigationPage(new HelpRequestListPage()));
+                        break;
+                    case (int)MenuItemType.LogOut:
+                        Application.Current.Properties.Remove("PrivateKey");
+                        Application.Current.SavePropertiesAsync();
+                        App.Current.MainPage = new LoginPage();
+                        return;
                 }
             }
 
