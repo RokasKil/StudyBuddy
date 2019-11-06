@@ -69,8 +69,6 @@
     <Compile Include="WriteUserReviewForm.Designer.cs">
       <DependentUpon>WriteUserReviewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Network\ProfilePictureUpdater.cs" />
-    <Compile Include="Network\UserUpdater.cs" />
     <Compile Include="ViewUserReviewsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,20 +77,12 @@
     </Compile>
     <Compile Include="Utility\ListViewColumnSorter.cs" />
     <Compile Include="Utility\MessageBoxManager.cs" />
-    <Compile Include="Entity\UserReview.cs" />
-    <Compile Include="Entity\Message.cs" />
     <Compile Include="UserReviewTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserReviewTest.Designer.cs">
       <DependentUpon>UserReviewTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Network\UserReviewManager.cs" />
-    <Compile Include="Network\UserReviewGetter.cs" />
-    <Compile Include="Network\ConversationGetter.cs" />
-    <Compile Include="Network\ConversationStarter.cs" />
-    <Compile Include="Network\MessagesGetter.cs" />
-    <Compile Include="Network\MessagePoster.cs" />
     <Compile Include="Profile\EditProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,8 +98,6 @@
     <Compile Include="HelpRequestListForm.Designer.cs">
       <DependentUpon>HelpRequestListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entity\Category.cs" />
-    <Compile Include="Entity\HelpRequest.cs" />
     <Compile Include="MessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,9 +111,6 @@
     <Compile Include="HelpRequestDisplayerForm.Designer.cs">
       <DependentUpon>HelpRequestDisplayerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Network\APICaller.cs" />
-    <Compile Include="Network\Authenticator.cs" />
-    <Compile Include="Entity\Conversation.cs" />
     <Compile Include="ConversationHistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,12 +129,6 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entity\LocalUser.cs" />
-    <Compile Include="Network\CategoriesGetter.cs" />
-    <Compile Include="Network\CategoryManager.cs" />
-    <Compile Include="Network\HelpRequestGetter.cs" />
-    <Compile Include="Network\HelpRequestManager.cs" />
-    <Compile Include="Network\UserGetter.cs" />
     <Compile Include="HelpRequestListPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -185,7 +164,6 @@
     <Compile Include="TopicListForm.Designer.cs">
       <DependentUpon>TopicListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entity\User.cs" />
     <EmbeddedResource Include="RegexForm.resx">
       <DependentUpon>RegexForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +242,7 @@
   <ItemGroup>
     <None Include="Resources\study buddy.png" />
   </ItemGroup>
+  <Import Project="..\StudyBuddyShared\StudyBuddyShared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

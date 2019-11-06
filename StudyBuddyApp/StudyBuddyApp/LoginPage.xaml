@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudyBuddyApp.LoginPage" >
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" >
+            <Label Text="StudyBuddyApp"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" />
+            <Entry Placeholder="Username"
+                x:Name="UsernameEntry"
+                HorizontalTextAlignment="Center"
+                ReturnType="Next"
+                VerticalOptions="Center" 
+                WidthRequest="200"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry Placeholder="Password"
+                IsPassword="True"
+                x:Name="PasswordEntry"
+                ReturnType="Go"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="Center" 
+                WidthRequest="200"
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Status"
+                x:Name="StatusLabel"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="False"/>
+            <ActivityIndicator x:Name="LoadingIndicator"
+                />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -63,8 +63,8 @@ namespace StudyBuddy.Network
                         Title = category["title"].ToString(),
                         Description = category["description"].ToString(),
                         CreatorUsername = category["username"].ToString(),
-                        CreatedDate = DateTimeOffset.FromUnixTimeSeconds(category["createdDate"].ToObject<long>()).LocalDateTime.ToFullDate(),
-                        LastUpdatedDate = DateTimeOffset.FromUnixTimeSeconds(category["lastUpdatedDate"].ToObject<long>()).LocalDateTime.ToFullDate()
+                        //CreatedDate = DateTimeOffset.FromUnixTimeSeconds(category["createdDate"].ToObject<long>()).LocalDateTime.ToFullDate(),
+                        //LastUpdatedDate = DateTimeOffset.FromUnixTimeSeconds(category["lastUpdatedDate"].ToObject<long>()).LocalDateTime.ToFullDate()
                     }) ;
                 });
                 GetCategoriesResult(GetStatus.Success, categories);
