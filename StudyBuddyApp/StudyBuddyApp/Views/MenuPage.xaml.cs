@@ -20,7 +20,9 @@ namespace StudyBuddyApp.Views
             {
                 new HomeMenuItem {Id = MenuItemType.Profile, Title="Profile" },
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.About, Title="About" },
+                new HomeMenuItem {Id = MenuItemType.HelpRequestList, Title="Pagalbos prašymai" },
+                new HomeMenuItem {Id = MenuItemType.LogOut, Title="Atsijungti" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

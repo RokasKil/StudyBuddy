@@ -8,7 +8,9 @@ namespace StudyBuddyApp.Models
     {
         Profile,
         Browse,
-        About
+        About,
+        LogOut,
+        HelpRequestList
     }
     public class HomeMenuItem
     {
