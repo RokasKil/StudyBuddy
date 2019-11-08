@@ -65,7 +65,7 @@ namespace StudyBuddyShared.ConversationSystems
         {
             if (getter == null)
             {
-                new AllMessageGetter(privateKey, (status, conversations, messages, users) =>
+                new AllMessageGetter(PrivateKey, (status, conversations, messages, users) =>
                 {
                     GetMessageResult?.Invoke(status, conversations, messages, users);
                 }).get(TimeStamp, GetUsers, WaitingCall);
