@@ -5,7 +5,7 @@ using System.Text;
 
 namespace StudyBuddyApp.Models
 {
-    class ConversationModel
+    public class ConversationModel
     {
         public string Title { get; set; }
         public string LastMessage { get; set; }

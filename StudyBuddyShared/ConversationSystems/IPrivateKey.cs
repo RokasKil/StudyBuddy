@@ -4,8 +4,8 @@ using System.Text;
 
 namespace StudyBuddyShared.ConversationSystems
 {
-    interface IConversationSystem : IMessageGetter, IMessageSender
+    interface IPrivateKey
     {
-        
+        string PrivateKey { get; set; }
     }
 }

@@ -7,7 +7,8 @@ using static StudyBuddyShared.Network.AllMessageGetter; // Fix this maybe
 namespace StudyBuddyShared.ConversationSystems
 {
     public delegate void MessageGetDelegate(MessageStatus status, List<Conversation> conversations, Dictionary<int, List<Message>> messages, Dictionary<string, User> users);
-    interface IMessageGetter
+
+    public interface IMessageGetter
     {
         MessageGetDelegate GetMessageResult { get; set; }
 
@@ -20,15 +21,11 @@ namespace StudyBuddyShared.ConversationSystems
         long TimeStamp { get; set; }
 
         bool Getting { get; }
-
         
         bool StartGetting();
 
         bool StopGetting();
-
-
+        
         bool GetMessages(); // Get once
-
-        MessagePostDelegate PostMessageResult { get; set; }
     }
 }
