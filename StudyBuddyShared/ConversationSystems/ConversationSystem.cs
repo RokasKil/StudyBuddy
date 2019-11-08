@@ -82,7 +82,7 @@ namespace StudyBuddyShared.ConversationSystems
         {
             if (Getting)
             {
-                getter = new AllMessageGetter(privateKey, MessageGetterDelegate);
+                getter = new AllMessageGetter(PrivateKey, MessageGetterDelegate);
             }
             else
             {
