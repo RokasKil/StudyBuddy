@@ -11,11 +11,13 @@ using System.Threading.Tasks;
 
 namespace StudyBuddy.Network
 {
-    class APICaller // Helper klasė kviečiant api calls
+    public class APICaller // Helper klasė kviečiant api calls
     {
+        static APICaller() {
+            System.Net.ServicePointManager.DefaultConnectionLimit = 100; // Pakeliam limit,nes default max 2
+        }
 
-
-        const string API_ROOT = "https://karklas.mif.vu.lt/~roki5829/StudyBuddy/API/";
+        const string API_ROOT = "https://717592.s.dedikuoti.lt/StudyBuddy/API/";
         public string Api { get; set; } = "";
         public NameValueCollection PostParams { get; private set; } = new NameValueCollection();
 
@@ -61,7 +63,7 @@ namespace StudyBuddy.Network
         public JObject call()
         {
             using (WebClient client = new WebClient())
-            {   
+            {
                 try
                 {
                     string response = "";

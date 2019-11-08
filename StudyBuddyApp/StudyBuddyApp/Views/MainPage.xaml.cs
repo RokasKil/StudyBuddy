@@ -38,6 +38,9 @@ namespace StudyBuddyApp.Views
                     case (int)MenuItemType.HelpRequestList:
                         MenuPages.Add(id, new NavigationPage(new HelpRequestListPage()));
                         break;
+                    case (int)MenuItemType.ConversationListPage:
+                        MenuPages.Add(id, new NavigationPage(new ConversationListPage()));
+                        break;
                     case (int)MenuItemType.LogOut:
                         Application.Current.Properties.Remove("PrivateKey");
                         Application.Current.SavePropertiesAsync();

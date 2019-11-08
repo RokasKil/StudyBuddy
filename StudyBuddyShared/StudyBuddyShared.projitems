@@ -9,6 +9,10 @@
     <Import_RootNamespace>StudyBuddyShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\ConversationSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\IConversationSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\IMessageGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\IMessageSender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\Conversation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\HelpRequest.cs" />
@@ -16,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entity\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\UserReview.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\AllMessageGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\APICaller.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\Authenticator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\CategoriesGetter.cs" />

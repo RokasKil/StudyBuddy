@@ -131,7 +131,7 @@ namespace StudyBuddy
                         Task.Run(() =>
                         {
                             Task.Delay(100).Wait();
-                            new MessageGetter(localUser, getMessageResponseHandler).get(conversation, timestamp, false);
+                            new MessageGetter(localUser, getMessageResponseHandler).get(conversation, timestamp, true);
 
                         });
                     }
