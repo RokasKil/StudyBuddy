@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static StudyBuddy.Network.MessageGetter; // Fix this maybe
+using static StudyBuddyShared.Network.AllMessageGetter; // Fix this maybe
 
 namespace StudyBuddyShared.ConversationSystems
 {
@@ -11,15 +11,23 @@ namespace StudyBuddyShared.ConversationSystems
     {
         MessageGetDelegate GetMessageResult { get; set; }
 
-        bool WaitingCall { get; } //Timesout after a minute
+        bool WaitingCall { get; set; } //  Timesout after a minute
 
-        bool Sending { get; }
+        bool GetUsers { get; set; } // Should get user profiles alongside messages
+
+        int TimeBetweenCalls { get; set; }
+
+        long TimeStamp { get; set; }
+
+        bool Getting { get; }
+
         
         bool StartGetting();
 
         bool StopGetting();
 
-        void GetMessages(); // Get once
+
+        bool GetMessages(); // Get once
 
         MessagePostDelegate PostMessageResult { get; set; }
     }
