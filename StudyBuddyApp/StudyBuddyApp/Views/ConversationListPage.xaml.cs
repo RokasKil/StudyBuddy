@@ -47,7 +47,8 @@ namespace StudyBuddyApp.Views
                                 Title = users[conversation.Users[0]].FirstName + " " + users[conversation.Users[0]].LastName,
                                 LastMessage = conversation.LastMessage,
                                 Date = DateTimeOffset.FromUnixTimeSeconds(conversation.LastActivity / 1000).LocalDateTime.ToFullDate(),
-                                Conversation = conversation
+                                Conversation = conversation,
+                                ImageLocation = users[conversation.Users[0]].ProfilePictureLocation
                             });
                         });
                         ConversationListView.IsRefreshing = false;

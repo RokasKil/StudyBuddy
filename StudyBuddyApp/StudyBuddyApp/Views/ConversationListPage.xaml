@@ -14,11 +14,17 @@
             <DataTemplate>
                 <ViewCell>
                     <StackLayout Orientation="Horizontal">
-                        <Image Source="{Binding ImageLocation}"
-                               Aspect="AspectFit"
+                        <Image Aspect="AspectFit"
                                VerticalOptions="Fill"
                                WidthRequest="75"
-                               HeightRequest="75"/>
+                               HeightRequest="75"
+                               >
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding ImageLocation}" 
+			                    CacheValidity="14" 
+			                    CachingEnabled="true"/>
+                            </Image.Source>
+                        </Image>
                         <StackLayout HorizontalOptions="FillAndExpand">
                             <Label Text="{Binding Title}"
                                    FontSize="16"
