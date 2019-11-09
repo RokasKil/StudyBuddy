@@ -1,7 +1,10 @@
-﻿using StudyBuddyApp.Models;
+﻿using StudyBuddy.Entity;
+using StudyBuddyApp.Models;
+using StudyBuddyApp.Utility;
 using StudyBuddyShared.ConversationSystems;
 using StudyBuddyShared.Utility.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -17,17 +20,19 @@ namespace StudyBuddyApp.Views
     public partial class ConversationListPage : ContentPage
     {
         public ObservableCollection<ConversationModel> Items { get; set; }
-
+        Dictionary<string, User> users;
         public ConversationListPage()
         {
             InitializeComponent();
 
             Items = new ObservableCollection<ConversationModel>
             {
-                new ConversationModel{Title = "Vardas", LastMessage = "Žinutė", Date = "Data", ImageLocation = "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/video/caring_for_your_kitten_video/650x350_caring_for_your_kitten_video.jpg"}
+                //new ConversationModel{Title = "Vardas", LastMessage = "Žinutė", Date = "Data", ImageLocation = "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/video/caring_for_your_kitten_video/650x350_caring_for_your_kitten_video.jpg"}
             };
 			
 			ConversationListView.ItemsSource = Items;
+            //ConversationListView.IsRefreshing = true;
+            ConversationListView_Refreshing(null, null);
         }
 
         private void ConversationListView_Refreshing(object sender, EventArgs e)
@@ -39,6 +44,7 @@ namespace StudyBuddyApp.Views
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
+                        this.users = users;
                         Items.Clear();
                         conversations.ForEach(conversation =>
                         {
@@ -71,11 +77,19 @@ namespace StudyBuddyApp.Views
         {
             if (e.Item == null)
                 return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
+            await Navigation.PushModalAsync(
+                new NavigationPage(
+                    new ConversationPage(
+                        new ViewModels.ConversationViewModel(((ConversationModel)e.Item).Conversation, users))));
+                
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+
+        private void ViewCell_Tapped(object sender, EventArgs e)
+        {
+            DependencyService.Get<IToast>().LongToast(((ViewCell)sender).View.Height.ToString());
+            
         }
     }
 }
