@@ -1,4 +1,6 @@
 ﻿using StudyBuddyApp.Models;
+using StudyBuddyApp.Services;
+using StudyBuddyApp.Utility;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,6 +20,13 @@ namespace StudyBuddyApp.Views
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.Profile, (NavigationPage)Detail);
+            MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.Started, (obj) =>
+            {
+                DependencyService.Get<IToast>().LongToast("Service started");
+            });
+            // Starts messaging service
+            MessagingCenter.Send(new MessagingTask(), MessagingTask.Start);
+
         }
 
         public async Task NavigateFromMenu(int id)
@@ -44,6 +53,8 @@ namespace StudyBuddyApp.Views
                     case (int)MenuItemType.LogOut:
                         Application.Current.Properties.Remove("PrivateKey");
                         Application.Current.SavePropertiesAsync();
+                        //Stops messaging service
+                        MessagingCenter.Send(new MessagingTask(), MessagingTask.Stop);
                         App.Current.MainPage = new LoginPage();
                         return;
                 }

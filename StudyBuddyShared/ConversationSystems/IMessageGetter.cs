@@ -8,23 +8,25 @@ namespace StudyBuddyShared.ConversationSystems
 {
     public delegate void MessageGetDelegate(MessageStatus status, List<Conversation> conversations, Dictionary<int, List<Message>> messages, Dictionary<string, User> users);
 
-    public interface IMessageGetter
+    public interface IMessageGetter : IPrivateKey
     {
-        MessageGetDelegate GetMessageResult { get; set; }
+        MessageGetDelegate GetMessageResult { get; set; } // Result delegate
 
-        bool WaitingCall { get; set; } //  Timesout after a minute
+        bool WaitingCall { get; set; } //  Should wait until timeout or new message (Timesouts after a minute)
 
         bool GetUsers { get; set; } // Should get user profiles alongside messages
 
-        int TimeBetweenCalls { get; set; }
+        int TimeBetweenCalls { get; set; } // How long between calls
 
-        long TimeStamp { get; set; }
+        int TimeBetweenFailedCalls { get; set; } // How long between failed calls
 
-        bool Getting { get; }
+        long TimeStamp { get; set; } // Current timestamp, auto updates on new message   
+
+        bool Getting { get; } // Is active
         
-        bool StartGetting();
+        bool StartGetting(); // Start getting messages
 
-        bool StopGetting();
+        bool StopGetting();  // Stop getting messages
         
         bool GetMessages(); // Get once
     }

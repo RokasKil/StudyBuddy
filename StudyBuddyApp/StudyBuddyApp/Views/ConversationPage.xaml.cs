@@ -1,4 +1,7 @@
-﻿using StudyBuddyApp.Models;
+﻿using StudyBuddy.Entity;
+using StudyBuddyApp.Models;
+using StudyBuddyApp.Services;
+using StudyBuddyApp.Utility;
 using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.Utility.Extensions;
 using System;
@@ -20,45 +23,114 @@ namespace StudyBuddyApp.Views
         ConversationViewModel viewModel;
         public ObservableCollection<MessageModel> Items { get; set; }
 
+        private bool lastVisible = true;
+
+        private long sendEditorLastFocused = 0;
+
         public ConversationPage(ConversationViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = this.viewModel = viewModel;
             Items = new ObservableCollection<MessageModel>
             {
-                new MessageModel{Message = "žinutė goes here", Date = DateTime.Now.ToFullDate(), Name = "Vardenis", RightSide = false},
-                new MessageModel{Message = "žinutė goes here", Date = DateTime.Now.ToFullDate(), Name = "Vardenis1", RightSide = true},
-                //new MessageModel{Message = "žinutė goes here ilga labai ciailga labai ciailga labai cia", Date = DateTime.Now.ToFullDate(), Name = "Vardenis2", RightSide = false},
-                //new MessageModel{Message = "žinutė goes here", Date = DateTime.Now.ToFullDate(), Name = "Vardenis3", RightSide = false},
-                //new MessageModel{Message = "žinutė goes here", Date = DateTime.Now.ToFullDate(), Name = "Vardenis4", RightSide = true},
-                //new MessageModel{Message = "žinutė goes hereilga labai ciailga labai ciailga labai ciailga labai cia", Date = DateTime.Now.ToFullDate(), Name = "Vardenis5", RightSide = true},
+
             };
             MessageListView.ItemsSource = Items;
-            var getter = ConversationSystemManager.NewMessageGetter();
+            //Listens messages already loaded
+            MessagingCenter.Subscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary <string, User>>>(this, MessagingTask.LocalMessages, (obj, tuple) =>
+            {
+                //Adds them to the list
+                MessageReciever(obj, tuple);
+                //Stops listening
+                MessagingCenter.Unsubscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>>(this, MessagingTask.LocalMessages);
+                //Starts listening for new messages
+                MessagingCenter.Subscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>>(this, MessagingTask.Messages, MessageReciever);
+                MessageListView.ScrollTo(Items.LastOrDefault(), ScrollToPosition.End, false);
+            });
+            //Ask for messages already loaded
+            MessagingCenter.Send(new MessagingTask(), MessagingTask.GetMessages);
 
-            getter.GetMessageResult += (status, conversations, messages, users) => {
-                Device.BeginInvokeOnMainThread(() => {
-                    if (status == StudyBuddyShared.Network.AllMessageGetter.MessageStatus.Success)
-                    {
-                        if (messages.ContainsKey(viewModel.Conversation.Id))
-                        {
-                            messages[viewModel.Conversation.Id].ForEach(message =>
-                            {
-                                Items.Add(new MessageModel {
-                                    Message = message.Text,
-                                    Name = viewModel.Users[message.Username].FirstName,
-                                    Date = message.Timestamp.ToFullDate(),
-                                    RightSide = (message.Username == LocalUserManager.LocalUser.Username)
-                                });
-                            });
-                        }
-                    }
-                });
-            };
-            getter.GetUsers = false;
-            getter.StartGetting();
-
-            //this.SetBinding(viewModel);
         }
-	}
+
+        //Handles messages from messaging service
+        public void MessageReciever(MessagingTask task, Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>> tuple)
+        {
+            var messages = tuple.Item1;
+            var users = tuple.Item2;
+            users[LocalUserManager.LocalUser.Username] = LocalUserManager.LocalUser;
+            if (messages.ContainsKey(viewModel.Conversation.Id))
+            {
+                ParseMessage(messages[viewModel.Conversation.Id], users);
+            }
+        }
+
+        public void ParseMessage(List<Message> messages, Dictionary<string, User> users) 
+        {
+            //Adds messages to the list
+            messages.ForEach(message =>
+            {
+                Items.Add(new MessageModel
+                {
+                    Message = message.Text,
+                    Name = viewModel.Users[message.Username].FirstName,
+                    Date = message.Timestamp.ToFullDate(),
+                    RightSide = (message.Username == LocalUserManager.LocalUser.Username)
+                });
+            });
+            //Scrolls to the end if at the bottom (kinda, I did my best)
+            if(lastVisible)
+            {
+                MessageListView.ScrollTo(Items.LastOrDefault(), ScrollToPosition.End, false);
+            }
+        }
+
+        private void SendButton_Clicked(object sender, EventArgs e)
+        {
+            //Sends the message to messaging service
+            MessagingCenter.Send(new MessagingTask(), MessagingTask.AddMessageToQueue, new Message
+            {
+                Conversation = viewModel.Conversation.Id,
+                Text = SendEditor.Text
+            });
+            SendEditor.Text = "";
+            //If SendEditor was last focused within half a second refocus it
+
+        }
+
+        //For checking if last element is visible and if it should scroll down when a new message
+        private void MessageListView_ItemAppearing(object sender, ItemVisibilityEventArgs e)
+        {
+            if (e.Item.Equals(Items.LastOrDefault()))
+            {
+                lastVisible = true;
+            }
+        }
+
+        private void MessageListView_ItemDisappearing(object sender, ItemVisibilityEventArgs e)
+        {
+            if (e.Item.Equals(Items.LastOrDefault()))
+            {
+                lastVisible = false;
+            }
+        }
+
+        private void SendEditor_Unfocused(object sender, FocusEventArgs e)
+        {
+            sendEditorLastFocused = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        }
+
+        private void FakeEntry_Focused(object sender, FocusEventArgs e)
+        {
+            //Send message and refocus if needed
+            SendButton_Clicked(null, null);
+            if (sendEditorLastFocused + 500 >= DateTimeOffset.Now.ToUnixTimeMilliseconds())
+            {
+                SendEditor.Focus();
+            }
+            else
+            {
+                FakeEntry.Unfocus();
+            }
+        }
+    }
 }

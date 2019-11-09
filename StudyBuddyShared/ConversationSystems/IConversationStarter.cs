@@ -8,10 +8,10 @@ namespace StudyBuddyShared.ConversationSystems
 {
     public delegate void StartConversationDelegate(ConversationStatus status, Conversation conversation, Dictionary<string, User> users);
 
-    public interface IConversationStarter
+    public interface IConversationStarter : IPrivateKey
     {
-        StartConversationDelegate StartConversationResult { get; set; }
+        StartConversationDelegate StartConversationResult { get; set; } // Result delegate
 
-        void StartConversation(string username);
+        void StartConversation(string username); // Starts conversation with an user
     }
 }

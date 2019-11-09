@@ -6,6 +6,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xamarin.Forms;
+using StudyBuddyApp.Services;
+using Android.Content;
+using StudyBuddyApp.Droid.Services;
 
 namespace StudyBuddyApp.Droid
 {
@@ -20,6 +24,12 @@ namespace StudyBuddyApp.Droid
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+            MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.Start, (service) =>
+            {
+                Intent intent = new Intent(this, typeof(MessagingService));
+                StartService(intent);
+            });
         }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using StudyBuddy.Entity;
 using StudyBuddyApp.Models;
+using StudyBuddyApp.Services;
 using StudyBuddyApp.Utility;
 using StudyBuddyShared.ConversationSystems;
 using StudyBuddyShared.Utility.Extensions;
@@ -33,49 +34,44 @@ namespace StudyBuddyApp.Views
 			ConversationListView.ItemsSource = Items;
             //ConversationListView.IsRefreshing = true;
             ConversationListView_Refreshing(null, null);
+            
         }
 
         private void ConversationListView_Refreshing(object sender, EventArgs e)
         {
-            IConversationGetter getter = ConversationSystemManager.NewConversationGetter();
-            getter.GetConversationsResult += (status, conversations, users) =>
+            //Gets conversations
+            MessagingCenter.Subscribe<MessagingTask, Tuple<List<Conversation>, Dictionary<string, User>>>(this, MessagingTask.LocalConversations, (obj, tuple) =>
             {
-                if (status == GetStatus.Success)
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    Device.BeginInvokeOnMainThread(() =>
+                    //Handles the response
+                    var conversations = tuple.Item1;
+                    users = tuple.Item2;
+                    this.users[LocalUserManager.LocalUser.Username] = LocalUserManager.LocalUser;
+                    Items.Clear();
+                    conversations.ForEach(conversation =>
                     {
-                        this.users = users;
-                        this.users[LocalUserManager.LocalUser.Username] = LocalUserManager.LocalUser;
-                        Items.Clear();
-                        conversations.ForEach(conversation =>
+                        Items.Add(new ConversationModel
                         {
-                            Items.Add(new ConversationModel
-                            {
-                                Title = users[conversation.Users[0]].FirstName + " " + users[conversation.Users[0]].LastName,
-                                LastMessage = conversation.LastMessage,
-                                Date = conversation.LastActivity.ToFullDate(),
-                                Conversation = conversation,
-                                ImageLocation = users[conversation.Users[0]].ProfilePictureLocation
-                            });
+                            Title = users[conversation.Users[0]].FirstName + " " + users[conversation.Users[0]].LastName,
+                            LastMessage = conversation.LastMessage,
+                            Date = conversation.LastActivity.ToFullDate(),
+                            Conversation = conversation,
+                            ImageLocation = users[conversation.Users[0]].ProfilePictureLocation
                         });
-                        ConversationListView.IsRefreshing = false;
-                        //HelpRequestList.ItemsSource = null;
-                        //HelpRequestList.ItemsSource = Items;
                     });
-                }
-                else
-                {
-                    Device.BeginInvokeOnMainThread(() =>
-                    {
-                        ConversationListView.IsRefreshing = false;
-                    });
-                }
-            };
-            getter.GetConversations();
+                    ConversationListView.IsRefreshing = false;
+                    MessagingCenter.Unsubscribe<MessagingTask, Tuple<List<Conversation>, Dictionary<string, User>>>(this, MessagingTask.LocalConversations);
+
+                });
+            });
+            //Ask for conversations
+            MessagingCenter.Send(new MessagingTask(), MessagingTask.GetConversations);
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            //If item is tapped opens the chat for it
             if (e.Item == null)
                 return;
             await Navigation.PushModalAsync(
@@ -85,12 +81,6 @@ namespace StudyBuddyApp.Views
                 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
-        }
-
-        private void ViewCell_Tapped(object sender, EventArgs e)
-        {
-            DependencyService.Get<IToast>().LongToast(((ViewCell)sender).View.Height.ToString());
-            
         }
     }
 }

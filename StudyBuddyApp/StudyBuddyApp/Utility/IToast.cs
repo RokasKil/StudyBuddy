@@ -4,6 +4,7 @@ using System.Text;
 
 namespace StudyBuddyApp.Utility
 {
+    // Interface for use with DependencyService
     public interface IToast
     {
         void LongToast(string message);

@@ -9,23 +9,23 @@ namespace StudyBuddyShared.ConversationSystems
 {
     public delegate void MessagePostDelegate(MessageStatus status, Message message);
 
-    public interface IMessageSender
+    public interface IMessageSender : IPrivateKey
     {
-        Queue<Message> Queue { get; set; } 
+        Queue<Message> Queue { get; set; } // Message queue
 
-        bool RetryOnFail { get; set; }
+        bool RetryOnFail { get; set; }  // Should try to resend message if failed
         
-        int RetryInterval { get; set; } // Miliseconds
+        int RetryInterval { get; set; } // How long should it wait before retrying Miliseconds
 
-        bool Sending { get; }
+        bool Sending { get; } // Is active
 
-        bool StartSending();
+        bool StartSending(); // Start sending
 
-        bool StopSending();
+        bool StopSending();  // Stop sending
 
-        MessagePostDelegate PostMessageResult { get; set; }
+        MessagePostDelegate PostMessageResult { get; set; } // Result delegate
 
-        void AddMessageToQueue(Message message);
+        void AddMessageToQueue(Message message); // Add to queue
 
     }
 }

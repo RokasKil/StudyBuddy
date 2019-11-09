@@ -8,12 +8,12 @@ namespace StudyBuddyShared.ConversationSystems
 {
     public delegate void GetConversationsDelegate(GetStatus status, List<Conversation> conversations, Dictionary<string, User> users);
 
-    public interface IConversationGetter
+    public interface IConversationGetter : IPrivateKey
     {
-        GetConversationsDelegate GetConversationsResult { get; set; }
+        GetConversationsDelegate GetConversationsResult { get; set; } // Result delegate
 
-        bool GetUsers { get; set; }
+        bool GetUsers { get; set; } // Should get the user dictionary
 
-        void GetConversations();
+        void GetConversations();    // Gets conversations
     }
 }

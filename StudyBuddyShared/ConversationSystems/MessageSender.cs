@@ -41,7 +41,7 @@ namespace StudyBuddyShared.ConversationSystems
             Queue.Enqueue(message);
             if (Sending)
             {
-
+                sendEnqueuedMessage();
             }
         }
 

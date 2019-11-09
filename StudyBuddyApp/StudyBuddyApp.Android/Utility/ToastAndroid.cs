@@ -15,6 +15,7 @@ using StudyBuddyApp.Utility;
 [assembly: Xamarin.Forms.Dependency(typeof(ToastAndroid))]
 namespace StudyBuddyApp.Droid.Utility
 {
+    // Android implementation of IToast
     public class ToastAndroid : IToast
     {
         public void LongToast(string message)

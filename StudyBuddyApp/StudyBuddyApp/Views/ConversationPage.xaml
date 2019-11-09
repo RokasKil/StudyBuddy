@@ -26,10 +26,11 @@
                        TextColor="Black"/>
             </StackLayout>
             <ListView x:Name="MessageListView"
-                      ItemsSource="{Binding Items}"
                       CachingStrategy="RecycleElement"
                       HasUnevenRows="true"
                       SeparatorVisibility="None"
+                      ItemAppearing="MessageListView_ItemAppearing"
+                      ItemDisappearing="MessageListView_ItemDisappearing"
                       >
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -77,8 +78,25 @@
             <StackLayout Orientation="Horizontal">
                 <Editor Placeholder="Text message goes here"
                         HorizontalOptions="FillAndExpand"
-                        MaxLength="2000"/>
-                <Button Text="Send" />
+                        MaxLength="2000"
+                        x:Name="SendEditor"
+                        Unfocused="SendEditor_Unfocused"
+                        AutoSize="TextChanges"/>
+                <AbsoluteLayout> <!-- Using a hack by placing text field under button to not lose keyboard -->
+                    <Entry Placeholder="Testing"
+                           AbsoluteLayout.LayoutBounds="0, 0"
+                           BackgroundColor="Transparent"
+                           PlaceholderColor="Transparent"
+                           TextColor="Transparent"
+                           Visual="Material"
+                           x:Name="FakeEntry"
+                           Focused="FakeEntry_Focused"/>
+                    <Button Text="Send"
+                            InputTransparent="True"
+                            Clicked="SendButton_Clicked"
+                            x:Name="SendButton"
+                            AbsoluteLayout.LayoutBounds="0, 0"/>
+                </AbsoluteLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -3,10 +3,11 @@ using StudyBuddyShared.Network;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace StudyBuddyShared.ConversationSystems
 {
-    class MessageGetter : IMessageGetter, IPrivateKey
+    class MessageGetter : IMessageGetter
     {
         public MessageGetter(LocalUser user) : this(user.PrivateKey)
         {
@@ -25,14 +26,14 @@ namespace StudyBuddyShared.ConversationSystems
         public MessageGetDelegate GetMessageResult { get; set; }
 
         public bool Getting { get; private set; } = false;
-        
-        public int RetryInterval { get; set; } = 250;
 
         public int TimeBetweenCalls { get; set; } = 0;
 
         public bool GetUsers { get; set; } = true;
 
         public long TimeStamp { get; set; } = 0;
+
+        public int TimeBetweenFailedCalls { get; set; } = 250;
 
         private AllMessageGetter getter;
 
@@ -66,6 +67,14 @@ namespace StudyBuddyShared.ConversationSystems
             if(conversations.Count > 0)
                 TimeStamp = conversations[conversations.Count - 1].LastActivity;
             GetMessageResult?.Invoke(status, conversations, messages, users);
+            if (status != AllMessageGetter.MessageStatus.Success)
+            {
+                Thread.Sleep(TimeBetweenFailedCalls);
+            }
+            else
+            {
+                Thread.Sleep(TimeBetweenCalls);
+            }
             getter?.get(TimeStamp, GetUsers, WaitingCall);
         }
 

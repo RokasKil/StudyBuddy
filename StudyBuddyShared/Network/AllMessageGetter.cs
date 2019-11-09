@@ -65,7 +65,7 @@ namespace StudyBuddyShared.Network
                 caller.addParam("user", "");
             }
             var obj = caller.call();
-            Console.WriteLine(obj);
+            //Console.WriteLine(obj);
             if (obj["status"].ToString() == "success")
             {
 
@@ -99,6 +99,22 @@ namespace StudyBuddyShared.Network
                     });
                     conversations.Add(conv);
                 });
+                if (getUsers)
+                {
+                    users = new Dictionary<string, User>();
+                    obj["users"].ToList().ForEach((user) =>
+                    {
+                        users[user.First["username"].ToString()] = new User
+                        {
+                            Username = user.First["username"].ToString(),
+                            FirstName = user.First["firstName"].ToString(),
+                            LastName = user.First["lastName"].ToString(),
+                            KarmaPoints = user.First["karmaPoints"].ToObject<int>(),
+                            IsLecturer = Convert.ToBoolean(user.First["lecturer"].ToObject<int>()),
+                            ProfilePictureLocation = user.First["profilePicture"].ToString()
+                        };
+                    });
+                }
                 GetMessageResult(MessageStatus.Success, conversations, messages, users);
             }
             else
