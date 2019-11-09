@@ -171,7 +171,7 @@ namespace StudyBuddyApp.Droid.Services
 
         public int GetHashCode(Conversation obj)
         {
-            return obj.GetHashCode();
+            return obj.Id.GetHashCode();
         }
     }
 }

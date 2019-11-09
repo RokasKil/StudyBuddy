@@ -31,6 +31,8 @@
                       SeparatorVisibility="None"
                       ItemAppearing="MessageListView_ItemAppearing"
                       ItemDisappearing="MessageListView_ItemDisappearing"
+                      ItemTapped="MessageListView_ItemTapped"
+                      
                       >
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -82,7 +84,7 @@
                         x:Name="SendEditor"
                         Unfocused="SendEditor_Unfocused"
                         AutoSize="TextChanges"/>
-                <AbsoluteLayout> <!-- Using a hack by placing text field under button to not lose keyboard -->
+                <AbsoluteLayout VerticalOptions="Center"> <!-- Using a hack by placing text field under button to not lose keyboard -->
                     <Entry Placeholder="Testing"
                            AbsoluteLayout.LayoutBounds="0, 0"
                            BackgroundColor="Transparent"

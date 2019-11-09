@@ -636,6 +636,7 @@ namespace UnitTests
             Assert.AreEqual(list3[0].Title, "test3");
             Assert.AreEqual(list3[2].Id, 1);
             Assert.AreEqual(list3[2].Title, "test1");
+            Assert.AreEqual(list3.Count, 3);
 
         }
 
@@ -668,7 +669,7 @@ namespace UnitTests
 
         public int GetHashCode(Conversation obj)
         {
-            return obj.GetHashCode();
+            return obj.Id.GetHashCode();
         }
     }
 }

@@ -32,9 +32,13 @@ namespace StudyBuddyApp.Views
             };
 			
 			ConversationListView.ItemsSource = Items;
-            //ConversationListView.IsRefreshing = true;
+
             ConversationListView_Refreshing(null, null);
-            
+            MessagingCenter.Subscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>>(this, MessagingTask.Messages, (task, tuple) =>
+            {
+                //This might be a bit expensive (probably very expensive)
+                ConversationListView_Refreshing(null, null);
+            });
         }
 
         private void ConversationListView_Refreshing(object sender, EventArgs e)
@@ -46,6 +50,7 @@ namespace StudyBuddyApp.Views
                 {
                     //Handles the response
                     var conversations = tuple.Item1;
+                    //DependencyService.Get<IToast>().LongToast("Loaded " + conversations.Count);
                     users = tuple.Item2;
                     this.users[LocalUserManager.LocalUser.Username] = LocalUserManager.LocalUser;
                     Items.Clear();

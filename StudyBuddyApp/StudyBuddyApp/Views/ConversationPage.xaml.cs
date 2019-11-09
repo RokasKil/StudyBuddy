@@ -132,5 +132,11 @@ namespace StudyBuddyApp.Views
                 FakeEntry.Unfocus();
             }
         }
+
+        //Disable item selecting
+        private void MessageListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            MessageListView.SelectedItem = null;
+        }
     }
 }
