@@ -63,6 +63,8 @@ namespace StudyBuddyShared.ConversationSystems
             {
                 getter = null;
             }
+            if(conversations.Count > 0)
+                TimeStamp = conversations[conversations.Count - 1].LastActivity;
             GetMessageResult?.Invoke(status, conversations, messages, users);
             getter?.get(TimeStamp, GetUsers, WaitingCall);
         }

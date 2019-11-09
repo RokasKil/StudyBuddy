@@ -5,9 +5,81 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Title}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout Orientation="Horizontal"
+                         Spacing="0">
+                <Image Aspect="AspectFit"
+                       VerticalOptions="Fill"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       Margin="6">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding ImageLocation}" 
+			                    CacheValidity="14" 
+			                    CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
+                <Label Text="{Binding Title}"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="Start"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Black"/>
+            </StackLayout>
+            <ListView x:Name="MessageListView"
+                      ItemsSource="{Binding Items}"
+                      CachingStrategy="RecycleElement"
+                      HasUnevenRows="true"
+                      SeparatorVisibility="None"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="{Binding FirstWidth}" />
+                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="{Binding ThirdWidth}" />
+                                </Grid.ColumnDefinitions>
+                                <Frame
+                                    Grid.Column="1"
+                                    CornerRadius="10"
+                                    HorizontalOptions="{Binding HorizontalOptions}"
+                                    Padding="5"
+                                    Margin="4"
+                                    BackgroundColor="{Binding Color}">
+                                    
+                                    <StackLayout HorizontalOptions="{Binding HorizontalOptions}" 
+                                                 Spacing="3"
+                                                 >
+                                        <!-- No name for now
+                                        <Label Text="{Binding Name}"
+                                               HorizontalTextAlignment="{Binding TextAlignment}"/>
+                                        -->
+                                        <Label Text="{Binding Message}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               LineBreakMode="CharacterWrap"
+                                               HorizontalTextAlignment="{Binding TextAlignment}"/>
+                                        <Label Text="{Binding Date}"
+                                               HorizontalOptions="FillAndExpand"
+                                               HorizontalTextAlignment="{Binding TextAlignment}"/>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Horizontal">
+                <Editor Placeholder="Text message goes here"
+                        HorizontalOptions="FillAndExpand"
+                        MaxLength="2000"/>
+                <Button Text="Send" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

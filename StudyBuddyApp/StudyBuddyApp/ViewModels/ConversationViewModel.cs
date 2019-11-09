@@ -8,7 +8,7 @@ namespace StudyBuddyApp.ViewModels
     public class ConversationViewModel : BaseViewModel
     {
         public Conversation Conversation { get; set; }
-        Dictionary<string, User> Users { get; set; }
+        public Dictionary<string, User> Users { get; set; }
         public string ImageLocation { get; set; }
         public ConversationViewModel(Conversation conversation, Dictionary<string, User> users)
         {

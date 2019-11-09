@@ -11,5 +11,13 @@ namespace StudyBuddyShared.Utility.Extensions
 
             return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
         }
+        public static string ToFullDate(this long TimeStamp, bool miliseconds = true)
+        {
+            if (miliseconds)
+            {
+                TimeStamp /= 1000;
+            }
+            return DateTimeOffset.FromUnixTimeSeconds(TimeStamp).LocalDateTime.ToFullDate();
+        }
     }
 }

@@ -45,6 +45,7 @@ namespace StudyBuddyApp.Views
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         this.users = users;
+                        this.users[LocalUserManager.LocalUser.Username] = LocalUserManager.LocalUser;
                         Items.Clear();
                         conversations.ForEach(conversation =>
                         {
@@ -52,7 +53,7 @@ namespace StudyBuddyApp.Views
                             {
                                 Title = users[conversation.Users[0]].FirstName + " " + users[conversation.Users[0]].LastName,
                                 LastMessage = conversation.LastMessage,
-                                Date = DateTimeOffset.FromUnixTimeSeconds(conversation.LastActivity / 1000).LocalDateTime.ToFullDate(),
+                                Date = conversation.LastActivity.ToFullDate(),
                                 Conversation = conversation,
                                 ImageLocation = users[conversation.Users[0]].ProfilePictureLocation
                             });

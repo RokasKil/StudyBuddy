@@ -65,7 +65,7 @@ namespace StudyBuddyShared.Network
                 caller.addParam("user", "");
             }
             var obj = caller.call();
-            //Console.Write(obj);
+            Console.WriteLine(obj);
             if (obj["status"].ToString() == "success")
             {
 
@@ -84,10 +84,10 @@ namespace StudyBuddyShared.Network
                     };
                     conversation["users"].ToList().ForEach((user) =>
                     {
-                        conv.Users.Add(user.First.ToString());
+                        conv.Users.Add(user.ToString());
                     });
                     messages[conv.Id] = new List<Message>();
-                    obj["messages"].ToList().ForEach((message) =>
+                    conversation["messageArray"].ToList().ForEach((message) =>
                     {
                         messages[conv.Id].Add(new Message
                         {
