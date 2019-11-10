@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StudyBuddyApp.Views.ConversationListPage">
+             x:Class="StudyBuddyApp.Views.ConversationListPage"
+             xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:ConversationListViewModel />
+    </ContentPage.BindingContext>
     <ListView x:Name="ConversationListView"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
@@ -16,16 +21,17 @@
                     <StackLayout Orientation="Horizontal">
                         <Image Aspect="AspectFit"
                                VerticalOptions="Fill"
-                               WidthRequest="75"
-                               HeightRequest="75"
-                               >
+                               WidthRequest="60"
+                               HeightRequest="60"
+                               Margin="6, 0">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding ImageLocation}" 
 			                    CacheValidity="14" 
 			                    CachingEnabled="true"/>
                             </Image.Source>
                         </Image>
-                        <StackLayout HorizontalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="FillAndExpand"
+                                     Spacing="3">
                             <Label Text="{Binding Title}"
                                    FontSize="16"
                                    FontAttributes="Bold"
@@ -34,7 +40,8 @@
                             <Label Text="{Binding LastMessage}" 
                             />
                             <Label Text="{Binding Date}"
-                                   HorizontalOptions="End"
+                                   HorizontalOptions="FillAndExpand"
+                                   HorizontalTextAlignment="End"
                             />
                         </StackLayout>
                     </StackLayout>
