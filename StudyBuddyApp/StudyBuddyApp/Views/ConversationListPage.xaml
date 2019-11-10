@@ -1,12 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StudyBuddyApp.Views.ConversationListPage"
-             xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
-             Title="{Binding Title}">
-    <ContentPage.BindingContext>
-        <vm:ConversationListViewModel />
-    </ContentPage.BindingContext>
+             x:Class="StudyBuddyApp.Views.ConversationListPage">
     <ListView x:Name="ConversationListView"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
@@ -18,32 +13,28 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout Orientation="Horizontal"
-                                 Spacing="0">
+                    <StackLayout Orientation="Horizontal">
                         <Image Aspect="AspectFit"
                                VerticalOptions="Fill"
-                               WidthRequest="60"
-                               HeightRequest="60"
-                               Margin="6, 0">
+                               WidthRequest="75"
+                               HeightRequest="75"
+                               >
                             <Image.Source>
                                 <UriImageSource Uri="{Binding ImageLocation}" 
 			                    CacheValidity="14" 
 			                    CachingEnabled="true"/>
                             </Image.Source>
                         </Image>
-                        <StackLayout HorizontalOptions="FillAndExpand"
-                                     Spacing="3">
+                        <StackLayout HorizontalOptions="FillAndExpand">
                             <Label Text="{Binding Title}"
                                    FontSize="16"
                                    FontAttributes="Bold"
                                    TextColor="Black"
-                                   
                             />
                             <Label Text="{Binding LastMessage}" 
                             />
                             <Label Text="{Binding Date}"
-                                   HorizontalOptions="FillAndExpand"
-                                   HorizontalTextAlignment="End"
+                                   HorizontalOptions="End"
                             />
                         </StackLayout>
                     </StackLayout>
