@@ -79,11 +79,10 @@ namespace StudyBuddyApp.Views
             //If item is tapped opens the chat for it
             if (e.Item == null)
                 return;
-            await Navigation.PushModalAsync(
+            Navigation.PushModalAsync(
                 new NavigationPage(
                     new ConversationPage(
                         new ViewModels.ConversationViewModel(((ConversationModel)e.Item).Conversation, users))));
-                
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }

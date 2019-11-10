@@ -104,18 +104,12 @@ namespace StudyBuddyApp.Droid.Services
             };
             MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.GetMessages, (task) =>
             {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    MessagingCenter.Send(new MessagingTask(), MessagingTask.LocalMessages, new Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>(messages, users));
-                });
+                MessagingCenter.Send(new MessagingTask(), MessagingTask.LocalMessages, new Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>(messages, users));
             });
 
             MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.GetConversations, (task) =>
             {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    MessagingCenter.Send(new MessagingTask(), MessagingTask.LocalConversations, new Tuple<List<Conversation>, Dictionary<string, User>>(conversations, users));
-                });
+                MessagingCenter.Send(new MessagingTask(), MessagingTask.LocalConversations, new Tuple<List<Conversation>, Dictionary<string, User>>(conversations, users));
             });
 
             messageSender.PostMessageResult += (status, message) =>

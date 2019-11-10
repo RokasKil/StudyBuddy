@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -35,20 +36,27 @@ namespace StudyBuddyApp.Views
             {
 
             };
-            MessageListView.ItemsSource = Items;
-            //Listens messages already loaded
-            MessagingCenter.Subscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary <string, User>>>(this, MessagingTask.LocalMessages, (obj, tuple) =>
+            MessageListView.ItemsSource = null;
+            new Thread(() =>
             {
-                //Adds them to the list
-                MessageReciever(obj, tuple);
-                //Stops listening
-                MessagingCenter.Unsubscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>>(this, MessagingTask.LocalMessages);
-                //Starts listening for new messages
-                MessagingCenter.Subscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>>(this, MessagingTask.Messages, MessageReciever);
-                MessageListView.ScrollTo(Items.LastOrDefault(), ScrollToPosition.End, false);
-            });
-            //Ask for messages already loaded
-            MessagingCenter.Send(new MessagingTask(), MessagingTask.GetMessages);
+                //Thread.Sleep(1000);
+                //Listens messages already loaded
+                MessagingCenter.Subscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>>(this, MessagingTask.LocalMessages, (obj, tuple) =>
+                {
+                    //Adds them to the list
+                    MessageReciever(obj, tuple);
+                    //Stops listening
+                    MessagingCenter.Unsubscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>>(this, MessagingTask.LocalMessages);
+
+                    MessageListView.ItemsSource = Items;
+                    //Starts listening for new messages
+                    MessagingCenter.Subscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>>(this, MessagingTask.Messages, MessageReciever);
+                    MessageListView.ScrollTo(Items.LastOrDefault(), ScrollToPosition.End, false);
+                });
+                //Ask for messages already loaded
+                MessagingCenter.Send(new MessagingTask(), MessagingTask.GetMessages);
+            }).Start();
+
 
         }
 
@@ -67,6 +75,7 @@ namespace StudyBuddyApp.Views
         public void ParseMessage(List<Message> messages, Dictionary<string, User> users) 
         {
             //Adds messages to the list
+            MessageListView.BatchBegin();
             messages.ForEach(message =>
             {
                 Items.Add(new MessageModel
@@ -78,10 +87,11 @@ namespace StudyBuddyApp.Views
                 });
             });
             //Scrolls to the end if at the bottom (kinda, I did my best)
-            if(lastVisible)
+            if (lastVisible)
             {
                 MessageListView.ScrollTo(Items.LastOrDefault(), ScrollToPosition.End, false);
             }
+            MessageListView.BatchCommit();
         }
 
         private void SendButton_Clicked(object sender, EventArgs e)
