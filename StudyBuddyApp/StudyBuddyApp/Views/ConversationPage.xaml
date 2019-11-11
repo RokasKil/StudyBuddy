@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudyBuddyApp.Views.ConversationPage"
+             xmlns:local="clr-namespace:StudyBuddyApp.DataTemplates"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="LeftTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70*"/>
+                            <ColumnDefinition Width="30*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Column="0"
+                               CornerRadius="10"
+                               HorizontalOptions="Start"
+                               Padding="5"
+                               Margin="4"
+                               BackgroundColor="{Binding Color}">
+                            <StackLayout HorizontalOptions="Start" 
+                                         Spacing="3" >
+                                <!-- No name for now
+                                <Label Text="{Binding Name}"
+                                       HorizontalTextAlignment="Start"/>
+                                -->
+                                <Label Text="{Binding Message}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       LineBreakMode="CharacterWrap"
+                                       HorizontalTextAlignment="Start"/>
+                                <Label Text="{Binding Date}"
+                                       HorizontalOptions="FillAndExpand"
+                                       HorizontalTextAlignment="Start"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="RightTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="70*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Column="1"
+                               CornerRadius="10"
+                               HorizontalOptions="End"
+                               Padding="5"
+                               Margin="4"
+                               BackgroundColor="{Binding Color}">
+                            <StackLayout HorizontalOptions="End" 
+                                         Spacing="3" >
+                                <!-- No name for now
+                                <Label Text="{Binding Name}"
+                                       HorizontalTextAlignment="End"/>
+                                -->
+                                <Label Text="{Binding Message}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="Black"
+                                       LineBreakMode="CharacterWrap"
+                                       HorizontalTextAlignment="End"/>
+                                <Label Text="{Binding Date}"
+                                       HorizontalOptions="FillAndExpand"
+                                       HorizontalTextAlignment="End"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <local:ConversationDataTemplateSelector x:Key="DataTemplateSelector"
+                                                    LeftTemplate="{StaticResource LeftTemplate}"
+                                                    RightTemplate="{StaticResource RightTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         Spacing="0">
+                <Image Aspect="AspectFit"
+                       VerticalOptions="Fill"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       Margin="6">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding ImageLocation}" 
+			                    CacheValidity="14" 
+			                    CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
+                <Label Text="{Binding Title}"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="Start"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Black"/>
+            </StackLayout>
+            <ListView x:Name="MessageListView"
+                      CachingStrategy="RecycleElement"
+                      HasUnevenRows="true"
+                      SeparatorVisibility="None"
+                      ItemAppearing="MessageListView_ItemAppearing"
+                      ItemDisappearing="MessageListView_ItemDisappearing"
+                      ItemTapped="MessageListView_ItemTapped"
+                      ItemTemplate="{StaticResource DataTemplateSelector}"
+                      >
+            </ListView>
+            <StackLayout Orientation="Horizontal">
+                <Editor Placeholder="Text message goes here"
+                        HorizontalOptions="FillAndExpand"
+                        MaxLength="2000"
+                        x:Name="SendEditor"
+                        Unfocused="SendEditor_Unfocused"
+                        AutoSize="TextChanges"/>
+                <AbsoluteLayout VerticalOptions="Center"> <!-- Using a hack by placing text field under button to not lose keyboard -->
+                    <Entry Placeholder="Testing"
+                           AbsoluteLayout.LayoutBounds="0, 0"
+                           BackgroundColor="Transparent"
+                           PlaceholderColor="Transparent"
+                           TextColor="Transparent"
+                           Visual="Material"
+                           x:Name="FakeEntry"
+                           Focused="FakeEntry_Focused"/>
+                    <Button Text="Send"
+                            InputTransparent="True"
+                            Clicked="SendButton_Clicked"
+                            x:Name="SendButton"
+                            AbsoluteLayout.LayoutBounds="0, 0"/>
+                </AbsoluteLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

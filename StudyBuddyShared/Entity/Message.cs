@@ -11,5 +11,6 @@ namespace StudyBuddy.Entity
         public string Username { get; set; }
         public string Text { get; set; }
         public long Timestamp { get; set; }
+        public int Conversation { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace StudyBuddyApp
 		public LoginPage ()
 		{
 			InitializeComponent ();
+            
             UsernameEntry.Completed += (o, e) =>
             {
                 PasswordEntry.Focus();
