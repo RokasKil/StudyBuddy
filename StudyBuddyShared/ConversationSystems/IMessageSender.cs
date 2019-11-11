@@ -7,7 +7,20 @@ using static StudyBuddy.Network.MessagePoster; // Fix this maybe
 
 namespace StudyBuddyShared.ConversationSystems
 {
-    public delegate void MessagePostDelegate(MessageStatus status, Message message);
+    public enum MessageSendStatus
+    {
+        InvalidPrivateKey,
+        Success,
+        JsonReadException,
+        FailedToConnect,
+        UnknownError,
+        FieldsMissing,
+        ConversationNotFound,
+        MessageTooLong,
+        MessageEmpty
+    }
+
+    public delegate void MessagePostDelegate(MessageSendStatus status, Message message);
 
     public interface IMessageSender : IPrivateKey
     {

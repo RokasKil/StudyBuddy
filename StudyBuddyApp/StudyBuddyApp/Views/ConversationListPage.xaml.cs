@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static StudyBuddy.Network.ConversationGetter;
 
 namespace StudyBuddyApp.Views
 {

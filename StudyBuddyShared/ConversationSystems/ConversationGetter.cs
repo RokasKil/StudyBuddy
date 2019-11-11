@@ -1,4 +1,5 @@
 ﻿using StudyBuddy.Entity;
+using StudyBuddyShared.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,7 +28,7 @@ namespace StudyBuddyShared.ConversationSystems
         {
             new StudyBuddy.Network.ConversationGetter(PrivateKey, (status, conversations, users) =>
             {
-                GetConversationsResult?.Invoke(status, conversations, users);
+                GetConversationsResult?.Invoke(EnumConverter.Convert<ConversationGetStatus>(status), conversations, users);
             }).get(GetUsers);
         }
     }

@@ -2,11 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static StudyBuddy.Network.ConversationStarter;
 
 namespace StudyBuddyShared.ConversationSystems
 {
-    public delegate void StartConversationDelegate(ConversationStatus status, Conversation conversation, Dictionary<string, User> users);
+    public delegate void StartConversationDelegate(ConversationStartStatus status, Conversation conversation, Dictionary<string, User> users);
+
+    public enum ConversationStartStatus
+    {
+        InvalidPrivateKey,
+        Success,
+        JsonReadException,
+        FailedToConnect,
+        UnknownError,
+        FailedToFindUser,
+        UsernameEmpty,
+        FieldsMissing
+    }
 
     public interface IConversationStarter : IPrivateKey
     {

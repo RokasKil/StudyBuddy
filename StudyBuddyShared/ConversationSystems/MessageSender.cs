@@ -1,5 +1,6 @@
 ﻿using StudyBuddy.Entity;
 using StudyBuddy.Network;
+using StudyBuddyShared.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -80,7 +81,7 @@ namespace StudyBuddyShared.ConversationSystems
             {
                 //Success
                 poster = null;
-                PostMessageResult?.Invoke(status, messageBeingSent);
+                PostMessageResult?.Invoke(EnumConverter.Convert<MessageSendStatus>(status), messageBeingSent);
                 if (Sending)
                 {
                     sendEnqueuedMessage();

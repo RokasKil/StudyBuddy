@@ -2,11 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static StudyBuddyShared.Network.AllMessageGetter; // Fix this maybe
 
 namespace StudyBuddyShared.ConversationSystems
 {
-    public delegate void MessageGetDelegate(MessageStatus status, List<Conversation> conversations, Dictionary<int, List<Message>> messages, Dictionary<string, User> users);
+
+    public enum MessageGetAllStatus
+    {
+        InvalidPrivateKey,
+        Success,
+        JsonReadException,
+        FailedToConnect,
+        UnknownError,
+        FieldsMissing,
+        ConversationNotFound
+    }
+
+    public delegate void MessageGetDelegate(MessageGetAllStatus status, List<Conversation> conversations, Dictionary<int, List<Message>> messages, Dictionary<string, User> users);
 
     public interface IMessageGetter : IPrivateKey
     {

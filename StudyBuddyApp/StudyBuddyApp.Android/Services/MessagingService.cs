@@ -62,7 +62,7 @@ namespace StudyBuddyApp.Droid.Services
                 {
                     //DependencyService.Get<IToast>().ShortToast(status.ToString());
                 });
-                if (status == AllMessageGetter.MessageStatus.Success && conversations.Count != 0)
+                if (status == MessageGetAllStatus.Success && conversations.Count != 0)
                 {
                     this.conversations = conversations
                         .Union(this.conversations, new EntityComparer())
@@ -88,7 +88,7 @@ namespace StudyBuddyApp.Droid.Services
 
                     });
                 }
-                else if (status == AllMessageGetter.MessageStatus.InvalidPrivateKey)
+                else if (status == MessageGetAllStatus.InvalidPrivateKey)
                 {
                     if (LocalUserManager.LocalUser != null)
                     {
@@ -114,7 +114,7 @@ namespace StudyBuddyApp.Droid.Services
 
             messageSender.PostMessageResult += (status, message) =>
             {
-                if (status == StudyBuddy.Network.MessagePoster.MessageStatus.InvalidPrivateKey)
+                if (status == MessageSendStatus.InvalidPrivateKey)
                 {
                     if (LocalUserManager.LocalUser != null)
                     {

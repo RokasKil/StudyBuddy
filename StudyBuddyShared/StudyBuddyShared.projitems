@@ -42,5 +42,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserUpdater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Extensions\DateTimeExtender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\EnumConverter.cs" />
   </ItemGroup>
 </Project>

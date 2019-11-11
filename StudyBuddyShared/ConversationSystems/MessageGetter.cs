@@ -1,5 +1,6 @@
 ﻿using StudyBuddy.Entity;
 using StudyBuddyShared.Network;
+using StudyBuddyShared.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -43,7 +44,7 @@ namespace StudyBuddyShared.ConversationSystems
             {
                 new AllMessageGetter(PrivateKey, (status, conversations, messages, users) =>
                 {
-                    GetMessageResult?.Invoke(status, conversations, messages, users);
+                    GetMessageResult?.Invoke(EnumConverter.Convert<MessageGetAllStatus>(status), conversations, messages, users);
                 }).get(TimeStamp, GetUsers, WaitingCall);
 
                 return true;
@@ -66,7 +67,7 @@ namespace StudyBuddyShared.ConversationSystems
             }
             if(conversations != null && conversations.Count > 0)
                 TimeStamp = conversations[conversations.Count - 1].LastActivity;
-            GetMessageResult?.Invoke(status, conversations, messages, users);
+            GetMessageResult?.Invoke(EnumConverter.Convert<MessageGetAllStatus>(status), conversations, messages, users);
             if (status != AllMessageGetter.MessageStatus.Success)
             {
                 Thread.Sleep(TimeBetweenFailedCalls);
