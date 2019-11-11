@@ -76,7 +76,8 @@ namespace StudyBuddy.Network
                     {
                         Username = message["username"].ToString(),
                         Text = message["message"].ToString(),
-                        Timestamp = message["timestamp"].ToObject<long>()
+                        Timestamp = message["timestamp"].ToObject<long>(),
+                        Conversation = message["conversation"].ToObject<int>()
                     });
                 });
                 GetMessageResult(MessageStatus.Success, messages);

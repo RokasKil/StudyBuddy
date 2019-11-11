@@ -64,6 +64,10 @@ namespace StudyBuddy.Network
             postMessageThread.Start();
         }
 
+        public void post(int conversation, string message)
+        {
+            post(new Conversation { Id = conversation }, message);
+        }
         private void postLogic(Conversation conversation, string message)
         {
             //Console.Write("Starting to send " + message + "\n");

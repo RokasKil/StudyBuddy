@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StudyBuddy.Entity;
 using StudyBuddy.Network;
@@ -9,7 +10,7 @@ namespace UnitTests
     public class UnitTest1
     {
 
-        
+
         [TestMethod]
         [Timeout(1000)]
         public void LoginTest()
@@ -19,7 +20,7 @@ namespace UnitTests
 
         public LocalUser Login(string username = "test1", string password = "pass1")
         {
-            
+
             Authenticator.AuthStatus status = Authenticator.AuthStatus.UnknownError;
             LocalUser user = null;
             bool done = false;
@@ -44,7 +45,7 @@ namespace UnitTests
             bool done = false;
             LocalUser user1 = null;
             Authenticator.AuthStatus status = Authenticator.AuthStatus.UnknownError;
-            
+
             var auth = new Authenticator((_status, _user) => {
                 status = _status;
                 user1 = _user;
@@ -177,7 +178,7 @@ namespace UnitTests
             Assert.AreEqual(status, MessageGetter.MessageStatus.Success);
             Assert.AreNotEqual(messages, null);
         }
-        
+
         [TestMethod]
         [Timeout(1000)]
         public void UserReviewGetterTest()
@@ -360,7 +361,7 @@ namespace UnitTests
             done = false;
             var random = new Random();
 
-            category = new Category { Title = random.Next().ToString(), Description = random.Next().ToString()};
+            category = new Category { Title = random.Next().ToString(), Description = random.Next().ToString() };
             categoriesManager.addCategory(category);
 
             while (!done) { }
@@ -384,7 +385,7 @@ namespace UnitTests
             });
             Assert.AreNotEqual(myCategory, null);
             ///
-            
+
             ///Naujinam category
             category.Description += random.Next().ToString();
             done = false;
@@ -461,7 +462,7 @@ namespace UnitTests
                 conversations = _conversations;
                 users = _users;
                 done = true;
-                
+
             });
 
             var conversationStarter = new ConversationStarter(user, (_status, _conversation, _users) =>
@@ -486,7 +487,7 @@ namespace UnitTests
                 messages = _messages;
                 done = true;
             });
-            
+
             ///Pradedam Conversation
             done = false;
             conversationStarter.start("test4");
@@ -614,6 +615,61 @@ namespace UnitTests
             Assert.AreEqual(user.Username, user1.Username);
             Assert.AreEqual(user.FirstName, user1.FirstName);
             Assert.AreEqual(user.LastName, user1.LastName);
+        }
+
+        [TestMethod]
+        public void UnionTest()
+        {
+            var list1 = new List<Conversation>
+            {
+                new Conversation {Id = 1, Title = "test1" },
+                new Conversation {Id = 2, Title = "test2" }
+            };
+            var list2 = new List<Conversation>
+            {
+                new Conversation {Id = 2, Title = "test3" },
+                new Conversation {Id = 3, Title = "test4" }
+            };
+            var list3 = list2.Union(list1, new EntityComparer()).ToList();
+            Assert.AreEqual(list3[1].Id, 3);
+            Assert.AreEqual(list3[0].Id, 2);
+            Assert.AreEqual(list3[0].Title, "test3");
+            Assert.AreEqual(list3[2].Id, 1);
+            Assert.AreEqual(list3[2].Title, "test1");
+            Assert.AreEqual(list3.Count, 3);
+
+        }
+
+        [TestMethod]
+        public void ConcatTest()
+        {
+            var dict1 = new Dictionary<string, User>
+            {
+                {"1", new User {FirstName = "test1" } },
+                {"2", new User {FirstName = "test2" } },
+            };
+            var dict2 = new Dictionary<string, User>
+            {
+                {"2", new User {FirstName = "test3" } },
+                {"3", new User {FirstName = "test4" } },
+            };
+            var dict3 = dict2.Concat(dict1.Where(pair => !dict2.ContainsKey(pair.Key))).ToDictionary(x => x.Key, x => x.Value);
+            Assert.AreEqual(dict3["1"].FirstName, "test1");
+            Assert.AreEqual(dict3["2"].FirstName, "test3");
+            Assert.AreEqual(dict3["3"].FirstName, "test4");
+
+        }
+    }
+    public class EntityComparer : IEqualityComparer<Conversation>
+    {
+        public bool Equals(Conversation x, Conversation y)
+        {
+            return x.Id == y.Id;
+        }
+
+        public int GetHashCode(Conversation obj)
+        {
+            return obj.Id.GetHashCode();
         }
     }
 }
