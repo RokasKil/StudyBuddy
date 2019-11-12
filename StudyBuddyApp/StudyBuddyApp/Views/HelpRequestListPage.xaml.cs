@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using StudyBuddy.Entity;
 using StudyBuddy.Network;
 using StudyBuddyApp.Models;
+using StudyBuddyApp.ViewModels;
 
 namespace StudyBuddyApp.Views
 {
@@ -80,6 +81,11 @@ namespace StudyBuddyApp.Views
                 }
 
             }).get(true);
+        }
+
+        async private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new HelpRequestAddPage()));
         }
     }
 }

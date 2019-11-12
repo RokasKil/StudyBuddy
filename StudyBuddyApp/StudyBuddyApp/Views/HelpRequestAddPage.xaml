@@ -4,19 +4,46 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="StudyBuddyApp.Views.HelpRequestAddPage">
-    <ContentPage.Content>
-        <StackLayout>
+             x:Class="StudyBuddyApp.Views.HelpRequestAddPage"
+             Title="{Binding Title}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="cancel.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content >
+        <StackLayout >
 
             <Picker 
-                x:Name="CategorieList"
-                Title="Categories" 
+                x:Name="CategoryList"
+                Title="Categorijos" 
                 ItemsSource="{Binding Items}"
                 ItemDisplayBinding="{Binding Title}"
             />
-
-
-
+            
+            <Entry 
+                x:Name="Title"
+                Placeholder="Problemos pavadinimas" />
+            
+            <Editor 
+                x:Name="Description"
+                Placeholder="Problemos apibūdinimas"
+                VerticalOptions="FillAndExpand"
+                AutoSize="Disabled"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

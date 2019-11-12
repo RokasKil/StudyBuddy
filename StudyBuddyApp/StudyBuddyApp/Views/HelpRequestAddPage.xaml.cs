@@ -19,13 +19,17 @@ namespace StudyBuddyApp.Views
     {
         public ObservableCollection<CategorieModel> Items { get; set; }
 
+        HelpRequestModel requestModel;
+
         public HelpRequestAddPage()
         {
             InitializeComponent();
             Items = new ObservableCollection<CategorieModel>
             { };
             CategorieListGetter();
-            CategorieList.ItemsSource = Items;
+
+            BindingContext = requestModel = new HelpRequestModel();
+            CategoryList.ItemsSource = Items;
         }
 
         private void CategorieListGetter()
@@ -58,5 +62,24 @@ namespace StudyBuddyApp.Views
 
             }).get();
         }
+
+        private void SendNewHelpRequest()
+        {
+            
+
+        }
+
+        async void Save_Clicked(object sender, EventArgs e)
+        {
+            MessagingCenter.Send(this, "AddItem", Item);
+            await Navigation.PopModalAsync();
+        }
+
+        async void Cancel_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
+
+
     }
 }
