@@ -74,6 +74,7 @@ namespace StudyBuddy.Network
                 {
                     messages.Add(new Message
                     {
+                        Id = message["id"].ToObject<int>(),
                         Username = message["username"].ToString(),
                         Text = message["message"].ToString(),
                         Timestamp = message["timestamp"].ToObject<long>(),

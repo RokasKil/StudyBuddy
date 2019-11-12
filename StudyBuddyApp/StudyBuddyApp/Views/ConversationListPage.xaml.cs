@@ -36,7 +36,7 @@ namespace StudyBuddyApp.Views
 			ConversationListView.ItemsSource = Items;
 
             ConversationListView_Refreshing(null, null);
-            MessagingCenter.Subscribe<MessagingTask, Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>>(this, MessagingTask.Messages, (task, tuple) =>
+            MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.NewMessages, (task) =>
             {
                 //This might be a bit expensive (probably very expensive)
                 ConversationListView_Refreshing(null, null);
@@ -51,14 +51,14 @@ namespace StudyBuddyApp.Views
         private void ConversationListView_Refreshing(object sender, EventArgs e)
         {
             //Gets conversations
-            MessagingCenter.Subscribe<MessagingTask, Tuple<List<Conversation>, Dictionary<string, User>>>(this, MessagingTask.LocalConversations, (obj, tuple) =>
+            MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.LocalConversations, (task) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     //Handles the response
-                    var conversations = tuple.Item1;
+                    var conversations = task.Conversations;
                     //DependencyService.Get<IToast>().LongToast("Loaded " + conversations.Count);
-                    users = tuple.Item2;
+                    users = task.Users;
                     this.users[LocalUserManager.LocalUser.Username] = LocalUserManager.LocalUser;
                     Items.Clear();
                     conversations.ForEach(conversation =>
@@ -73,7 +73,7 @@ namespace StudyBuddyApp.Views
                         });
                     });
                     ConversationListView.IsRefreshing = false;
-                    MessagingCenter.Unsubscribe<MessagingTask, Tuple<List<Conversation>, Dictionary<string, User>>>(this, MessagingTask.LocalConversations);
+                    MessagingCenter.Unsubscribe<MessagingTask>(this, MessagingTask.LocalConversations);
 
                 });
             });
@@ -93,7 +93,7 @@ namespace StudyBuddyApp.Views
                 return;
             }
             ChatOpen = true;
-            Navigation.PushModalAsync(
+            await Navigation.PushModalAsync(
                 new NavigationPage(
                     new ConversationPage(
                         new ViewModels.ConversationViewModel(((ConversationModel)e.Item).Conversation, users))));

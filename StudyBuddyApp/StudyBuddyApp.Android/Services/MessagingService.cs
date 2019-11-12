@@ -84,7 +84,7 @@ namespace StudyBuddyApp.Droid.Services
                         .ToDictionary(x => x.Key, x => x.Value);
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        MessagingCenter.Send(new MessagingTask(), MessagingTask.Messages, new Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>(messages, this.users));
+                        MessagingCenter.Send(new MessagingTask(messagesDict: messages, users: this.users), MessagingTask.NewMessages);
 
                     });
                 }
@@ -104,12 +104,19 @@ namespace StudyBuddyApp.Droid.Services
             };
             MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.GetMessages, (task) =>
             {
-                MessagingCenter.Send(new MessagingTask(), MessagingTask.LocalMessages, new Tuple<Dictionary<int, List<Message>>, Dictionary<string, User>>(messages, users));
+                MessagingCenter.Send(new MessagingTask(messagesDict: messages, users: users), MessagingTask.LocalMessages);
+            });
+
+            MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.GetMessagesLimited, (task) =>
+            {
+                int toRemove = (task.Message == null ? 0 : messages[task.Conversation.Id].Count - messages[task.Conversation.Id].FindIndex((m) => task.Message.Id == m.Id));
+                List<Message> messagesList = messages[task.Conversation.Id].AsEnumerable().Reverse().Skip(toRemove).Take(task.GetCount).Reverse().ToList();
+                MessagingCenter.Send(new MessagingTask(messages: messagesList, users: users, conversation: task.Conversation), MessagingTask.LocalMessagesLimited);
             });
 
             MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.GetConversations, (task) =>
             {
-                MessagingCenter.Send(new MessagingTask(), MessagingTask.LocalConversations, new Tuple<List<Conversation>, Dictionary<string, User>>(conversations, users));
+                MessagingCenter.Send(new MessagingTask(conversations: conversations, users: users), MessagingTask.LocalConversations);
             });
 
             messageSender.PostMessageResult += (status, message) =>
@@ -130,9 +137,9 @@ namespace StudyBuddyApp.Droid.Services
             };
 
 
-            MessagingCenter.Subscribe<MessagingTask, Message>(this, MessagingTask.AddMessageToQueue, (task, message) =>
+            MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.AddMessageToQueue, (task) =>
             {
-                messageSender.AddMessageToQueue(message);
+                messageSender.AddMessageToQueue(task.Message);
             });
 
 
