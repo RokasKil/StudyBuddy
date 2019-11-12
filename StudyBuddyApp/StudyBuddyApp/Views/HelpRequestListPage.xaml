@@ -18,10 +18,13 @@
                 <ViewCell>
                     <StackLayout>
                         <Label Text="{Binding Title}" 
+                               HorizontalTextAlignment="Center"
                         />
-                        <Label Text="{Binding Description}" 
+                        <Label Text="{Binding Description}"
+                               HorizontalTextAlignment="Center"
                         />
                         <Label Text="{Binding Name}"
+                               HorizontalTextAlignment="Center"
                         />
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding Category}" 

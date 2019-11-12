@@ -6,15 +6,24 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using StudyBuddyApp.ViewModels;
 
 namespace StudyBuddyApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HelpRequestViewPage : ContentPage
     {
-        public HelpRequestViewPage()
+        readonly HelpRequestViewPageModel ViewModel;
+
+        public HelpRequestViewPage(HelpRequestViewPageModel helpRequestViewPageModel)
         {
             InitializeComponent();
+            ViewModel = helpRequestViewPageModel;
+            BindingContext = ViewModel;
+        }
+        public void OnImageButtonClicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

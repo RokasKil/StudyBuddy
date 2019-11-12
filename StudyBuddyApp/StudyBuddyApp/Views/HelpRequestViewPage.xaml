@@ -7,29 +7,59 @@
              x:Class="StudyBuddyApp.Views.HelpRequestViewPage">
     <ContentPage.Content>
         <StackLayout>
+           
+            <Label Text="{Binding HelpRequestModel.Category}" 
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Start"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   Margin="0.5, 0.5, 0.5, 0.5"
+            />
+            <Label Text="{Binding HelpRequestModel.Title}"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Start"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   Margin="0.5, 0.5, 0.5, 0.5"
+            />
+            <Label Text="{Binding HelpRequestModel.Description}"
+                   HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="Start"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   Margin="10, 0.5, 0.5, 0.5"
+            />
+            <Label Text="{Binding HelpRequestModel.Date}"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalTextAlignment="Start"
+                   FontSize="Small"
+                   TextColor="Black"
+                   Margin="0.5, 0.5, 0.5, 0.5"
+            />
+            <Label Text="{Binding HelpRequestModel.Name}"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Start"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   Margin="0.5, 0.5, 0.5, 0.5"
+            />
 
-            <ScrollView>
-                <Label Text="Title" 
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Start"
-            />
-                <Label Text="Description"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Start"
-            />
-                <Label Text="Name"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Start"
-            />
-                <Label Text="Date"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Start"
-            />
-                <Label Text="Category"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Start"
-            />
-            </ScrollView>
+            <ImageButton Aspect="Fill"
+                         VerticalOptions="Fill"
+                         HorizontalOptions="Center"
+                         WidthRequest="150"
+                         HeightRequest="100"
+                         Margin="6, 0"
+                         Clicked="OnImageButtonClicked">
+                <ImageButton.Source>
+                    <UriImageSource Uri="{Binding Creator.ProfilePictureLocation}"
+                    CacheValidity="14" 
+			        CachingEnabled="true"
+                    />
+                </ImageButton.Source>
+            </ImageButton>
+                         
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

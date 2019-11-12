@@ -14,7 +14,7 @@ namespace StudyBuddyApp
             InitializeComponent();
 
 
-            MainPage = new HelpRequestViewPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

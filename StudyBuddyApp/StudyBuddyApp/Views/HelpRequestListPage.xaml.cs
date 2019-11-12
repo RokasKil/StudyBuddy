@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using StudyBuddy.Entity;
 using StudyBuddy.Network;
 using StudyBuddyApp.Models;
+using StudyBuddyApp.ViewModels;
 
 namespace StudyBuddyApp.Views
 {
@@ -18,13 +20,14 @@ namespace StudyBuddyApp.Views
     {
         public ObservableCollection<HelpRequestModel> Items { get; set; }
 
+        private readonly IList<User> HelpRequestModels = new List<User>();
         public HelpRequestListPage()
         {
             InitializeComponent();
 
             Items = new ObservableCollection<HelpRequestModel>
             {
-                new HelpRequestModel{ Title = "test1", Description = "sfdlk4dl", Name = "Shrekas", Category = "kategorija", Date = "61513ad5 a6d "  },
+                new HelpRequestModel{ Title = "Matematines Logikos Kolis", Description = "Kaip is kolio surinkti maksimalu invertinima? Mock Mock Mock Mock Mock Mock", Name = "Pukis Pukinskas", Category = "Matematine Logika", Date = "12/12/2019" },
                 new HelpRequestModel{ Title = "tesasdt2", Description = "sf3kdl", Name = "testas",  },
                 new HelpRequestModel{ Title = "test3", Description = "sfd2lkdl", Name = "asdg" },
                 new HelpRequestModel{ Title = "test4", Description = "sf1dlkdl", Name = "jljksd"  },
@@ -44,7 +47,7 @@ namespace StudyBuddyApp.Views
                         Items.Clear();
                         requests.ForEach(request =>
                         {
-                            Items.Add(new HelpRequestModel
+                            var helpRequestModel = new HelpRequestModel
                             {
                                 Title = request.Title,
                                 Description = request.Description,
@@ -52,7 +55,10 @@ namespace StudyBuddyApp.Views
                                 Category = request.Category,
                                 Date = request.Timestamp.ToLongDateString(),
                                 HelpRequest = request
-                            });
+                            };
+                            
+                            Items.Add(helpRequestModel);
+                            HelpRequestModels.Add(users[request.CreatorUsername]);
                         });
                         HelpRequestList.IsRefreshing = false;
                         //HelpRequestList.ItemsSource = null;
@@ -75,10 +81,12 @@ namespace StudyBuddyApp.Views
             if (e.Item == null)
                 return;
 
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
+            var selectedItem = ((ListView)sender).SelectedItem as HelpRequestModel;
+            var user = HelpRequestModels.ToList().Find(x => x.Username == selectedItem.HelpRequest.CreatorUsername);
+            
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+            await Navigation.PushAsync(new NavigationPage(new HelpRequestViewPage(new HelpRequestViewPageModel(user, selectedItem))));
         }
     }
 }
