@@ -11,7 +11,8 @@ namespace StudyBuddyApp.Models
         About,
         LogOut,
         HelpRequestList,
-        ConversationListPage
+        ConversationListPage,
+        HelpRequestAddPage
     }
     public class HomeMenuItem
     {

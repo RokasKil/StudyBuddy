@@ -23,17 +23,29 @@ namespace StudyBuddyApp.Views
             InitializeComponent();
 
             Items = new ObservableCollection<HelpRequestModel>
-            {
-                new HelpRequestModel{ Title = "test1", Description = "sfdlk4dl", Name = "Shrekas", Category = "kategorija", Date = "61513ad5 a6d "  },
-                new HelpRequestModel{ Title = "tesasdt2", Description = "sf3kdl", Name = "testas",  },
-                new HelpRequestModel{ Title = "test3", Description = "sfd2lkdl", Name = "asdg" },
-                new HelpRequestModel{ Title = "test4", Description = "sf1dlkdl", Name = "jljksd"  },
-            };
-			
-			HelpRequestList.ItemsSource = Items;
+            {};
+            HelpRequestListGetter();
+
+            HelpRequestList.ItemsSource = Items;
         }
 
         private void HelpRequestList_Refreshing(object sender, EventArgs e)
+        {
+            HelpRequestListGetter();
+        }
+
+        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item == null)
+                return;
+
+            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+
+            //Deselect Item
+            ((ListView)sender).SelectedItem = null;
+        }
+
+        private void HelpRequestListGetter()
         {
             new HelpRequestGetter(LocalUserManager.LocalUser, (status, requests, users) =>
             {
@@ -68,17 +80,6 @@ namespace StudyBuddyApp.Views
                 }
 
             }).get(true);
-        }
-
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (e.Item == null)
-                return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
         }
     }
 }

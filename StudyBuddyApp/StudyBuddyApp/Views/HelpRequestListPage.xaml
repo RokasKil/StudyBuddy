@@ -18,8 +18,10 @@
                 <ViewCell>
                     <StackLayout>
                         <Label Text="{Binding Title}" 
+                               FontSize="Large"
                         />
                         <Label Text="{Binding Description}" 
+                               
                         />
                         <Label Text="{Binding Name}"
                         />
