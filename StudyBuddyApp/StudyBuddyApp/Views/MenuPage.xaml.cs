@@ -26,6 +26,10 @@ namespace StudyBuddyApp.Views
                 new HomeMenuItem {Id = MenuItemType.LogOut, Title="Atsijungti" }
             };
 
+            //Jei dėstytojas, tai pridedame jam reikalingą kategorijų sąrašą
+            if (LocalUserManager.LocalUser.IsLecturer)
+                menuItems.Insert(3, new HomeMenuItem { Id = MenuItemType.CategoryList, Title = "Kategorijos" });
+
             ListViewMenu.ItemsSource = menuItems;
 
             ListViewMenu.SelectedItem = menuItems[0];
