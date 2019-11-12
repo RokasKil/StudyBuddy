@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudyBuddyApp.Views.ConversationPage"
              xmlns:local="clr-namespace:StudyBuddyApp.DataTemplates"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             Disappearing="ContentPage_Disappearing">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="LeftTemplate">

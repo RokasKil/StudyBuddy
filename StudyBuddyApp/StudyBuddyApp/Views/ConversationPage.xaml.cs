@@ -148,5 +148,10 @@ namespace StudyBuddyApp.Views
         {
             MessageListView.SelectedItem = null;
         }
+
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            MessagingCenter.Send(this, "ChatClosed");
+        }
     }
 }

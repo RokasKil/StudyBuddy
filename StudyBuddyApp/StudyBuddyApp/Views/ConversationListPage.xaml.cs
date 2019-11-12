@@ -20,6 +20,9 @@ namespace StudyBuddyApp.Views
     public partial class ConversationListPage : ContentPage
     {
         public ObservableCollection<ConversationModel> Items { get; set; }
+
+        public bool ChatOpen { get; set; } = false;
+
         Dictionary<string, User> users;
         public ConversationListPage()
         {
@@ -37,6 +40,11 @@ namespace StudyBuddyApp.Views
             {
                 //This might be a bit expensive (probably very expensive)
                 ConversationListView_Refreshing(null, null);
+            });
+
+            MessagingCenter.Subscribe<ConversationPage>(this, "ChatClosed", (page) =>
+            {
+                ChatOpen = false;
             });
         }
 
@@ -78,12 +86,18 @@ namespace StudyBuddyApp.Views
             //If item is tapped opens the chat for it
             if (e.Item == null)
                 return;
+            ((ListView)sender).SelectedItem = null;
+            if (ChatOpen)
+            {
+                
+                return;
+            }
+            ChatOpen = true;
             Navigation.PushModalAsync(
                 new NavigationPage(
                     new ConversationPage(
                         new ViewModels.ConversationViewModel(((ConversationModel)e.Item).Conversation, users))));
             //Deselect Item
-            ((ListView)sender).SelectedItem = null;
         }
     }
 }

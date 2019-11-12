@@ -140,6 +140,7 @@ namespace StudyBuddyApp.Droid.Services
             {
                 messageGetter.StopGetting();
                 messageSender.StopSending();
+                messageGetter.GetMessageResult = null;
                 StopSelf();
             });
 
