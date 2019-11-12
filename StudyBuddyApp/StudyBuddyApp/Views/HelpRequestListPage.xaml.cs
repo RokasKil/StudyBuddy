@@ -20,20 +20,17 @@ namespace StudyBuddyApp.Views
     {
         public ObservableCollection<HelpRequestModel> Items { get; set; }
 
-        private readonly IList<User> HelpRequestModels = new List<User>();
+        private Dictionary<string, User> users = null;
         public HelpRequestListPage()
         {
             InitializeComponent();
 
             Items = new ObservableCollection<HelpRequestModel>
             {
-                new HelpRequestModel{ Title = "Matematines Logikos Kolis", Description = "Kaip is kolio surinkti maksimalu invertinima? Mock Mock Mock Mock Mock Mock", Name = "Pukis Pukinskas", Category = "Matematine Logika", Date = "12/12/2019" },
-                new HelpRequestModel{ Title = "tesasdt2", Description = "sf3kdl", Name = "testas",  },
-                new HelpRequestModel{ Title = "test3", Description = "sfd2lkdl", Name = "asdg" },
-                new HelpRequestModel{ Title = "test4", Description = "sf1dlkdl", Name = "jljksd"  },
             };
-			
 			HelpRequestList.ItemsSource = Items;
+            HelpRequestList.IsRefreshing = true;
+            HelpRequestList_Refreshing(null, null);
         }
 
         private void HelpRequestList_Refreshing(object sender, EventArgs e)
@@ -45,6 +42,7 @@ namespace StudyBuddyApp.Views
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         Items.Clear();
+                        this.users = users;
                         requests.ForEach(request =>
                         {
                             var helpRequestModel = new HelpRequestModel
@@ -58,7 +56,6 @@ namespace StudyBuddyApp.Views
                             };
                             
                             Items.Add(helpRequestModel);
-                            HelpRequestModels.Add(users[request.CreatorUsername]);
                         });
                         HelpRequestList.IsRefreshing = false;
                         //HelpRequestList.ItemsSource = null;
@@ -82,11 +79,11 @@ namespace StudyBuddyApp.Views
                 return;
 
             var selectedItem = ((ListView)sender).SelectedItem as HelpRequestModel;
-            var user = HelpRequestModels.ToList().Find(x => x.Username == selectedItem.HelpRequest.CreatorUsername);
+            var user = users[selectedItem.HelpRequest.CreatorUsername];
             
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
-            await Navigation.PushAsync(new NavigationPage(new HelpRequestViewPage(new HelpRequestViewPageModel(user, selectedItem))));
+            await Navigation.PushAsync(new HelpRequestViewPage(new HelpRequestViewPageModel(user, selectedItem)));
         }
     }
 }
