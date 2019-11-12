@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using StudyBuddyApp.Services;
 using Android.Content;
 using StudyBuddyApp.Droid.Services;
+using Plugin.CurrentActivity;
 
 namespace StudyBuddyApp.Droid
 {
@@ -20,6 +21,7 @@ namespace StudyBuddyApp.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            CrossCurrentActivity.Current.Activity = this;
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

@@ -78,7 +78,7 @@ namespace StudyBuddyApp.Views
             //If item is tapped opens the chat for it
             if (e.Item == null)
                 return;
-            Navigation.PushModalAsync(
+            await Navigation.PushModalAsync(
                 new NavigationPage(
                     new ConversationPage(
                         new ViewModels.ConversationViewModel(((ConversationModel)e.Item).Conversation, users))));
