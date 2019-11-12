@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudyBuddy.Entity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -24,6 +25,7 @@ namespace StudyBuddyApp.Models
         public string Date { get; set; }
         public string Message { get; set; }
         public bool RightSide { get; set; }
+        public Message MessageObject { get; set; }
 
         public GridLength FirstWidth
         {
