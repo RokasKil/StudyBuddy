@@ -4,7 +4,8 @@
              x:Class="StudyBuddyApp.LoginPage" >
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" >
-            <Label Text="StudyBuddyApp"
+            <Image 
+                Source="@drawable/ic_study_buddyd"
                 VerticalOptions="Center" 
                 HorizontalOptions="CenterAndExpand" />
             <Entry Placeholder="Username"
