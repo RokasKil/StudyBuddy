@@ -10,6 +10,8 @@ using Xamarin.Forms.Xaml;
 using StudyBuddy.Entity;
 using StudyBuddy.Network;
 using StudyBuddyApp.Models;
+using StudyBuddyApp.ViewModels;
+using StudyBuddyShared.Utility.Extensions;
 
 namespace StudyBuddyApp.Views
 {
@@ -23,17 +25,29 @@ namespace StudyBuddyApp.Views
             InitializeComponent();
 
             Items = new ObservableCollection<HelpRequestModel>
-            {
-                new HelpRequestModel{ Title = "test1", Description = "sfdlk4dl", Name = "Shrekas", Category = "kategorija", Date = "61513ad5 a6d "  },
-                new HelpRequestModel{ Title = "tesasdt2", Description = "sf3kdl", Name = "testas",  },
-                new HelpRequestModel{ Title = "test3", Description = "sfd2lkdl", Name = "asdg" },
-                new HelpRequestModel{ Title = "test4", Description = "sf1dlkdl", Name = "jljksd"  },
-            };
-			
-			HelpRequestList.ItemsSource = Items;
+            {};
+            HelpRequestListGetter();
+
+            HelpRequestList.ItemsSource = Items;
         }
 
         private void HelpRequestList_Refreshing(object sender, EventArgs e)
+        {
+            HelpRequestListGetter();
+        }
+
+        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item == null)
+                return;
+
+            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+
+            //Deselect Item
+            ((ListView)sender).SelectedItem = null;
+        }
+
+        private void HelpRequestListGetter()
         {
             new HelpRequestGetter(LocalUserManager.LocalUser, (status, requests, users) =>
             {
@@ -50,7 +64,7 @@ namespace StudyBuddyApp.Views
                                 Description = request.Description,
                                 Name = users[request.CreatorUsername].FirstName + " " + users[request.CreatorUsername].LastName,
                                 Category = request.Category,
-                                Date = request.Timestamp.ToLongDateString(),
+                                Date = request.Timestamp.ToFullDate(),
                                 HelpRequest = request
                             });
                         });
@@ -70,15 +84,9 @@ namespace StudyBuddyApp.Views
             }).get(true);
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        async private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            if (e.Item == null)
-                return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+            await Navigation.PushModalAsync(new NavigationPage(new HelpRequestAddPage()));
         }
     }
 }
