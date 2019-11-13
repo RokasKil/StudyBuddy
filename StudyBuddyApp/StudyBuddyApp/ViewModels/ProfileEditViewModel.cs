@@ -12,8 +12,8 @@ namespace StudyBuddyApp.ViewModels
         public ProfileEditViewModel(LocalUser localuser)
         {
             Title = "Redaguoti profilį";
-            this.user = localuser;
-            this.ImageLocation = user.ProfilePictureLocation;
+            this.User = localuser;
+            this.ImageLocation = User.ProfilePictureLocation;
         }
     }
 }
