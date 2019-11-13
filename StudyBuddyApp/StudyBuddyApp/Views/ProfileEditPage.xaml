@@ -5,39 +5,47 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="StudyBuddyApp.ProfileEditPage"
-             Title="Redaguoti profilį">
+             Title="{Binding Title}">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-            <Image
+                <Image
                 x:Name="ProfilePicture"
-                HorizontalOptions="Start"/>
-            <Button
+                HorizontalOptions="Start"
+                Aspect="AspectFit">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding ImageLocation}" 
+			                    CacheValidity="14" 
+			                    CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
+                <Button
                 x:Name="buttonChangeProfilePicture"
                 Text="Keisti profilio nuotrauką"
                 Clicked="buttonChangeProfilePicture_Clicked"/>
-            <Label
+                <Label
                 x:Name="labelFirstName"
                 Text="Vardas"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start"
                 />
-            <Label
+                <Label
                 x:Name="labelLastName"
                 Text="Pavardė"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start"/>
-            <Entry
+                <Entry
                 x:Name="entryFirstName"
                 Placeholder="Vardas"/>
-            <Entry
+                <Entry
                 x:Name="entryLastName"
                 Placeholder="Pavardė"/>
-            <Button
+                <Button
                 x:Name="buttonSaveEdit"
                 Text="Išsaugoti pakeitimus"
                 Clicked="buttonSaveEdit_Clicked" 
                 VerticalOptions="End"/>
+                <ActivityIndicator x:Name="LoadingIndicator"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

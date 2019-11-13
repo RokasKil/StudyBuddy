@@ -14,28 +14,28 @@ using Plugin.Media.Abstractions;
 using Plugin.Permissions.Abstractions;
 using Plugin.Permissions;
 using System.IO;
+using StudyBuddyApp.Utility;
+using StudyBuddyApp.ViewModels;
 
 namespace StudyBuddyApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfileEditPage : ContentPage
     {
-        LocalUser localUser;
+        ProfileEditViewModel viewModel;
         Image selectedImage;
+        LocalUser localUser;
         public ProfileEditPage()
         {
             InitializeComponent();
         }
 
-        public ProfileEditPage(LocalUser localUser)
+        public ProfileEditPage(ProfileEditViewModel viewModel)
         {
-
-            this.localUser = localUser;
             InitializeComponent();
-            labelFirstName.Text = localUser.FirstName;// Negerai, naudok ViewModel binding
-            labelLastName.Text = localUser.LastName;
-            ProfilePicture.Source = localUser.ProfilePictureLocation;
+            BindingContext = this.viewModel = viewModel;
             selectedImage = new Image();
+            localUser = LocalUserManager.LocalUser;
         }
 
         private void buttonSaveEdit_Clicked(object sender, EventArgs e)
@@ -43,6 +43,7 @@ namespace StudyBuddyApp
 
             if (entryFirstName.Text != null || entryLastName.Text != null)
             {
+                LoadingIndicator.IsRunning = true;
                 if (entryFirstName.Text == null) entryFirstName.Text = localUser.FirstName;
                 if (entryLastName.Text == null) entryLastName.Text = localUser.LastName;
                 new UserUpdater(localUser,
@@ -50,19 +51,21 @@ namespace StudyBuddyApp
                     {
                         Device.BeginInvokeOnMainThread(() => //Grįžtama į main Thread !! SVARBU
                         {
-
                             if (status == UserUpdater.GetStatus.Success) //Pavyko
                             {
                                 localUser.FirstName = firstName;
                                 localUser.LastName = lastName;
                                 localUser.OnUpdateHandler?.Invoke(localUser);
+                                DependencyService.Get<IToast>().LongToast("Pakeitimai išsaugoti");
                             }
                             else //Ne
                             {
                                 Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
+                                LoadingIndicator.IsRunning = false;
                             }
                         });
                     }).get(entryFirstName.Text, entryLastName.Text);
+                LoadingIndicator.IsRunning = false;
             }
         }
 
@@ -93,6 +96,7 @@ namespace StudyBuddyApp
             selectedImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
             if (selectedImage != null)
             {
+                LoadingIndicator.IsRunning = true;
                 var base64String = Convert.ToBase64String(ReadFully(selectedImageFile.GetStream()));
 
                 new ProfilePictureUpdater(localUser,
@@ -103,21 +107,22 @@ namespace StudyBuddyApp
                         if (status == ProfilePictureUpdater.GetStatus.Success) //Pavyko
                         {
                             localUser.ProfilePictureLocation = pictureLocation;
-                            ProfilePicture.Source = pictureLocation; // Naudok ViewModel binding
+                            ProfilePicture.Source = pictureLocation;
                             localUser.OnUpdateHandler?.Invoke(localUser);
-
+                            DependencyService.Get<IToast>().LongToast("Nuotrauka įkelta");
                         }
                         else //Ne
                         {
                             Console.WriteLine(status);
                             DisplayAlert("Nepavyko įkelti pic:(", "oof", "OK");
+                            LoadingIndicator.IsRunning = false;
                         }
                     });
                 }
                 ).get(base64String);
+                LoadingIndicator.IsRunning = false;
             }
         }
-
         public static byte[] ReadFully(Stream input)
         {
             using (MemoryStream ms = new MemoryStream())
