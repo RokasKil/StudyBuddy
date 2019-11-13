@@ -32,7 +32,7 @@ namespace StudyBuddyApp
 
             this.localUser = localUser;
             InitializeComponent();
-            labelFirstName.Text = localUser.FirstName;
+            labelFirstName.Text = localUser.FirstName;// Negerai, naudok ViewModel binding
             labelLastName.Text = localUser.LastName;
             ProfilePicture.Source = localUser.ProfilePictureLocation;
             selectedImage = new Image();
@@ -52,13 +52,13 @@ namespace StudyBuddyApp
                         {
 
                             if (status == UserUpdater.GetStatus.Success) //Pavyko
-                        {
+                            {
                                 localUser.FirstName = firstName;
                                 localUser.LastName = lastName;
                                 localUser.OnUpdateHandler?.Invoke(localUser);
                             }
                             else //Ne
-                        {
+                            {
                                 Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
                             }
                         });
@@ -86,12 +86,11 @@ namespace StudyBuddyApp
             //if you want to take a picture use TakePhotoAsync instead of PickPhotoAsync
             
             var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
-            if (selectedImage == null)
+            if (selectedImageFile == null)
             {
                 await DisplayAlert("Error", "Could not get the image, please try again", "Ok");
             }
             selectedImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
-
             if (selectedImage != null)
             {
                 var base64String = Convert.ToBase64String(ReadFully(selectedImageFile.GetStream()));
@@ -104,7 +103,7 @@ namespace StudyBuddyApp
                         if (status == ProfilePictureUpdater.GetStatus.Success) //Pavyko
                         {
                             localUser.ProfilePictureLocation = pictureLocation;
-                            ProfilePicture.Source = pictureLocation;
+                            ProfilePicture.Source = pictureLocation; // Naudok ViewModel binding
                             localUser.OnUpdateHandler?.Invoke(localUser);
 
                         }
