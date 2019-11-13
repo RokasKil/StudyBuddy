@@ -4,14 +4,29 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="StudyBuddyApp.Views.CategoryListPage">
-  <ListView x:Name="MyListView"
+             x:Class="StudyBuddyApp.Views.CategoryListPage"
+             Appearing="CategoryListPage_Refreshing">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Pridėti" Clicked="ToolbarItem_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+
+    <ListView x:Name="CategoryList"
             ItemsSource="{Binding Items}"
             HasUnevenRows="true"
             ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
+            CachingStrategy="RecycleElement"
+            IsPullToRefreshEnabled="True"
+            Refreshing="CategoryListPage_Refreshing">
 
-      
+
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -21,6 +36,7 @@
                                FontAttributes="Bold"
                         />
                         <Label Text="{Binding Description}" 
+                               LineBreakMode="TailTruncation"
                         />
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding CreatedDate}"

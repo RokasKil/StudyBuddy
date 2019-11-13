@@ -21,12 +21,17 @@ namespace StudyBuddyApp.Views
             InitializeComponent();
 
             Items = new ObservableCollection<CategoryModel>
-            {
-                //itemai;pp
-            };
+            { };
 
-            MyListView.ItemsSource = Items;
+            GetCategories();
 
+            CategoryList.ItemsSource = Items;
+
+        }
+
+        //pasiima kategorijas iš DB
+        void GetCategories()
+        {
             new CategoriesGetter(LocalUserManager.LocalUser, async (status, categories) =>
             {
                 if (status == CategoriesGetter.GetStatus.Success)
@@ -57,7 +62,6 @@ namespace StudyBuddyApp.Views
 
             }).get();
         }
-
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
@@ -67,6 +71,18 @@ namespace StudyBuddyApp.Views
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+
+        //paspaudus 'Naujas' pereina į langą, kuriame galima pridėti naują kategoriją
+        private async void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new CategoryAddPage()));
+        }
+
+        private void CategoryListPage_Refreshing(object sender, EventArgs e)
+        {
+            GetCategories();
+            CategoryList.IsRefreshing = false;
         }
     }
 }
