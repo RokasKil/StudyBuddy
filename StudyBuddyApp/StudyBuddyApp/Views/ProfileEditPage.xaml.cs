@@ -61,11 +61,10 @@ namespace StudyBuddyApp
                             else //Ne
                             {
                                 Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
-                                LoadingIndicator.IsRunning = false;
                             }
+                            LoadingIndicator.IsRunning = false;
                         });
                     }).get(entryFirstName.Text, entryLastName.Text);
-                LoadingIndicator.IsRunning = false;
             }
         }
 
@@ -115,12 +114,12 @@ namespace StudyBuddyApp
                         {
                             Console.WriteLine(status);
                             DisplayAlert("Nepavyko įkelti pic:(", "oof", "OK");
-                            LoadingIndicator.IsRunning = false;
                         }
+                        LoadingIndicator.IsRunning = false;
+
                     });
                 }
                 ).get(base64String);
-                LoadingIndicator.IsRunning = false;
             }
         }
         public static byte[] ReadFully(Stream input)
