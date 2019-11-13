@@ -4,9 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="StudyBuddyApp.Views.CategoryAddPage">
+             x:Class="StudyBuddyApp.Views.CategoryAddPage"
+             Title="{Binding Title}"
+             Disappearing="CategoryAddPage_Disappearing">
+    
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Išsaugoti" Clicked="Save_Clicked">
+        <ToolbarItem x:Name="SaveButton" Text="Išsaugoti" Clicked="Save_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="save.png"/>

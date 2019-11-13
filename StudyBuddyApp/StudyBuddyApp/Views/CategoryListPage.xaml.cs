@@ -27,6 +27,11 @@ namespace StudyBuddyApp.Views
 
             CategoryList.ItemsSource = Items;
 
+            MessagingCenter.Subscribe<CategoryAddPage>(this, "AddPageClosed", (addPage) =>
+            {
+                AddButton.IsEnabled = true;
+            });
+
         }
 
         //pasiima kategorijas iš DB
@@ -73,9 +78,10 @@ namespace StudyBuddyApp.Views
             ((ListView)sender).SelectedItem = null;
         }
 
-        //paspaudus 'Naujas' pereina į langą, kuriame galima pridėti naują kategoriją
+        //paspaudus 'Pridėti' pereina į langą, kuriame galima pridėti naują kategoriją
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
+            AddButton.IsEnabled = false;
             await Navigation.PushModalAsync(new NavigationPage(new CategoryAddPage()));
         }
 

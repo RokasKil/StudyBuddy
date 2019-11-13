@@ -22,6 +22,8 @@ namespace StudyBuddyApp.Views
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
+            SaveButton.IsEnabled = false;
+
             if (Title.Text.Length == 0)
             {
                 await DisplayAlert("Klaida", "Nenurodytas kategorijos pavadinimas", "OK");
@@ -34,9 +36,6 @@ namespace StudyBuddyApp.Views
             }
 
             AddNewCategory();
-            DependencyService.Get<IToast>().LongToast("Kategorija sėkmingai pridėta");
-            await Navigation.PopModalAsync();
-
         }
 
         private void AddNewCategory()
@@ -46,29 +45,34 @@ namespace StudyBuddyApp.Views
             var categoryManager = new CategoryManager(LocalUserManager.LocalUser);
             categoryManager.AddCategoryResult += (status, category) =>
             {
-                Device.BeginInvokeOnMainThread(() =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
                     if (status == CategoryManager.ManagerStatus.Success)
                     {
-                        Console.WriteLine("Success");
+                        DependencyService.Get<IToast>().LongToast("Kategorija sėkmingai pridėta");
+                        await Navigation.PopModalAsync();
                     }
                     else
                     {
-                        Console.WriteLine("Epic fail");
+                        DependencyService.Get<IToast>().LongToast("Kategorijos nepavyko pridėti");
+                        SaveButton.IsEnabled = true;
                     }
                 });
             };
             categoryManager.addCategory(new Category
-            {
+                {
+                  Title = Title.Text,
+                  Description = Description.Text,
+                  CreatorUsername = LocalUserManager.LocalUser.Username,
+                  CreatedDate = timestamp,
+                  LastUpdatedDate = timestamp
+                }
+            );
+        }
 
-                Title = Title.Text,
-                Description = Description.Text,
-                CreatorUsername = LocalUserManager.LocalUser.Username,
-                CreatedDate = timestamp,
-                LastUpdatedDate = timestamp
-
-            }
-                ); ;
+        private void CategoryAddPage_Disappearing(object sender, EventArgs e)
+        {
+            MessagingCenter.Send(this, "AddPageClosed");
         }
     }
 }

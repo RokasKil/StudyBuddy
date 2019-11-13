@@ -5,10 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="StudyBuddyApp.Views.CategoryListPage"
-             Appearing="CategoryListPage_Refreshing">
+             Appearing="CategoryListPage_Refreshing"
+             Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Pridėti" Clicked="ToolbarItem_Clicked">
+        <ToolbarItem x:Name="AddButton" Text="Pridėti" Clicked="ToolbarItem_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="add.png"/>
