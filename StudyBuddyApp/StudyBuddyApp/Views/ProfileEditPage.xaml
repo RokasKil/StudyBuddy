@@ -25,13 +25,13 @@
                 Clicked="buttonChangeProfilePicture_Clicked"/>
                 <Label
                 x:Name="labelFirstName"
-                Text="Vardas"
+                Text="{Binding User.FirstName}"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start"
                 />
                 <Label
                 x:Name="labelLastName"
-                Text="Pavardė"
+                Text="{Binding User.LastName}"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start"/>
                 <Entry

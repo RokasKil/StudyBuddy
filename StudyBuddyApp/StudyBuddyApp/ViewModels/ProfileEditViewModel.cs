@@ -7,7 +7,7 @@ namespace StudyBuddyApp.ViewModels
 {
     public class ProfileEditViewModel : BaseViewModel
     {
-        public User user;
+        public User User { get; set; }
         public string ImageLocation { get; set; }
         public ProfileEditViewModel(LocalUser localuser)
         {
