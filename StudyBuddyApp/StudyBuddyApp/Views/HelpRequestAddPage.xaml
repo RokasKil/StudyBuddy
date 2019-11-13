@@ -8,14 +8,14 @@
              Title="{Binding Title}">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked">
+        <ToolbarItem Text="Grįžti" Clicked="Cancel_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="cancel.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-        <ToolbarItem Text="Save" Clicked="Save_Clicked">
+        <ToolbarItem Text="Siųsti" Clicked="Save_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="save.png"/>
@@ -37,10 +37,12 @@
             
             <Entry 
                 x:Name="Title"
+                Text=""
                 Placeholder="Problemos pavadinimas" />
             
             <Editor 
                 x:Name="Description"
+                Text=""
                 Placeholder="Problemos apibūdinimas"
                 VerticalOptions="FillAndExpand"
                 AutoSize="Disabled"/>

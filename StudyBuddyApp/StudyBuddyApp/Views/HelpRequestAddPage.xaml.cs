@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using StudyBuddy.Entity;
-
+using StudyBuddyApp.Utility;
 
 namespace StudyBuddyApp.Views
 {
@@ -19,6 +19,8 @@ namespace StudyBuddyApp.Views
     {
         public ObservableCollection<CategorieModel> Items { get; set; }
 
+        //public HelpRequest helpRequest { get; set; }
+
         HelpRequestModel requestModel;
 
         public HelpRequestAddPage()
@@ -26,6 +28,7 @@ namespace StudyBuddyApp.Views
             InitializeComponent();
             Items = new ObservableCollection<CategorieModel>
             { };
+            //helpRequest = new HelpRequest { };
             CategorieListGetter();
 
             BindingContext = requestModel = new HelpRequestModel();
@@ -85,8 +88,8 @@ namespace StudyBuddyApp.Views
 
             helpRequestManager.postHelpRequest(new HelpRequest
             {
-                Title = Description.Text,
-                Description = Title.Text,
+                Title = Title.Text,
+                Description = Description.Text,
                 CreatorUsername = LocalUserManager.LocalUser.Username,
                 Category = Items[CategoryList.SelectedIndex].Title
             });
@@ -95,8 +98,25 @@ namespace StudyBuddyApp.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
+            if(CategoryList.SelectedIndex == -1)
+            {
+                await DisplayAlert("Nepavyko", "Kategorijos laukas yra privalomas", "OK");
+                return;
+            }
+            else if(Title.Text.Length == 0)
+            {
+                await DisplayAlert("Nepavyko", "Problemos pavadinimo laukas yra privalomas", "OK");
+                return;
+            }
+            else if (Description.Text.Length == 0)
+            {
+                await DisplayAlert("Nepavyko", "Problemos apibūdinimo laukas yra privalomas", "OK");
+                return;
+            }
+
             //MessagingCenter.Send(this, "AddItem", Item);
             SendNewHelpRequest();
+            DependencyService.Get<IToast>().LongToast("Prašymas sėkmingai išsiųstas");
             await Navigation.PopModalAsync();
         }
 
