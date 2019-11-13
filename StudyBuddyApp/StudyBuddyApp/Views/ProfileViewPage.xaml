@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StudyBuddyApp.Views.ProfileViewPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image
+                x:Name="ProfilePicture"
+                Aspect="AspectFill">
+                <Image.Source>
+                    <UriImageSource Uri="{Binding ImageLocation}" 
+			                    CacheValidity="14" 
+			                    CachingEnabled="true"/>
+                </Image.Source>
+            </Image>
+            <Label
+                x:Name="labelFirstName"
+                Text="{Binding FirstName}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"/>
+            <Label
+                x:Name="labelLastName"
+                Text="{Binding LastName}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"/>
+            <Label 
+                x:Name="labelUserName"
+                Text="{Binding UserName}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"/>
+            <ProgressBar
+                Progress="{Binding KarmaPoints}"/>
+            <Button
+                x:Name="ViewUserReviews"
+                Clicked="ViewUserReviews_Clicked"
+                Text="Peržiūrėti atsiliepimus"/>
+            <Button
+                x:Name="WriteUserReview"
+                Clicked="WriteUserReview_Clicked"
+                Text="Parašyti atsiliepimą"/>
+            <Button
+                x:Name="StartConversation"
+                Clicked="StartConversation_Clicked"
+                Text="Pradėti pokalbį"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
