@@ -22,8 +22,7 @@ namespace StudyBuddyApp.Views
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            SaveButton.IsEnabled = false;
-
+            
             if (Title.Text.Length == 0)
             {
                 await DisplayAlert("Klaida", "Nenurodytas kategorijos pavadinimas", "OK");
@@ -34,6 +33,7 @@ namespace StudyBuddyApp.Views
                 await DisplayAlert("Klaida", "Nenurodytas kategorijos aprašymas", "OK");
                 return;
             }
+            SaveButton.IsEnabled = false;
 
             AddNewCategory();
         }
