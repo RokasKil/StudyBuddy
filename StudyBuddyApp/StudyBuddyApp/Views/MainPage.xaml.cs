@@ -47,9 +47,6 @@ namespace StudyBuddyApp.Views
                     case (int)MenuItemType.HelpRequestList:
                         MenuPages.Add(id, new NavigationPage(new HelpRequestListPage()));
                         break;
-                    case (int)MenuItemType.HelpRequestAddPage:
-                        MenuPages.Add(id, new NavigationPage(new HelpRequestAddPage()));
-                        break;
                     case (int)MenuItemType.ConversationListPage:
                         MenuPages.Add(id, new NavigationPage(new ConversationListPage()));
                         break;

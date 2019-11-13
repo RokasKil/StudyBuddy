@@ -22,7 +22,6 @@ namespace StudyBuddyApp.Views
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" },
                 new HomeMenuItem {Id = MenuItemType.HelpRequestList, Title="Pagalbos prašymai" },
-                new HomeMenuItem {Id = MenuItemType.HelpRequestAddPage, Title="Prašyti pagalbos" },
                 new HomeMenuItem {Id = MenuItemType.ConversationListPage, Title="Pokalbiai" },
                 new HomeMenuItem {Id = MenuItemType.LogOut, Title="Atsijungti" }
             };

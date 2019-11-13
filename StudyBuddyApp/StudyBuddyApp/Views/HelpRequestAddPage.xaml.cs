@@ -65,13 +65,38 @@ namespace StudyBuddyApp.Views
 
         private void SendNewHelpRequest()
         {
-            
+            var helpRequestManager = new HelpRequestManager(LocalUserManager.LocalUser);
+            helpRequestManager.PostHelpRequestResult += (status, helprequest) =>
+            {
+               
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    if (status == HelpRequestManager.ManagerStatus.Success)
+                    {
+                        Console.WriteLine("Success");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Epic fail");
+                    }
+                });
+                
+            };
+
+            helpRequestManager.postHelpRequest(new HelpRequest
+            {
+                Title = Description.Text,
+                Description = Title.Text,
+                CreatorUsername = LocalUserManager.LocalUser.Username,
+                Category = Items[CategoryList.SelectedIndex].Title
+            });
 
         }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
+            //MessagingCenter.Send(this, "AddItem", Item);
+            SendNewHelpRequest();
             await Navigation.PopModalAsync();
         }
 

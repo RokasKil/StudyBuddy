@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudyBuddyApp.Views.HelpRequestListPage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+              >
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="naujas" Clicked="ToolbarItem_Clicked">
@@ -20,7 +21,10 @@
             CachingStrategy="RecycleElement"
             HasUnevenRows="true"
             IsPullToRefreshEnabled="True"
-            Refreshing="HelpRequestList_Refreshing">
+            Refreshing="HelpRequestList_Refreshing"
+            OnA
+            >
+            
 
 
 
