@@ -12,6 +12,10 @@
                 x:Name="ProfilePicture"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Button 
+                x:Name="buttonEditProfile"
+                Text="Redaguoti profilį"
+                Clicked="buttonEditProfile_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

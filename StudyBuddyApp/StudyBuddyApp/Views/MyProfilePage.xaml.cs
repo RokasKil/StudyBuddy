@@ -19,5 +19,10 @@ namespace StudyBuddyApp.Views
             Name.Text = user.FirstName + " " + user.LastName;
             ProfilePicture.Source = user.ProfilePictureLocation;
 		}
-	}
+
+        async void buttonEditProfile_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ProfileEditPage(LocalUserManager.LocalUser));
+        }
+    }
 }
