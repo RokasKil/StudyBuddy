@@ -91,6 +91,7 @@ namespace StudyBuddyShared.Network
                     {
                         messages[conv.Id].Add(new Message
                         {
+                            Id = message["id"].ToObject<int>(),
                             Username = message["username"].ToString(),
                             Text = message["message"].ToString(),
                             Timestamp = message["timestamp"].ToObject<long>(),
