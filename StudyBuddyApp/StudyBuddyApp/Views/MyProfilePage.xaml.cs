@@ -22,7 +22,7 @@ namespace StudyBuddyApp.Views
 
         async void buttonEditProfile_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ProfileEditPage(LocalUserManager.LocalUser));
+            await Navigation.PushAsync(new ProfileEditPage(new ViewModels.ProfileEditViewModel(LocalUserManager.LocalUser)));
         }
     }
 }
