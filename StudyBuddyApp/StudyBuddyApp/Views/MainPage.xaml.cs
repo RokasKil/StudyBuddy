@@ -56,7 +56,7 @@ namespace StudyBuddyApp.Views
                         break;
                     case (int)MenuItemType.LogOut:
                         Application.Current.Properties.Remove("PrivateKey");
-                        Application.Current.SavePropertiesAsync();
+                        await Application.Current.SavePropertiesAsync();
                         //Stops messaging service
                         MessagingCenter.Send(new MessagingTask(), MessagingTask.Stop);
                         App.Current.MainPage = new LoginPage();

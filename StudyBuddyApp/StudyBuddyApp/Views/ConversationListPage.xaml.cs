@@ -86,6 +86,7 @@ namespace StudyBuddyApp.Views
             //If item is tapped opens the chat for it
             if (e.Item == null)
                 return;
+                
             ((ListView)sender).SelectedItem = null;
             if (ChatOpen)
             {

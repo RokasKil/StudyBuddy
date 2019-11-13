@@ -52,7 +52,6 @@ namespace StudyBuddyApp
                         Application.Current.Properties["PrivateKey"] = user.PrivateKey;
                         Application.Current.SavePropertiesAsync();
                         App.Current.MainPage = new Views.MainPage();
-
                     }
                     else
                     {
