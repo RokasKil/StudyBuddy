@@ -11,6 +11,7 @@ using StudyBuddy.Entity;
 using StudyBuddy.Network;
 using StudyBuddyApp.Models;
 using StudyBuddyApp.ViewModels;
+using StudyBuddyShared.Utility.Extensions;
 
 namespace StudyBuddyApp.Views
 {
@@ -63,7 +64,7 @@ namespace StudyBuddyApp.Views
                                 Description = request.Description,
                                 Name = users[request.CreatorUsername].FirstName + " " + users[request.CreatorUsername].LastName,
                                 Category = request.Category,
-                                Date = request.Timestamp.ToLongDateString(),
+                                Date = request.Timestamp.ToFullDate(),
                                 HelpRequest = request
                             });
                         });

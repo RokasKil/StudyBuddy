@@ -17,7 +17,7 @@ namespace StudyBuddyApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HelpRequestAddPage : ContentPage
     {
-        public ObservableCollection<CategorieModel> Items { get; set; }
+        public ObservableCollection<CategoryModel> Items { get; set; }
 
         //public HelpRequest helpRequest { get; set; }
 
@@ -26,7 +26,7 @@ namespace StudyBuddyApp.Views
         public HelpRequestAddPage()
         {
             InitializeComponent();
-            Items = new ObservableCollection<CategorieModel>
+            Items = new ObservableCollection<CategoryModel>
             { };
             //helpRequest = new HelpRequest { };
             CategorieListGetter();
@@ -44,12 +44,12 @@ namespace StudyBuddyApp.Views
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         Items.Clear();
-                        categories.ForEach(categorie =>
+                        categories.ForEach(category =>
                         {
-                            Items.Add(new CategorieModel
+                            Items.Add(new CategoryModel
                             {
-                                Title = categorie.Title,
-                                category = categorie,
+                                Title = category.Title,
+                                Category = category,
                             });
                         });
                         //CategoryList.IsRefreshing = false;

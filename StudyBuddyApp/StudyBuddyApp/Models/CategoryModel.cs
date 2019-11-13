@@ -5,9 +5,9 @@ using System.Text;
 
 namespace StudyBuddyApp.Models
 {
-    public class CategorieModel
+    public class CategoryModel
     {
         public string Title { get; set; }
-        public Category category { get; set; }
+        public Category Category { get; set; }
     }
 }

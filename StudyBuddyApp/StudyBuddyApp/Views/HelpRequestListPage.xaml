@@ -14,18 +14,14 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    
-  <ListView x:Name="HelpRequestList"
+
+    <ListView x:Name="HelpRequestList"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement"
             HasUnevenRows="true"
             IsPullToRefreshEnabled="True"
             Refreshing="HelpRequestList_Refreshing">
-            
-
-
-
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -40,10 +36,11 @@
                         />
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding Category}" 
-                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalOptions="Start"
                                    />
                             <Label Text="{Binding Date}"
                                    HorizontalOptions="EndAndExpand"
+                                   HorizontalTextAlignment="End"
                                    />
                         </StackLayout>
                     </StackLayout>
