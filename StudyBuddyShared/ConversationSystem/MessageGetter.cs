@@ -24,7 +24,7 @@ namespace StudyBuddyShared.ConversationSystem
 
         public bool WaitingCall { get; set; } = true;
 
-        public MessageGetDelegate GetMessageResult { get; set; }
+        public MessageGetDelegate Result { get; set; }
 
         public bool Getting { get; private set; } = false;
 
@@ -44,7 +44,7 @@ namespace StudyBuddyShared.ConversationSystem
             {
                 new AllMessageGetter(PrivateKey, (status, conversations, messages, users) =>
                 {
-                    GetMessageResult?.Invoke(EnumConverter.Convert<MessageGetAllStatus>(status), conversations, messages, users);
+                    Result?.Invoke(EnumConverter.Convert<MessageGetAllStatus>(status), conversations, messages, users);
                 }).get(TimeStamp, GetUsers, WaitingCall);
 
                 return true;
@@ -67,7 +67,7 @@ namespace StudyBuddyShared.ConversationSystem
             }
             if(conversations != null && conversations.Count > 0)
                 TimeStamp = conversations[conversations.Count - 1].LastActivity;
-            GetMessageResult?.Invoke(EnumConverter.Convert<MessageGetAllStatus>(status), conversations, messages, users);
+            Result?.Invoke(EnumConverter.Convert<MessageGetAllStatus>(status), conversations, messages, users);
             if (status != AllMessageGetter.MessageStatus.Success)
             {
                 Thread.Sleep(TimeBetweenFailedCalls);

@@ -22,10 +22,10 @@ namespace StudyBuddyShared.AuthenticationSystem
 
     public interface IAuthenticator
     {
-        AuthenticateResultDelegate ResultDelegate { get; set; }
+        AuthenticateResultDelegate Result { get; set; } // Result callback
 
-        void Login(string username, string password);
+        void Login(string username, string password); // Login with username and password
 
-        void Login(string PrivateKey);
+        void Login(string PrivateKey); // Login with a known private key
     }
 }

@@ -25,7 +25,7 @@ namespace StudyBuddyShared.ConversationSystem
 
         public bool Sending { get; private set; } = false;
         
-        public MessagePostDelegate PostMessageResult { get; set; }
+        public MessagePostDelegate Result { get; set; }
 
         public Queue<Message> Queue { get; set; } = new Queue<Message>();
 
@@ -81,7 +81,7 @@ namespace StudyBuddyShared.ConversationSystem
             {
                 //Success
                 poster = null;
-                PostMessageResult?.Invoke(EnumConverter.Convert<MessageSendStatus>(status), messageBeingSent);
+                Result?.Invoke(EnumConverter.Convert<MessageSendStatus>(status), messageBeingSent);
                 if (Sending)
                 {
                     sendEnqueuedMessage();

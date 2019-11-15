@@ -36,7 +36,7 @@ namespace StudyBuddyShared.ConversationSystem
 
         bool StopSending();  // Stop sending
 
-        MessagePostDelegate PostMessageResult { get; set; } // Result delegate
+        MessagePostDelegate Result { get; set; } // Result delegate
 
         void AddMessageToQueue(Message message); // Add to queue
 

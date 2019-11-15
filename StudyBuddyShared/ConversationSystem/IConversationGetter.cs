@@ -21,7 +21,7 @@ namespace StudyBuddyShared.ConversationSystem
 
     public interface IConversationGetter : IPrivateKey
     {
-        GetConversationsDelegate GetConversationsResult { get; set; } // Result delegate
+        GetConversationsDelegate Result { get; set; } // Result delegate
 
         bool GetUsers { get; set; } // Should get the user dictionary
 

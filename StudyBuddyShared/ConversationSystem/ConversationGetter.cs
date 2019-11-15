@@ -18,7 +18,7 @@ namespace StudyBuddyShared.ConversationSystem
             this.PrivateKey = privateKey;
         }
 
-        public GetConversationsDelegate GetConversationsResult { get; set; }
+        public GetConversationsDelegate Result { get; set; }
 
         public bool GetUsers { get; set; } = true;
 
@@ -28,7 +28,7 @@ namespace StudyBuddyShared.ConversationSystem
         {
             new StudyBuddyShared.Network.ConversationGetter(PrivateKey, (status, conversations, users) =>
             {
-                GetConversationsResult?.Invoke(EnumConverter.Convert<ConversationGetStatus>(status), conversations, users);
+                Result?.Invoke(EnumConverter.Convert<ConversationGetStatus>(status), conversations, users);
             }).get(GetUsers);
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudyBuddyShared.Utility;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,16 +7,26 @@ namespace StudyBuddyShared.AuthenticationSystem
 {
     public class Authenticator : IAuthenticator
     {
-        public AuthenticateResultDelegate ResultDelegate { get; set; }
+        public AuthenticateResultDelegate Result { get; set; }
+
+        private Network.Authenticator authenticator;
+
+        public Authenticator()
+        {
+            authenticator = new Network.Authenticator((status, user) =>
+            {
+                Result?.Invoke(EnumConverter.Convert<AuthenticatorStatus>(status), user);
+            });
+        }
 
         public void Login(string username, string password)
         {
-            //new Network.Authenticator()
+            authenticator.login(username, password);
         }
 
-        public void Login(string PrivateKey)
+        public void Login(string privateKey)
         {
-            throw new NotImplementedException();
+            authenticator.login(privateKey);
         }
     }
 }

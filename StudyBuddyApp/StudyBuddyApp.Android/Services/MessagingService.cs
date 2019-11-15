@@ -57,7 +57,7 @@ namespace StudyBuddyApp.Droid.Services
             }
             messageGetter = ConversationSystemManager.NewMessageGetter();
             messageSender = ConversationSystemManager.NewMessageSender();
-            messageGetter.GetMessageResult += (status, conversations, messages, users) => {
+            messageGetter.Result += (status, conversations, messages, users) => {
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     //DependencyService.Get<IToast>().ShortToast(status.ToString());
@@ -119,7 +119,7 @@ namespace StudyBuddyApp.Droid.Services
                 MessagingCenter.Send(new MessagingTask(conversations: conversations, users: users), MessagingTask.LocalConversations);
             });
 
-            messageSender.PostMessageResult += (status, message) =>
+            messageSender.Result += (status, message) =>
             {
                 if (status == MessageSendStatus.InvalidPrivateKey)
                 {
@@ -147,7 +147,7 @@ namespace StudyBuddyApp.Droid.Services
             {
                 messageGetter.StopGetting();
                 messageSender.StopSending();
-                messageGetter.GetMessageResult = null;
+                messageGetter.Result = null;
                 StopSelf();
             });
 

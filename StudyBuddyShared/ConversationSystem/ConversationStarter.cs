@@ -21,13 +21,13 @@ namespace StudyBuddyShared.ConversationSystem
 
         public string PrivateKey { get; set; }
 
-        public StartConversationDelegate StartConversationResult { get; set; }
+        public StartConversationDelegate Result { get; set; }
 
         public void StartConversation(string username)
         {
             new StudyBuddyShared.Network.ConversationStarter(PrivateKey, (status, conversation, users) =>
             {
-                StartConversationResult?.Invoke(EnumConverter.Convert<ConversationStartStatus>(status), conversation, users);
+                Result?.Invoke(EnumConverter.Convert<ConversationStartStatus>(status), conversation, users);
             }).start(username);
         }
     }

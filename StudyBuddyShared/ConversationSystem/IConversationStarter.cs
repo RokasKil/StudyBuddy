@@ -21,7 +21,7 @@ namespace StudyBuddyShared.ConversationSystem
 
     public interface IConversationStarter : IPrivateKey
     {
-        StartConversationDelegate StartConversationResult { get; set; } // Result delegate
+        StartConversationDelegate Result { get; set; } // Result delegate
 
         void StartConversation(string username); // Starts conversation with an user
     }
