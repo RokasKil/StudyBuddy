@@ -5,7 +5,7 @@ using System.Text;
 using StudyBuddy.Entity;
 using static StudyBuddy.Network.MessagePoster; // Fix this maybe
 
-namespace StudyBuddyShared.ConversationSystems
+namespace StudyBuddyShared.ConversationSystem
 {
     public enum MessageSendStatus
     {

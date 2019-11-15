@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using StudyBuddy.Entity;
 using StudyBuddyApp.Services;
-using StudyBuddyShared.ConversationSystems;
+using StudyBuddyShared.ConversationSystem;
 using Xamarin.Forms;
 using Message = StudyBuddy.Entity.Message;
 using StudyBuddyShared.Network;

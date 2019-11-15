@@ -1,4 +1,4 @@
-﻿using StudyBuddyShared.ConversationSystems;
+﻿using StudyBuddyShared.ConversationSystem;
 using System;
 using System.Collections.Generic;
 using System.Text;

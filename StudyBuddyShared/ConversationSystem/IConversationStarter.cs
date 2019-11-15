@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudyBuddyShared.ConversationSystems
+namespace StudyBuddyShared.ConversationSystem
 {
     public delegate void StartConversationDelegate(ConversationStartStatus status, Conversation conversation, Dictionary<string, User> users);
 

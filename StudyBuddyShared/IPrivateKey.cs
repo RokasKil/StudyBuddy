@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudyBuddyShared.ConversationSystems
+namespace StudyBuddyShared
 {
     public interface IPrivateKey
     {
