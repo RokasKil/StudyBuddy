@@ -59,6 +59,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserProfilePictureUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserProfilePictureUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserUpdater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Extensions\DateTimeExtender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\EnumConverter.cs" />
   </ItemGroup>
