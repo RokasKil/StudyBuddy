@@ -6,7 +6,7 @@ using System.Text;
 
 namespace StudyBuddyShared.UserReviewSystem
 {
-    class UserReviewRemover : UserReviewManagerBase, IUserReviewRemover
+    public class UserReviewRemover : UserReviewManagerBase, IUserReviewRemover
     {
         public UserReviewRemover(LocalUser user) : this(user.PrivateKey)
         {

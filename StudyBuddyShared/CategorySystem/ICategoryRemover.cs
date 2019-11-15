@@ -5,11 +5,11 @@ using System.Text;
 
 namespace StudyBuddyShared.CategorySystem
 {
-    interface ICategoryRemover : IPrivateKey
+    public interface ICategoryRemover : IPrivateKey
     {
-        CategoryManageDelegate Result { get; set; }
+        CategoryManageDelegate Result { get; set; } // Return delegate
 
-        void RemoveCategory(Category category);
+        void RemoveCategory(Category category); // Remove category
     }
     
 }

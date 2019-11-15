@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudyBuddyApp
+namespace StudyBuddyApp.SystemManager
 {
-    public static class ConversationSystemManager
+    public static class ConversationSystemManager // Returns implementations of interfaces
     {
-        static public IConversationGetter NewConversationGetter()
+        public static IConversationGetter NewConversationGetter()
         {
             if (LocalUserManager.LocalUser != null)
             {
@@ -16,7 +16,7 @@ namespace StudyBuddyApp
             return null;
         }
 
-        static public IConversationStarter NewConversationStarter()
+        public static IConversationStarter NewConversationStarter()
         {
             if (LocalUserManager.LocalUser != null)
             {
@@ -25,7 +25,7 @@ namespace StudyBuddyApp
             return null;
         }
 
-        static public IMessageGetter NewMessageGetter()
+        public static IMessageGetter NewMessageGetter()
         {
             if (LocalUserManager.LocalUser != null)
             {
@@ -34,7 +34,7 @@ namespace StudyBuddyApp
             return null;
         }
 
-        static public IMessageSender NewMessageSender()
+        public static IMessageSender NewMessageSender()
         {
             if (LocalUserManager.LocalUser != null)
             {

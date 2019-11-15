@@ -5,10 +5,10 @@ using System.Text;
 
 namespace StudyBuddyShared.CategorySystem
 {
-    interface ICategoryUpdater : IPrivateKey
+    public interface ICategoryUpdater : IPrivateKey
     {
-        CategoryManageDelegate Result { get; set; }
+        CategoryManageDelegate Result { get; set; } // Return delegate
 
-        void UpdateCategory(Category category);
+        void UpdateCategory(Category category); // Update category
     }
 }

@@ -17,6 +17,7 @@ using Message = StudyBuddyShared.Entity.Message;
 using StudyBuddyShared.Network;
 using StudyBuddyApp.Droid.Utility;
 using StudyBuddyApp.Utility;
+using StudyBuddyApp.SystemManager;
 
 namespace StudyBuddyApp.Droid.Services
 {

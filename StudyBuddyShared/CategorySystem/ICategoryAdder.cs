@@ -20,10 +20,10 @@ namespace StudyBuddyShared.CategorySystem
 
     public delegate void CategoryManageDelegate(CategoryManageStatus status, Category category);
 
-    interface ICategoryAdder : IPrivateKey
+    public interface ICategoryAdder : IPrivateKey
     {
-        CategoryManageDelegate Result { get; set; }
+        CategoryManageDelegate Result { get; set; } // Return delegate
 
-        void AddCategory(Category category);
+        void AddCategory(Category category); // Add category
     }
 }
