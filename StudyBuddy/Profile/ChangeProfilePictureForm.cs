@@ -8,8 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using StudyBuddy.Entity;
-using StudyBuddy.Network;
+using StudyBuddyShared.Entity;
+using StudyBuddyShared.Network;
 
 namespace StudyBuddy
 {

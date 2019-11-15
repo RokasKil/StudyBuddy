@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-using StudyBuddy.Entity;
-using static StudyBuddy.Network.MessagePoster; // Fix this maybe
+using StudyBuddyShared.Entity;
+using static StudyBuddyShared.Network.MessagePoster; // Fix this maybe
 
 namespace StudyBuddyShared.ConversationSystem
 {

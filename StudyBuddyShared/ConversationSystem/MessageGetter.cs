@@ -1,4 +1,4 @@
-﻿using StudyBuddy.Entity;
+﻿using StudyBuddyShared.Entity;
 using StudyBuddyShared.Network;
 using StudyBuddyShared.Utility;
 using System;

@@ -1,5 +1,5 @@
-﻿using StudyBuddy.Entity;
-using StudyBuddy.Network;
+﻿using StudyBuddyShared.Entity;
+using StudyBuddyShared.Network;
 using StudyBuddyShared.Utility;
 using System;
 using System.Collections.Generic;

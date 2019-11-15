@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
-using StudyBuddy.Entity;
+using StudyBuddyShared.Entity;
 using System;
 using System.Threading;
 
-namespace StudyBuddy.Network
+namespace StudyBuddyShared.Network
 {
     public class Authenticator
     {

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using StudyBuddy.Network;
-using StudyBuddy.Entity;
+using StudyBuddyShared.Network;
+using StudyBuddyShared.Entity;
 
 namespace StudyBuddyApp
 {

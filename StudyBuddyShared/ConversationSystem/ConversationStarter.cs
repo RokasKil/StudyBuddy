@@ -1,4 +1,4 @@
-﻿using StudyBuddy.Entity;
+﻿using StudyBuddyShared.Entity;
 using StudyBuddyShared.Utility;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace StudyBuddyShared.ConversationSystem
 
         public void StartConversation(string username)
         {
-            new StudyBuddy.Network.ConversationStarter(PrivateKey, (status, conversation, users) =>
+            new StudyBuddyShared.Network.ConversationStarter(PrivateKey, (status, conversation, users) =>
             {
                 StartConversationResult?.Invoke(EnumConverter.Convert<ConversationStartStatus>(status), conversation, users);
             }).start(username);

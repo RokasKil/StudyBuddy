@@ -1,4 +1,4 @@
-﻿using StudyBuddy.Network;
+﻿using StudyBuddyShared.Network;
 using StudyBuddyApp.Models;
 using System;
 using System.Collections.ObjectModel;

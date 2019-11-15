@@ -1,5 +1,5 @@
-﻿using StudyBuddy.Entity;
-using StudyBuddy.Network;
+﻿using StudyBuddyShared.Entity;
+using StudyBuddyShared.Network;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Message = StudyBuddyShared.Entity.Message;
 
 namespace StudyBuddy
 {
@@ -17,7 +18,7 @@ namespace StudyBuddy
     {
         [DllImport("user32.dll")]
         static extern bool HideCaret(IntPtr hWnd);
-        public delegate void NewMessage(Entity.Message message);
+        public delegate void NewMessage(Message message);
         public NewMessage NewMessageHandler { get; set; }
         string username = null;
         Conversation conversation = null;
@@ -25,7 +26,7 @@ namespace StudyBuddy
         LocalUser localUser = null;
         MessagePoster poster = null;
         Queue<string> messagesToSend = new Queue<string>();
-        List<Entity.Message> messages = new List<Entity.Message>();
+        List<Message> messages = new List<Message>();
         long timestamp = 0;
         readonly Font mainFont = new Font(FontFamily.GenericSansSerif, 10);
         readonly Font mainFontBold = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
@@ -118,7 +119,7 @@ namespace StudyBuddy
             }
         }
 
-        private void getMessageResponseHandler(MessageGetter.MessageStatus status, List<Entity.Message> messages)
+        private void getMessageResponseHandler(MessageGetter.MessageStatus status, List<Message> messages)
         {
             try
             {
@@ -143,7 +144,7 @@ namespace StudyBuddy
             }
         }
 
-        private void parseMessages(List<Entity.Message> messages)
+        private void parseMessages(List<Message> messages)
         {
             messages.ForEach(message =>
             {
