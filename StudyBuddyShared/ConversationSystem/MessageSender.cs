@@ -1,12 +1,12 @@
-﻿using StudyBuddy.Entity;
-using StudyBuddy.Network;
+﻿using StudyBuddyShared.Entity;
+using StudyBuddyShared.Network;
 using StudyBuddyShared.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace StudyBuddyShared.ConversationSystems
+namespace StudyBuddyShared.ConversationSystem
 {
     class MessageSender : IMessageSender, IPrivateKey
     {
@@ -25,7 +25,7 @@ namespace StudyBuddyShared.ConversationSystems
 
         public bool Sending { get; private set; } = false;
         
-        public MessagePostDelegate PostMessageResult { get; set; }
+        public MessagePostDelegate Result { get; set; }
 
         public Queue<Message> Queue { get; set; } = new Queue<Message>();
 
@@ -81,7 +81,7 @@ namespace StudyBuddyShared.ConversationSystems
             {
                 //Success
                 poster = null;
-                PostMessageResult?.Invoke(EnumConverter.Convert<MessageSendStatus>(status), messageBeingSent);
+                Result?.Invoke(EnumConverter.Convert<MessageSendStatus>(status), messageBeingSent);
                 if (Sending)
                 {
                     sendEnqueuedMessage();

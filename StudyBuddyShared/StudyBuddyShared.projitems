@@ -9,15 +9,33 @@
     <Import_RootNamespace>StudyBuddyShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\ConversationGetter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\ConversationStarter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\IConversationGetter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\IConversationStarter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\IMessageGetter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\IMessageSender.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\IPrivateKey.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\MessageGetter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystems\MessageSender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AuthenticationSystem\Authenticator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AuthenticationSystem\IAuthenticator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\CategoryAdder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\CategoryGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\CategoryManagerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\CategoryRemover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\CategoryUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\ICategoryAdder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\ICategoryGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\ICategoryRemover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\ICategoryUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\ConversationGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\ConversationStarter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IConversationGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IConversationStarter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IMessageGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IMessageSender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestManagerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestPoster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestRemover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\IHelpRequestGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\IHelpRequestPoster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\IHelpRequestRemover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IPrivateKey.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\MessageGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\MessageSender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\Conversation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\HelpRequest.cs" />
@@ -41,6 +59,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\IUserReviewGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\IUserReviewPoster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\IUserReviewRemover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\UserReviewGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\UserReviewManagerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\UserReviewPoster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\UserReviewRemover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserProfilePictureUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserProfilePictureUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserUpdater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Extensions\DateTimeExtender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\EnumConverter.cs" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿using StudyBuddy.Network;
+﻿using StudyBuddyShared.Network;
 using StudyBuddyApp.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using StudyBuddy.Entity;
+using StudyBuddyShared.Entity;
 using System.Diagnostics;
 using StudyBuddyApp.Views;
 
