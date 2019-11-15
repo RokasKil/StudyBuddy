@@ -1,4 +1,5 @@
-﻿using StudyBuddyApp.Models;
+﻿using StudyBuddyShared.Entity;
+using StudyBuddyApp.Models;
 using StudyBuddyApp.Services;
 using StudyBuddyApp.Utility;
 using System;
@@ -44,6 +45,9 @@ namespace StudyBuddyApp.Views
                     case (int)MenuItemType.Profile:
                         MenuPages.Add(id, new NavigationPage(new MyProfilePage()));
                         break;
+                    case (int)MenuItemType.CategoryList:
+                        MenuPages.Add(id, new NavigationPage(new CategoryListPage()));
+                        break;
                     case (int)MenuItemType.HelpRequestList:
                         MenuPages.Add(id, new NavigationPage(new HelpRequestListPage()));
                         break;
@@ -52,7 +56,7 @@ namespace StudyBuddyApp.Views
                         break;
                     case (int)MenuItemType.LogOut:
                         Application.Current.Properties.Remove("PrivateKey");
-                        Application.Current.SavePropertiesAsync();
+                        await Application.Current.SavePropertiesAsync();
                         //Stops messaging service
                         MessagingCenter.Send(new MessagingTask(), MessagingTask.Stop);
                         App.Current.MainPage = new LoginPage();

@@ -1,8 +1,8 @@
-﻿using StudyBuddy.Entity;
+﻿using StudyBuddyShared.Entity;
 using StudyBuddyApp.Models;
 using StudyBuddyApp.Services;
 using StudyBuddyApp.Utility;
-using StudyBuddyShared.ConversationSystems;
+using StudyBuddyShared.ConversationSystem;
 using StudyBuddyShared.Utility.Extensions;
 using System;
 using System.Collections.Generic;
@@ -86,6 +86,7 @@ namespace StudyBuddyApp.Views
             //If item is tapped opens the chat for it
             if (e.Item == null)
                 return;
+                
             ((ListView)sender).SelectedItem = null;
             if (ChatOpen)
             {

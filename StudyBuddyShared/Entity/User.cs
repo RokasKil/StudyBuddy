@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudyBuddy.Entity
+namespace StudyBuddyShared.Entity
 {
     public class User
     {

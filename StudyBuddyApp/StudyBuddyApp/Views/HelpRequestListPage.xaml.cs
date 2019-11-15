@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using StudyBuddy.Entity;
-using StudyBuddy.Network;
+using StudyBuddyShared.Entity;
+using StudyBuddyShared.Network;
 using StudyBuddyApp.Models;
 using StudyBuddyApp.ViewModels;
+using StudyBuddyShared.Utility.Extensions;
 
 namespace StudyBuddyApp.Views
 {
@@ -26,14 +27,29 @@ namespace StudyBuddyApp.Views
             InitializeComponent();
 
             Items = new ObservableCollection<HelpRequestModel>
-            {
-            };
-			HelpRequestList.ItemsSource = Items;
-            HelpRequestList.IsRefreshing = true;
-            HelpRequestList_Refreshing(null, null);
+            {};
+            HelpRequestListGetter();
+
+            HelpRequestList.ItemsSource = Items;
         }
 
         private void HelpRequestList_Refreshing(object sender, EventArgs e)
+        {
+            HelpRequestListGetter();
+        }
+
+        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item == null)
+                return;
+
+            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+
+            //Deselect Item
+            ((ListView)sender).SelectedItem = null;
+        }
+
+        private void HelpRequestListGetter()
         {
             new HelpRequestGetter(LocalUserManager.LocalUser, (status, requests, users) =>
             {
@@ -51,10 +67,10 @@ namespace StudyBuddyApp.Views
                                 Description = request.Description,
                                 Name = users[request.CreatorUsername].FirstName + " " + users[request.CreatorUsername].LastName,
                                 Category = request.Category,
-                                Date = request.Timestamp.ToLongDateString(),
+                                Date = request.Timestamp.ToFullDate(),
                                 HelpRequest = request
                             };
-                            
+
                             Items.Add(helpRequestModel);
                         });
                         HelpRequestList.IsRefreshing = false;
@@ -73,17 +89,9 @@ namespace StudyBuddyApp.Views
             }).get(true);
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        async private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            if (e.Item == null)
-                return;
-
-            var selectedItem = ((ListView)sender).SelectedItem as HelpRequestModel;
-            var user = users[selectedItem.HelpRequest.CreatorUsername];
-            
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
-            await Navigation.PushAsync(new HelpRequestViewPage(new HelpRequestViewPageModel(user, selectedItem)));
+            await Navigation.PushModalAsync(new NavigationPage(new HelpRequestAddPage()));
         }
     }
 }

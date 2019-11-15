@@ -2,36 +2,46 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudyBuddyApp.Views.HelpRequestListPage"
-             Title="{Binding Title}">
-  <ListView x:Name="HelpRequestList"
+             Title="{Binding Title}"
+             Appearing="HelpRequestList_Refreshing" >
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="naujas" Clicked="ToolbarItem_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ListView x:Name="HelpRequestList"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement"
             HasUnevenRows="true"
             IsPullToRefreshEnabled="True"
             Refreshing="HelpRequestList_Refreshing">
-
-
-
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout>
                         <Label Text="{Binding Title}" 
-                               HorizontalTextAlignment="Start"
+                               FontSize="Large"
                         />
                         <Label Text="{Binding Description}"
-                               HorizontalTextAlignment="Start"
+
                         />
                         <Label Text="{Binding Name}"
                                HorizontalTextAlignment="Start"
                         />
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding Category}" 
-                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalOptions="Start"
                                    />
                             <Label Text="{Binding Date}"
                                    HorizontalOptions="EndAndExpand"
+                                   HorizontalTextAlignment="End"
                                    />
                         </StackLayout>
                     </StackLayout>

@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using StudyBuddy.Entity;
+using StudyBuddyShared.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace StudyBuddy.Network
+namespace StudyBuddyShared.Network
 {
     public class MessageGetter
     {

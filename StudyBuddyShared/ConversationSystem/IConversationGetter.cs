@@ -1,9 +1,9 @@
-﻿using StudyBuddy.Entity;
+﻿using StudyBuddyShared.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudyBuddyShared.ConversationSystems
+namespace StudyBuddyShared.ConversationSystem
 {
     public enum ConversationGetStatus
     {
@@ -21,7 +21,7 @@ namespace StudyBuddyShared.ConversationSystems
 
     public interface IConversationGetter : IPrivateKey
     {
-        GetConversationsDelegate GetConversationsResult { get; set; } // Result delegate
+        GetConversationsDelegate Result { get; set; } // Result delegate
 
         bool GetUsers { get; set; } // Should get the user dictionary
 
