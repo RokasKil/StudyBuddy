@@ -16,6 +16,9 @@ using Plugin.Permissions;
 using System.IO;
 using StudyBuddyApp.Utility;
 using StudyBuddyApp.ViewModels;
+using StudyBuddyShared.UserSystem;
+using UserUpdater = StudyBuddyShared.UserSystem.UserUpdater;
+using StudyBuddyApp.SystemManager;
 
 namespace StudyBuddyApp
 {
@@ -40,31 +43,35 @@ namespace StudyBuddyApp
 
         private void buttonSaveEdit_Clicked(object sender, EventArgs e)
         {
-
             if (entryFirstName.Text != null || entryLastName.Text != null)
             {
                 LoadingIndicator.IsRunning = true;
                 if (entryFirstName.Text == null) entryFirstName.Text = localUser.FirstName;
                 if (entryLastName.Text == null) entryLastName.Text = localUser.LastName;
-                new UserUpdater(localUser,
+                var userUpdater = UserSystemManager.UserUpdater();
+                userUpdater.Result += 
                     (status, firstName, lastName) =>
                     {
-                        Device.BeginInvokeOnMainThread(() => //Grįžtama į main Thread !! SVARBU
-                        {
-                            if (status == UserUpdater.GetStatus.Success) //Pavyko
+                         Device.BeginInvokeOnMainThread(() => //Grįžtama į main Thread !! SVARBU
+                         {
+                             if (status == UserUpdateStatus.Success) //Pavyko
                             {
-                                localUser.FirstName = firstName;
-                                localUser.LastName = lastName;
-                                localUser.OnUpdateHandler?.Invoke(localUser);
-                                DependencyService.Get<IToast>().LongToast("Pakeitimai išsaugoti");
-                            }
-                            else //Ne
-                            {
-                                Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
-                            }
-                            LoadingIndicator.IsRunning = false;
-                        });
-                    }).get(entryFirstName.Text, entryLastName.Text);
+                                 localUser.FirstName = firstName;
+                                 localUser.LastName = lastName;
+                                 localUser.OnUpdateHandler?.Invoke(localUser);
+                                 var vUpdatedPage = new MyProfilePage(); 
+                                 Navigation.InsertPageBefore(vUpdatedPage, this); 
+                                 Navigation.PopAsync();
+                                 DependencyService.Get<IToast>().LongToast("Pakeitimai išsaugoti");
+                             }
+                             else //Ne
+                             {
+                                 Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
+                             }
+                             LoadingIndicator.IsRunning = false;
+                         });
+                    };
+                userUpdater.Update(entryFirstName.Text, entryLastName.Text);
             }
         }
 
@@ -97,13 +104,14 @@ namespace StudyBuddyApp
             {
                 LoadingIndicator.IsRunning = true;
                 var base64String = Convert.ToBase64String(ReadFully(selectedImageFile.GetStream()));
+                var profilePictureUpdater = UserSystemManager.UserProfilePictureUpdater();
 
-                new ProfilePictureUpdater(localUser,
+                profilePictureUpdater.Result +=
                 (status, pictureLocation) =>
                 {
                     Device.BeginInvokeOnMainThread(() => //Grįžtama į main Thread !! SVARBU
                     {
-                        if (status == ProfilePictureUpdater.GetStatus.Success) //Pavyko
+                        if (status == PictureUpdateStatus.Success) //Pavyko
                         {
                             localUser.ProfilePictureLocation = pictureLocation;
                             ProfilePicture.Source = pictureLocation;
@@ -118,8 +126,8 @@ namespace StudyBuddyApp
                         LoadingIndicator.IsRunning = false;
 
                     });
-                }
-                ).get(base64String);
+                };
+                profilePictureUpdater.Upload(base64String);
             }
         }
         public static byte[] ReadFully(Stream input)
