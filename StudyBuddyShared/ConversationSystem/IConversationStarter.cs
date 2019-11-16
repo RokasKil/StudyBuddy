@@ -1,9 +1,9 @@
-﻿using StudyBuddy.Entity;
+﻿using StudyBuddyShared.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudyBuddyShared.ConversationSystems
+namespace StudyBuddyShared.ConversationSystem
 {
     public delegate void StartConversationDelegate(ConversationStartStatus status, Conversation conversation, Dictionary<string, User> users);
 
@@ -21,7 +21,7 @@ namespace StudyBuddyShared.ConversationSystems
 
     public interface IConversationStarter : IPrivateKey
     {
-        StartConversationDelegate StartConversationResult { get; set; } // Result delegate
+        StartConversationDelegate Result { get; set; } // Result delegate
 
         void StartConversation(string username); // Starts conversation with an user
     }

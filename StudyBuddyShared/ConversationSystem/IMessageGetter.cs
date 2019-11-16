@@ -1,9 +1,9 @@
-﻿using StudyBuddy.Entity;
+﻿using StudyBuddyShared.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudyBuddyShared.ConversationSystems
+namespace StudyBuddyShared.ConversationSystem
 {
 
     public enum MessageGetAllStatus
@@ -21,7 +21,7 @@ namespace StudyBuddyShared.ConversationSystems
 
     public interface IMessageGetter : IPrivateKey
     {
-        MessageGetDelegate GetMessageResult { get; set; } // Result delegate
+        MessageGetDelegate Result { get; set; } // Result delegate
 
         bool WaitingCall { get; set; } //  Should wait until timeout or new message (Timesouts after a minute)
 

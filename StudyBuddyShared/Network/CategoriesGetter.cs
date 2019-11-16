@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
-using StudyBuddy.Entity;
+using StudyBuddyShared.Entity;
+using StudyBuddyShared.Utility.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace StudyBuddy.Network
+namespace StudyBuddyShared.Network
 {
     public class CategoriesGetter
     {
@@ -63,8 +64,8 @@ namespace StudyBuddy.Network
                         Title = category["title"].ToString(),
                         Description = category["description"].ToString(),
                         CreatorUsername = category["username"].ToString(),
-                        //CreatedDate = DateTimeOffset.FromUnixTimeSeconds(category["createdDate"].ToObject<long>()).LocalDateTime.ToFullDate(),
-                        //LastUpdatedDate = DateTimeOffset.FromUnixTimeSeconds(category["lastUpdatedDate"].ToObject<long>()).LocalDateTime.ToFullDate()
+                        CreatedDate = category["createdDate"].ToObject<long>().ToFullDate(false),
+                        LastUpdatedDate = category["lastUpdatedDate"].ToObject<long>().ToFullDate(false)
                     }) ;
                 });
                 GetCategoriesResult(GetStatus.Success, categories);
