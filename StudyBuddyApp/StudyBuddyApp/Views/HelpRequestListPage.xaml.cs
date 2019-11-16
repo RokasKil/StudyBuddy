@@ -43,10 +43,12 @@ namespace StudyBuddyApp.Views
             if (e.Item == null)
                 return;
 
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+            var selectedItem = ((ListView)sender).SelectedItem as HelpRequestModel;
+            var user = users[selectedItem.HelpRequest.CreatorUsername];
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+            await Navigation.PushAsync(new HelpRequestViewPage(new HelpRequestViewPageModel(user, selectedItem)));
         }
 
         private void HelpRequestListGetter()
