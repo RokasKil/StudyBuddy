@@ -24,68 +24,50 @@
 
     <ContentPage.Content >
         <StackLayout >
-            <Picker 
-                x:Name="PickCategory"
-                Title="Kategorijos" 
-                ItemsSource="{Binding Items}"
-                ItemDisplayBinding="{Binding Category}"
-                PropertyChanged="PickCategory_PropertyChanged"
-            />
-
-            <Entry  
-                x:Name="RequestSearchBar"
-                Text=""
-                Placeholder="Ieškoti"
-                PropertyChanged="RequestSearchBar_PropertyChanged"
-            />
-
-            <ListView 
-                x:Name="HelpRequestList"
-                ItemsSource="{Binding Items}"
-                ItemTapped="Handle_ItemTapped"
-                CachingStrategy="RecycleElement"
-                HasUnevenRows="true"
-                IsPullToRefreshEnabled="True"
-                Refreshing="HelpRequestList_Refreshing"
-                 
-                >
-
+            <Picker x:Name="PickCategory"
+                    Title="Kategorijos" 
+                    ItemsSource="{Binding Items}"
+                    ItemDisplayBinding="{Binding Category}"
+                    PropertyChanged="PickCategory_PropertyChanged"/>
+            <Entry  x:Name="RequestSearchBar"
+                    Text=""
+                    Placeholder="Ieškoti"
+                    PropertyChanged="RequestSearchBar_PropertyChanged"/>
+            <ListView x:Name="HelpRequestList"
+                      ItemsSource="{Binding Items}"
+                      ItemTapped="Handle_ItemTapped"
+                      CachingStrategy="RecycleElement"
+                      HasUnevenRows="true"
+                      IsPullToRefreshEnabled="True"
+                      Refreshing="HelpRequestList_Refreshing">
                 <ListView.ItemTemplate>
-
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label 
-                                    Text="{Binding Title}" 
-                                    FontSize="Medium"
-                                     FontAttributes="Bold"
-                                    />
-                                <Label 
-                                    Text="{Binding Description}" 
-                                    LineBreakMode="TailTruncation"
+                                <Label Text="{Binding Title}" 
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"
                                 />
-                                <Label 
-                                    Text="{Binding Name, StringFormat='Autorius: {0}'}"
-                                    FontAttributes="Italic"
+                                <Label Text="{Binding Description}" 
+                                       LineBreakMode="TailTruncation"
+                                />
+                                <Label Text="{Binding Name, StringFormat='Autorius: {0}'}"
+                                       FontAttributes="Italic"
                                 />
                                 <StackLayout Orientation="Horizontal">
-                                    <Label 
-                                        Text="{Binding Category, StringFormat='Kategorija: {0}'}" 
-                                        HorizontalOptions="Start"
+                                    <Label Text="{Binding Category, StringFormat='Kategorija: {0}'}" 
+                                           HorizontalOptions="Start"
                                     />
-                                    <Label 
-                                        Text="{Binding Date}"
-                                        HorizontalOptions="EndAndExpand"
-                                        HorizontalTextAlignment="End"
+                                    <Label Text="{Binding Date}"
+                                           HorizontalOptions="EndAndExpand"
+                                           HorizontalTextAlignment="End"
                                     />
                                 </StackLayout>
                             </StackLayout>
-
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
