@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StudyBuddyApp.Views.UserReviewWritePage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout Padding="10,20,10,0">
+            <Editor 
+                x:Name="Description"
+                Text=""
+                Placeholder="Įvertinimo tekstas"
+                VerticalOptions="FillAndExpand"
+                AutoSize="Disabled"
+                TextChanged="Description_TextChanged"/>
+            <StackLayout Orientation="Horizontal">
+                <Button
+                x:Name="buttonPositiveReview"
+                Text="Patiko"
+                BackgroundColor="Green"
+                VerticalOptions="End"
+                HorizontalOptions="StartAndExpand"
+                Clicked="buttonPositiveReview_Clicked"/>
+                <Button
+                x:Name="buttonNegativeReview"
+                Text="Nepatiko"
+                BackgroundColor="Red"
+                VerticalOptions="End"
+                HorizontalOptions="EndAndExpand"
+                Clicked="buttonNegativeReview_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
