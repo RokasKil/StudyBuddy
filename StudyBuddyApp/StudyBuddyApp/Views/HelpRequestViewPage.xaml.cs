@@ -21,7 +21,7 @@ namespace StudyBuddyApp.Views
         {
             InitializeComponent();
             ViewModel = helpRequestViewPageModel;
-            BindingContext = ViewModel;      
+            BindingContext = ViewModel;
         }
         public void OnImageButtonClicked(object sender, EventArgs e)
         {
