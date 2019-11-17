@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudyBuddyApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,22 @@ namespace StudyBuddyApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MyProfilePage : ContentPage
 	{
-		public MyProfilePage ()
+        MyProfileViewModel viewModel = new MyProfileViewModel();
+        public MyProfilePage() : this(new MyProfileViewModel()) { }
+		public MyProfilePage (MyProfileViewModel viewModel)
 		{
-			InitializeComponent ();
-            var user = LocalUserManager.LocalUser;
-            Name.Text = user.FirstName + " " + user.LastName;
-            ProfilePicture.Source = user.ProfilePictureLocation;
-		}
+			InitializeComponent();
+            BindingContext = this.viewModel = viewModel;
+        }
 
         async void buttonEditProfile_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ProfileEditPage(new ViewModels.ProfileEditViewModel(LocalUserManager.LocalUser)));
+            await Navigation.PushAsync(new ProfileEditPage(new ViewModels.ProfileEditViewModel()));
+        }
+
+        private void ContentPage_Appearing(object sender, EventArgs e)
+        {
+            viewModel.User.OnUpdateHandler?.Invoke(viewModel.User);
         }
     }
 }
