@@ -49,27 +49,24 @@ namespace StudyBuddyApp
                 if (entryFirstName.Text == null) entryFirstName.Text = localUser.FirstName;
                 if (entryLastName.Text == null) entryLastName.Text = localUser.LastName;
                 var userUpdater = UserSystemManager.UserUpdater();
-                userUpdater.Result += 
+                userUpdater.Result +=
                     (status, firstName, lastName) =>
                     {
-                         Device.BeginInvokeOnMainThread(() => //Grįžtama į main Thread !! SVARBU
-                         {
-                             if (status == UserUpdateStatus.Success) //Pavyko
+                        Device.BeginInvokeOnMainThread(() => //Grįžtama į main Thread !! SVARBU
+                        {
+                            if (status == UserUpdateStatus.Success) //Pavyko
                             {
-                                 localUser.FirstName = firstName;
-                                 localUser.LastName = lastName;
-                                 localUser.OnUpdateHandler?.Invoke(localUser);
-                                 var vUpdatedPage = new MyProfilePage(); 
-                                 Navigation.InsertPageBefore(vUpdatedPage, this); 
-                                 Navigation.PopAsync();
-                                 DependencyService.Get<IToast>().LongToast("Pakeitimai išsaugoti");
-                             }
-                             else //Ne
+                                localUser.FirstName = firstName;
+                                localUser.LastName = lastName;
+                                localUser.OnUpdateHandler?.Invoke(localUser);
+                                DependencyService.Get<IToast>().LongToast("Pakeitimai išsaugoti");
+                            }
+                            else //Ne
                              {
-                                 Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
-                             }
-                             LoadingIndicator.IsRunning = false;
-                         });
+                                Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
+                            }
+                            LoadingIndicator.IsRunning = false;
+                        });
                     };
                 userUpdater.Update(entryFirstName.Text, entryLastName.Text);
             }
@@ -93,7 +90,7 @@ namespace StudyBuddyApp
                 PhotoSize = PhotoSize.Medium
             };
             //if you want to take a picture use TakePhotoAsync instead of PickPhotoAsync
-            
+
             var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
             if (selectedImageFile == null)
             {
