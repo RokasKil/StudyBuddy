@@ -1,4 +1,5 @@
-﻿using StudyBuddy.Entity;
+﻿using StudyBuddyShared.Entity;
+using StudyBuddyApp.SystemManager;
 using StudyBuddyApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -36,12 +37,8 @@ namespace StudyBuddyApp.Views
         private async void StartConversation_Clicked(object sender, EventArgs e)
         {
 
-            if (clicked)
-                return;
-            clicked = true;
-
             var conversationStarter = ConversationSystemManager.NewConversationStarter();
-            conversationStarter.StartConversationResult += (status, conversation, users) =>
+            conversationStarter.Result += (status, conversation, users) =>
             {
 
             };
