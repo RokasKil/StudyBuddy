@@ -5,17 +5,18 @@
              xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
              Title="{Binding Title}"
              Disappearing="ContentPage_Disappearing">
-
     <ContentPage.BindingContext>
         <vm:HelpRequestViewModel />
     </ContentPage.BindingContext>
 
-
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="SaveButton" Text="Siųsti" Clicked="Save_Clicked">
+        <ToolbarItem x:Name="SaveButton" 
+                     Text="Siųsti" 
+                     Clicked="Save_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="save.png"/>
+                    <On Platform="UWP" 
+                        Value="save.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
@@ -24,26 +25,23 @@
     <ContentPage.Content >
         <StackLayout >
 
-            <Picker 
-                x:Name="CategoryList"
-                Title="Kategorijos" 
-                ItemsSource="{Binding Items}"
-                ItemDisplayBinding="{Binding Title}"
-                 
+            <Picker x:Name="CategoryList"
+                    Title="Kategorijos" 
+                    ItemsSource="{Binding Items}"
+                    ItemDisplayBinding="{Binding Title}"
             />
             
-            <Entry 
-                x:Name="Title"
-                Text=""
-                Placeholder="Problemos pavadinimas" />
-            
-            <Editor 
-                x:Name="Description"
-                Text=""
-                Placeholder="Problemos apibūdinimas"
-                VerticalOptions="FillAndExpand"
-                AutoSize="Disabled"/>
-            
+            <Entry x:Name="Title"
+                   Text=""
+                   Placeholder="Problemos pavadinimas" 
+            />
+
+            <Editor x:Name="Description"
+                    Text=""
+                    Placeholder="Problemos apibūdinimas"
+                    VerticalOptions="FillAndExpand"
+                    AutoSize="Disabled"
+            />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
