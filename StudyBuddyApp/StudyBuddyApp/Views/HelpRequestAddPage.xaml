@@ -26,7 +26,7 @@
 
             <Picker 
                 x:Name="CategoryList"
-                Title="Categorijos" 
+                Title="Kategorijos" 
                 ItemsSource="{Binding Items}"
                 ItemDisplayBinding="{Binding Title}"
                  

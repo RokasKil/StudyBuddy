@@ -26,7 +26,7 @@
         <StackLayout >
             <Picker 
                 x:Name="PickCategory"
-                Title="Categorijos" 
+                Title="Kategorijos" 
                 ItemsSource="{Binding Items}"
                 ItemDisplayBinding="{Binding Category}"
                 PropertyChanged="PickCategory_PropertyChanged"
@@ -47,7 +47,7 @@
                 HasUnevenRows="true"
                 IsPullToRefreshEnabled="True"
                 Refreshing="HelpRequestList_Refreshing"
-            
+                 
                 >
 
                 <ListView.ItemTemplate>
@@ -57,18 +57,20 @@
                             <StackLayout>
                                 <Label 
                                     Text="{Binding Title}" 
-                                    FontSize="Large"
+                                    FontSize="Medium"
+                                     FontAttributes="Bold"
                                     />
                                 <Label 
                                     Text="{Binding Description}" 
                                     LineBreakMode="TailTruncation"
                                 />
                                 <Label 
-                                    Text="{Binding Name}"
+                                    Text="{Binding Name, StringFormat='Autorius: {0}'}"
+                                    FontAttributes="Italic"
                                 />
                                 <StackLayout Orientation="Horizontal">
                                     <Label 
-                                        Text="{Binding Category}" 
+                                        Text="{Binding Category, StringFormat='Kategorija: {0}'}" 
                                         HorizontalOptions="Start"
                                     />
                                     <Label 
