@@ -12,11 +12,14 @@ namespace StudyBuddyApp.ViewModels
         public MyProfileViewModel(LocalUser localuser)
         {
             this.User = localuser;
-            localuser.OnUpdateHandler += (user) => OnPropertyChanged("User");
-            localuser.OnUpdateHandler += (user) => OnPropertyChanged("FirstName");
-            localuser.OnUpdateHandler += (user) => OnPropertyChanged("LastName");
-            localuser.OnUpdateHandler += (user) => OnPropertyChanged("FullName");
-            localuser.OnUpdateHandler += (user) => OnPropertyChanged("ImageLocation");
+            localuser.OnUpdateHandler += (user) =>
+            {
+                OnPropertyChanged("User");
+                OnPropertyChanged("FirstName");
+                OnPropertyChanged("LastName");
+                OnPropertyChanged("FullName");
+                OnPropertyChanged("ImageLocation");
+            };
         }
         public User User { get; set; }
         public new string Title { get => "Mano profilis"; set => Title = value; }
