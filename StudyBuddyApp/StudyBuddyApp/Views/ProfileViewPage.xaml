@@ -10,7 +10,12 @@
         <StackLayout>
             <Image
                 x:Name="ProfilePicture"
-                Aspect="AspectFill">
+                Aspect="Fill"
+                VerticalOptions="Fill"
+                HorizontalOptions="Center"
+                WidthRequest="150"
+                HeightRequest="150"
+                Margin="6, 0">
                 <Image.Source>
                     <UriImageSource Uri="{Binding ImageLocation}" 
 			                    CacheValidity="14" 
@@ -18,13 +23,8 @@
                 </Image.Source>
             </Image>
             <Label
-                x:Name="labelFirstName"
-                Text="{Binding FirstName}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-            <Label
-                x:Name="labelLastName"
-                Text="{Binding LastName}"
+                x:Name="labelFullName"
+                Text="{Binding FullName}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"/>
             <Label 
@@ -46,6 +46,7 @@
                 x:Name="StartConversation"
                 Clicked="StartConversation_Clicked"
                 Text="Pradėti pokalbį"/>
+            <ActivityIndicator x:Name="LoadingIndicator"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

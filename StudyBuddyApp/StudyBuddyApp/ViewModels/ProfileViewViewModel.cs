@@ -11,6 +11,7 @@ namespace StudyBuddyApp.ViewModels
         public int KarmaPoints { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FullName { get => FirstName + " " + LastName; set => FullName = value; }
         public string UserName { get; set; }
         public User User { get; set; }
         public ProfileViewViewModel(User user)
