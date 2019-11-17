@@ -36,7 +36,7 @@ namespace StudyBuddyApp.Views
 
         private async void WriteUserReview_Clicked(object sender, EventArgs e)//TODO
         {
-            //await Navigation.PushAsync(new UserReviewWritePage(new ViewModels.UserReviewWriteViewModel(user)));
+            await Navigation.PushAsync(new UserReviewWritePage(new UserReviewWriteViewModel(user)));
         }
 
         private void StartConversation_Clicked(object sender, EventArgs e)
