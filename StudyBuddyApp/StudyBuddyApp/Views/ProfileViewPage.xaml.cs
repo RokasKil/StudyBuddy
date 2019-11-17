@@ -39,32 +39,32 @@ namespace StudyBuddyApp.Views
             //await Navigation.PushAsync(new UserReviewWritePage(new ViewModels.UserReviewWriteViewModel(user)));
         }
 
-        private async void StartConversation_Clicked(object sender, EventArgs e)
+        private void StartConversation_Clicked(object sender, EventArgs e)
         {
             var conversationStarter = ConversationSystemManager.NewConversationStarter();
             LoadingIndicator.IsRunning = true;
             conversationStarter.Result += (status, conversation, users) =>
             {
-                Device.BeginInvokeOnMainThread(() => //Grįžtama į main Thread !! SVARBU
+                Device.BeginInvokeOnMainThread(async () => //Grįžtama į main Thread !! SVARBU
                 {
                     if (status == ConversationStartStatus.Success) //Pavyko
                     {
                         this.users = users;
                         this.conversation = conversation;
-                        DependencyService.Get<IToast>().LongToast("Pokalbis pradėtas");
+                        await Navigation.PushModalAsync(
+                        new NavigationPage(
+                            new ConversationPage(
+                                new ViewModels.ConversationViewModel(conversation, users))));
+                                DependencyService.Get<IToast>().LongToast("Pokalbis pradėtas");
                     }
                     else //Ne
                     {
-                        Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
+                        await Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
                     }
                     LoadingIndicator.IsRunning = false;
                 });
             };
             conversationStarter.StartConversation(user.Username);
-            await Navigation.PushModalAsync(
-                            new NavigationPage(
-                                new ConversationPage(
-                                    new ViewModels.ConversationViewModel(((ConversationModel)e.Item).Conversation, users))));
         }
     }
 }
