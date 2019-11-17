@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace StudyBuddyApp.Views
     {
         public ObservableCollection<HelpRequestModel> Items { get; set; }
 
+        private Dictionary<string, User> users = null;
         public HelpRequestListPage()
         {
             InitializeComponent();
@@ -41,10 +43,12 @@ namespace StudyBuddyApp.Views
             if (e.Item == null)
                 return;
 
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+            var selectedItem = ((ListView)sender).SelectedItem as HelpRequestModel;
+            var user = users[selectedItem.HelpRequest.CreatorUsername];
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+            await Navigation.PushAsync(new HelpRequestViewPage(new HelpRequestViewPageModel(user, selectedItem)));
         }
 
         private void HelpRequestListGetter()
@@ -56,9 +60,10 @@ namespace StudyBuddyApp.Views
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         Items.Clear();
+                        this.users = users;
                         requests.ForEach(request =>
                         {
-                            Items.Add(new HelpRequestModel
+                            var helpRequestModel = new HelpRequestModel
                             {
                                 Title = request.Title,
                                 Description = request.Description,
@@ -66,7 +71,9 @@ namespace StudyBuddyApp.Views
                                 Category = request.Category,
                                 Date = request.Timestamp.ToFullDate(),
                                 HelpRequest = request
-                            });
+                            };
+
+                            Items.Add(helpRequestModel);
                         });
                         HelpRequestList.IsRefreshing = false;
                         //HelpRequestList.ItemsSource = null;
