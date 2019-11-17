@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using StudyBuddy.Entity;
+using StudyBuddyShared.Entity;
 
 namespace StudyBuddyApp
 {

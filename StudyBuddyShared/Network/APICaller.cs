@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace StudyBuddy.Network
+namespace StudyBuddyShared.Network
 {
     public class APICaller // Helper klasė kviečiant api calls
     {

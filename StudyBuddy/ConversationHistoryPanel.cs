@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
-using StudyBuddy.Entity;
+using StudyBuddyShared.Entity;
 
 namespace StudyBuddy
 {

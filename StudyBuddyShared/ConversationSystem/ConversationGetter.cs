@@ -1,10 +1,10 @@
-﻿using StudyBuddy.Entity;
+﻿using StudyBuddyShared.Entity;
 using StudyBuddyShared.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudyBuddyShared.ConversationSystems
+namespace StudyBuddyShared.ConversationSystem
 {
     class ConversationGetter : IConversationGetter, IPrivateKey
     {
@@ -18,7 +18,7 @@ namespace StudyBuddyShared.ConversationSystems
             this.PrivateKey = privateKey;
         }
 
-        public GetConversationsDelegate GetConversationsResult { get; set; }
+        public GetConversationsDelegate Result { get; set; }
 
         public bool GetUsers { get; set; } = true;
 
@@ -26,9 +26,9 @@ namespace StudyBuddyShared.ConversationSystems
 
         public void GetConversations()
         {
-            new StudyBuddy.Network.ConversationGetter(PrivateKey, (status, conversations, users) =>
+            new StudyBuddyShared.Network.ConversationGetter(PrivateKey, (status, conversations, users) =>
             {
-                GetConversationsResult?.Invoke(EnumConverter.Convert<ConversationGetStatus>(status), conversations, users);
+                Result?.Invoke(EnumConverter.Convert<ConversationGetStatus>(status), conversations, users);
             }).get(GetUsers);
         }
     }

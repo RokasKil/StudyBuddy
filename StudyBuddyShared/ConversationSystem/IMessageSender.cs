@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-using StudyBuddy.Entity;
-using static StudyBuddy.Network.MessagePoster; // Fix this maybe
+using StudyBuddyShared.Entity;
+using static StudyBuddyShared.Network.MessagePoster; // Fix this maybe
 
-namespace StudyBuddyShared.ConversationSystems
+namespace StudyBuddyShared.ConversationSystem
 {
     public enum MessageSendStatus
     {
@@ -36,7 +36,7 @@ namespace StudyBuddyShared.ConversationSystems
 
         bool StopSending();  // Stop sending
 
-        MessagePostDelegate PostMessageResult { get; set; } // Result delegate
+        MessagePostDelegate Result { get; set; } // Result delegate
 
         void AddMessageToQueue(Message message); // Add to queue
 

@@ -1,4 +1,4 @@
-﻿using StudyBuddy.Entity;
+﻿using StudyBuddyShared.Entity;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

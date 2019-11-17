@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using StudyBuddy.Network;
-using StudyBuddy.Entity;
+using StudyBuddyShared.Entity;
+using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.AuthenticationSystem;
 
 namespace StudyBuddyApp
 {
@@ -29,7 +30,10 @@ namespace StudyBuddyApp
                 PasswordEntry.IsEnabled = false;
                 LoadingIndicator.IsRunning = true;
                 StatusLabel.IsVisible = false;
-                new Authenticator(LoginResponse).login(UsernameEntry.Text, PasswordEntry.Text);
+                // Dependency injection per interfaces
+                IAuthenticator auth = AuthenticationSystemManager.NewAuthenticator();
+                auth.Result += LoginResponse;
+                auth.Login(UsernameEntry.Text, PasswordEntry.Text);
             };
             if (Application.Current.Properties.ContainsKey("PrivateKey"))
             {
@@ -37,16 +41,20 @@ namespace StudyBuddyApp
                 PasswordEntry.IsEnabled = false;
                 LoadingIndicator.IsRunning = true;
                 StatusLabel.IsVisible = false;
-                new Authenticator(LoginResponse).login((string)Application.Current.Properties["PrivateKey"]);
+
+                // Dependency injection per interfaces
+                var auth = AuthenticationSystemManager.NewAuthenticator();
+                auth.Result += LoginResponse;
+                auth.Login((string)Application.Current.Properties["PrivateKey"]);
             }
         }
 
-        private void LoginResponse(Authenticator.AuthStatus status, LocalUser user)
+        private void LoginResponse(AuthenticatorStatus status, LocalUser user)
         {
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    if (status == Authenticator.AuthStatus.Success)
+                    if (status == AuthenticatorStatus.Success)
                     {
                         LocalUserManager.LocalUser = user;
                         Application.Current.Properties["PrivateKey"] = user.PrivateKey;
