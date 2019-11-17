@@ -72,15 +72,18 @@ namespace StudyBuddyApp.Views
             helpRequestManager.PostHelpRequestResult += (status, helprequest) =>
             {
                
-                Device.BeginInvokeOnMainThread(() =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
                     if (status == HelpRequestManager.ManagerStatus.Success)
                     {
-                        Console.WriteLine("Success");
+                        DependencyService.Get<IToast>().LongToast("Prašymas sėkmingai išsiųstas");
+                        await Navigation.PopModalAsync();
                     }
                     else
                     {
-                        Console.WriteLine("Epic fail");
+                        DependencyService.Get<IToast>().LongToast("Prašymas nebuvo išsiųstas");
+                        //Console.WriteLine("Epic fail");
+                        SaveButton.IsEnabled = true;
                     }
                 });
                 
@@ -113,18 +116,15 @@ namespace StudyBuddyApp.Views
                 await DisplayAlert("Nepavyko", "Problemos apibūdinimo laukas yra privalomas", "OK");
                 return;
             }
-
+            SaveButton.IsEnabled = false;
             //MessagingCenter.Send(this, "AddItem", Item);
             SendNewHelpRequest();
-            DependencyService.Get<IToast>().LongToast("Prašymas sėkmingai išsiųstas");
-            await Navigation.PopModalAsync();
+            
         }
 
-        async void Cancel_Clicked(object sender, EventArgs e)
+        private void ContentPage_Disappearing(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            MessagingCenter.Send(this, "AddPageClosed");
         }
-
-
     }
 }
