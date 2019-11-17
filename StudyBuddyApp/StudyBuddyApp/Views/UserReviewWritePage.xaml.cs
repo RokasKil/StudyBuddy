@@ -31,14 +31,14 @@ namespace StudyBuddyApp.Views
 
         private void buttonPositiveReview_Clicked(object sender, EventArgs e)
         {
-            sendingReview(1);
+            SendingReview(1);
         }
         private void buttonNegativeReview_Clicked(object sender, EventArgs e)
         {
-            sendingReview(-1);
+            SendingReview(-1);
         }
 
-        private void sendingReview(int karma)
+        private void SendingReview(int karma)
         {
 
             var mngr = UserReviewSystemManager.NewUserReviewPoster();
