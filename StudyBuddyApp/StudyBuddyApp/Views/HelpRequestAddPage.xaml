@@ -5,12 +5,12 @@
              xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
              Title="{Binding Title}"
              Disappearing="ContentPage_Disappearing">
-    
+
     <ContentPage.BindingContext>
-        <vm:HelpRequestViewModel/>
+        <vm:HelpRequestViewModel />
     </ContentPage.BindingContext>
-    
-    
+
+
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="SaveButton" Text="Siųsti" Clicked="Save_Clicked">
             <ToolbarItem.Icon>

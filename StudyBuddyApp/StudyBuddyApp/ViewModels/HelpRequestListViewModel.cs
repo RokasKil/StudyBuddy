@@ -6,7 +6,7 @@ using System.Text;
 
 namespace StudyBuddyApp.ViewModels
 {
-    class HelpRequestListViewModel : BaseViewModel
+    public class HelpRequestListViewModel : BaseViewModel
     {
         public ObservableCollection<HelpRequestModel> Items { get; set; }
         public HelpRequestListViewModel()

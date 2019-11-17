@@ -122,7 +122,10 @@ namespace StudyBuddyApp.Views
         async private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             AddButton.IsEnabled = false;
-            await Navigation.PushModalAsync(new NavigationPage(new HelpRequestAddPage()));
+            await Navigation.PushModalAsync(
+                new NavigationPage(
+                    new HelpRequestAddPage(
+                        new ViewModels.HelpRequestViewModel())));
         }
 
         private void RequestSearchBar_PropertyChanged(object sender, PropertyChangedEventArgs e)

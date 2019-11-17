@@ -11,6 +11,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using StudyBuddy.Entity;
 using StudyBuddyApp.Utility;
+using StudyBuddyApp.ViewModels;
 
 namespace StudyBuddyApp.Views
 {
@@ -21,17 +22,17 @@ namespace StudyBuddyApp.Views
 
         //public HelpRequest helpRequest { get; set; }
 
-        HelpRequestModel requestModel;
+        HelpRequestViewModel viewModel;
 
-        public HelpRequestAddPage()
+        public HelpRequestAddPage(HelpRequestViewModel viewModel)
         {
             InitializeComponent();
             Items = new ObservableCollection<CategoryModel>
             { };
             //helpRequest = new HelpRequest { };
             CategorieListGetter();
-
-            BindingContext = requestModel = new HelpRequestModel();
+            BindingContext = this.viewModel = viewModel;
+            //BindingContext = requestModel = new HelpRequestModel();
             CategoryList.ItemsSource = Items;
         }
 
