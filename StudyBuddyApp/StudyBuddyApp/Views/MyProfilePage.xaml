@@ -1,17 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StudyBuddyApp.Views.MyProfilePage">
+             x:Class="StudyBuddyApp.Views.MyProfilePage"
+             Title="{Binding Title}"
+             Appearing="ContentPage_Appearing">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="name"
+            <Label Text="{Binding FullName}"
                 x:Name="Name"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Image
                 x:Name="ProfilePicture"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" 
+                Source="{Binding ImageLocation}"/>
             <Button 
                 x:Name="buttonEditProfile"
                 Text="Redaguoti profilį"
