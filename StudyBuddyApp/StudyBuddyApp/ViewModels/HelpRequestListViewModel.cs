@@ -19,6 +19,7 @@ namespace StudyBuddyApp.ViewModels
             AddRequest = "Naujas";
             CategoryGeneral = "Kategorija";
             EntryFind = "Ieškoti";
+
         }
     }
 }

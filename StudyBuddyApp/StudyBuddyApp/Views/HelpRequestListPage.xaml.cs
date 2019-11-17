@@ -100,13 +100,13 @@ namespace StudyBuddyApp.Views
                     });
                 }
 
-            }).;
+            };
+            helpRequestGetter.get(true);
         }
         private void CategorieListGetter()
         {
-            //var categoriesGetter = new CategoriesGetter(LocalUserManager.LocalUser);
-            //categoriesGetter.GetCategoriesResult +=
-            new CategoriesGetter(LocalUserManager.LocalUser, (status, categories) =>
+            var categoriesGetter = new CategoriesGetter(LocalUserManager.LocalUser);
+            categoriesGetter.GetCategoriesResult += (status, categories) =>
             {
                 if (status == CategoriesGetter.GetStatus.Success)
                 {
@@ -137,7 +137,8 @@ namespace StudyBuddyApp.Views
                     });
                 }
 
-            }).get();
+            };
+            categoriesGetter.get();
         }
 
         void Filter(string search = null, string category = null, bool own = false)

@@ -61,6 +61,8 @@
                                     <Label Text="{Binding Category}" 
                                            HorizontalOptions="Start"
                                            TextColor="Black"
+                                           
+
                                     />
                                     <Label Text="{Binding Date}"
                                            HorizontalOptions="EndAndExpand"
