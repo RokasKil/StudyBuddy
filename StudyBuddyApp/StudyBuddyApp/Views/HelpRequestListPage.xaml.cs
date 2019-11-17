@@ -21,6 +21,7 @@ namespace StudyBuddyApp.Views
     {
         public ObservableCollection<HelpRequestModel> Items { get; set; }
         public ObservableCollection<HelpRequestModel> FilteredItems { get; set; }
+        public ObservableCollection<CategoryModel> CategoryItems { get; set; }
         public HelpRequestListPage()
         {
             InitializeComponent();
@@ -29,12 +30,14 @@ namespace StudyBuddyApp.Views
             {};
             FilteredItems = new ObservableCollection<HelpRequestModel>
             { };
-
+            CategoryItems = new ObservableCollection<CategoryModel>
+            { };
+            CategorieListGetter();
             HelpRequestListGetter();
             Filter(null, null, false);
 
             HelpRequestList.ItemsSource = FilteredItems;
-            PickCategory.ItemsSource = Items;
+            PickCategory.ItemsSource = CategoryItems;
 
             MessagingCenter.Subscribe<HelpRequestAddPage>(this, "AddPageClosed", (addPage) =>
             {
@@ -62,13 +65,15 @@ namespace StudyBuddyApp.Views
 
         private void HelpRequestListGetter()
         {
-            new HelpRequestGetter(LocalUserManager.LocalUser, (status, requests, users) =>
+            var helpRequestGetter = new HelpRequestGetter(LocalUserManager.LocalUser);
+            helpRequestGetter.GetHelpRequestsResult += (status, requests, users) =>
             {
                 if (status == HelpRequestGetter.GetStatus.Success)
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         Items.Clear();
+
                         requests.ForEach(request =>
                         {
                             Items.Add(new HelpRequestModel
@@ -95,9 +100,45 @@ namespace StudyBuddyApp.Views
                     });
                 }
 
-            }).get(true);
+            }).;
         }
+        private void CategorieListGetter()
+        {
+            //var categoriesGetter = new CategoriesGetter(LocalUserManager.LocalUser);
+            //categoriesGetter.GetCategoriesResult +=
+            new CategoriesGetter(LocalUserManager.LocalUser, (status, categories) =>
+            {
+                if (status == CategoriesGetter.GetStatus.Success)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        CategoryItems.Clear();
+                        CategoryItems.Add(new CategoryModel
+                        {
+                            Title = "Visi",
+                            Category = null
+                        });
+                        categories.ForEach(category =>
+                        {
+                            CategoryItems.Add(new CategoryModel
+                            {
+                                Title = category.Title,
+                                Category = category,
+                            });
+                        });
+                        //CategoryList.IsRefreshing = false;
+                    });
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        //CategoryList.IsRefreshing = false;
+                    });
+                }
 
+            }).get();
+        }
 
         void Filter(string search = null, string category = null, bool own = false)
         {
@@ -125,33 +166,33 @@ namespace StudyBuddyApp.Views
             await Navigation.PushModalAsync(
                 new NavigationPage(
                     new HelpRequestAddPage(
-                        new ViewModels.HelpRequestViewModel())));
+                        new ViewModels.HelpRequestAddViewModel())));
         }
 
-        private void RequestSearchBar_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (PickCategory.SelectedIndex >= 0)
-            {
-                Filter(RequestSearchBar.Text, Items[PickCategory.SelectedIndex].Title, false);
-            }
-            else
-            {
-                Filter(RequestSearchBar.Text, null, false);
-            }
-
-        }
 
         private void PickCategory_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (PickCategory.SelectedIndex >= 0)
+            if (PickCategory.SelectedIndex >= 1)
             {
-                Filter(RequestSearchBar.Text, Items[PickCategory.SelectedIndex].Category, false);
+                Filter(RequestSearchBar.Text, CategoryItems[PickCategory.SelectedIndex].Title, false);
             }
             else
             {
                 Filter(RequestSearchBar.Text, null, false);
             }
 
+        }
+
+        private void RequestSearchBar_Completed(object sender, EventArgs e)
+        {
+            if (PickCategory.SelectedIndex >= 1)
+            {
+                Filter(RequestSearchBar.Text, CategoryItems[PickCategory.SelectedIndex].Title, false);
+            }
+            else
+            {
+                Filter(RequestSearchBar.Text, null, false);
+            }
         }
     }
 }

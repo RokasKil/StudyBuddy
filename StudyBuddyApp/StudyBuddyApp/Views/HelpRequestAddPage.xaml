@@ -6,12 +6,12 @@
              Title="{Binding Title}"
              Disappearing="ContentPage_Disappearing">
     <ContentPage.BindingContext>
-        <vm:HelpRequestViewModel />
+        <vm:HelpRequestAddViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="SaveButton" 
-                     Text="Siųsti" 
+                     Text="{Binding Send}" 
                      Clicked="Save_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -26,19 +26,19 @@
         <StackLayout >
 
             <Picker x:Name="CategoryList"
-                    Title="Kategorijos" 
+                    Title="{Binding CategoryGeneral}" 
                     ItemsSource="{Binding Items}"
                     ItemDisplayBinding="{Binding Title}"
             />
             
             <Entry x:Name="Title"
                    Text=""
-                   Placeholder="Problemos pavadinimas" 
+                   Placeholder="{Binding RequestName}" 
             />
 
             <Editor x:Name="Description"
                     Text=""
-                    Placeholder="Problemos apibūdinimas"
+                    Placeholder="{Binding RequestDescription}"
                     VerticalOptions="FillAndExpand"
                     AutoSize="Disabled"
             />

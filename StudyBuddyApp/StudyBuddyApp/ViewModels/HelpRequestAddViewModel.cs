@@ -15,15 +15,24 @@ using StudyBuddyApp.Views;
 
 namespace StudyBuddyApp.ViewModels
 {
-    public class HelpRequestViewModel : BaseViewModel
+    public class HelpRequestAddViewModel : BaseViewModel
     {
         //public string AddText { get; set; }
 
         //public ObservableCollection<HelpRequestModel> Items { get; set; }
-        public HelpRequestViewModel()
+
+        public String Send { get; set; }
+        public String CategoryGeneral { get; set; }
+
+        public String RequestDescription { get; set; }
+        public String RequestName { get; set; }
+        public HelpRequestAddViewModel()
         {
             Title = "Prašyti pagalbos";
-
+            Send = "Siųsti";
+            CategoryGeneral = "Kategorija";
+            RequestDescription = "Problemos apibūdinimas";
+            RequestName = "Problemos pavadinimas";
             //AddText = "Naujas";
             //Description = "Description";
         }

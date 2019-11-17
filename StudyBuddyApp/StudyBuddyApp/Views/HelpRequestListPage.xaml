@@ -12,7 +12,7 @@
     
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="AddButton" Text="naujas" Clicked="ToolbarItem_Clicked">
+        <ToolbarItem x:Name="AddButton" Text="{Binding AddRequest}" Clicked="ToolbarItem_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="add.png"/>
@@ -25,14 +25,16 @@
     <ContentPage.Content >
         <StackLayout >
             <Picker x:Name="PickCategory"
-                    Title="Kategorijos" 
-                    ItemsSource="{Binding Items}"
-                    ItemDisplayBinding="{Binding Category}"
+                    Title="{Binding CategoryGeneral}" 
+                    ItemsSource="{Binding CategoryItems}"
+                    ItemDisplayBinding="{Binding Title}"
                     PropertyChanged="PickCategory_PropertyChanged"/>
             <Entry  x:Name="RequestSearchBar"
                     Text=""
-                    Placeholder="Ieškoti"
-                    PropertyChanged="RequestSearchBar_PropertyChanged"/>
+                    Placeholder="{Binding EntryFind}"
+                    Completed="RequestSearchBar_Completed"
+                     />
+                    
             <ListView x:Name="HelpRequestList"
                       ItemsSource="{Binding Items}"
                       ItemTapped="Handle_ItemTapped"
@@ -47,6 +49,7 @@
                                 <Label Text="{Binding Title}" 
                                        FontSize="Medium"
                                        FontAttributes="Bold"
+                                       TextColor="Black"
                                 />
                                 <Label Text="{Binding Description}" 
                                        LineBreakMode="TailTruncation"
@@ -55,8 +58,9 @@
                                        FontAttributes="Italic"
                                 />
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Category, StringFormat='Kategorija: {0}'}" 
+                                    <Label Text="{Binding Category}" 
                                            HorizontalOptions="Start"
+                                           TextColor="Black"
                                     />
                                     <Label Text="{Binding Date}"
                                            HorizontalOptions="EndAndExpand"

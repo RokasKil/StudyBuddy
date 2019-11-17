@@ -12,6 +12,7 @@ using Xamarin.Forms.Xaml;
 using StudyBuddyShared.Entity;
 using StudyBuddyApp.Utility;
 using StudyBuddyApp.ViewModels;
+using StudyBuddyShared.CategorySystem;
 
 namespace StudyBuddyApp.Views
 {
@@ -22,9 +23,9 @@ namespace StudyBuddyApp.Views
 
         //public HelpRequest helpRequest { get; set; }
 
-        HelpRequestViewModel viewModel;
+        HelpRequestAddViewModel viewModel;
 
-        public HelpRequestAddPage(HelpRequestViewModel viewModel)
+        public HelpRequestAddPage(HelpRequestAddViewModel viewModel)
         {
             InitializeComponent();
             Items = new ObservableCollection<CategoryModel>
@@ -38,6 +39,9 @@ namespace StudyBuddyApp.Views
 
         private void CategorieListGetter()
         {
+            //var categoriesGetter = new CategoriesGetter(LocalUserManager.LocalUser);
+            //categoriesGetter.GetCategoriesResult +=
+
             new CategoriesGetter(LocalUserManager.LocalUser, (status, categories) =>
             {
                 if (status == CategoriesGetter.GetStatus.Success)
