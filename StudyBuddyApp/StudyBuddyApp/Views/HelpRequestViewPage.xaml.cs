@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using StudyBuddyApp.ViewModels;
+using StudyBuddyApp.SystemManager;
+using StudyBuddyApp.Utility;
 
 namespace StudyBuddyApp.Views
 {
@@ -19,11 +21,18 @@ namespace StudyBuddyApp.Views
         {
             InitializeComponent();
             ViewModel = helpRequestViewPageModel;
-            BindingContext = ViewModel;
+            BindingContext = ViewModel;      
         }
         public void OnImageButtonClicked(object sender, EventArgs e)
         {
 
+        }
+        
+        private async void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            HelpRequestSystemManager.NewHelpRequestRemover().Remove(ViewModel.HelpRequestModel.HelpRequest);
+            DependencyService.Get<IToast>().LongToast("Deleted succesfully");
+            await Navigation.PopAsync();
         }
     }
 }
