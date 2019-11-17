@@ -1,4 +1,5 @@
 ﻿using StudyBuddyShared.Entity;
+using StudyBuddyShared.Utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,8 @@ namespace StudyBuddyShared.CategorySystem
 
         public string PrivateKey { get; set; }
 
+        private Network.CategoriesGetter getter;
+
         public CategoryGetter(LocalUser user) : this(user.PrivateKey)
         {
 
@@ -19,11 +22,15 @@ namespace StudyBuddyShared.CategorySystem
         public CategoryGetter(string privateKey)
         {
             this.PrivateKey = privateKey;
+            getter = new Network.CategoriesGetter(PrivateKey, (status, categories) =>
+            {
+                Result?.Invoke(EnumConverter.Convert<CategoryGetStatus>(status), categories);
+            });
         }
 
         public void Get()
         {
-            throw new NotImplementedException();
+            getter.get();
         }
     }
 }
