@@ -17,7 +17,7 @@ namespace StudyBuddyApp.ViewModels
         public ProfileViewViewModel(User user)
         {
             this.User = user;
-            Title = user.Username + "Profilis";
+            Title = user.Username + " Profilis";
             this.ImageLocation = user.ProfilePictureLocation;
             this.KarmaPoints = user.KarmaPoints;
             this.FirstName = user.FirstName;

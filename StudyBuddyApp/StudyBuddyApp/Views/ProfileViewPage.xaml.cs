@@ -20,8 +20,6 @@ namespace StudyBuddyApp.Views
     {
         ProfileViewViewModel viewModel;
         User user;
-        Dictionary<string, User> users;
-        Conversation conversation;
         public ProfileViewPage(ProfileViewViewModel viewModel)
         {
             InitializeComponent();
@@ -31,11 +29,13 @@ namespace StudyBuddyApp.Views
 
         private async void ViewUserReviews_Clicked(object sender, EventArgs e)//TODO
         {
-            //await Navigation.PushAsync(new ViewUserReviews(new ViewModels.ViewUserReviewsViewModel(user)));
+            ViewUserReviews.IsEnabled = false;
+            await Navigation.PushAsync(new UserReviewListPage(new UserReviewListViewModel(user)));
         }
 
         private async void WriteUserReview_Clicked(object sender, EventArgs e)//TODO
         {
+            WriteUserReview.IsEnabled = false;
             await Navigation.PushAsync(new UserReviewWritePage(new UserReviewWriteViewModel(user)));
         }
 
@@ -43,14 +43,13 @@ namespace StudyBuddyApp.Views
         {
             var conversationStarter = ConversationSystemManager.NewConversationStarter();
             LoadingIndicator.IsRunning = true;
+            StartConversation.IsEnabled = false;
             conversationStarter.Result += (status, conversation, users) =>
             {
                 Device.BeginInvokeOnMainThread(async () => //Grįžtama į main Thread !! SVARBU
                 {
                     if (status == ConversationStartStatus.Success) //Pavyko
                     {
-                        this.users = users;
-                        this.conversation = conversation;
                         await Navigation.PushModalAsync(
                         new NavigationPage(
                             new ConversationPage(
@@ -62,9 +61,17 @@ namespace StudyBuddyApp.Views
                         await Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
                     }
                     LoadingIndicator.IsRunning = false;
+                    StartConversation.IsEnabled = true;
                 });
             };
             conversationStarter.StartConversation(user.Username);
+        }
+
+        private void ContentPage_Appearing(object sender, EventArgs e)
+        {
+            StartConversation.IsEnabled = true;
+            ViewUserReviews.IsEnabled = true;
+            WriteUserReview.IsEnabled = true;
         }
     }
 }

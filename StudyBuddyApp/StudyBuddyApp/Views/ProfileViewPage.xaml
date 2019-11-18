@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="StudyBuddyApp.Views.ProfileViewPage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             Appearing="ContentPage_Appearing">
     <ContentPage.Content>
         <StackLayout>
             <Image

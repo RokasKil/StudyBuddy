@@ -18,14 +18,14 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout>
-                        <Label Text="{Binding Title}" 
+                    <StackLayout BackgroundColor="{Binding Color}">
+                        <Label Text="{Binding FullName}" 
                                FontSize="16"
                                FontAttributes="Bold"/>
-                        <Label Text="{Binding Description}" 
+                        <Label Text="{Binding Message}" 
                                LineBreakMode="TailTruncation"/>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding CreatedDate}"
+                            <Label Text="{Binding PostDate}"
                                    HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                     </StackLayout>

@@ -19,15 +19,13 @@ namespace StudyBuddyApp.Views
     public partial class UserReviewListPage : ContentPage
     {
         UserReviewListViewModel viewModel;
-        UserReviewsGetStatus status;
-        List<UserReview> userReviews;
-        Dictionary<string, User> users;
+        User user;
         public ObservableCollection<UserReviewModel> Items { get; set; }
         public UserReviewListPage(UserReviewListViewModel viewModel)
         {
             InitializeComponent();
             this.BindingContext = this.viewModel = viewModel;
-            Items = new ObservableCollection<UserReviewModel>{ };
+            Items = new ObservableCollection<UserReviewModel> { };
             GetUserReviews();
             UserReviewsList.ItemsSource = Items;
 
@@ -39,38 +37,36 @@ namespace StudyBuddyApp.Views
         }
         private void GetUserReviews()
         {
-            var userReviewSystemManager = UserReviewSystemManager.NewUserReviewGetter();
-            userReviewSystemManager.Result += async (status, userReviews, users) =>
+            var userReviewGetter = UserReviewSystemManager.NewUserReviewGetter();
+            userReviewGetter.Result += (status, userReviews, users) =>
             {
-                if (status == UserReviewsGetStatus.Success)
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    Device.BeginInvokeOnMainThread(() =>
+                    if (status == UserReviewsGetStatus.Success)
                     {
                         Items.Clear();
-                        userReviews.ForEach(category =>
+                        userReviews.ForEach(UserReview =>
                         {
+                            users.TryGetValue(UserReview.Username, out user);
                             Items.Add(
-                                new UserReviewModel
+                                new UserReviewModel()
                                 {
-                                    Message
-                                    Karma
-                                    Username
-                                    PostDate
-                                    UserReview
+                                    Message = UserReview.Message,
+                                    Karma = UserReview.Karma,
+                                    Username = UserReview.Username,
+                                    PostDate = UserReview.PostDate,
+                                    UserReview = UserReview,
+                                    User = user
                                 });
                         });
-                        //HelpRequestList.IsRefreshing = false;
-                        //HelpRequestList.ItemsSource = null;
-                        //HelpRequestList.ItemsSource = Items;
-                    });
-                }
-                else
-                {
-                    await DisplayAlert("Klaida", "Nepavyko įkelti kategorijų", "OK");
-                }
-
+                    }
+                    else
+                    {
+                        DisplayAlert("Klaida", "Nepavyko įkelti kategorijų", "OK");
+                    }
+                });
             };
-            userReviewSystemManager.Get(viewModel.User);
+            userReviewGetter.Get(viewModel.User.Username);
         }
 
         private void UserReviewsList_Refreshing(object sender, EventArgs e)
