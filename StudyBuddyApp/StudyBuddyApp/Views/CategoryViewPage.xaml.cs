@@ -70,13 +70,13 @@ namespace StudyBuddyApp.Views
             categoryUpdater.UpdateCategory(updatedCategory);
         }
 
-        private async void Delete_Button_Clicked(object sender, EventArgs e)
+        private async void DeleteButton_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Ar tikrai norite ištrinti kategoriją?", "Ištrynus kategoriją dings visi su ja susiję pagalbos prašymai.", "Taip", "Ne");
             if (answer == false) return;
             else
             {
-                Delete_Button.IsEnabled = false;
+                DeleteButton.IsEnabled = false;
                 RemoveTopic();
             }
         }
@@ -97,7 +97,7 @@ namespace StudyBuddyApp.Views
                     else
                     {
                         DependencyService.Get<IToast>().LongToast("Kategorijos nepavyko ištrinti");
-                        Delete_Button.IsEnabled = true;
+                        DeleteButton.IsEnabled = true;
                     }
                 });
             };

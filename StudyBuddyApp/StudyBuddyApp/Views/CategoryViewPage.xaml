@@ -7,12 +7,7 @@
              x:Class="StudyBuddyApp.Views.CategoryViewPage"
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="SaveButton" Text="Išsaugoti" Clicked="SaveButton_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="save.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
+        <ToolbarItem x:Name="DeleteButton" Text="Ištrinti" Clicked="DeleteButton_Clicked">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
@@ -38,9 +33,9 @@
                 HorizontalOptions="End"
                 Text="{Binding CategoryModel.LastUpdatedDate, StringFormat='Paskutinį kartą atnaujinta: {0}'}"/>
             <Button
-                x:Name="Delete_Button"
-                Text="Ištrinti kategoriją"
-                Clicked="Delete_Button_Clicked"/>
+                x:Name="SaveButton"
+                Text="Išsaugoti pakeitimus"
+                Clicked="SaveButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
