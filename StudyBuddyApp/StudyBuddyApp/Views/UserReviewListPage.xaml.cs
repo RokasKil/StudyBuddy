@@ -62,7 +62,7 @@ namespace StudyBuddyApp.Views
                     }
                     else
                     {
-                        DisplayAlert("Klaida", "Nepavyko įkelti kategorijų", "OK");
+                        DisplayAlert("Klaida", "Nepavyko įkelti atsiliepimų", "Tęsti");
                     }
                 });
             };
