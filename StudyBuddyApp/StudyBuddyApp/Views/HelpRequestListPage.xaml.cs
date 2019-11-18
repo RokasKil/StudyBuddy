@@ -34,7 +34,6 @@ namespace StudyBuddyApp.Views
             { };
             CategorieListGetter();
             HelpRequestListGetter();
-            Filter(null, null, false);
 
             HelpRequestList.ItemsSource = FilteredItems;
             PickCategory.ItemsSource = CategoryItems;
@@ -49,7 +48,6 @@ namespace StudyBuddyApp.Views
         {
             //AddButton.IsEnabled = true;
             HelpRequestListGetter();
-            Filter(null, null, false);
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -86,10 +84,9 @@ namespace StudyBuddyApp.Views
                                 HelpRequest = request
                             });
                         });
-                        //FilteredItems = Items;
+
                         HelpRequestList.IsRefreshing = false;
-                        //HelpRequestList.ItemsSource = null;
-                        //HelpRequestList.ItemsSource = Items;
+
                     });
                 }
                 else
@@ -126,6 +123,7 @@ namespace StudyBuddyApp.Views
                                 Category = category,
                             });
                         });
+                        FilterFinal();
                         //CategoryList.IsRefreshing = false;
                     });
                 }
@@ -161,6 +159,18 @@ namespace StudyBuddyApp.Views
 
         }
 
+        private void FilterFinal()
+        {
+            if (PickCategory.SelectedIndex >= 1)
+            {
+                Filter(RequestSearchBar.Text, CategoryItems[PickCategory.SelectedIndex].Title, false);
+            }
+            else
+            {
+                Filter(RequestSearchBar.Text, null, false);
+            }
+        }
+
         async private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             AddButton.IsEnabled = false;
@@ -173,27 +183,13 @@ namespace StudyBuddyApp.Views
 
         private void PickCategory_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (PickCategory.SelectedIndex >= 1)
-            {
-                Filter(RequestSearchBar.Text, CategoryItems[PickCategory.SelectedIndex].Title, false);
-            }
-            else
-            {
-                Filter(RequestSearchBar.Text, null, false);
-            }
+            FilterFinal();
 
         }
 
         private void RequestSearchBar_Completed(object sender, EventArgs e)
         {
-            if (PickCategory.SelectedIndex >= 1)
-            {
-                Filter(RequestSearchBar.Text, CategoryItems[PickCategory.SelectedIndex].Title, false);
-            }
-            else
-            {
-                Filter(RequestSearchBar.Text, null, false);
-            }
+            FilterFinal();
         }
     }
 }
