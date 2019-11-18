@@ -4,12 +4,30 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="StudyBuddyApp.Views.CategoryViewPage">
+             x:Class="StudyBuddyApp.Views.CategoryViewPage"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="SaveButton" Text="Išsaugoti" Clicked="SaveButton_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="10,20,10,0">
+            <Label 
+                Text="{Binding CategoryModel.Title}"
+                FontSize="20"
+                FontAttributes="Bold"/>
+
+            <Editor 
+                x:Name="Description"
+                Text="{Binding CategoryModel.Description}"
+                VerticalOptions="FillAndExpand"
+                AutoSize="Disabled"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

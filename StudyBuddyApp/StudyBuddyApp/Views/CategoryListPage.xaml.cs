@@ -10,6 +10,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using StudyBuddyApp.SystemManager;
 using StudyBuddyShared.CategorySystem;
+using StudyBuddyApp.ViewModels;
+using StudyBuddyShared.Entity;
 
 namespace StudyBuddyApp.Views
 {
@@ -77,7 +79,9 @@ namespace StudyBuddyApp.Views
             if (e.Item == null)
                 return;
 
-            //await Navigation.PushModalAsync(new NavigationPage(new CategoryViewPage(new CategoryViewViewModel(category))));
+            var selectedItem = ((ListView)sender).SelectedItem as CategoryModel;
+
+            await Navigation.PushModalAsync(new NavigationPage(new CategoryViewPage(new CategoryViewViewModel(selectedItem))));
             //await DisplayAlert("Nu va", "Paspaudei ant kategorijos, mldc", "ok seni");
 
             //Deselect Item

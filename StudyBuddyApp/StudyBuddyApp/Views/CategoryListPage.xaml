@@ -3,11 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
              mc:Ignorable="d"
              x:Class="StudyBuddyApp.Views.CategoryListPage"
              Appearing="CategoryListPage_Refreshing"
              Title="{Binding Title}">
 
+    <ContentPage.BindingContext>
+        <vm:CategoryListViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="AddButton" Text="Pridėti" Clicked="ToolbarItem_Clicked">
             <ToolbarItem.Icon>
