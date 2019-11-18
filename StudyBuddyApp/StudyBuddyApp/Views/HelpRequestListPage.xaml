@@ -58,12 +58,13 @@
                                        FontAttributes="Italic"
                                 />
                                 <StackLayout Orientation="Horizontal">
+                                    <!--FillAndExpand fixes dumb bug with label size not updating-->
                                     <Label Text="{Binding Category}" 
-                                           HorizontalOptions="Start"
+                                           HorizontalOptions="FillAndExpand"
                                            TextColor="Black"
                                     />
                                     <Label Text="{Binding Date}"
-                                           HorizontalOptions="EndAndExpand"
+                                           HorizontalOptions="End"
                                            HorizontalTextAlignment="End"
                                     />
                                 </StackLayout>

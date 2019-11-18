@@ -28,12 +28,14 @@ namespace StudyBuddyApp.Views
             InitializeComponent();
 
             Items = new ObservableCollection<HelpRequestModel>
-            {};
+            { };
             FilteredItems = new ObservableCollection<HelpRequestModel>
             { };
             CategoryItems = new ObservableCollection<CategoryModel>
-            { };
-            CategorieListGetter();
+            {
+                new CategoryModel { Title = "Visi", Category = null }
+            };
+            CategoryListGetter();
             HelpRequestListGetter();
 
             HelpRequestList.ItemsSource = FilteredItems;
@@ -55,7 +57,7 @@ namespace StudyBuddyApp.Views
         {
             if (e.Item == null)
                 return;
-            
+
             var selectedItem = ((ListView)sender).SelectedItem as HelpRequestModel;
             var user = users[selectedItem.HelpRequest.CreatorUsername];
 
@@ -88,6 +90,7 @@ namespace StudyBuddyApp.Views
                             });
                         });
 
+                        FilterFinal();
                         HelpRequestList.IsRefreshing = false;
 
                     });
@@ -103,7 +106,7 @@ namespace StudyBuddyApp.Views
             };
             helpRequestGetter.get(true);
         }
-        private void CategorieListGetter()
+        private void CategoryListGetter()
         {
             var categoriesGetter = new CategoriesGetter(LocalUserManager.LocalUser);
             categoriesGetter.GetCategoriesResult += (status, categories) =>
