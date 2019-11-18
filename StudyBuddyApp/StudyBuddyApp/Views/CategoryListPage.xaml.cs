@@ -58,7 +58,8 @@ namespace StudyBuddyApp.Views
                                 Description = category.Description,
                                 CreatorUsername = category.CreatorUsername,
                                 CreatedDate = category.CreatedDate,
-                                LastUpdatedDate = category.LastUpdatedDate
+                                LastUpdatedDate = category.LastUpdatedDate,
+                                Category = category
                             });
                         });
                         //HelpRequestList.IsRefreshing = false;

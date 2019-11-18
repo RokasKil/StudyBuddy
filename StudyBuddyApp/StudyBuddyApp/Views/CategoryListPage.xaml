@@ -36,7 +36,7 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout>
+                    <StackLayout Padding="10,5,10,5">
                         <Label Text="{Binding Title}" 
                                FontSize="16"
                                FontAttributes="Bold"

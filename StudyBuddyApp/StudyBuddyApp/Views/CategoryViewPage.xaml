@@ -28,6 +28,19 @@
                 Text="{Binding CategoryModel.Description}"
                 VerticalOptions="FillAndExpand"
                 AutoSize="Disabled"/>
+            <Label
+                HorizontalOptions="End"
+                Text="{Binding CategoryModel.CreatorUsername, StringFormat='Autorius: {0}'}"/>
+            <Label
+                HorizontalOptions="End"
+                Text="{Binding CategoryModel.CreatedDate, StringFormat='Sukurta: {0}'}"/>
+            <Label
+                HorizontalOptions="End"
+                Text="{Binding CategoryModel.LastUpdatedDate, StringFormat='Paskutinį kartą atnaujinta: {0}'}"/>
+            <Button
+                x:Name="Delete_Button"
+                Text="Ištrinti kategoriją"
+                Clicked="Delete_Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
