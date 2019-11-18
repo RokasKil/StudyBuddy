@@ -20,13 +20,13 @@ namespace StudyBuddyApp.Views
         UserReviewWriteViewModel viewModel;
         User user;
 
-        public UserReviewWritePage(User user)
+        public UserReviewWritePage(UserReviewWriteViewModel viewModel)
         {
             InitializeComponent();
-            this.BindingContext = viewModel = new UserReviewWriteViewModel(user);
+            this.BindingContext = this.viewModel = viewModel;
             buttonNegativeReview.IsEnabled = false;
             buttonPositiveReview.IsEnabled = false;
-            this.user = user;
+            user = viewModel.User;
         }
 
         private void buttonPositiveReview_Clicked(object sender, EventArgs e)
@@ -44,16 +44,15 @@ namespace StudyBuddyApp.Views
             var mngr = UserReviewSystemManager.NewUserReviewPoster();
             mngr.Result += (status, review) =>
             {
-                Device.BeginInvokeOnMainThread(() =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
                     if (status == UserReviewManageStatus.Success)
                     {
                         DependencyService.Get<IToast>().LongToast("Atsiliepimas išsiųstas");
-                        Application.Current.MainPage.Navigation.PopAsync();
                     }
                     else
                     {
-                        Application.Current.MainPage.DisplayAlert("Klaida", "Atsiliepimas neišsiųstas, bandykite dar kartą", "tęsti"); ;
+                        await Application.Current.MainPage.DisplayAlert("Klaida", "Atsiliepimas neišsiųstas, bandykite dar kartą", "tęsti"); ;
                     }
                 });
             };
@@ -71,7 +70,7 @@ namespace StudyBuddyApp.Views
             if (Description.Text.Length != 0)
             {
                 buttonNegativeReview.IsEnabled = true;
-                buttonNegativeReview.IsEnabled = true;
+                buttonPositiveReview.IsEnabled = true;
             }
         }
     }

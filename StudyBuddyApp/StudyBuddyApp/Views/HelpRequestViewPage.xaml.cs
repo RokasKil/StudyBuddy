@@ -13,17 +13,17 @@ namespace StudyBuddyApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HelpRequestViewPage : ContentPage
     {
-        readonly HelpRequestViewPageModel ViewModel;
+        readonly HelpRequestViewPageModel viewModel;
 
         public HelpRequestViewPage(HelpRequestViewPageModel helpRequestViewPageModel)
         {
             InitializeComponent();
-            ViewModel = helpRequestViewPageModel;
-            BindingContext = ViewModel;
+            viewModel = helpRequestViewPageModel;
+            BindingContext = viewModel;
         }
-        public void OnImageButtonClicked(object sender, EventArgs e)
+        public async void OnImageButtonClicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new ProfileViewPage(new ViewModels.ProfileViewViewModel(viewModel.Creator)));
         }
     }
 }

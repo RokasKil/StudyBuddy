@@ -7,8 +7,8 @@ namespace StudyBuddyApp.ViewModels
 {
     public class UserReviewWriteViewModel : BaseViewModel
     {
-        User User { get; set; }
-        String Username { get; set; }
+        public User User { get; set; }
+        public String Username { get; set; }
         public UserReviewWriteViewModel(User user)
         {
             User = user;

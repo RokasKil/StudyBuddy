@@ -1,24 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
              x:Class="StudyBuddyApp.Views.HelpRequestAddPage"
-             Title="{Binding Title}">
-    
+             xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
+             Title="{Binding Title}"
+             Disappearing="ContentPage_Disappearing">
+    <ContentPage.BindingContext>
+        <vm:HelpRequestAddViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Grįžti" Clicked="Cancel_Clicked">
+        <ToolbarItem x:Name="SaveButton" 
+                     Text="{Binding Send}" 
+                     Clicked="Save_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="cancel.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
-        <ToolbarItem Text="Siųsti" Clicked="Save_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="save.png"/>
+                    <On Platform="UWP" 
+                        Value="save.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
@@ -27,26 +25,23 @@
     <ContentPage.Content >
         <StackLayout >
 
-            <Picker 
-                x:Name="CategoryList"
-                Title="Categorijos" 
-                ItemsSource="{Binding Items}"
-                ItemDisplayBinding="{Binding Title}"
-                 
+            <Picker x:Name="CategoryList"
+                    Title="{Binding CategoryGeneral}" 
+                    ItemsSource="{Binding Items}"
+                    ItemDisplayBinding="{Binding Title}"
             />
             
-            <Entry 
-                x:Name="Title"
-                Text=""
-                Placeholder="Problemos pavadinimas" />
-            
-            <Editor 
-                x:Name="Description"
-                Text=""
-                Placeholder="Problemos apibūdinimas"
-                VerticalOptions="FillAndExpand"
-                AutoSize="Disabled"/>
-            
+            <Entry x:Name="Title"
+                   Text=""
+                   Placeholder="{Binding RequestName}" 
+            />
+
+            <Editor x:Name="Description"
+                    Text=""
+                    Placeholder="{Binding RequestDescription}"
+                    VerticalOptions="FillAndExpand"
+                    AutoSize="Disabled"
+            />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

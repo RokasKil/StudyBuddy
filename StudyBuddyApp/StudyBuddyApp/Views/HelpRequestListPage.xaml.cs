@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,28 +12,44 @@ using StudyBuddyShared.Network;
 using StudyBuddyApp.Models;
 using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.Utility.Extensions;
+using System.Collections.Generic;
 
 namespace StudyBuddyApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HelpRequestListPage : ContentPage
     {
-        public ObservableCollection<HelpRequestModel> Items { get; set; }
-
         private Dictionary<string, User> users = null;
+        public ObservableCollection<HelpRequestModel> Items { get; set; }
+        public ObservableCollection<HelpRequestModel> FilteredItems { get; set; }
+        public ObservableCollection<CategoryModel> CategoryItems { get; set; }
         public HelpRequestListPage()
         {
             InitializeComponent();
 
             Items = new ObservableCollection<HelpRequestModel>
-            {};
+            { };
+            FilteredItems = new ObservableCollection<HelpRequestModel>
+            { };
+            CategoryItems = new ObservableCollection<CategoryModel>
+            {
+                new CategoryModel { Title = "Visi", Category = null }
+            };
+            CategoryListGetter();
             HelpRequestListGetter();
 
-            HelpRequestList.ItemsSource = Items;
+            HelpRequestList.ItemsSource = FilteredItems;
+            PickCategory.ItemsSource = CategoryItems;
+
+            MessagingCenter.Subscribe<HelpRequestAddPage>(this, "AddPageClosed", (addPage) =>
+            {
+                AddButton.IsEnabled = true;
+            });
         }
 
         private void HelpRequestList_Refreshing(object sender, EventArgs e)
         {
+            //AddButton.IsEnabled = true;
             HelpRequestListGetter();
         }
 
@@ -53,7 +68,8 @@ namespace StudyBuddyApp.Views
 
         private void HelpRequestListGetter()
         {
-            new HelpRequestGetter(LocalUserManager.LocalUser, (status, requests, users) =>
+            var helpRequestGetter = new HelpRequestGetter(LocalUserManager.LocalUser);
+            helpRequestGetter.GetHelpRequestsResult += (status, requests, users) =>
             {
                 if (status == HelpRequestGetter.GetStatus.Success)
                 {
@@ -63,7 +79,7 @@ namespace StudyBuddyApp.Views
                         this.users = users;
                         requests.ForEach(request =>
                         {
-                            var helpRequestModel = new HelpRequestModel
+                            Items.Add(new HelpRequestModel
                             {
                                 Title = request.Title,
                                 Description = request.Description,
@@ -71,13 +87,12 @@ namespace StudyBuddyApp.Views
                                 Category = request.Category,
                                 Date = request.Timestamp.ToFullDate(),
                                 HelpRequest = request
-                            };
-
-                            Items.Add(helpRequestModel);
+                            });
                         });
+
+                        FilterFinal();
                         HelpRequestList.IsRefreshing = false;
-                        //HelpRequestList.ItemsSource = null;
-                        //HelpRequestList.ItemsSource = Items;
+
                     });
                 }
                 else
@@ -88,12 +103,99 @@ namespace StudyBuddyApp.Views
                     });
                 }
 
-            }).get(true);
+            };
+            helpRequestGetter.get(true);
+        }
+        private void CategoryListGetter()
+        {
+            var categoriesGetter = new CategoriesGetter(LocalUserManager.LocalUser);
+            categoriesGetter.GetCategoriesResult += (status, categories) =>
+            {
+                if (status == CategoriesGetter.GetStatus.Success)
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        CategoryItems.Clear();
+                        CategoryItems.Add(new CategoryModel
+                        {
+                            Title = "Visi",
+                            Category = null
+                        });
+                        categories.ForEach(category =>
+                        {
+                            CategoryItems.Add(new CategoryModel
+                            {
+                                Title = category.Title,
+                                Category = category,
+                            });
+                        });
+                        FilterFinal();
+                        //CategoryList.IsRefreshing = false;
+                    });
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        //CategoryList.IsRefreshing = false;
+                    });
+                }
+
+            };
+            categoriesGetter.get();
+        }
+
+        void Filter(string search = null, string category = null, bool own = false)
+        {
+            if (Items == null || LocalUserManager.LocalUser == null) // Dar nėra informacijos
+            {
+                return;
+            }
+            List<HelpRequestModel> filtered = Items.ToList();
+            FilteredItems.Clear();
+            filtered.ForEach((helpRequest) =>
+            {
+                if ((String.IsNullOrEmpty(category) || category == helpRequest.Category) &&
+                    (String.IsNullOrEmpty(search) || helpRequest.Title.ToLower().Contains(search) || helpRequest.Description.ToLower().Contains(search)) &&
+                    (!own || helpRequest.Name == LocalUserManager.LocalUser.Username))
+                {
+                    FilteredItems.Add(helpRequest);
+                }
+            });
+
+        }
+
+        private void FilterFinal()
+        {
+            if (PickCategory.SelectedIndex >= 1)
+            {
+                Filter(RequestSearchBar.Text, CategoryItems[PickCategory.SelectedIndex].Title, false);
+            }
+            else
+            {
+                Filter(RequestSearchBar.Text, null, false);
+            }
         }
 
         async private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new HelpRequestAddPage()));
+            AddButton.IsEnabled = false;
+            await Navigation.PushModalAsync(
+                new NavigationPage(
+                    new HelpRequestAddPage(
+                        new ViewModels.HelpRequestAddViewModel())));
+        }
+
+
+        private void PickCategory_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            FilterFinal();
+
+        }
+
+        private void RequestSearchBar_Completed(object sender, EventArgs e)
+        {
+            FilterFinal();
         }
     }
 }
