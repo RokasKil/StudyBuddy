@@ -4,7 +4,9 @@
              x:Class="StudyBuddyApp.Views.HelpRequestListPage"
              xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
              Title="{Binding Title}"
-             Appearing="HelpRequestList_Refreshing" >
+             Appearing="HelpRequestList_Refreshing" 
+             Padding="5">
+             
     
     <ContentPage.BindingContext>
         <vm:HelpRequestListViewModel />
@@ -23,7 +25,9 @@
 
 
     <ContentPage.Content >
-        <StackLayout >
+        <StackLayout 
+            Padding='5'>
+            
             <Picker x:Name="PickCategory"
                     Title="{Binding CategoryGeneral}" 
                     ItemsSource="{Binding CategoryItems}"
@@ -33,6 +37,7 @@
                     Text=""
                     Placeholder="{Binding EntryFind}"
                     Completed="RequestSearchBar_Completed"
+                     
                      />
                     
             <ListView x:Name="HelpRequestList"
@@ -49,7 +54,7 @@
                                 <Label Text="{Binding Title}" 
                                        FontSize="Medium"
                                        FontAttributes="Bold"
-                                       TextColor="Black"
+
                                 />
                                 <Label Text="{Binding Description}" 
                                        LineBreakMode="TailTruncation"
@@ -60,7 +65,7 @@
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Category}" 
                                            HorizontalOptions="Start"
-                                           TextColor="Black"
+
                                     />
                                     <Label Text="{Binding Date}"
                                            HorizontalOptions="EndAndExpand"
