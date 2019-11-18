@@ -20,6 +20,7 @@ namespace StudyBuddyApp.Views
     {
         UserReviewListViewModel viewModel;
         public ObservableCollection<UserReviewModel> Items { get; set; }
+        ItemTappedEventArgs e;
         public UserReviewListPage(UserReviewListViewModel viewModel)
         {
             InitializeComponent();
@@ -27,11 +28,13 @@ namespace StudyBuddyApp.Views
             Items = new ObservableCollection<UserReviewModel> { };
             GetUserReviews();
             UserReviewsList.ItemsSource = Items;
+            buttonDelete.IsEnabled = false;
         }
 
         private void UserReviewList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-
+            buttonDelete.IsEnabled = (Items[e.ItemIndex].Username.Equals(LocalUserManager.LocalUser.Username));
+            this.e = e;
         }
         private void GetUserReviews()
         {
@@ -66,10 +69,43 @@ namespace StudyBuddyApp.Views
             userReviewGetter.Get(viewModel.User.Username);
         }
 
+        public void DeleteReview()
+        {
+            buttonDelete.IsEnabled = false;
+            var userReviewRemover = UserReviewSystemManager.NewUserReviewRemover();
+            userReviewRemover.Result += (status, userReview) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    if (status == UserReviewManageStatus.Success)
+                    {
+                        Items.RemoveAt(e.ItemIndex);
+                    }
+                    else
+                    {
+                        DisplayAlert("Klaida", "Nepavyko ištrinti atsiliepimo", "Tęsti");
+                    }
+                    buttonDelete.IsEnabled = true;
+                });
+            };
+            userReviewRemover.Remove(new UserReview() {Username = viewModel.User.Username});
+            
+        }
+
         private void UserReviewsList_Refreshing(object sender, EventArgs e)
         {
             GetUserReviews();
             UserReviewsList.IsRefreshing = false;
+        }
+
+        private void buttonDelete_Clicked(object sender, EventArgs e)
+        {
+            DeleteReview();
+        }
+
+        private void UserReviewsList_SizeChanged(object sender, EventArgs e)
+        {
+            buttonDelete.IsEnabled = false;
         }
     }
 }
