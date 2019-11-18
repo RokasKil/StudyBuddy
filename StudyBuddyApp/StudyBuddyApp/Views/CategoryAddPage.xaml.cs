@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.CategorySystem;
 
 namespace StudyBuddyApp.Views
 {
@@ -42,12 +44,13 @@ namespace StudyBuddyApp.Views
         {
             string timestamp = DateTime.Now.ToLongDateString();
 
-            var categoryManager = new CategoryManager(LocalUserManager.LocalUser);
-            categoryManager.AddCategoryResult += (status, category) =>
+            var categoryAdder = CategorySystemManager.NewCategoryAdder();
+
+            categoryAdder.Result += (status, category) =>
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    if (status == CategoryManager.ManagerStatus.Success)
+                    if (status == CategoryManageStatus.Success)
                     {
                         DependencyService.Get<IToast>().LongToast("Kategorija sėkmingai pridėta");
                         await Navigation.PopModalAsync();
@@ -59,7 +62,7 @@ namespace StudyBuddyApp.Views
                     }
                 });
             };
-            categoryManager.addCategory(new Category
+            categoryAdder.AddCategory(new Category
                 {
                   Title = Title.Text,
                   Description = Description.Text,

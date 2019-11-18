@@ -77,7 +77,8 @@ namespace StudyBuddyApp.Views
             if (e.Item == null)
                 return;
 
-            await DisplayAlert("Nu va", "Paspaudei ant kategorijos, mldc", "ok seni");
+            //await Navigation.PushModalAsync(new NavigationPage(new CategoryViewPage(new CategoryViewViewModel(category))));
+            //await DisplayAlert("Nu va", "Paspaudei ant kategorijos, mldc", "ok seni");
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
