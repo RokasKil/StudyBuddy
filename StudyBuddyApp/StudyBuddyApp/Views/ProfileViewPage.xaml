@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="StudyBuddyApp.Views.ProfileViewPage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             Appearing="ContentPage_Appearing">
     <ContentPage.Content>
         <StackLayout>
             <Image
@@ -23,6 +24,12 @@
                 </Image.Source>
             </Image>
             <Label
+                Text="{Binding KarmaDescription}"
+                HorizontalOptions="Center"/>
+            <ProgressBar
+                x:Name="ProgressBarKarma"
+                Progress="{Binding KarmaPointsForBar}"/>
+            <Label
                 x:Name="labelFullName"
                 Text="{Binding FullName}"
                 VerticalOptions="CenterAndExpand" 
@@ -32,8 +39,6 @@
                 Text="{Binding UserName}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"/>
-            <ProgressBar
-                Progress="{Binding KarmaPoints}"/>
             <Button
                 x:Name="ViewUserReviews"
                 Clicked="ViewUserReviews_Clicked"
