@@ -13,6 +13,9 @@ using StudyBuddyApp.Models;
 using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.Utility.Extensions;
 using System.Collections.Generic;
+using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.CategorySystem;
+using StudyBuddyShared.HelpRequestSystem;
 
 namespace StudyBuddyApp.Views
 {
@@ -66,10 +69,10 @@ namespace StudyBuddyApp.Views
 
         private void HelpRequestListGetter()
         {
-            var helpRequestGetter = new HelpRequestGetter(LocalUserManager.LocalUser);
-            helpRequestGetter.GetHelpRequestsResult += (status, requests, users) =>
+            var helpRequestGetter = HelpRequestSystemManager.NewHelpRequestGetter();
+            helpRequestGetter.Result += (status, requests, users) =>
             {
-                if (status == HelpRequestGetter.GetStatus.Success)
+                if (status == HelpRequestGetStatus.Success)
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
@@ -101,14 +104,14 @@ namespace StudyBuddyApp.Views
                 }
 
             };
-            helpRequestGetter.get(true);
+            helpRequestGetter.Get();
         }
         private void CategorieListGetter()
         {
-            var categoriesGetter = new CategoriesGetter(LocalUserManager.LocalUser);
-            categoriesGetter.GetCategoriesResult += (status, categories) =>
+            var categoriesGetter = CategorySystemManager.NewCategoryGetter();
+            categoriesGetter.Result += (status, categories) =>
             {
-                if (status == CategoriesGetter.GetStatus.Success)
+                if (status == CategoryGetStatus.Success)
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
@@ -139,7 +142,7 @@ namespace StudyBuddyApp.Views
                 }
 
             };
-            categoriesGetter.get();
+            categoriesGetter.Get();
         }
 
         void Filter(string search = null, string category = null, bool own = false)

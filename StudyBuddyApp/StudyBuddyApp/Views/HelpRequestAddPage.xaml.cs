@@ -13,6 +13,8 @@ using StudyBuddyShared.Entity;
 using StudyBuddyApp.Utility;
 using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.CategorySystem;
+using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.HelpRequestSystem;
 
 namespace StudyBuddyApp.Views
 {
@@ -39,10 +41,10 @@ namespace StudyBuddyApp.Views
 
         private void CategorieListGetter()
         {
-            var categoriesGetter = new CategoriesGetter(LocalUserManager.LocalUser);
-            categoriesGetter.GetCategoriesResult += (status, categories) =>
+            var categoriesGetter = CategorySystemManager.NewCategoryGetter();
+            categoriesGetter.Result += (status, categories) =>
             {
-                if (status == CategoriesGetter.GetStatus.Success)
+                if (status == CategoryGetStatus.Success)
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
@@ -67,18 +69,18 @@ namespace StudyBuddyApp.Views
                 }
 
             };
-            categoriesGetter.get();
+            categoriesGetter.Get();
         }
 
         private void SendNewHelpRequest()
         {
-            var helpRequestManager = new HelpRequestManager(LocalUserManager.LocalUser);
-            helpRequestManager.PostHelpRequestResult += (status, helprequest) =>
+            var helpRequestManager = HelpRequestSystemManager.NewHelpRequestPoster();
+            helpRequestManager.Result += (status, helprequest) =>
             {
                
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    if (status == HelpRequestManager.ManagerStatus.Success)
+                    if (status == HelpRequestManageStatus.Success)
                     {
                         DependencyService.Get<IToast>().LongToast("Prašymas sėkmingai išsiųstas");
                         await Navigation.PopModalAsync();
@@ -93,7 +95,7 @@ namespace StudyBuddyApp.Views
                 
             };
 
-            helpRequestManager.postHelpRequest(new HelpRequest
+            helpRequestManager.Post(new HelpRequest
             {
                 Title = Title.Text,
                 Description = Description.Text,
