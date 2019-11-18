@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StudyBuddyApp.Views.UserReviewListPage"
+             Appearing="UserReviewsList_Refreshing"
+             Title="{Binding Title}">
+    <ListView
+        x:Name="UserReviewsList"
+        ItemsSource="{Binding Items}"
+        HasUnevenRows="true"
+        ItemTapped="UserReviewList_ItemTapped"
+        CachingStrategy="RecycleElement"
+        IsPullToRefreshEnabled="True"
+        Refreshing="UserReviewsList_Refreshing">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Title}" 
+                               FontSize="16"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding Description}" 
+                               LineBreakMode="TailTruncation"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding CreatedDate}"
+                                   HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
