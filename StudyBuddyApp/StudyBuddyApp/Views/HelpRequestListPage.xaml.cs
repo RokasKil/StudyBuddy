@@ -19,6 +19,7 @@ namespace StudyBuddyApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HelpRequestListPage : ContentPage
     {
+        private Dictionary<string, User> users = null;
         public ObservableCollection<HelpRequestModel> Items { get; set; }
         public ObservableCollection<HelpRequestModel> FilteredItems { get; set; }
         public ObservableCollection<CategoryModel> CategoryItems { get; set; }
@@ -54,11 +55,13 @@ namespace StudyBuddyApp.Views
         {
             if (e.Item == null)
                 return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+            
+            var selectedItem = ((ListView)sender).SelectedItem as HelpRequestModel;
+            var user = users[selectedItem.HelpRequest.CreatorUsername];
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+            await Navigation.PushAsync(new HelpRequestViewPage(new HelpRequestViewPageModel(user, selectedItem)));
         }
 
         private void HelpRequestListGetter()
@@ -71,7 +74,7 @@ namespace StudyBuddyApp.Views
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         Items.Clear();
-
+                        this.users = users;
                         requests.ForEach(request =>
                         {
                             Items.Add(new HelpRequestModel
