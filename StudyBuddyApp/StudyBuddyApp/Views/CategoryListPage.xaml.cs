@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.CategorySystem;
 
 namespace StudyBuddyApp.Views
 {
@@ -37,9 +39,11 @@ namespace StudyBuddyApp.Views
         //pasiima kategorijas iš DB
         void GetCategories()
         {
-            new CategoriesGetter(LocalUserManager.LocalUser, async (status, categories) =>
+            var categoryGetter = CategorySystemManager.NewCategoryGetter();
+
+            categoryGetter.Result += async (status, categories) =>
             {
-                if (status == CategoriesGetter.GetStatus.Success)
+                if (status == CategoryGetStatus.Success)
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
@@ -65,7 +69,8 @@ namespace StudyBuddyApp.Views
                     await DisplayAlert("Klaida", "Nepavyko įkelti kategorijų", "OK");
                 }
 
-            }).get();
+            };
+            categoryGetter.Get();
         }
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
