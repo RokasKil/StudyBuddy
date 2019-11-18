@@ -24,6 +24,12 @@
                 </Image.Source>
             </Image>
             <Label
+                Text="{Binding KarmaDescription}"
+                HorizontalOptions="Center"/>
+            <ProgressBar
+                x:Name="ProgressBarKarma"
+                Progress="{Binding KarmaPointsForBar}"/>
+            <Label
                 x:Name="labelFullName"
                 Text="{Binding FullName}"
                 VerticalOptions="CenterAndExpand" 
@@ -33,8 +39,6 @@
                 Text="{Binding UserName}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"/>
-            <ProgressBar
-                Progress="{Binding KarmaPoints}"/>
             <Button
                 x:Name="ViewUserReviews"
                 Clicked="ViewUserReviews_Clicked"

@@ -19,7 +19,6 @@ namespace StudyBuddyApp.Views
     public partial class UserReviewListPage : ContentPage
     {
         UserReviewListViewModel viewModel;
-        User user;
         public ObservableCollection<UserReviewModel> Items { get; set; }
         public UserReviewListPage(UserReviewListViewModel viewModel)
         {
@@ -28,7 +27,6 @@ namespace StudyBuddyApp.Views
             Items = new ObservableCollection<UserReviewModel> { };
             GetUserReviews();
             UserReviewsList.ItemsSource = Items;
-
         }
 
         private void UserReviewList_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -47,7 +45,6 @@ namespace StudyBuddyApp.Views
                         Items.Clear();
                         userReviews.ForEach(UserReview =>
                         {
-                            users.TryGetValue(UserReview.Username, out user);
                             Items.Add(
                                 new UserReviewModel()
                                 {
@@ -56,7 +53,7 @@ namespace StudyBuddyApp.Views
                                     Username = UserReview.Username,
                                     PostDate = UserReview.PostDate,
                                     UserReview = UserReview,
-                                    User = user
+                                    User = users[UserReview.Username]
                                 });
                         });
                     }

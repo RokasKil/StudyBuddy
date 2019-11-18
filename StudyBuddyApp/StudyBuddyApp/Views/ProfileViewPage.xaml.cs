@@ -12,6 +12,7 @@ using Xamarin.Forms.Xaml;
 using StudyBuddyApp.Utility;
 using StudyBuddyShared.ConversationSystem;
 using StudyBuddyApp.Models;
+using StudyBuddyShared.Utility.AttachedProperties;
 
 namespace StudyBuddyApp.Views
 {
@@ -24,6 +25,8 @@ namespace StudyBuddyApp.Views
         {
             InitializeComponent();
             BindingContext = this.viewModel = viewModel;
+            ProgressBarKarma.SetBinding(AttachedProperties.AnimatedProgressProperty,
+                                      "Progress");
             this.user = viewModel.User;
         }
 
