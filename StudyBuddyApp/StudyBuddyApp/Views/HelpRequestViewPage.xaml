@@ -8,7 +8,7 @@
              Title="{Binding HelpRequestModel.Title}">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{Binding DeleteButtonText}" Clicked="ToolbarItem_Clicked" IsEnabled="{Binding DeleteButtonEnabled}"/>
+        <ToolbarItem x:Name ="deleteButton" Text="{Binding DeleteButtonText}" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
              
     <ContentPage.Content>
