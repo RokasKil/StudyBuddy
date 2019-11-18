@@ -16,6 +16,7 @@ namespace StudyBuddyApp.ViewModels
             this.Users = users;
             this.Title = users[conversation.Users[0]].FirstName + " " + users[conversation.Users[0]].LastName;
             this.ImageLocation = users[conversation.Users[0]].ProfilePictureLocation;
+            Users[LocalUserManager.LocalUser.Username] = LocalUserManager.LocalUser;
         }
     }
 }

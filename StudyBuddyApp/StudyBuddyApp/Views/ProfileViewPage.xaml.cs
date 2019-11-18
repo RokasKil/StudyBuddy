@@ -55,7 +55,7 @@ namespace StudyBuddyApp.Views
                         new NavigationPage(
                             new ConversationPage(
                                 new ViewModels.ConversationViewModel(conversation, users))));
-                                DependencyService.Get<IToast>().LongToast("Pokalbis pradėtas");
+                        DependencyService.Get<IToast>().LongToast("Pokalbis pradėtas");
                     }
                     else //Ne
                     {
