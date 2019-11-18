@@ -57,7 +57,13 @@
 			                        CachingEnabled="true"
                     />
                 </ImageButton.Source>
-            </ImageButton>              
+            </ImageButton>
+            <Button
+                x:Name="buttonViewProfile"
+                Text="Peržiūrėti profilį"
+                VerticalOptions="End"
+                HorizontalOptions="CenterAndExpand"
+                Clicked="OnImageButtonClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
