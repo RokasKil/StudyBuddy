@@ -13,7 +13,7 @@ using StudyBuddyApp.Models;
 using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.Utility.Extensions;
 using System.Collections.Generic;
-using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.SystemManager;
 using StudyBuddyShared.CategorySystem;
 using StudyBuddyShared.HelpRequestSystem;
 

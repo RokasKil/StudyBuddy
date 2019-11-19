@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.SystemManager;
 using StudyBuddyShared.CategorySystem;
 using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.Entity;

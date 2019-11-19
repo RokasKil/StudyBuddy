@@ -8,7 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using StudyBuddyShared.Entity;
-using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.SystemManager;
 using StudyBuddyShared.AuthenticationSystem;
 
 namespace StudyBuddyApp

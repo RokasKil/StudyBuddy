@@ -4,9 +4,9 @@
              x:Class="StudyBuddyApp.Views.HelpRequestListPage"
              xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
              Title="{Binding Title}"
-             Appearing="HelpRequestList_Refreshing" 
-             
-    
+             Appearing="HelpRequestList_Refreshing" >
+
+
     <ContentPage.BindingContext>
         <vm:HelpRequestListViewModel />
     </ContentPage.BindingContext>
