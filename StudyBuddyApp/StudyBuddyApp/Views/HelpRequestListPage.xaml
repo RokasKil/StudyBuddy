@@ -2,11 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudyBuddyApp.Views.HelpRequestListPage"
+             xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
              Title="{Binding Title}"
-             Appearing="HelpRequestList_Refreshing" >
+             Appearing="HelpRequestList_Refreshing" 
+             
+    
+    <ContentPage.BindingContext>
+        <vm:HelpRequestListViewModel />
+    </ContentPage.BindingContext>
+    
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="naujas" Clicked="ToolbarItem_Clicked">
+        <ToolbarItem x:Name="AddButton" Text="{Binding AddRequest}" Clicked="ToolbarItem_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="add.png"/>
@@ -15,39 +22,57 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <ListView x:Name="HelpRequestList"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement"
-            HasUnevenRows="true"
-            IsPullToRefreshEnabled="True"
-            Refreshing="HelpRequestList_Refreshing">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout>
-                        <Label Text="{Binding Title}" 
-                               FontSize="Large"
-                        />
-                        <Label Text="{Binding Description}"
 
-                        />
-                        <Label Text="{Binding Name}"
-                               HorizontalTextAlignment="Start"
-                        />
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Category}" 
-                                   HorizontalOptions="Start"
-                                   />
-                            <Label Text="{Binding Date}"
-                                   HorizontalOptions="EndAndExpand"
-                                   HorizontalTextAlignment="End"
-                                   />
-                        </StackLayout>
-                    </StackLayout>
-                    
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <ContentPage.Content >
+        <StackLayout Padding='5'>
+            <Picker x:Name="PickCategory"
+                    Title="{Binding CategoryGeneral}" 
+                    ItemsSource="{Binding CategoryItems}"
+                    ItemDisplayBinding="{Binding Title}"
+                    PropertyChanged="PickCategory_PropertyChanged"/>
+          
+            <Entry  x:Name="RequestSearchBar"
+                    Text=""
+                    Placeholder="{Binding EntryFind}"
+                    Completed="RequestSearchBar_Completed"/>
+          
+            <ListView x:Name="HelpRequestList"
+                      ItemsSource="{Binding Items}"
+                      ItemTapped="Handle_ItemTapped"
+                      CachingStrategy="RecycleElement"
+                      HasUnevenRows="true"
+                      IsPullToRefreshEnabled="True"
+                      Refreshing="HelpRequestList_Refreshing">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Title}" 
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"
+
+                                />
+                                <Label Text="{Binding Description}" 
+                                       LineBreakMode="TailTruncation"
+                                />
+                                <Label Text="{Binding Name, StringFormat='Autorius: {0}'}"
+                                       FontAttributes="Italic"
+                                />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Category}" 
+                                           HorizontalOptions="Start"
+
+                                    />
+                                    <Label Text="{Binding Date}"
+                                           HorizontalOptions="EndAndExpand"
+                                           HorizontalTextAlignment="End"
+                                    />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StudyBuddyApp.Views.UserReviewListPage"
+             Appearing="UserReviewsList_Refreshing"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            x:Name="buttonDelete" 
+            Text="Ištrinti" 
+            Clicked="buttonDelete_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ListView
+        x:Name="UserReviewsList"
+        ItemsSource="{Binding Items}"
+        HasUnevenRows="true"
+        ItemTapped="UserReviewList_ItemTapped"
+        CachingStrategy="RecycleElement"
+        IsPullToRefreshEnabled="True"
+        Refreshing="UserReviewsList_Refreshing"
+        SizeChanged="UserReviewsList_SizeChanged">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout BackgroundColor="{Binding Color}">
+                        <Label Text="{Binding FullName}" 
+                               FontSize="16"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding Message}" 
+                               LineBreakMode="TailTruncation"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding PostDate}"
+                                   HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

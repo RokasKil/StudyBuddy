@@ -11,6 +11,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using StudyBuddyShared.Entity;
 using StudyBuddyApp.Utility;
+using StudyBuddyApp.ViewModels;
+using StudyBuddyShared.CategorySystem;
+using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.HelpRequestSystem;
 
 namespace StudyBuddyApp.Views
 {
@@ -21,25 +25,26 @@ namespace StudyBuddyApp.Views
 
         //public HelpRequest helpRequest { get; set; }
 
-        HelpRequestModel requestModel;
+        HelpRequestAddViewModel viewModel;
 
-        public HelpRequestAddPage()
+        public HelpRequestAddPage(HelpRequestAddViewModel viewModel)
         {
             InitializeComponent();
             Items = new ObservableCollection<CategoryModel>
             { };
             //helpRequest = new HelpRequest { };
             CategorieListGetter();
-
-            BindingContext = requestModel = new HelpRequestModel();
+            BindingContext = this.viewModel = viewModel;
+            //BindingContext = requestModel = new HelpRequestModel();
             CategoryList.ItemsSource = Items;
         }
 
         private void CategorieListGetter()
         {
-            new CategoriesGetter(LocalUserManager.LocalUser, (status, categories) =>
+            var categoriesGetter = CategorySystemManager.NewCategoryGetter();
+            categoriesGetter.Result += (status, categories) =>
             {
-                if (status == CategoriesGetter.GetStatus.Success)
+                if (status == CategoryGetStatus.Success)
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
@@ -62,31 +67,32 @@ namespace StudyBuddyApp.Views
                         //CategoryList.IsRefreshing = false;
                     });
                 }
-
-            }).get();
+            };
+            categoriesGetter.Get();
         }
 
         private void SendNewHelpRequest()
         {
-            var helpRequestManager = new HelpRequestManager(LocalUserManager.LocalUser);
-            helpRequestManager.PostHelpRequestResult += (status, helprequest) =>
+            var helpRequestManager = HelpRequestSystemManager.NewHelpRequestPoster();
+            helpRequestManager.Result += (status, helprequest) =>
             {
-               
-                Device.BeginInvokeOnMainThread(() =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    if (status == HelpRequestManager.ManagerStatus.Success)
+                    if (status == HelpRequestManageStatus.Success)
                     {
-                        Console.WriteLine("Success");
+                        DependencyService.Get<IToast>().LongToast("Prašymas sėkmingai išsiųstas");
+                        await Navigation.PopModalAsync();
                     }
                     else
                     {
-                        Console.WriteLine("Epic fail");
+                        DependencyService.Get<IToast>().LongToast("Prašymas nebuvo išsiųstas");
+                        //Console.WriteLine("Epic fail");
+                        SaveButton.IsEnabled = true;
                     }
-                });
-                
+                });    
             };
 
-            helpRequestManager.postHelpRequest(new HelpRequest
+            helpRequestManager.Post(new HelpRequest
             {
                 Title = Title.Text,
                 Description = Description.Text,
@@ -113,18 +119,15 @@ namespace StudyBuddyApp.Views
                 await DisplayAlert("Nepavyko", "Problemos apibūdinimo laukas yra privalomas", "OK");
                 return;
             }
-
+            SaveButton.IsEnabled = false;
             //MessagingCenter.Send(this, "AddItem", Item);
             SendNewHelpRequest();
-            DependencyService.Get<IToast>().LongToast("Prašymas sėkmingai išsiųstas");
-            await Navigation.PopModalAsync();
+            
         }
 
-        async void Cancel_Clicked(object sender, EventArgs e)
+        private void ContentPage_Disappearing(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            MessagingCenter.Send(this, "AddPageClosed");
         }
-
-
     }
 }

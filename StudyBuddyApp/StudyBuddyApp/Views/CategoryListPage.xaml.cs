@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.CategorySystem;
+using StudyBuddyApp.ViewModels;
+using StudyBuddyShared.Entity;
 
 namespace StudyBuddyApp.Views
 {
@@ -37,12 +41,15 @@ namespace StudyBuddyApp.Views
         //pasiima kategorijas iš DB
         void GetCategories()
         {
-            new CategoriesGetter(LocalUserManager.LocalUser, async (status, categories) =>
+            var categoryGetter = CategorySystemManager.NewCategoryGetter();
+
+            categoryGetter.Result += async (status, categories) =>
             {
-                if (status == CategoriesGetter.GetStatus.Success)
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    Device.BeginInvokeOnMainThread(() =>
+                    if (status == CategoryGetStatus.Success)
                     {
+
                         Items.Clear();
                         categories.ForEach(category =>
                         {
@@ -52,27 +59,33 @@ namespace StudyBuddyApp.Views
                                 Description = category.Description,
                                 CreatorUsername = category.CreatorUsername,
                                 CreatedDate = category.CreatedDate,
-                                LastUpdatedDate = category.LastUpdatedDate
+                                LastUpdatedDate = category.LastUpdatedDate,
+                                Category = category
                             });
                         });
                         //HelpRequestList.IsRefreshing = false;
                         //HelpRequestList.ItemsSource = null;
                         //HelpRequestList.ItemsSource = Items;
-                    });
-                }
-                else
-                {
-                    await DisplayAlert("Klaida", "Nepavyko įkelti kategorijų", "OK");
-                }
 
-            }).get();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Klaida", "Nepavyko įkelti kategorijų", "OK");
+                    }
+                });
+
+            };
+            categoryGetter.Get();
         }
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
                 return;
 
-            await DisplayAlert("Nu va", "Paspaudei ant kategorijos, mldc", "ok seni");
+            var selectedItem = ((ListView)sender).SelectedItem as CategoryModel;
+
+            await Navigation.PushModalAsync(new NavigationPage(new CategoryViewPage(new CategoryViewViewModel(selectedItem))));
+            //await DisplayAlert("Nu va", "Paspaudei ant kategorijos, mldc", "ok seni");
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;

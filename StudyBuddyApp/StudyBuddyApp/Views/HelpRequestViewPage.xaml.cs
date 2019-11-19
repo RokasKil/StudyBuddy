@@ -33,9 +33,9 @@ namespace StudyBuddyApp.Views
                 deleteButton.IsEnabled = false;
             }
         }
-        public void OnImageButtonClicked(object sender, EventArgs e)
+        public async void OnImageButtonClicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new ProfileViewPage(new ViewModels.ProfileViewViewModel(viewModel.Creator)));
         }
         
         private async void ToolbarItem_Clicked(object sender, EventArgs e)

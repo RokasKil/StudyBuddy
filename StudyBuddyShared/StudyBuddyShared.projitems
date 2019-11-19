@@ -72,6 +72,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserProfilePictureUpdater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\AttachedProperties\AttachedProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Extensions\DateTimeExtender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\EnumConverter.cs" />
   </ItemGroup>
