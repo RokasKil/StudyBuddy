@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudyBuddyApp.SystemManager
+namespace StudyBuddyShared.SystemManager
 {
     public static class CategorySystemManager // Returns implementations of interfaces
     {
@@ -25,7 +25,7 @@ namespace StudyBuddyApp.SystemManager
             return null;
         }
 
-        public static ICategoryRemover NewCaregoryRemover()
+        public static ICategoryRemover NewCategoryRemover()
         {
             if (LocalUserManager.LocalUser != null)
             {
@@ -34,7 +34,7 @@ namespace StudyBuddyApp.SystemManager
             return null;
         }
 
-        public static ICategoryUpdater NewCaregoryUpdater()
+        public static ICategoryUpdater NewCategoryUpdater()
         {
             if (LocalUserManager.LocalUser != null)
             {

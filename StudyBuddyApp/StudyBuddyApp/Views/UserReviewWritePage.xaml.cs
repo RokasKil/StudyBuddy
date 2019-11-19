@@ -1,4 +1,4 @@
-﻿using StudyBuddyApp.SystemManager;
+﻿using StudyBuddyShared.SystemManager;
 using StudyBuddyApp.Utility;
 using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.Entity;
