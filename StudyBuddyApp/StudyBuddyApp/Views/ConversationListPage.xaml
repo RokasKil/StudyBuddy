@@ -19,17 +19,25 @@
             <DataTemplate>
                 <ViewCell>
                     <StackLayout Orientation="Horizontal">
-                        <Image Aspect="AspectFit"
-                               VerticalOptions="Fill"
-                               WidthRequest="60"
+                        <Frame Padding="0"
+                               CornerRadius="30"
+                               IsClippedToBounds="True"
+                               VerticalOptions="Center"
                                HeightRequest="60"
+                               WidthRequest="60"
                                Margin="6, 0">
-                            <Image.Source>
-                                <UriImageSource Uri="{Binding ImageLocation}" 
-			                    CacheValidity="14" 
-			                    CachingEnabled="true"/>
-                            </Image.Source>
-                        </Image>
+                            <Image Aspect="AspectFit"
+                                   VerticalOptions="Fill"
+                                   WidthRequest="60"
+                                   HeightRequest="60">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding ImageLocation}" 
+			                        CacheValidity="14" 
+			                        CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
+                        </Frame>
+
                         <StackLayout HorizontalOptions="FillAndExpand"
                                      Spacing="3">
                             <Label Text="{Binding Title}"
