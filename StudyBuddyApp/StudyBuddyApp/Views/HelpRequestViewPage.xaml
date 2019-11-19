@@ -17,14 +17,14 @@
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Start"
                    FontSize="Medium"
-                   TextColor="Black"
+                   TextColor="{DynamicResource PrimaryTextColor}"
                    Margin="0.5, 0.5, 0.5, 0.5"
             />
             <Label Text="{Binding HelpRequestModel.Description}"
                    HorizontalTextAlignment="Start"
                    VerticalTextAlignment="Start"
                    FontSize="Medium"
-                   TextColor="Black"
+                   TextColor="{DynamicResource PrimaryTextColor}"
                    Margin="10, 0.5, 10, 0.5"
             />
             <Label Text="{Binding HelpRequestModel.Category}" 
@@ -45,7 +45,7 @@
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Start"
                    FontSize="Medium"
-                   TextColor="Black"
+                   TextColor="{DynamicResource PrimaryTextColor}"
                    Margin="0.5, 0.5, 0.5, 0.5"
             />
             <Image Aspect="AspectFit"

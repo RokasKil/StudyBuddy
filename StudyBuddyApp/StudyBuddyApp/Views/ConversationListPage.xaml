@@ -35,7 +35,7 @@
                             <Label Text="{Binding Title}"
                                    FontSize="16"
                                    FontAttributes="Bold"
-                                   TextColor="Black"
+                                   TextColor="{DynamicResource PrimaryTextColor}"
                             />
                             <Label Text="{Binding LastMessage}" 
                             />

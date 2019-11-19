@@ -32,7 +32,7 @@
                                 <Label Text="{Binding Message}"
                                        FontSize="16"
                                        FontAttributes="Bold"
-                                       TextColor="Black"
+                                       TextColor="{DynamicResource PrimaryTextColor}"
                                        LineBreakMode="CharacterWrap"
                                        HorizontalTextAlignment="Start"/>
                                 <Label Text="{Binding Date}"
@@ -68,7 +68,7 @@
                                 <Label Text="{Binding Message}"
                                        FontSize="16"
                                        FontAttributes="Bold"
-                                       TextColor="Black"
+                                       TextColor="{DynamicResource PrimaryTextColor}"
                                        LineBreakMode="CharacterWrap"
                                        HorizontalTextAlignment="End"/>
                                 <Label Text="{Binding Date}"
@@ -104,7 +104,7 @@
                        HorizontalOptions="Start"
                        FontSize="20"
                        FontAttributes="Bold"
-                       TextColor="Black"/>
+                       TextColor="{DynamicResource PrimaryTextColor}"/>
             </StackLayout>
             <ListView x:Name="MessageListView"
                       CachingStrategy="RecycleElement"

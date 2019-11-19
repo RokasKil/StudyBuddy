@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudyBuddyApp.Views.MyProfilePage"
              Title="{Binding Title}"
-             Appearing="ContentPage_Appearing">
+             Appearing="ContentPage_Appearing"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding FullName}"
+            <Label Text="{Binding FullName}"    
                 x:Name="Name"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
