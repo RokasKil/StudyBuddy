@@ -14,16 +14,22 @@ namespace StudyBuddyApp.Views
     public partial class SettingsPage : ContentPage
     {
         readonly SettingsViewModel settingsViewModel = new SettingsViewModel();
-        Boolean isToggledSwitchButton { get; set; }
         public SettingsPage()
         {
             InitializeComponent();
             BindingContext = settingsViewModel;
+            if (Application.Current.Properties.ContainsKey("DarkMode"))
+            {
+                DarkModeSwitch.IsToggled = (bool)Application.Current.Properties["DarkMode"];
+            }
+            else
+            {
+                DarkModeSwitch.IsToggled = false;
+            }
         }
         void OnToggled(object sender, ToggledEventArgs e)
         {
-            isToggledSwitchButton = e.Value;
-            Application.Current.Properties["DarkMode"] = isToggledSwitchButton;
+            Application.Current.Properties["DarkMode"] = e.Value;
             Application.Current.SavePropertiesAsync();
         }
     }

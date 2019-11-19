@@ -8,31 +8,24 @@
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
-            <Grid Margin="5, 5, 5, 5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                
+            <StackLayout Orientation="Horizontal">
                 <Label Text="Tamsusis rėžimas" 
-                       FontSize="25"
+                       FontSize="20"
                        TextColor="Black"
-                       Grid.Row="0" 
-                       Grid.Column="0" 
                        Margin="5, 5, 5, 5"
+                       HorizontalOptions="StartAndExpand"
+                       
+                       
                 />
 
                 <Switch Toggled="OnToggled"
-                        OnColor="Orange" 
-                        ThumbColor="Green" 
-                        Grid.Row="0" 
-                        Grid.Column="1"
-                        IsToggled="{Binding isToggledSwitchButton}"
+                        OnColor="Green"
+                        ThumbColor="Orange"
+                        x:Name="DarkModeSwitch"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
                 />
-            </Grid>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
