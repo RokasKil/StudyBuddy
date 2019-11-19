@@ -5,7 +5,7 @@
   </item>
   <item>
     <bitmap
-        android:src="@drawable/ic_study_buddy"
+        android:src="@drawable/ic_study_buddy_white"
         android:tileMode="disabled"
         android:gravity="center"/>
   </item>
