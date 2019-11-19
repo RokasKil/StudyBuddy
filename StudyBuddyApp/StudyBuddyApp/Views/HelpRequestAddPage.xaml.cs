@@ -67,7 +67,6 @@ namespace StudyBuddyApp.Views
                         //CategoryList.IsRefreshing = false;
                     });
                 }
-
             };
             categoriesGetter.Get();
         }
@@ -77,7 +76,6 @@ namespace StudyBuddyApp.Views
             var helpRequestManager = HelpRequestSystemManager.NewHelpRequestPoster();
             helpRequestManager.Result += (status, helprequest) =>
             {
-               
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     if (status == HelpRequestManageStatus.Success)
@@ -91,8 +89,7 @@ namespace StudyBuddyApp.Views
                         //Console.WriteLine("Epic fail");
                         SaveButton.IsEnabled = true;
                     }
-                });
-                
+                });    
             };
 
             helpRequestManager.Post(new HelpRequest
