@@ -5,7 +5,7 @@ using StudyBuddyShared.AuthenticationSystem; // Done
 using StudyBuddyShared.CategorySystem;       // Done
 using StudyBuddyShared.ConversationSystem;   // Done
 using StudyBuddyShared.HelpRequestSystem;    // Done
-using StudyBuddyShared.UserReviewSystem;     // 
+using StudyBuddyShared.UserReviewSystem;     // Done
 using StudyBuddyShared.UserSystem;           // No user profile
 using System;
 using System.Collections.Generic;
