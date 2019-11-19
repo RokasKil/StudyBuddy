@@ -19,7 +19,13 @@
                     HorizontalOptions="Center"
                     HeightRequest="200"
                     WidthRequest="200"
-                    Source="{Binding ImageLocation}"/>
+                    Aspect="AspectFit">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding ImageLocation}" 
+			                    CacheValidity="14" 
+			                    CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
             </Frame>
             <Label Text="{Binding FullName}"
                    x:Name="Name"

@@ -84,6 +84,7 @@ namespace StudyBuddyApp.Views
                             {
                                 Title = request.Title,
                                 Description = request.Description,
+                                Username = request.CreatorUsername,
                                 Name = users[request.CreatorUsername].FirstName + " " + users[request.CreatorUsername].LastName,
                                 Category = request.Category,
                                 Date = request.Timestamp.ToFullDate(),
@@ -158,7 +159,7 @@ namespace StudyBuddyApp.Views
             {
                 if ((String.IsNullOrEmpty(category) || category == helpRequest.Category) &&
                     (String.IsNullOrEmpty(search) || helpRequest.Title.ToLower().Contains(search) || helpRequest.Description.ToLower().Contains(search)) &&
-                    (!own || helpRequest.Name == LocalUserManager.LocalUser.Username))
+                    (!own || helpRequest.Username == LocalUserManager.LocalUser.Username))
                 {
                     FilteredItems.Add(helpRequest);
                 }

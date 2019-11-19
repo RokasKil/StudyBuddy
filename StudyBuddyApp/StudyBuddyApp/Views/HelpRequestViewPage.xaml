@@ -44,20 +44,28 @@
                    TextColor="Black"
                    Margin="0.5, 0.5, 0.5, 0.5"
             />
-            <ImageButton Aspect="Fill"
-                         VerticalOptions="Fill"
-                         HorizontalOptions="Center"
-                         WidthRequest="150"
-                         HeightRequest="150"
-                         Margin="6, 0"
-                         Clicked="OnImageButtonClicked">
-                <ImageButton.Source>
-                    <UriImageSource Uri="{Binding Creator.ProfilePictureLocation}"
-                                    CacheValidity="14" 
-			                        CachingEnabled="true"
-                    />
-                </ImageButton.Source>
-            </ImageButton>
+            <Frame Padding="0"
+                   CornerRadius="75"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   HeightRequest="150"
+                   WidthRequest="150">
+                <ImageButton Aspect="AspectFit"
+                             VerticalOptions="Fill"
+                             HorizontalOptions="Center"
+                             WidthRequest="150"
+                             HeightRequest="150"
+                             BorderColor="Transparent"
+                             BackgroundColor="Transparent"
+                             Clicked="OnImageButtonClicked">
+                    <ImageButton.Source>
+                        <UriImageSource Uri="{Binding Creator.ProfilePictureLocation}"
+                                        CacheValidity="14" 
+			                            CachingEnabled="true"
+                        />
+                    </ImageButton.Source>
+                </ImageButton>
+            </Frame>
             <Button
                 x:Name="buttonViewProfile"
                 Text="Peržiūrėti profilį"
