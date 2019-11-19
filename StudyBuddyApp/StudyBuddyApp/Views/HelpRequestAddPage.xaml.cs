@@ -21,9 +21,9 @@ namespace StudyBuddyApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HelpRequestAddPage : ContentPage
     {
+        // Items yra kategoriju 
         public ObservableCollection<CategoryModel> Items { get; set; }
-
-        //public HelpRequest helpRequest { get; set; }
+        
 
         HelpRequestAddViewModel viewModel;
 
@@ -32,13 +32,14 @@ namespace StudyBuddyApp.Views
             InitializeComponent();
             Items = new ObservableCollection<CategoryModel>
             { };
-            //helpRequest = new HelpRequest { };
             CategorieListGetter();
             BindingContext = this.viewModel = viewModel;
-            //BindingContext = requestModel = new HelpRequestModel();
             CategoryList.ItemsSource = Items;
         }
 
+        /// <summary>
+        /// Pasiima visas kategorijas is DB
+        /// </summary>
         private void CategorieListGetter()
         {
             var categoriesGetter = CategorySystemManager.NewCategoryGetter();
@@ -48,6 +49,7 @@ namespace StudyBuddyApp.Views
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
+                        
                         Items.Clear();
                         categories.ForEach(category =>
                         {
@@ -71,6 +73,9 @@ namespace StudyBuddyApp.Views
             categoriesGetter.Get();
         }
 
+        /// <summary>
+        /// Išsiunčiamas naujai sukurtas helpRequestas
+        /// </summary>
         private void SendNewHelpRequest()
         {
             var helpRequestManager = HelpRequestSystemManager.NewHelpRequestPoster();
@@ -101,7 +106,9 @@ namespace StudyBuddyApp.Views
             });
 
         }
-
+        /// <summary>
+        /// Mygtuko eventas kuris išsiunčia HelpRequest taip pat apsaugo nuotuščių laukų
+        /// </summary>
         async void Save_Clicked(object sender, EventArgs e)
         {
             if(CategoryList.SelectedIndex == -1)
@@ -124,7 +131,9 @@ namespace StudyBuddyApp.Views
             SendNewHelpRequest();
             
         }
-
+        /// <summary>
+        /// Perduodamas pranešimas kad puslapis užsidaro kitieks puslapiams
+        /// </summary>
         private void ContentPage_Disappearing(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "AddPageClosed");
