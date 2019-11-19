@@ -59,6 +59,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemManager\AuthenticationSystemManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemManager\CategorySystemManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemManager\ConversationSystemManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemManager\HelpRequestSystemManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemManager\LocalUserManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemManager\UserReviewSystemManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemManager\UserSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\IUserReviewGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\IUserReviewPoster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\IUserReviewRemover.cs" />

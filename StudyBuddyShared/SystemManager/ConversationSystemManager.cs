@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudyBuddyApp.SystemManager
+namespace StudyBuddyShared.SystemManager
 {
     public static class ConversationSystemManager // Returns implementations of interfaces
     {
