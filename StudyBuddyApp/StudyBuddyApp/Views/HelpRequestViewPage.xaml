@@ -6,6 +6,10 @@
              mc:Ignorable="d"
              x:Class="StudyBuddyApp.Views.HelpRequestViewPage"
              Title="{Binding HelpRequestModel.Title}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name ="deleteButton" Text="{Binding DeleteButtonText}" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
              
     <ContentPage.Content>
         <StackLayout>
