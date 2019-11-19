@@ -155,6 +155,9 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_study_buddy.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\xml\file_paths.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_study_buddy_white.png" />
   </ItemGroup>
   <ItemGroup>

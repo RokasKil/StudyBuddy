@@ -28,6 +28,7 @@ namespace StudyBuddyApp
         ProfileEditViewModel viewModel;
         Image selectedImage;
         LocalUser localUser;
+        bool photoFromCamera;
         public ProfileEditPage()
         {
             InitializeComponent();
@@ -62,7 +63,7 @@ namespace StudyBuddyApp
                                 DependencyService.Get<IToast>().LongToast("Pakeitimai išsaugoti");
                             }
                             else //Ne
-                             {
+                            {
                                 Application.Current.MainPage.DisplayAlert("Klaida", "woops, kažkas netaip", "tęsti");
                             }
                             LoadingIndicator.IsRunning = false;
@@ -84,17 +85,25 @@ namespace StudyBuddyApp
                 await DisplayAlert("Not supported", "Your device does not currently support this functionality", "Ok");
                 return;
             }
+            string action = await DisplayActionSheet("Iš kur norite įkelti nuotrauką?", "Atšaukti", null, "Iš telefono", "Nusifotografuoti dabar");
+            photoFromCamera = action.Equals("Nusifotografuoti dabar");
             /*if you want to take a picture use StoreCameraMediaOptions instead of PickMediaOptions*/
+            var cameraMediaOptions = new StoreCameraMediaOptions()
+            {
+                PhotoSize = PhotoSize.Medium
+            };
             var mediaOptions = new PickMediaOptions()
             {
                 PhotoSize = PhotoSize.Medium
             };
             //if you want to take a picture use TakePhotoAsync instead of PickPhotoAsync
 
-            var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+            var selectedImageFile =
+                photoFromCamera ? await CrossMedia.Current.TakePhotoAsync(cameraMediaOptions) : await CrossMedia.Current.PickPhotoAsync(mediaOptions);
             if (selectedImageFile == null)
             {
-                await DisplayAlert("Error", "Could not get the image, please try again", "Ok");
+                await DisplayAlert("Klaida", "Nepasirinkta nuotrauka, bandykite dar kartą", "Tęsti");
+                return;
             }
             selectedImage.Source = ImageSource.FromStream(() => selectedImageFile.GetStream());
             if (selectedImage != null)
