@@ -4,7 +4,8 @@
              x:Class="StudyBuddyApp.Views.HelpRequestListPage"
              xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
              Title="{Binding Title}"
-             Appearing="HelpRequestList_Refreshing" >
+             Appearing="HelpRequestList_Refreshing" 
+             
     
     <ContentPage.BindingContext>
         <vm:HelpRequestListViewModel />
@@ -23,18 +24,18 @@
 
 
     <ContentPage.Content >
-        <StackLayout >
+        <StackLayout Padding='5'>
             <Picker x:Name="PickCategory"
                     Title="{Binding CategoryGeneral}" 
                     ItemsSource="{Binding CategoryItems}"
                     ItemDisplayBinding="{Binding Title}"
                     PropertyChanged="PickCategory_PropertyChanged"/>
+          
             <Entry  x:Name="RequestSearchBar"
                     Text=""
                     Placeholder="{Binding EntryFind}"
-                    Completed="RequestSearchBar_Completed"
-                     />
-                    
+                    Completed="RequestSearchBar_Completed"/>
+          
             <ListView x:Name="HelpRequestList"
                       ItemsSource="{Binding Items}"
                       ItemTapped="Handle_ItemTapped"
@@ -49,7 +50,7 @@
                                 <Label Text="{Binding Title}" 
                                        FontSize="Medium"
                                        FontAttributes="Bold"
-                                       TextColor="Black"
+
                                 />
                                 <Label Text="{Binding Description}" 
                                        LineBreakMode="TailTruncation"
@@ -58,13 +59,12 @@
                                        FontAttributes="Italic"
                                 />
                                 <StackLayout Orientation="Horizontal">
-                                    <!--FillAndExpand fixes dumb bug with label size not updating-->
                                     <Label Text="{Binding Category}" 
-                                           HorizontalOptions="FillAndExpand"
-                                           TextColor="Black"
+                                           HorizontalOptions="Start"
+
                                     />
                                     <Label Text="{Binding Date}"
-                                           HorizontalOptions="End"
+                                           HorizontalOptions="EndAndExpand"
                                            HorizontalTextAlignment="End"
                                     />
                                 </StackLayout>
