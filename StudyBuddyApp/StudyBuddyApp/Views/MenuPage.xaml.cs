@@ -19,9 +19,7 @@ namespace StudyBuddyApp.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Profile, Title="Profile" },
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" },
+                new HomeMenuItem {Id = MenuItemType.Profile, Title="Profilis" },
                 new HomeMenuItem {Id = MenuItemType.HelpRequestList, Title="Pagalbos prašymai" },
                 new HomeMenuItem {Id = MenuItemType.ConversationListPage, Title="Pokalbiai" },
                 new HomeMenuItem {Id = MenuItemType.SettingsPage, Title="Nustatymai"},
@@ -30,7 +28,7 @@ namespace StudyBuddyApp.Views
 
             //Jei dėstytojas, tai pridedame jam reikalingą kategorijų sąrašą
             if (LocalUserManager.LocalUser.IsLecturer)
-                menuItems.Insert(3, new HomeMenuItem { Id = MenuItemType.CategoryList, Title = "Kategorijos" });
+                menuItems.Insert(1, new HomeMenuItem { Id = MenuItemType.CategoryList, Title = "Kategorijos" });
 
             ListViewMenu.ItemsSource = menuItems;
 

@@ -36,12 +36,6 @@ namespace StudyBuddyApp.Views
             {
                 switch (id)
                 {
-                    case (int)MenuItemType.Browse:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
-                        break;
-                    case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
-                        break;
                     case (int)MenuItemType.Profile:
                         MenuPages.Add(id, new NavigationPage(new MyProfilePage()));
                         break;

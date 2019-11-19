@@ -12,4 +12,5 @@
     <Color x:Key="TertiaryTextColor">WhiteSmoke</Color>
     <Color x:Key="ButtonColor">Gray</Color>
     <Color x:Key="TransparentColor">Transparent</Color>
+    <Color x:Key="PickerTitleColor">Gray</Color>
 </ResourceDictionary>
