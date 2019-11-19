@@ -34,6 +34,10 @@
                 Placeholder="Kategorijos aprašymas"
                 VerticalOptions="FillAndExpand"
                 AutoSize="Disabled"/>
+            <Label
+                Padding="0,0,0,20"
+                HorizontalOptions="CenterAndExpand"
+                Text="Pastaba: kategorijos pavadinimas negali kartotis."/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
