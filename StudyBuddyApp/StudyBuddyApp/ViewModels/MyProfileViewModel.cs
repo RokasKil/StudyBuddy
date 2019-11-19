@@ -13,6 +13,7 @@ namespace StudyBuddyApp.ViewModels
         public MyProfileViewModel(LocalUser localuser)
         {
             this.User = localuser;
+            this.KarmaPoints = localuser.KarmaPoints;
             localuser.OnUpdateHandler += (user) =>
             {
                 OnPropertyChanged("User");
@@ -28,5 +29,8 @@ namespace StudyBuddyApp.ViewModels
         public string LastName { get => User.LastName; set => LastName = value; }
         public string ImageLocation { get => User.ProfilePictureLocation; set => ImageLocation = value; }
         public string FullName { get => User.FirstName + " " + User.LastName; set => FullName = value; }
+        public float KarmaPoints { get; set; }
+        public float KarmaPointsForBar { get => KarmaPoints / 100; set => KarmaPointsForBar = value; }
+        public string KarmaDescription { get => "Karma " + KarmaPoints + "/100"; set => KarmaDescription = value; }
     }
 }

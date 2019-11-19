@@ -23,13 +23,20 @@ namespace StudyBuddyApp.Views
     public partial class HelpRequestListPage : ContentPage
     {
         private Dictionary<string, User> users = null;
+        // Items yra HelpRequest
         public ObservableCollection<HelpRequestModel> Items { get; set; }
         public ObservableCollection<HelpRequestModel> FilteredItems { get; set; }
         public ObservableCollection<CategoryModel> CategoryItems { get; set; }
-        public HelpRequestListPage()
+        public bool myRequests { get; set; }
+
+        /// <summary>
+        /// Kviesdamas naują puslapį nurodomas MyRequest rušiavimui mano HelpRequest
+        /// </summary>
+        /// <param name="MyRequest">ar tai mano HelpRequest</param>
+        public HelpRequestListPage(bool MyRequest = false)
         {
             InitializeComponent();
-
+            myRequests = MyRequest;
             Items = new ObservableCollection<HelpRequestModel>
             { };
             FilteredItems = new ObservableCollection<HelpRequestModel>
@@ -49,13 +56,18 @@ namespace StudyBuddyApp.Views
                 AddButton.IsEnabled = true;
             });
         }
-
+        /// <summary>
+        /// Refrešinimui
+        /// </summary>
         private void HelpRequestList_Refreshing(object sender, EventArgs e)
         {
             //AddButton.IsEnabled = true;
             HelpRequestListGetter();
         }
 
+        /// <summary>
+        /// Eventas kuris atidaro naują puslapį (HelpRequestViewPage) paspaudus Listo Item
+        /// </summary>
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
@@ -68,7 +80,9 @@ namespace StudyBuddyApp.Views
             ((ListView)sender).SelectedItem = null;
             await Navigation.PushAsync(new HelpRequestViewPage(new HelpRequestViewPageModel(user, selectedItem)));
         }
-
+        /// <summary>
+        /// Gauna visus HelpRequest iš DB ir iš karto filtruoja pagal parametrus
+        /// </summary>
         private void HelpRequestListGetter()
         {
             var helpRequestGetter = HelpRequestSystemManager.NewHelpRequestGetter();
@@ -86,6 +100,7 @@ namespace StudyBuddyApp.Views
                             {
                                 Title = request.Title,
                                 Description = request.Description,
+                                Username = request.CreatorUsername,
                                 Name = users[request.CreatorUsername].FirstName + " " + users[request.CreatorUsername].LastName,
                                 Category = request.Category,
                                 Date = request.Timestamp.ToFullDate(),
@@ -109,6 +124,10 @@ namespace StudyBuddyApp.Views
             };
             helpRequestGetter.Get();
         }
+
+        /// <summary>
+        /// Gauna visus Categories iš DB
+        /// </summary>
         private void CategoryListGetter()
         {
             var categoriesGetter = CategorySystemManager.NewCategoryGetter();
@@ -132,7 +151,7 @@ namespace StudyBuddyApp.Views
                                 Category = category,
                             });
                         });
-                        FilterFinal();
+                        //FilterFinal();
                         //CategoryList.IsRefreshing = false;
                     });
                 }
@@ -147,7 +166,13 @@ namespace StudyBuddyApp.Views
             };
             categoriesGetter.Get();
         }
-
+        /// <summary>
+        /// Filtruoja helpRequest pagal įvestą String, pasirinką kategoriją, 
+        /// bei per profili gali pasirinkti kad žiūrėtų tik savo
+        /// </summary>
+        /// <param name="search">Įvestas raktas</param>
+        /// <param name="category">Pasirinkta kategorija</param>
+        /// <param name="own">Ar tai mano HelpRequest</param>
         void Filter(string search = null, string category = null, bool own = false)
         {
             if (Items == null || LocalUserManager.LocalUser == null) // Dar nėra informacijos
@@ -160,26 +185,31 @@ namespace StudyBuddyApp.Views
             {
                 if ((String.IsNullOrEmpty(category) || category == helpRequest.Category) &&
                     (String.IsNullOrEmpty(search) || helpRequest.Title.ToLower().Contains(search) || helpRequest.Description.ToLower().Contains(search)) &&
-                    (!own || helpRequest.Name == LocalUserManager.LocalUser.Username))
+                    (!own || helpRequest.Username == LocalUserManager.LocalUser.Username))
                 {
                     FilteredItems.Add(helpRequest);
                 }
             });
 
         }
-
+        /// <summary>
+        /// Filtravimas kuris ignoruoja pirmajį categorijos pasirinkimą nes ten yra default
+        /// </summary>
         private void FilterFinal()
         {
             if (PickCategory.SelectedIndex >= 1)
             {
-                Filter(RequestSearchBar.Text, CategoryItems[PickCategory.SelectedIndex].Title, false);
+                Filter(RequestSearchBar.Text, CategoryItems[PickCategory.SelectedIndex].Title, myRequests);
             }
             else
             {
-                Filter(RequestSearchBar.Text, null, false);
+                Filter(RequestSearchBar.Text, null, myRequests);
             }
         }
 
+        /// <summary>
+        /// Eventas kuris iškviečia nauja puslapį HelpRequestAddPage
+        /// </summary>
         async private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             AddButton.IsEnabled = false;
@@ -189,13 +219,16 @@ namespace StudyBuddyApp.Views
                         new ViewModels.HelpRequestAddViewModel())));
         }
 
-
+        /// <summary>
+        /// Filtruoja, kai vartotojas paspaudžia enter įvedęs tekstą
+        /// </summary>
         private void PickCategory_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             FilterFinal();
-
         }
-
+        /// <summary>
+        /// filtruoja pakeitus kategoriją
+        /// </summary>
         private void RequestSearchBar_Completed(object sender, EventArgs e)
         {
             FilterFinal();

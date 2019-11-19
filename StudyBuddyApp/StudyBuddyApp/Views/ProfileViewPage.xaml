@@ -9,20 +9,30 @@
              Appearing="ContentPage_Appearing">
     <ContentPage.Content>
         <StackLayout>
-            <Image
+            <Frame Padding="0"
+                   CornerRadius="75"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   Margin="6, 0">
+                <Image
                 x:Name="ProfilePicture"
-                Aspect="Fill"
+                Aspect="AspectFit"
                 VerticalOptions="Fill"
                 HorizontalOptions="Center"
                 WidthRequest="150"
-                HeightRequest="150"
-                Margin="6, 0">
-                <Image.Source>
-                    <UriImageSource Uri="{Binding ImageLocation}" 
+                HeightRequest="150">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding ImageLocation}" 
 			                    CacheValidity="14" 
 			                    CachingEnabled="true"/>
-                </Image.Source>
-            </Image>
+                    </Image.Source>
+                </Image>
+            </Frame>
+            
+            
+            
             <Label
                 Text="{Binding KarmaDescription}"
                 HorizontalOptions="Center"/>
