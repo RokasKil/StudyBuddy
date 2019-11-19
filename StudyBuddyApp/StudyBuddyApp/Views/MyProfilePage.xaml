@@ -5,20 +5,53 @@
              Title="{Binding Title}"
              Appearing="ContentPage_Appearing">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout
+            Padding="10, 50, 10, 40">
+            <Frame Padding="0"
+                   CornerRadius="100"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   HeightRequest="200"
+                   WidthRequest="200">
+                <Image
+                    x:Name="ProfilePicture"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    HeightRequest="200"
+                    WidthRequest="200"
+                    Source="{Binding ImageLocation}"/>
+            </Frame>
             <Label Text="{Binding FullName}"
-                x:Name="Name"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Image
-                x:Name="ProfilePicture"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
-                Source="{Binding ImageLocation}"/>
+                   x:Name="Name"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="Large"/>
+            <Label
+                Text="{Binding KarmaDescription}"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                FontSize="Medium"/>
+            <ProgressBar
+                x:Name="ProgressBarKarma"
+                Progress="{Binding KarmaPointsForBar}"
+                VerticalOptions="StartAndExpand"
+                MinimumHeightRequest="100"/>
+            <Button
+                x:Name="MyRequests"
+                Clicked="MyRequests_Clicked"
+                Text="Mano Klausimai"
+                HorizontalOptions="CenterAndExpand"/>
+            <Button 
+                x:Name="ViewUserReviews"
+                Clicked="ViewUserReview_Clicked"
+                Text="Peržiūrėti atsiliepimus"
+                HorizontalOptions="CenterAndExpand"/>
             <Button 
                 x:Name="buttonEditProfile"
                 Text="Redaguoti profilį"
-                Clicked="buttonEditProfile_Clicked"/>
+                Clicked="buttonEditProfile_Clicked"
+                VerticalOptions="End"
+                HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

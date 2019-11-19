@@ -23,10 +23,11 @@ namespace StudyBuddyApp.Views
         public ObservableCollection<HelpRequestModel> Items { get; set; }
         public ObservableCollection<HelpRequestModel> FilteredItems { get; set; }
         public ObservableCollection<CategoryModel> CategoryItems { get; set; }
-        public HelpRequestListPage()
+        public bool myRequests { get; set; }
+        public HelpRequestListPage(bool MyRequest = false)
         {
             InitializeComponent();
-
+            myRequests = MyRequest;
             Items = new ObservableCollection<HelpRequestModel>
             { };
             FilteredItems = new ObservableCollection<HelpRequestModel>
@@ -169,11 +170,11 @@ namespace StudyBuddyApp.Views
         {
             if (PickCategory.SelectedIndex >= 1)
             {
-                Filter(RequestSearchBar.Text, CategoryItems[PickCategory.SelectedIndex].Title, false);
+                Filter(RequestSearchBar.Text, CategoryItems[PickCategory.SelectedIndex].Title, myRequests);
             }
             else
             {
-                Filter(RequestSearchBar.Text, null, false);
+                Filter(RequestSearchBar.Text, null, myRequests);
             }
         }
 
