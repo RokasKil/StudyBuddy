@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using StudyBuddyApp.ViewModels;
-using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.SystemManager;
 using StudyBuddyApp.Utility;
-using StudyBuddyShared.Network;
 using StudyBuddyShared.HelpRequestSystem;
 
 namespace StudyBuddyApp.Views
@@ -35,7 +34,7 @@ namespace StudyBuddyApp.Views
         }
         public async void OnImageButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ProfileViewPage(new ViewModels.ProfileViewViewModel(viewModel.Creator)));
+            await Navigation.PushAsync(new ProfileViewPage(new ViewModels.ProfileViewViewModel(ViewModel.Creator)));
         }
         
         private async void ToolbarItem_Clicked(object sender, EventArgs e)

@@ -5,6 +5,7 @@ using StudyBuddyShared.Entity;
 using Xamarin.Forms;
 using StudyBuddyApp.Models;
 using StudyBuddyApp;
+using StudyBuddyShared.SystemManager;
 
 namespace StudyBuddyApp.ViewModels
 {
