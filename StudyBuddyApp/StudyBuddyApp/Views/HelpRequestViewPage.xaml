@@ -48,24 +48,33 @@
                    TextColor="{DynamicResource PrimaryTextColor}"
                    Margin="0.5, 0.5, 0.5, 0.5"
             />
-            <Image Aspect="AspectFit"
+            
+            <Frame Padding="0"
+                   CornerRadius="75"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   Margin="6, 0">
+                <Image Aspect="AspectFit"
                     VerticalOptions="Fill"
                     HorizontalOptions="Center"
                     WidthRequest="150"
-                    HeightRequest="150"
-                    Margin="6, 0">
-                <Image.Source>
-                    <UriImageSource Uri="{Binding Creator.ProfilePictureLocation}"
-                                    CacheValidity="14" 
-			                        CachingEnabled="true"
-                    />
-                </Image.Source>
-            </Image>
-            <Button  x:Name="buttonViewProfile"
-                     Text="Peržiūrėti profilį"
-                     VerticalOptions="End"
-                     HorizontalOptions="CenterAndExpand"
-                     Clicked="OnImageButtonClicked"/>
+                    HeightRequest="150">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding Creator.ProfilePictureLocation}"
+                                        CacheValidity="14" 
+			                            CachingEnabled="true"
+                        />
+                    </Image.Source>
+                </Image>
+            </Frame>
+            <Button
+                x:Name="buttonViewProfile"
+                Text="Peržiūrėti profilį"
+                VerticalOptions="End"
+                HorizontalOptions="CenterAndExpand"
+                Clicked="OnImageButtonClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

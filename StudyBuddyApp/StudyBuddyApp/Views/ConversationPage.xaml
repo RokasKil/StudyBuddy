@@ -88,17 +88,24 @@
         <StackLayout>
             <StackLayout Orientation="Horizontal"
                          Spacing="0">
-                <Image Aspect="AspectFit"
-                       VerticalOptions="Fill"
-                       WidthRequest="50"
-                       HeightRequest="50"
-                       Margin="6">
-                    <Image.Source>
-                        <UriImageSource Uri="{Binding ImageLocation}" 
-			                    CacheValidity="14" 
-			                    CachingEnabled="true"/>
-                    </Image.Source>
-                </Image>
+                <Frame Padding="0"
+                   CornerRadius="25"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   HeightRequest="50"
+                   WidthRequest="50"
+                    Margin="6">
+                    <Image Aspect="AspectFit"
+                           VerticalOptions="Fill"
+                           WidthRequest="50"
+                           HeightRequest="50">
+                        <Image.Source>
+                            <UriImageSource Uri="{Binding ImageLocation}" 
+			                        CacheValidity="14" 
+			                        CachingEnabled="true"/>
+                        </Image.Source>
+                    </Image>
+                </Frame>
                 <Label Text="{Binding Title}"
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="Start"
