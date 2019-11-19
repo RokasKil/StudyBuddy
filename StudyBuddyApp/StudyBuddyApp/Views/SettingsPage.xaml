@@ -11,7 +11,7 @@
             <StackLayout Orientation="Horizontal">
                 <Label Text="Tamsusis rėžimas" 
                        FontSize="20"
-                       TextColor="Black"
+                       TextColor="{DynamicResource PrimaryTextColor}"
                        Margin="5, 5, 5, 5"
                        HorizontalOptions="StartAndExpand"
                        
@@ -19,8 +19,6 @@
                 />
 
                 <Switch Toggled="OnToggled"
-                        OnColor="Green"
-                        ThumbColor="Orange"
                         x:Name="DarkModeSwitch"
                         HorizontalOptions="End"
                         VerticalOptions="Center"

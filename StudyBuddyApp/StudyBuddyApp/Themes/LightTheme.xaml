@@ -5,13 +5,15 @@
     <Color x:Key="PageBackgroundColor">White</Color>
     <Color x:Key="NavigationBarColor">WhiteSmoke</Color>
     <Color x:Key="NavigationPrimary">#2196F3</Color>
-    <Color x:Key="PrimaryColor">WhiteSmoke</Color>
-    <Color x:Key="SecondaryColor">Black</Color>
+    <Color x:Key="PrimaryColor">#2196F3</Color>
+    <Color x:Key="SecondaryColor">White</Color>
     <Color x:Key="PrimaryTextColor">Black</Color>
-    <Color x:Key="SecondaryTextColor">Gray</Color>
-    <Color x:Key="TertiaryTextColor">White</Color>
+    <Color x:Key="SecondaryTextColor">#212121</Color>
+    <Color x:Key="TertiaryTextColor">Gray</Color>
     <Color x:Key="ButtonColor">Gray</Color>
     <Color x:Key="TransparentColor">Transparent</Color>
+    <Color x:Key="PickerTitleColor">Gray</Color>
+    <FileImageSource x:Key="LogoImage" File="@drawable/ic_study_buddy"></FileImageSource>
     
 
 </ResourceDictionary>

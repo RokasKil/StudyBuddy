@@ -28,7 +28,11 @@
                 <Setter Property="BackgroundColor" Value="{DynamicResource ButtonColor}" />
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
             </Style>
-            
+            <Style TargetType="Picker">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+                <Setter Property="TitleColor" Value="{DynamicResource PickerTitleColor}" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

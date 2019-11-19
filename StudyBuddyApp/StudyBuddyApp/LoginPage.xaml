@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" >
             <Image 
-                Source="@drawable/ic_study_buddy"
+                Source="{DynamicResource LogoImage}"
                 VerticalOptions="Center" 
                 HorizontalOptions="CenterAndExpand" />
             <Entry Placeholder="Username"
