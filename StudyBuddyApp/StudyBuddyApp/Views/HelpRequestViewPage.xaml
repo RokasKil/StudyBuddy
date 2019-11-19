@@ -56,7 +56,7 @@
                    HeightRequest="150"
                    WidthRequest="150"
                    Margin="6, 0">
-                <Image Aspect="AspectFit"
+                <Image Aspect="AspectFill"
                     VerticalOptions="Fill"
                     HorizontalOptions="Center"
                     WidthRequest="150"

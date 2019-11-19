@@ -20,11 +20,11 @@
                     HorizontalOptions="Center"
                     HeightRequest="200"
                     WidthRequest="200"
-                    Aspect="AspectFit">
+                    Aspect="AspectFill">
                     <Image.Source>
                         <UriImageSource Uri="{Binding ImageLocation}" 
 			                    CacheValidity="14" 
-			                    CachingEnabled="true"/>
+			                    CachingEnabled="False"/>
                     </Image.Source>
                 </Image>
             </Frame>

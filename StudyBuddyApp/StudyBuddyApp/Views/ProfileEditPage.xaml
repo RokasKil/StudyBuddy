@@ -12,7 +12,7 @@
                 <Image
                 x:Name="ProfilePicture"
                 HorizontalOptions="Start"
-                Aspect="AspectFit">
+                Aspect="AspectFill">
                     <Image.Source>
                         <UriImageSource Uri="{Binding ImageLocation}" 
 			                    CacheValidity="14" 

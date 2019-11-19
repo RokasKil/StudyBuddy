@@ -14,7 +14,7 @@ namespace StudyBuddyApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MyProfilePage : ContentPage
 	{
-        MyProfileViewModel viewModel = new MyProfileViewModel();
+        MyProfileViewModel viewModel;
         public MyProfilePage() : this(new MyProfileViewModel()) { }
 		public MyProfilePage (MyProfileViewModel viewModel)
 		{
