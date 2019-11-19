@@ -45,10 +45,11 @@ namespace StudyBuddyApp.Views
 
             categoryGetter.Result += async (status, categories) =>
             {
-                if (status == CategoryGetStatus.Success)
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    Device.BeginInvokeOnMainThread(() =>
+                    if (status == CategoryGetStatus.Success)
                     {
+
                         Items.Clear();
                         categories.ForEach(category =>
                         {
@@ -65,12 +66,13 @@ namespace StudyBuddyApp.Views
                         //HelpRequestList.IsRefreshing = false;
                         //HelpRequestList.ItemsSource = null;
                         //HelpRequestList.ItemsSource = Items;
-                    });
-                }
-                else
-                {
-                    await DisplayAlert("Klaida", "Nepavyko įkelti kategorijų", "OK");
-                }
+
+                    }
+                    else
+                    {
+                        await DisplayAlert("Klaida", "Nepavyko įkelti kategorijų", "OK");
+                    }
+                });
 
             };
             categoryGetter.Get();

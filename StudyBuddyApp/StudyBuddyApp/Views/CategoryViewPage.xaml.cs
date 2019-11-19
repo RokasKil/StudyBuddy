@@ -41,7 +41,8 @@ namespace StudyBuddyApp.Views
             SaveButton.IsEnabled = false;
 
             //susikuriam naują kategoriją, kurią prilyginsim buvusiai ir atnaujinsim tik pasikeitusius laukus
-            var updatedCategory = viewModel.CategoryModel.Category;
+            var updatedCategory = new Category();
+            updatedCategory.Title = viewModel.CategoryModel.Category.Title;
             updatedCategory.Description = Description.Text;
             updatedCategory.LastUpdatedDate = DateTime.Now.ToLongDateString();
 
