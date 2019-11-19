@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using StudyBuddyApp.Views;
+using StudyBuddyApp.Themes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace StudyBuddyApp
@@ -12,6 +13,7 @@ namespace StudyBuddyApp
         public App()
         {
             InitializeComponent();
+            Current.Resources.MergedDictionaries.Add(new DarkTheme());
             MainPage = new NavigationPage(new LoginPage());
         }
 
