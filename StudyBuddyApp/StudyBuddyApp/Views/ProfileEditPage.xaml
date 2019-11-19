@@ -23,22 +23,13 @@
                 x:Name="buttonChangeProfilePicture"
                 Text="Keisti profilio nuotrauką"
                 Clicked="buttonChangeProfilePicture_Clicked"/>
-                <Label
-                x:Name="labelFirstName"
-                Text="{Binding User.FirstName}"
-                VerticalOptions="Start" 
-                HorizontalOptions="Start"
-                />
-                <Label
-                x:Name="labelLastName"
-                Text="{Binding User.LastName}"
-                VerticalOptions="Start" 
-                HorizontalOptions="Start"/>
                 <Entry
                 x:Name="entryFirstName"
+                Text="{Binding User.FirstName}"
                 Placeholder="Vardas"/>
                 <Entry
                 x:Name="entryLastName"
+                Text="{Binding User.LastName}"
                 Placeholder="Pavardė"/>
                 <Button
                 x:Name="buttonSaveEdit"
