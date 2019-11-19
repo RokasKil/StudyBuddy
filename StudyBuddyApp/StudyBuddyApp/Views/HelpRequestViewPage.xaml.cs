@@ -40,15 +40,25 @@ namespace StudyBuddyApp.Views
         
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            if (await DisplayActionSheet("Do you really want to delete that?", "No", "Yes") == "Yes")
+            if (await DisplayActionSheet("Ar tikrai norite ištrinti?", "Ne", "Taip") == "Taip")
             {
-               // HelpRequestSystemManager.NewHelpRequestRemover().Result +=
-               //  async (status, helpRequest) =>
-               // {
-                        HelpRequestSystemManager.NewHelpRequestRemover().Remove(ViewModel.HelpRequestModel.HelpRequest);
-                        DependencyService.Get<IToast>().LongToast("Deleted succesfully");
-                        await Navigation.PopAsync();
-               // };
+                var remover = HelpRequestSystemManager.NewHelpRequestRemover();
+                remover.Result += (status, helpRequest) =>
+                  {
+                      Device.BeginInvokeOnMainThread(async () =>
+                      {
+                          if(status == HelpRequestManageStatus.Success)
+                          {
+                              DependencyService.Get<IToast>().LongToast("Ištrinta sėkmingai");
+                              await Navigation.PopAsync();
+                          }
+                          else                                                                                                                                                                            
+                          {
+                              DependencyService.Get<IToast>().LongToast("Ištrinti nepavyko");
+                          }
+                      });
+                  };
+                remover.Remove(ViewModel.HelpRequestModel.HelpRequest);
             }
             return;
         }
