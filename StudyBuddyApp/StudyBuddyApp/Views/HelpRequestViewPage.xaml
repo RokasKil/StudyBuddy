@@ -48,26 +48,24 @@
                    TextColor="Black"
                    Margin="0.5, 0.5, 0.5, 0.5"
             />
-            <ImageButton Aspect="Fill"
-                         VerticalOptions="Fill"
-                         HorizontalOptions="Center"
-                         WidthRequest="150"
-                         HeightRequest="150"
-                         Margin="6, 0"
-                         Clicked="OnImageButtonClicked">
-                <ImageButton.Source>
+            <Image Aspect="AspectFit"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+                    WidthRequest="150"
+                    HeightRequest="150"
+                    Margin="6, 0">
+                <Image.Source>
                     <UriImageSource Uri="{Binding Creator.ProfilePictureLocation}"
                                     CacheValidity="14" 
 			                        CachingEnabled="true"
                     />
-                </ImageButton.Source>
-            </ImageButton>
-            <Button
-                x:Name="buttonViewProfile"
-                Text="Peržiūrėti profilį"
-                VerticalOptions="End"
-                HorizontalOptions="CenterAndExpand"
-                Clicked="OnImageButtonClicked"/>
+                </Image.Source>
+            </Image>
+            <Button  x:Name="buttonViewProfile"
+                     Text="Peržiūrėti profilį"
+                     VerticalOptions="End"
+                     HorizontalOptions="CenterAndExpand"
+                     Clicked="OnImageButtonClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
