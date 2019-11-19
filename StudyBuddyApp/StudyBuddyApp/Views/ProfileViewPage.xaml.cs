@@ -1,5 +1,5 @@
 ﻿using StudyBuddyShared.Entity;
-using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.SystemManager;
 using StudyBuddyApp.ViewModels;
 using System;
 using System.Collections.Generic;

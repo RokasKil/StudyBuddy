@@ -13,7 +13,7 @@ using StudyBuddyShared.Entity;
 using StudyBuddyApp.Utility;
 using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.CategorySystem;
-using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.SystemManager;
 using StudyBuddyShared.HelpRequestSystem;
 
 namespace StudyBuddyApp.Views

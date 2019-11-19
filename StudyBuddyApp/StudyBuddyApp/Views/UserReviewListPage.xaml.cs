@@ -1,5 +1,5 @@
 ﻿using StudyBuddyApp.Models;
-using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.SystemManager;
 using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.Entity;
 using StudyBuddyShared.UserReviewSystem;

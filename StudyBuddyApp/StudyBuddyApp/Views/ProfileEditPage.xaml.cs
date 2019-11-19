@@ -18,7 +18,7 @@ using StudyBuddyApp.Utility;
 using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.UserSystem;
 using UserUpdater = StudyBuddyShared.UserSystem.UserUpdater;
-using StudyBuddyApp.SystemManager;
+using StudyBuddyShared.SystemManager;
 
 namespace StudyBuddyApp
 {

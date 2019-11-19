@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using StudyBuddyShared.Entity;
 
-namespace StudyBuddyApp
+namespace StudyBuddyShared.SystemManager
 {
     public static class LocalUserManager
     {
