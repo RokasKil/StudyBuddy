@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StudyBuddyApp.Views.SettingsPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Margin="5, 5, 5, 5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Text="Tamsusis rėžimas" 
+                       FontSize="25"
+                       TextColor="Black"
+                       Grid.Row="0" 
+                       Grid.Column="0" 
+                       Margin="5, 5, 5, 5"
+                />
+
+                <Switch Toggled="OnToggled"
+                        OnColor="Orange" 
+                        ThumbColor="Green" 
+                        Grid.Row="0" 
+                        Grid.Column="1"
+                        IsToggled="{Binding isToggledSwitchButton}"
+                />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

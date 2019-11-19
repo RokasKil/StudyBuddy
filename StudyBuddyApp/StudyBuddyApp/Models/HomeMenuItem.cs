@@ -12,6 +12,7 @@ namespace StudyBuddyApp.Models
         LogOut,
         CategoryList,
         HelpRequestList,
+        SettingsPage,
         ConversationListPage,
         HelpRequestAddPage
     }

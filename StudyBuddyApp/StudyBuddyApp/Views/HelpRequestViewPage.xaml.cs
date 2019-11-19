@@ -6,25 +6,26 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 using StudyBuddyApp.ViewModels;
-using StudyBuddyApp.SystemManager;
 using StudyBuddyApp.Utility;
 using StudyBuddyShared.Network;
 using StudyBuddyShared.HelpRequestSystem;
+using StudyBuddyShared.SystemManager;
 
 namespace StudyBuddyApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HelpRequestViewPage : ContentPage
     {
-        readonly HelpRequestViewPageModel ViewModel;
+        readonly HelpRequestViewPageModel viewModel;
         public HelpRequestViewPage(HelpRequestViewPageModel helpRequestViewPageModel)
         {
             InitializeComponent();
-            ViewModel = helpRequestViewPageModel;
-            BindingContext = ViewModel;
+            viewModel = helpRequestViewPageModel;
+            BindingContext = viewModel;
 
-            if(ViewModel.Creator.Username == LocalUserManager.LocalUser.Username)
+            if(viewModel.Creator.Username == LocalUserManager.LocalUser.Username)
             {
                 deleteButton.IsEnabled = true;
             }
@@ -58,7 +59,7 @@ namespace StudyBuddyApp.Views
                           }
                       });
                   };
-                remover.Remove(ViewModel.HelpRequestModel.HelpRequest);
+                remover.Remove(viewModel.HelpRequestModel.HelpRequest);
             }
             return;
         }
