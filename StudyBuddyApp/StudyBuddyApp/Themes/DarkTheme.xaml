@@ -5,13 +5,24 @@
     <Color x:Key="PageBackgroundColor">#2B2D2F</Color>
     <Color x:Key="NavigationBarColor">WhiteSmoke</Color>
     <Color x:Key="NavigationPrimary">#2196F3</Color>
-    <Color x:Key="PrimaryColor">WhiteSmoke</Color>
-    <Color x:Key="SecondaryColor">Black</Color>
+    <Color x:Key="PrimaryColor">#2196F3</Color>
+    <Color x:Key="SecondaryColor">#ff8f00</Color>
     <Color x:Key="PrimaryTextColor">White</Color>
-    <Color x:Key="SecondaryTextColor">Gray</Color>
+    <Color x:Key="SecondaryTextColor">WhiteSmoke</Color>
     <Color x:Key="TertiaryTextColor">WhiteSmoke</Color>
     <Color x:Key="ButtonColor">Gray</Color>
     <Color x:Key="TransparentColor">Transparent</Color>
+
+    <!--
+    <color name="primaryColor">#283593</color> aaa
+    <color name="primaryLightColor">#5f5fc4</color>
+    <color name="primaryDarkColor">#001064</color> aaaa
+    <color name="secondaryColor">#cddc39</color>aaaa
+    <color name="secondaryLightColor">#ffff6e</color>
+    <color name="secondaryDarkColor">#99aa00</color>
+    <color name="primaryTextColor">#ffffff</color>aaaa
+    <color name="secondaryTextColor">#000000</color>aaaa
     
+    -->
 
 </ResourceDictionary>
