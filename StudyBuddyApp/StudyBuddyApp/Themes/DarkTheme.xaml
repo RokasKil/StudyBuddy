@@ -12,17 +12,4 @@
     <Color x:Key="TertiaryTextColor">WhiteSmoke</Color>
     <Color x:Key="ButtonColor">Gray</Color>
     <Color x:Key="TransparentColor">Transparent</Color>
-
-    <!--
-    <color name="primaryColor">#283593</color> aaa
-    <color name="primaryLightColor">#5f5fc4</color>
-    <color name="primaryDarkColor">#001064</color> aaaa
-    <color name="secondaryColor">#cddc39</color>aaaa
-    <color name="secondaryLightColor">#ffff6e</color>
-    <color name="secondaryDarkColor">#99aa00</color>
-    <color name="primaryTextColor">#ffffff</color>aaaa
-    <color name="secondaryTextColor">#000000</color>aaaa
-    
-    -->
-
 </ResourceDictionary>
