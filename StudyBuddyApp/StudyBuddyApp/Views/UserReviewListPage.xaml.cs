@@ -84,8 +84,8 @@ namespace StudyBuddyApp.Views
                     else
                     {
                         DisplayAlert("Klaida", "Nepavyko ištrinti atsiliepimo", "Tęsti");
+                        buttonDelete.IsEnabled = true;
                     }
-                    buttonDelete.IsEnabled = true;
                 });
             };
             userReviewRemover.Remove(new UserReview() {Username = viewModel.User.Username});
