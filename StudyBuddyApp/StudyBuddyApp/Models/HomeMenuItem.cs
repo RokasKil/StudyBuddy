@@ -7,8 +7,6 @@ namespace StudyBuddyApp.Models
     public enum MenuItemType
     {
         Profile,
-        Browse,
-        About,
         LogOut,
         CategoryList,
         HelpRequestList,

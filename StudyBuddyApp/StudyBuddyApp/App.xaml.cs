@@ -13,7 +13,14 @@ namespace StudyBuddyApp
         public App()
         {
             InitializeComponent();
-            Current.Resources.MergedDictionaries.Add(new DarkTheme());
+            if (Application.Current.Properties.ContainsKey("DarkMode") && (bool)Application.Current.Properties["DarkMode"])
+            {
+                Current.Resources.MergedDictionaries.Add(new DarkTheme());
+            }
+            else
+            {
+                Current.Resources.MergedDictionaries.Add(new LightTheme());
+            }
             MainPage = new NavigationPage(new LoginPage());
         }
 
