@@ -24,21 +24,18 @@
 
 
     <ContentPage.Content >
-        <StackLayout 
-            Padding='5'>
-            
+        <StackLayout Padding='5'>
             <Picker x:Name="PickCategory"
                     Title="{Binding CategoryGeneral}" 
                     ItemsSource="{Binding CategoryItems}"
                     ItemDisplayBinding="{Binding Title}"
                     PropertyChanged="PickCategory_PropertyChanged"/>
+          
             <Entry  x:Name="RequestSearchBar"
                     Text=""
                     Placeholder="{Binding EntryFind}"
-                    Completed="RequestSearchBar_Completed"
-                     
-                     />
-                    
+                    Completed="RequestSearchBar_Completed"/>
+          
             <ListView x:Name="HelpRequestList"
                       ItemsSource="{Binding Items}"
                       ItemTapped="Handle_ItemTapped"
