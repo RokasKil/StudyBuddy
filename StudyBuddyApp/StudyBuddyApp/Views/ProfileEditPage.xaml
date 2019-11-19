@@ -9,16 +9,28 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Image
+                <Frame Padding="0"
+                   CornerRadius="75"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   Margin="6, 0">
+                    <Image
                 x:Name="ProfilePicture"
-                HorizontalOptions="Start"
-                Aspect="AspectFill">
-                    <Image.Source>
-                        <UriImageSource Uri="{Binding ImageLocation}" 
+                Aspect="AspectFill"
+                VerticalOptions="Fill"
+                HorizontalOptions="Center"
+                WidthRequest="150"
+                HeightRequest="150">
+                        <Image.Source>
+                            <UriImageSource Uri="{Binding ImageLocation}" 
 			                    CacheValidity="14" 
 			                    CachingEnabled="true"/>
-                    </Image.Source>
-                </Image>
+                        </Image.Source>
+                    </Image>
+                </Frame>
+                
                 <Button
                 x:Name="buttonChangeProfilePicture"
                 Text="Keisti profilio nuotrauką"
