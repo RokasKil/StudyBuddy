@@ -105,6 +105,7 @@ namespace StudyBuddyShared.Network
                     KarmaPoints = obj["user"]["karmaPoints"].ToObject<int>(),
                     IsLecturer = Convert.ToBoolean(obj["user"]["lecturer"].ToObject<int>()),
                     PrivateKey = obj["user"]["privateKey"].ToString(),
+                    ProfilePictureLocation = obj["user"]["profilePicture"].ToString()
                 };
                 LoginResult(AuthStatus.Success, localUser);
             }
