@@ -130,7 +130,6 @@ namespace StudyBuddyApp
                             DisplayAlert("Nepavyko įkelti pic:(", "oof", "OK");
                         }
                         LoadingIndicator.IsRunning = false;
-
                     });
                 };
                 profilePictureUpdater.Upload(base64String);
