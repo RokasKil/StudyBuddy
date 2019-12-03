@@ -53,7 +53,8 @@ namespace StudyBuddyApp.Droid.Utility
                 .SetContentText(message.Text)
                 .SetLargeIcon(BitmapFactory.DecodeResource(Application.Context.Resources, Resource.Mipmap.icon))
                 .SetSmallIcon(Resource.Mipmap.launcher_foreground)
-                .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate);
+                .SetAutoCancel(true)
+                .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate | (int)NotificationDefaults.Lights);
 
             var notification = builder.Build();
             manager.Notify(conversation.Id, notification);
