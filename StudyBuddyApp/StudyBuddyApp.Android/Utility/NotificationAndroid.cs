@@ -64,13 +64,15 @@ namespace StudyBuddyApp.Droid.Utility
 
             channelInitialized = true;
         }
-    }
-    void BlockNotification(Object obj, Conversation conversation)
-    {
 
-    }
-    void AllowNotifcation(Object obj, Conversation conversation)
-    {
+        public void BlockNotification(Object obj, Conversation conversation)
+        {
 
+        }
+        
+        public void AllowNotifcation(Object obj, Conversation conversation)
+        {
+
+        }
     }
 }
