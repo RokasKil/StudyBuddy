@@ -75,11 +75,15 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.3" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BroadcastRecievers\ServiceRestarter.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Services\MessagingService.cs" />
     <Compile Include="SplashActivity.cs" />
+    <Compile Include="Utility\BackgroundCheckerAndroid.cs" />
+    <Compile Include="Utility\NotificationAndroid.cs" />
+    <Compile Include="Utility\NotificationStartAndroid.cs" />
     <Compile Include="Utility\ToastAndroid.cs" />
   </ItemGroup>
   <ItemGroup>

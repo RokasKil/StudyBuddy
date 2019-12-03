@@ -4,7 +4,8 @@
              x:Class="StudyBuddyApp.Views.ConversationPage"
              xmlns:local="clr-namespace:StudyBuddyApp.DataTemplates"
              NavigationPage.HasNavigationBar="False"
-             Disappearing="ContentPage_Disappearing">
+             Disappearing="ContentPage_Disappearing"
+             Appearing="ContentPage_Appearing">
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="LeftTemplate">

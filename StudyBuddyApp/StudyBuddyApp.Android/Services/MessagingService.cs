@@ -21,12 +21,13 @@ using StudyBuddyShared.SystemManager;
 
 namespace StudyBuddyApp.Droid.Services
 {
-    [Service]
-    class MessagingService : Service
+    [Service(Enabled = true)]
+    public class MessagingService : Service
     {
+        public const string SERVICE_KILLED_MESSAGE = "MessagingServiceKilled";
         IMessageGetter messageGetter = null;
         IMessageSender messageSender = null;
-
+        long notificationTimestamp = 0;
         Dictionary<string, User> users = new Dictionary<string, User>();
         Dictionary<int, List<Message>> messages = new Dictionary<int, List<Message>>();
         List<Conversation> conversations = new List<Conversation>();
@@ -40,12 +41,20 @@ namespace StudyBuddyApp.Droid.Services
         [return: GeneratedEnum]
         public override StartCommandResult OnStartCommand(Intent intent, [GeneratedEnum] StartCommandFlags flags, int startId)
         {
-            if(messageGetter != null)
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                DependencyService.Get<IToast>().ShortToast("starting service");
+            });
+            if (messageGetter != null)
             {
 
                 return StartCommandResult.Sticky;
             }
-            if(LocalUserManager.LocalUser == null)
+            if (App.Current.Properties.ContainsKey("notificationTimestamp"))
+            {
+                notificationTimestamp = (long)App.Current.Properties["notificationTimestamp"];
+            }
+            if (LocalUserManager.LocalUser == null)
             {
                 if (Xamarin.Forms.Application.Current.Properties.ContainsKey("PrivateKey"))
                 {
@@ -53,22 +62,34 @@ namespace StudyBuddyApp.Droid.Services
                 }
                 else
                 {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        DependencyService.Get<IToast>().ShortToast("no private key");
+                    });
                     StopSelf();
                 }
             }
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                DependencyService.Get<IToast>().ShortToast("started service");
+            });
             messageGetter = ConversationSystemManager.NewMessageGetter();
             messageSender = ConversationSystemManager.NewMessageSender();
+            //Message getter result 
             messageGetter.Result += (status, conversations, messages, users) => {
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     //DependencyService.Get<IToast>().ShortToast(status.ToString());
                 });
+                //Got messages
                 if (status == MessageGetAllStatus.Success && conversations.Count != 0)
                 {
+                    //joining conversations
                     this.conversations = conversations
                         .Union(this.conversations, new EntityComparer())
                         .OrderByDescending(conv => conv.LastActivity)
                         .ToList();
+                    //Joining messages
                     foreach (KeyValuePair<int, List<Message>> entry in messages)
                     {
                         if (this.messages.ContainsKey(entry.Key))
@@ -80,15 +101,39 @@ namespace StudyBuddyApp.Droid.Services
                             this.messages[entry.Key] = entry.Value;
                         }
                     }
+                    //Joining users
                     this.users = users
                         .Concat(this.users.Where(pair => !users.ContainsKey(pair.Key)))
                         .ToDictionary(x => x.Key, x => x.Value);
+                    //Sending messages back to ui
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         MessagingCenter.Send(new MessagingTask(messagesDict: messages, users: this.users), MessagingTask.NewMessages);
-
+                        DependencyService.Get<IToast>().ShortToast("New message");
                     });
+                    //Creating notifications
+                    long temp = notificationTimestamp;
+                    conversations.ForEach((conversation) =>
+                    {
+                        Message message = messages[conversation.Id].FindLast(m => users.ContainsKey(m.Username) && m.Timestamp > notificationTimestamp);
+                        if(message != null)
+                        {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                DependencyService.Get<INotification>().DisplayMessageNotification(conversation, message, users);
+                            });
+                            temp = Math.Max(message.Timestamp, temp);
+                        }
+                    });
+                    //New notification timestamp limit
+                    if(temp != notificationTimestamp)
+                    {
+                        notificationTimestamp = temp;
+                        App.Current.Properties["notificationTimestamp"] = notificationTimestamp;
+                        App.Current.SavePropertiesAsync();
+                    }
                 }
+                //Failed to get stopping service
                 else if (status == MessageGetAllStatus.InvalidPrivateKey)
                 {
                     if (LocalUserManager.LocalUser != null)
@@ -103,11 +148,12 @@ namespace StudyBuddyApp.Droid.Services
                     }
                 } 
             };
+            //Get all messages request
             MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.GetMessages, (task) =>
             {
                 MessagingCenter.Send(new MessagingTask(messagesDict: messages, users: users), MessagingTask.LocalMessages);
             });
-
+            //Get specfic amoount of messages
             MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.GetMessagesLimited, (task) =>
             {
                 List<Message> messagesList = null;
@@ -122,14 +168,15 @@ namespace StudyBuddyApp.Droid.Services
                 }
                 MessagingCenter.Send(new MessagingTask(messages: messagesList, users: users, conversation: task.Conversation), MessagingTask.LocalMessagesLimited);
             });
-
+            // Get all conversations
             MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.GetConversations, (task) =>
             {
                 MessagingCenter.Send(new MessagingTask(conversations: conversations, users: users), MessagingTask.LocalConversations);
             });
-
+            //Sender result
             messageSender.Result += (status, message) =>
             {
+                //If failed stop
                 if (status == MessageSendStatus.InvalidPrivateKey)
                 {
                     if (LocalUserManager.LocalUser != null)
@@ -145,19 +192,22 @@ namespace StudyBuddyApp.Droid.Services
                 }
             };
 
-
+            //Enqueue message to sender
             MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.AddMessageToQueue, (task) =>
             {
                 messageSender.AddMessageToQueue(task.Message);
             });
 
-
+            //Stop the service
             MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.Stop, (task) =>
             {
-                messageGetter.StopGetting();
-                messageSender.StopSending();
-                messageGetter.Result = null;
-                StopSelf();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    messageGetter.StopGetting();
+                    messageSender.StopSending();
+                    messageGetter.Result = null;
+                    StopSelf();
+                });
             });
 
             messageGetter.GetUsers = true;
@@ -170,6 +220,22 @@ namespace StudyBuddyApp.Droid.Services
             });
             Console.WriteLine("SERVICE STARTED");
             return StartCommandResult.Sticky;
+        }
+
+        public override void OnTaskRemoved(Intent rootIntent)
+        {
+            //base.OnTaskRemoved(rootIntent);
+            Console.WriteLine("OnTaskRemoved");
+            DependencyService.Get<IToast>().ShortToast("OnTaskRemoved");
+            Intent intent = new Intent(SERVICE_KILLED_MESSAGE);
+
+            SendBroadcast(intent);
+        }
+        public override void OnDestroy()
+        {
+            //base.OnDestroy();
+            Console.WriteLine("OnTaskRemoved");
+            DependencyService.Get<IToast>().ShortToast("OnDestroy");
         }
     }
 
