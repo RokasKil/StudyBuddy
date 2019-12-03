@@ -99,7 +99,14 @@ namespace StudyBuddyApp.Droid.Services
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         MessagingCenter.Send(new MessagingTask(messagesDict: messages, users: this.users), MessagingTask.NewMessages);
-
+                        conversations.ForEach((conversation) =>
+                        {
+                            Message message = messages[conversation.Id].FindLast(m => users.ContainsKey(m.Username));
+                            if(message != null)
+                            {
+                                DependencyService.Get<INotification>().DisplayMessageNotification(conversation, message, users);
+                            }
+                        });
                         DependencyService.Get<IToast>().ShortToast("New message");
                     });
                 }
