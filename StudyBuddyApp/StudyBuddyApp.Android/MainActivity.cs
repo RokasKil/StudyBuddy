@@ -31,7 +31,24 @@ namespace StudyBuddyApp.Droid
                 Intent intent = new Intent(this, typeof(MessagingService));
                 StartService(intent);
             });
+            CheckBrand();
         }
+        private async void CheckBrand()
+        {
+            if (Build.Brand.ToLower() == "xiaomi" && !Xamarin.Forms.Application.Current.Properties.ContainsKey("AutoStart"))
+            {
 
+                bool action = await App.Current.MainPage.DisplayAlert("Papildomi leidimai", "Norint gauti pranešimus jūsų prietaise reikia papildomų leidimų. Pridėkite programėlę sekančiame lange.", "Gerai", "Ne");
+                if (action)
+                {
+                    Intent intent = new Intent();
+                    intent.SetComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
+                    StartActivity(intent);
+                    Xamarin.Forms.Application.Current.Properties["AutoStart"] = true;
+                    await Xamarin.Forms.Application.Current.SavePropertiesAsync();
+                }
+
+            }
+        }
     }
 }
