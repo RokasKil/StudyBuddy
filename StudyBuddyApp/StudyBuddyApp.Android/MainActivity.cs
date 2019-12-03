@@ -11,6 +11,11 @@ using StudyBuddyApp.Services;
 using Android.Content;
 using StudyBuddyApp.Droid.Services;
 using Plugin.CurrentActivity;
+using Newtonsoft.Json.Linq;
+using StudyBuddyApp.ViewModels;
+using StudyBuddyShared.Entity;
+using System.Collections.Generic;
+using StudyBuddyApp.Droid.Utility;
 
 namespace StudyBuddyApp.Droid
 {
@@ -19,6 +24,7 @@ namespace StudyBuddyApp.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            NotificationStartAndroid.Intent = Intent;
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             CrossCurrentActivity.Current.Activity = this;
@@ -48,6 +54,19 @@ namespace StudyBuddyApp.Droid
                     await Xamarin.Forms.Application.Current.SavePropertiesAsync();
                 }
 
+            }
+        }
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            Console.WriteLine("New intent");
+            if (intent.HasExtra("conversation"))
+            {
+                Console.WriteLine("Conversation intent");
+                Conversation conversation = JObject.Parse(intent.GetStringExtra("conversation")).ToObject<Conversation>();
+                Dictionary<string, User> users = JObject.Parse(intent.GetStringExtra("users")).ToObject<Dictionary<string, User>>();
+                ConversationViewModel model = new ConversationViewModel(conversation, users);
+                Xamarin.Forms.MessagingCenter.Send(model, "Open");
             }
         }
     }

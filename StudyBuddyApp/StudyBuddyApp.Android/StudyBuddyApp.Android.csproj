@@ -81,7 +81,9 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Services\MessagingService.cs" />
     <Compile Include="SplashActivity.cs" />
+    <Compile Include="Utility\BackgroundCheckerAndroid.cs" />
     <Compile Include="Utility\NotificationAndroid.cs" />
+    <Compile Include="Utility\NotificationStartAndroid.cs" />
     <Compile Include="Utility\ToastAndroid.cs" />
   </ItemGroup>
   <ItemGroup>

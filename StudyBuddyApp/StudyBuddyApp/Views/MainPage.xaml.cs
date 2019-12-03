@@ -7,12 +7,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using StudyBuddyApp.ViewModels;
 
 namespace StudyBuddyApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : MasterDetailPage
     {
+        private bool appeared = false;
+
         Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
         public MainPage()
         {
@@ -25,9 +28,12 @@ namespace StudyBuddyApp.Views
             {
                 DependencyService.Get<IToast>().LongToast("Service started");
             });
+            MessagingCenter.Subscribe<ConversationViewModel>(this, "Open", async (obj) =>
+            {
+                await Navigation.PushModalAsync(new NavigationPage(new ConversationPage(obj)));
+            });
             // Starts messaging service
             MessagingCenter.Send(new MessagingTask(), MessagingTask.Start);
-
         }
 
         public async Task NavigateFromMenu(int id)
@@ -71,6 +77,20 @@ namespace StudyBuddyApp.Views
                     await Task.Delay(100);
 
                 IsPresented = false;
+            }
+        }
+
+        private async void MasterDetailPage_Appearing(object sender, EventArgs e)
+        {
+            if (appeared)
+            {
+                return;
+            }
+            appeared = true;
+            var model = DependencyService.Get<INotificationStart>().GetStartModel();
+            if (model != null)
+            {
+                await Navigation.PushModalAsync(new NavigationPage(new ConversationPage(model)));
             }
         }
     }
