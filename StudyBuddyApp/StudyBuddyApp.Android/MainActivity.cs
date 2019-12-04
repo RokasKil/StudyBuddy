@@ -47,11 +47,23 @@ namespace StudyBuddyApp.Droid
                 bool action = await App.Current.MainPage.DisplayAlert("Papildomi leidimai", "Norint gauti pranešimus jūsų prietaise reikia papildomų leidimų. Pridėkite programėlę sekančiame lange.", "Gerai", "Ne");
                 if (action)
                 {
-                    Intent intent = new Intent();
-                    intent.SetComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
-                    StartActivity(intent);
-                    Xamarin.Forms.Application.Current.Properties["AutoStart"] = true;
-                    await Xamarin.Forms.Application.Current.SavePropertiesAsync();
+                    try
+                    {
+                        Intent intent = new Intent();
+                        intent.SetComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
+                        StartActivity(intent);
+                    }
+                    catch (Exception e)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Klaida", "Nepavyko atidaryti nustatymų", "Gerai");
+
+                    }
+                    finally
+                    {
+
+                        Xamarin.Forms.Application.Current.Properties["AutoStart"] = true;
+                        await Xamarin.Forms.Application.Current.SavePropertiesAsync();
+                    }
                 }
 
             }
