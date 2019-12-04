@@ -55,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Network\MessagePoster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\MessagesGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\ProfilePictureUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\RankingsGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewManager.cs" />
@@ -73,9 +74,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\UserReviewManagerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\UserReviewPoster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\UserReviewRemover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IRankingsGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserProfilePictureUpdater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\RankingsGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserProfilePictureUpdater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserUpdater.cs" />
