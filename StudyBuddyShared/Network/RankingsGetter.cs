@@ -63,12 +63,12 @@ namespace StudyBuddyShared.Network
                 {
                     rankings.Add(new User
                     {
-                        Username = obj["username"].ToString(),
-                        FirstName = obj["firstName"].ToString(),
-                        LastName = obj["lastName"].ToString(),
-                        KarmaPoints = obj["karmaPoints"].ToObject<int>(),
-                        IsLecturer = Convert.ToBoolean(obj["lecturer"].ToObject<int>()),
-                        ProfilePictureLocation = obj["profilePicture"].ToString()
+                        Username = user["username"].ToString(),
+                        FirstName = user["firstName"].ToString(),
+                        LastName = user["lastName"].ToString(),
+                        KarmaPoints = user["karmaPoints"].ToObject<int>(),
+                        IsLecturer = Convert.ToBoolean(user["lecturer"].ToObject<int>()),
+                        ProfilePictureLocation = user["profilePicture"].ToString()
                     });
                 });
                 GetRankingsResult(GetStatus.Success, rankings);

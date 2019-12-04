@@ -28,6 +28,8 @@ namespace StudyBuddyApp.Views
             InitializeComponent();
             Items = new ObservableCollection<RankingsModel>
             { };
+            RankingsListGetter();
+            RankingsList.ItemsSource = Items;
         }
 
         private void RankingsListGetter()
@@ -40,22 +42,19 @@ namespace StudyBuddyApp.Views
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         Items.Clear();
-                        requests.ForEach(request =>
+                        rankings.ForEach(user =>
                         {
-                            Items.Add(new HelpRequestModel
+                            Items.Add(new RankingsModel
                             {
-                                Title = request.Title,
-                                Description = request.Description,
-                                Username = request.CreatorUsername,
-                                Name = users[request.CreatorUsername].FirstName + " " + users[request.CreatorUsername].LastName,
-                                Category = request.Category,
-                                Date = request.Timestamp.ToFullDate(),
-                                HelpRequest = request
+                                Username = user.Username,
+                                Name = user.FirstName + " " + user.LastName,
+                                KarmaPoints = user.KarmaPoints,
+                                IsLecturer = user.IsLecturer,
+                                ProfilePictureLocation = user.ProfilePictureLocation,
+                                User = user
                             });
                         });
-
-                        FilterFinal();
-                        HelpRequestList.IsRefreshing = false;
+                        RankingsList.IsRefreshing = false;
 
                     });
                 }
@@ -63,12 +62,23 @@ namespace StudyBuddyApp.Views
                 {
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        HelpRequestList.IsRefreshing = false;
+                        RankingsList.IsRefreshing = false;
                     });
                 }
 
             };
-            helpRequestGetter.Get();
+            rankingsGetter.Get();
+        }
+
+
+        private void RankingsList_Refreshing(object sender, EventArgs e)
+        {
+            RankingsListGetter();
+        }
+
+        private void RankingsList_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
         }
     }
 

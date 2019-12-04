@@ -51,6 +51,9 @@ namespace StudyBuddyApp.Views
                     case (int)MenuItemType.SettingsPage:
                         MenuPages.Add(id, new NavigationPage(new SettingsPage()));
                         break;
+                    case (int)MenuItemType.RankingsListPage:
+                        MenuPages.Add(id, new NavigationPage(new RankingsViewPage()));
+                        break;
                     case (int)MenuItemType.LogOut:
                         Application.Current.Properties.Remove("PrivateKey");
                         await Application.Current.SavePropertiesAsync();
