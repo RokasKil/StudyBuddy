@@ -22,6 +22,7 @@ using StudyBuddyApp.EntityFramework;
 using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
+using StudyBuddyShared.UserSystem;
 
 namespace StudyBuddyApp.Droid.Services
 {
@@ -288,6 +289,21 @@ namespace StudyBuddyApp.Droid.Services
                 {
                     MessagingCenter.Send(new MessagingTask(messagesDict: messages, users: users), MessagingTask.NewMessages);
                 });
+                foreach(var entry in users)
+                {
+                    var getter = UserSystemManager.UserGetter();
+                    if (getter != null)
+                    {
+                        getter.Result += (status, user) =>
+                        {
+                            if (status == UserGetStatus.Success)
+                            {
+                                users[user.Username] = user;
+                            }
+                        };
+                        getter.Get(entry.Value.Username);
+                    }
+                }
 
                 conversations.ForEach(conv =>
                 {
