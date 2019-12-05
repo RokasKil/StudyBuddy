@@ -19,6 +19,9 @@ using StudyBuddyApp.Droid.Utility;
 using StudyBuddyApp.Utility;
 using StudyBuddyShared.SystemManager;
 using StudyBuddyApp.EntityFramework;
+using System.Threading.Tasks;
+using System.Threading;
+using Microsoft.EntityFrameworkCore;
 
 namespace StudyBuddyApp.Droid.Services
 {
@@ -34,10 +37,15 @@ namespace StudyBuddyApp.Droid.Services
         List<Conversation> conversations = new List<Conversation>();
         DatabaseContext db;
 
-        public void LoadData()
+        public void LoadData() // Loading data from the database
         {
-            DatabaseContext db = new DatabaseContext();
+            db = new DatabaseContext();
             db.Database.EnsureCreated();
+            db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            users = db.Users.ToDictionary((user) => user.Username, (user) => user);
+            conversations = db.Conversations.ToList();
+            messages = db.Conversations.ToDictionary(conv => conv.Id, conv => db.Messages.Where(msg => msg.Conversation == conv.Id).ToList());
+            db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
         }
 
         public override IBinder OnBind(Intent intent)
@@ -49,7 +57,6 @@ namespace StudyBuddyApp.Droid.Services
         [return: GeneratedEnum]
         public override StartCommandResult OnStartCommand(Intent intent, [GeneratedEnum] StartCommandFlags flags, int startId)
         {
-
             Device.BeginInvokeOnMainThread(() =>
             {
                 DependencyService.Get<IToast>().ShortToast("starting service");
@@ -120,6 +127,62 @@ namespace StudyBuddyApp.Droid.Services
                         MessagingCenter.Send(new MessagingTask(messagesDict: messages, users: this.users), MessagingTask.NewMessages);
                         DependencyService.Get<IToast>().ShortToast("New message");
                     });
+
+                    //Saving values
+                    foreach(var entry in users)
+                    {
+                        if (db.Users.Any(user => user.Username == entry.Value.Username))
+                        {
+                            db.Users.Update(entry.Value);
+                        }
+                        else
+                        {
+                            db.Users.Add(entry.Value);
+                        }
+                    }
+                    foreach(var entry in conversations)
+                    {
+                        if (db.Conversations.Any(conv => conv.Id == entry.Id))
+                        {
+                            db.Conversations.Update(entry);
+                        }
+                        else
+                        {
+                            db.Conversations.Add(entry);
+                        }
+                    }
+                    foreach (var entry in messages)
+                    {
+                        foreach (var message in entry.Value)
+                        {
+                            if (db.Messages.Any(_message => _message.Id == message.Id))
+                            {
+                                db.Messages.Update(message);
+                            }
+                            else
+                            {
+                                db.Messages.Add(message);
+                            }
+                        }
+                    }
+                    
+                    db.SaveChanges();
+                    //Untracking values
+                    foreach(var entry in users)
+                    {
+                        db.Entry(entry.Value).State = EntityState.Detached;
+                    }
+                    foreach (var entry in conversations)
+                    {
+                        db.Entry(entry).State = EntityState.Detached;
+                    }
+                    foreach (var entry in messages)
+                    {
+                        foreach (var message in entry.Value)
+                        {
+                            db.Entry(message).State = EntityState.Detached;
+                        }
+                    }
                     //Creating notifications
                     long temp = notificationTimestamp;
                     conversations.ForEach((conversation) =>
@@ -218,17 +281,29 @@ namespace StudyBuddyApp.Droid.Services
                     StopSelf();
                 });
             });
-
-            messageGetter.GetUsers = true;
-            messageGetter.StartGetting();
-
-            messageSender.StartSending();
-            Device.BeginInvokeOnMainThread(() =>
+            new Thread(() =>
             {
-                MessagingCenter.Send(new MessagingTask(), MessagingTask.Started);
-            });
-            Console.WriteLine("SERVICE STARTED");
-            return StartCommandResult.Sticky;
+                LoadData();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    MessagingCenter.Send(new MessagingTask(messagesDict: messages, users: users), MessagingTask.NewMessages);
+                });
+
+                conversations.ForEach(conv =>
+                {
+                    messageGetter.TimeStamp = Math.Max(conv.LastActivity, messageGetter.TimeStamp);
+                });
+                messageGetter.GetUsers = true;
+                messageGetter.StartGetting();
+
+                messageSender.StartSending();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    MessagingCenter.Send(new MessagingTask(), MessagingTask.Started);
+                });
+                Console.WriteLine("SERVICE STARTED");
+            }).Start();
+;            return StartCommandResult.Sticky;
         }
 
         public override void OnTaskRemoved(Intent rootIntent)
