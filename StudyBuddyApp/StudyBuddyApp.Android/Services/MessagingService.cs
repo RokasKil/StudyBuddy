@@ -18,6 +18,7 @@ using StudyBuddyShared.Network;
 using StudyBuddyApp.Droid.Utility;
 using StudyBuddyApp.Utility;
 using StudyBuddyShared.SystemManager;
+using StudyBuddyApp.EntityFramework;
 
 namespace StudyBuddyApp.Droid.Services
 {
@@ -31,6 +32,13 @@ namespace StudyBuddyApp.Droid.Services
         Dictionary<string, User> users = new Dictionary<string, User>();
         Dictionary<int, List<Message>> messages = new Dictionary<int, List<Message>>();
         List<Conversation> conversations = new List<Conversation>();
+        DatabaseContext db;
+
+        public void LoadData()
+        {
+            DatabaseContext db = new DatabaseContext();
+            db.Database.EnsureCreated();
+        }
 
         public override IBinder OnBind(Intent intent)
         {
@@ -41,6 +49,7 @@ namespace StudyBuddyApp.Droid.Services
         [return: GeneratedEnum]
         public override StartCommandResult OnStartCommand(Intent intent, [GeneratedEnum] StartCommandFlags flags, int startId)
         {
+
             Device.BeginInvokeOnMainThread(() =>
             {
                 DependencyService.Get<IToast>().ShortToast("starting service");
