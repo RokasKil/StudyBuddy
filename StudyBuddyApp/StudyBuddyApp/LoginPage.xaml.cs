@@ -30,6 +30,7 @@ namespace StudyBuddyApp
                 PasswordEntry.IsEnabled = false;
                 LoadingIndicator.IsRunning = true;
                 StatusLabel.IsVisible = false;
+                Application.Current.Properties["notificationTimestamp"] = (long)-1;
                 // Dependency injection per interfaces
                 IAuthenticator auth = AuthenticationSystemManager.NewAuthenticator();
                 auth.Result += LoginResponse;

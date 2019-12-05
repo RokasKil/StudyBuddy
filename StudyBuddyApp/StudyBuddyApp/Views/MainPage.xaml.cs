@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using StudyBuddyApp.ViewModels;
+using StudyBuddyApp.EntityFramework;
 
 namespace StudyBuddyApp.Views
 {
@@ -62,7 +63,9 @@ namespace StudyBuddyApp.Views
                         await Application.Current.SavePropertiesAsync();
                         //Stops messaging service
                         MessagingCenter.Send(new MessagingTask(), MessagingTask.Stop);
+                        new DatabaseContext().Database.EnsureDeleted();
                         App.Current.MainPage = new LoginPage();
+
                         return;
                 }
             }
