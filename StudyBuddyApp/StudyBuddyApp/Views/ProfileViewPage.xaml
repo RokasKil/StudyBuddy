@@ -50,17 +50,33 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"/>
             <Button
+                x:Name="StartConversation"
+                Clicked="StartConversation_Clicked"
+                Text="Parašyti žinutę"
+                ContentLayout="Left,10" Image="@drawable/ic_chat"
+                CornerRadius="7"
+                TextColor="White"
+                WidthRequest="250"
+                HorizontalOptions="Center"/>
+            <Button
                 x:Name="ViewUserReviews"
                 Clicked="ViewUserReviews_Clicked"
-                Text="Peržiūrėti atsiliepimus"/>
+                Text="Atsiliepimai"
+                ContentLayout="Left,10" Image="@drawable/ic_list"
+                CornerRadius="7"
+                TextColor="White"
+                WidthRequest="250"
+                HorizontalOptions="Center"/>
             <Button
                 x:Name="WriteUserReview"
                 Clicked="WriteUserReview_Clicked"
-                Text="Parašyti atsiliepimą"/>
-            <Button
-                x:Name="StartConversation"
-                Clicked="StartConversation_Clicked"
-                Text="Pradėti pokalbį"/>
+                Text="Parašyti atsiliepimą"
+                ContentLayout="Left,10" Image="@drawable/ic_edit"
+                CornerRadius="7"
+                TextColor="White"
+                WidthRequest="250"
+                HorizontalOptions="Center"/>
+
             <ActivityIndicator x:Name="LoadingIndicator"/>
         </StackLayout>
     </ContentPage.Content>

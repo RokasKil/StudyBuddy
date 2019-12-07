@@ -8,7 +8,7 @@
              Title="{Binding Title}">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <StackLayout Padding="20">
                 <Frame Padding="0"
                    CornerRadius="75"
                    IsClippedToBounds="True"
@@ -33,8 +33,13 @@
                 
                 <Button
                 x:Name="buttonChangeProfilePicture"
-                Text="Keisti profilio nuotrauką"
-                Clicked="buttonChangeProfilePicture_Clicked"/>
+                Text="Keisti nuotrauką"
+                Clicked="buttonChangeProfilePicture_Clicked"
+                ContentLayout="Left,10" Image="@drawable/ic_image"
+                CornerRadius="7"
+                TextColor="White"
+                WidthRequest="250"
+                HorizontalOptions="Center"/>
                 <Entry
                 x:Name="entryFirstName"
                 Text="{Binding User.FirstName}"
@@ -47,7 +52,12 @@
                 x:Name="buttonSaveEdit"
                 Text="Išsaugoti pakeitimus"
                 Clicked="buttonSaveEdit_Clicked" 
-                VerticalOptions="End"/>
+                VerticalOptions="End"
+                ContentLayout="Left,10" Image="@drawable/ic_save"
+                CornerRadius="7"
+                TextColor="White"
+                WidthRequest="250"
+                HorizontalOptions="Center"/>
                 <ActivityIndicator x:Name="LoadingIndicator"/>
             </StackLayout>
         </ScrollView>
