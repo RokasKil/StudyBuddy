@@ -7,13 +7,20 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout
-            Padding="10, 50, 10, 40">
+            Padding="0, 0, 0, 0">
+
+            <BoxView
+                   x:Name="BackgroundBoxview"
+                   Color="Black"
+                   HeightRequest="300"></BoxView>
+
             <Frame Padding="0"
                    CornerRadius="100"
                    IsClippedToBounds="True"
                    HorizontalOptions="Center"
                    HeightRequest="200"
                    WidthRequest="200">
+
                 <Image
                     x:Name="ProfilePicture"
                     VerticalOptions="Center" 
