@@ -73,8 +73,12 @@
                 x:Name="buttonViewProfile"
                 Text="Peržiūrėti profilį"
                 VerticalOptions="End"
-                HorizontalOptions="CenterAndExpand"
-                Clicked="OnImageButtonClicked"/>
+                Clicked="OnImageButtonClicked"
+                ContentLayout="Left,10" Image="@drawable/ic_profile"
+                CornerRadius="7"
+                TextColor="White"
+                WidthRequest="200"
+                HorizontalOptions="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
