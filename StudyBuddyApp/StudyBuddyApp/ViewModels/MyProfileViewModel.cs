@@ -30,7 +30,7 @@ namespace StudyBuddyApp.ViewModels
         public string ImageLocation { get => User.ProfilePictureLocation; set => ImageLocation = value; }
         public string FullName { get => User.FirstName + " " + User.LastName; set => FullName = value; }
         public float KarmaPoints { get; set; }
-        public float KarmaPointsForBar { get => KarmaPoints / 100; set => KarmaPointsForBar = value; }
-        public string KarmaDescription { get => "Karma " + KarmaPoints + "/100"; set => KarmaDescription = value; }
+        public float KarmaPointsForBar { get => KarmaPoints / 10; set => KarmaPointsForBar = value; }
+        public string KarmaDescription { get => "XP: " + KarmaPoints; set => KarmaDescription = value; }
     }
 }

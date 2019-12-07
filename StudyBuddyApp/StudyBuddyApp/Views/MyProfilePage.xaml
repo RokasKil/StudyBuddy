@@ -32,7 +32,8 @@
                    x:Name="Name"
                    VerticalOptions="Start" 
                    HorizontalOptions="CenterAndExpand"
-                   FontSize="Large"/>
+                   FontSize="Title"
+                   FontAttributes="Bold"/>
             <Label
                 Text="{Binding KarmaDescription}"
                 HorizontalOptions="Center"
@@ -41,24 +42,40 @@
             <ProgressBar
                 x:Name="ProgressBarKarma"
                 Progress="{Binding KarmaPointsForBar}"
-                VerticalOptions="StartAndExpand"
-                MinimumHeightRequest="100"/>
+
+                MinimumHeightRequest="50"/>
             <Button
                 x:Name="MyRequests"
                 Clicked="MyRequests_Clicked"
                 Text="Mano Klausimai"
-                HorizontalOptions="CenterAndExpand"/>
-            <Button 
+                ContentLayout="Left,5" Image="@drawable/ic_questions"
+                CornerRadius="7"
+                TextColor="White"
+                WidthRequest="250"
+
+                HorizontalOptions="Center"/>
+                <Button 
                 x:Name="ViewUserReviews"
                 Clicked="ViewUserReview_Clicked"
-                Text="Peržiūrėti atsiliepimus"
-                HorizontalOptions="CenterAndExpand"/>
-            <Button 
+                Text="Atsiliepimai"
+                ContentLayout="Left,10" Image="@drawable/ic_list"
+                CornerRadius="7"
+                TextColor="White"
+                WidthRequest="250"
+                 
+
+                HorizontalOptions="Center"/>
+                <Button 
                 x:Name="buttonEditProfile"
-                Text="Redaguoti profilį"
                 Clicked="buttonEditProfile_Clicked"
-                VerticalOptions="End"
-                HorizontalOptions="CenterAndExpand"/>
+                Text="Redaguoti profilį"
+                ContentLayout="Left,10" Image="@drawable/ic_edit"
+                CornerRadius="7"
+                TextColor="White"
+                WidthRequest="250"
+                    
+                HorizontalOptions="Center"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

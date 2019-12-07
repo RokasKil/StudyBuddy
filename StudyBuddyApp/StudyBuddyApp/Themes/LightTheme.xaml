@@ -10,7 +10,7 @@
     <Color x:Key="PrimaryTextColor">Black</Color>
     <Color x:Key="SecondaryTextColor">#212121</Color>
     <Color x:Key="TertiaryTextColor">Gray</Color>
-    <Color x:Key="ButtonColor">Gray</Color>
+    <Color x:Key="ButtonColor">#2196F3</Color>
     <Color x:Key="TransparentColor">Transparent</Color>
     <Color x:Key="PickerTitleColor">Gray</Color>
     <FileImageSource x:Key="LogoImage" File="@drawable/ic_study_buddy"></FileImageSource>
