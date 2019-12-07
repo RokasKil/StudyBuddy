@@ -699,7 +699,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        [Timeout(1000)]
+        [Timeout(10000)]
         public void UserReviewFullTest()
         {
             LocalUser user = UnitTestAuth.Login();
