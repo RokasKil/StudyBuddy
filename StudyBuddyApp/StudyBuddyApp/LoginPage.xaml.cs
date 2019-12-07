@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using StudyBuddyShared.Entity;
 using StudyBuddyShared.SystemManager;
 using StudyBuddyShared.AuthenticationSystem;
+using StudyBuddyApp.Views;
 
 namespace StudyBuddyApp
 {
@@ -19,7 +20,14 @@ namespace StudyBuddyApp
 		public LoginPage ()
 		{
 			InitializeComponent ();
-            
+
+#pragma warning disable CS0618 // Type or member is obsolete
+            RegisterLabel.GestureRecognizers.Add(new TapGestureRecognizer(async (view) =>
+            {
+                await Navigation.PushModalAsync(new NavigationPage(new RegisterPage()));
+            }));
+#pragma warning restore CS0618 // Type or member is obsolete
+
             UsernameEntry.Completed += (o, e) =>
             {
                 PasswordEntry.Focus();
@@ -47,6 +55,7 @@ namespace StudyBuddyApp
                 auth.Result += LoginResponse;
                 auth.Login((string)Application.Current.Properties["PrivateKey"]);
             }
+
         }
 
         private void LoginResponse(AuthenticatorStatus status, LocalUser user)
