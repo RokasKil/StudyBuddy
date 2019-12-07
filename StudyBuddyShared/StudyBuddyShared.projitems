@@ -20,12 +20,20 @@
     <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\ICategoryGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\ICategoryRemover.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\ICategoryUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentSystem\CommentGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentSystem\CommentManagerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentSystem\CommentPoster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentSystem\CommentRemover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentSystem\ICommentGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentSystem\ICommentPoster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentSystem\ICommentRemover.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\ConversationGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\ConversationStarter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IConversationGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IConversationStarter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IMessageGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IMessageSender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\Comment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestManagerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestPoster.cs" />
@@ -48,6 +56,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Network\Authenticator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\CategoriesGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\CategoryManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\CommentsGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\CommentManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\ConversationGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\ConversationStarter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\HelpRequestGetter.cs" />
@@ -61,6 +71,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserUpdater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\AuthenticationSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\CategorySystemManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemManager\CommentSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\ConversationSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\HelpRequestSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\LocalUserManager.cs" />
