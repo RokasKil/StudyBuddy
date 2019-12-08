@@ -21,6 +21,7 @@ namespace StudyBuddyApp.Droid.Utility
 {
     public class NotificationAndroid : INotification
     {
+        int NOTIFICATION_COLOR = Application.Context.Resources.GetColor(Resource.Color.colorAccent);
         private string channelName = "MessageNotifications";
         private string channelId = "0";
         private string channelDescription = "Pranešimų kanalas";
@@ -52,9 +53,11 @@ namespace StudyBuddyApp.Droid.Utility
                 .SetContentTitle(title)
                 .SetContentText(message.Text)
                 .SetLargeIcon(BitmapFactory.DecodeResource(Application.Context.Resources, Resource.Mipmap.icon))
-                .SetSmallIcon(Resource.Mipmap.launcher_foreground)
+                .SetSmallIcon(Resource.Drawable.icon_notification)
                 .SetAutoCancel(true)
-                .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate | (int)NotificationDefaults.Lights);
+                .SetLights(NOTIFICATION_COLOR, 1000, 500)
+                .SetVisibility((int)NotificationVisibility.Public)
+                .SetDefaults((int)NotificationDefaults.Vibrate);
 
             var notification = builder.Build();
             manager.Notify(conversation.Id, notification);
@@ -67,10 +70,14 @@ namespace StudyBuddyApp.Droid.Utility
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
                 var channelNameJava = new Java.Lang.String(channelName);
-                var channel = new NotificationChannel(channelId, channelNameJava, NotificationImportance.Default)
+                var channel = new NotificationChannel(channelId, channelNameJava, NotificationImportance.High)
                 {
-                    Description = channelDescription
+                    Description = channelDescription,
+                    LockscreenVisibility = NotificationVisibility.Public,
                 };
+                channel.EnableLights(true);
+                channel.EnableVibration(true);
+                channel.LightColor = NOTIFICATION_COLOR;
                 manager.CreateNotificationChannel(channel);
             }
 
