@@ -33,5 +33,13 @@ namespace StudyBuddyShared.SystemManager
             }
             return null;
         }
+        public static IRankingsGetter NewRankingsGetter()
+        {
+            if (LocalUserManager.LocalUser != null)
+            {
+                return new RankingsGetter(LocalUserManager.LocalUser);
+            }
+            return null;
+        }
     }
 }

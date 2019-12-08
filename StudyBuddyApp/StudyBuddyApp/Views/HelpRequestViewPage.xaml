@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="StudyBuddyApp.Views.HelpRequestViewPage"
-             Title="{Binding HelpRequestModel.Title}">
+             Title="{Binding HelpRequestModel.Title}"
+             Appearing="ContentPage_Appearing">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name ="deleteButton" Text="{Binding DeleteButtonText}" Clicked="ToolbarItem_Clicked"/>
