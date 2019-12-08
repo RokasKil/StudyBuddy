@@ -11,5 +11,9 @@ namespace StudyBuddyShared.SystemManager
         {
             return new Authenticator();
         }
+        public static IRegistrator NewRegistrator()
+        {
+            return new Registrator();
+        }
     }
 }

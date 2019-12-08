@@ -21,7 +21,7 @@ namespace StudyBuddyApp
             {
                 Current.Resources.MergedDictionaries.Add(new LightTheme());
             }
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
