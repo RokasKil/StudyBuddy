@@ -6,7 +6,8 @@
              mc:Ignorable="d"
              x:Class="StudyBuddyApp.Views.RegisterPage"
              xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             Disappearing="ContentPage_Disappearing">
 
     <ContentPage.BindingContext>
         <vm:RegisterViewModel/>
@@ -48,6 +49,15 @@
                 <Entry Placeholder=""
                        x:Name="LastName"
                        ReturnType="Send"/>
+                <Button Text="{Binding Register}"
+                        HorizontalOptions="Center"
+                        x:Name="RegisterButton"
+                        Clicked="RegisterButton_Clicked"/>
+                <ActivityIndicator x:Name="ActivityIndicator"
+                                   IsVisible="False"/>
+                <Label Text=""
+                       x:Name="StatusLabel"
+                       HorizontalOptions="CenterAndExpand"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

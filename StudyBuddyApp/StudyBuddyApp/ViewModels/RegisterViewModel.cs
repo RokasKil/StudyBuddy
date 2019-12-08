@@ -12,6 +12,7 @@ namespace StudyBuddyApp.ViewModels
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Register { get; set; }
         public RegisterViewModel()
         {
             Title = "Registracija";
@@ -21,6 +22,7 @@ namespace StudyBuddyApp.ViewModels
             Email = "El. paštas:";
             FirstName = "Vardas:";
             LastName = "Pavardė:";
+            Register = "Registruotis";
         }
     }
 }
