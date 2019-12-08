@@ -9,9 +9,11 @@ namespace StudyBuddyApp.ViewModels
     public class RankingsViewModel : BaseViewModel
     {
         public ObservableCollection<RankingsModel> Items { get; set; }
+        public String PointsName { get; set; }
         public RankingsViewModel()
         {
             Title = "Reitingai";
+            PointsName = "Exp: ";
         }
         
 

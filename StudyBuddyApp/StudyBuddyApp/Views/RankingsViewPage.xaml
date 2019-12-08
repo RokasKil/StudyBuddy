@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
              x:Class="StudyBuddyApp.Views.RankingsViewPage"
+             Title="{Binding Title}"
              Appearing="RankingsList_Refreshing">
 
     <ContentPage.BindingContext>
         <vm:RankingsViewModel />
     </ContentPage.BindingContext>
-    
     
     <ContentPage.Content>
         <StackLayout>
@@ -42,14 +42,49 @@
                                     </Image>
                                 </Frame>
 
-                                <StackLayout HorizontalOptions="FillAndExpand"
+                                <StackLayout Orientation="Vertical"
+                                    HorizontalOptions="FillAndExpand"
                                      Spacing="3">
                                     <Label Text="{Binding Name}"
                                    FontSize="16"
                                    FontAttributes="Bold"
-                                   TextColor="{DynamicResource PrimaryTextColor}"
-                            />
+                                   TextColor="{DynamicResource PrimaryTextColor}"/>
+
+                                    <StackLayout 
+                                        Orientation="Horizontal"
+                                    HorizontalOptions="FillAndExpand"
+                                     Spacing="3">
+                                        <Label Text="Exp: "
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="{DynamicResource PrimaryTextColor}"/>
+                                        <Label Text="{Binding KarmaPoints}"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="{DynamicResource PrimaryTextColor}"/>
+                                    </StackLayout>
+
                                 </StackLayout>
+
+                                <Frame Padding="0"
+                               CornerRadius="25"
+                               IsClippedToBounds="True"
+                               VerticalOptions="Center"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               Margin="6, 0">
+                                    <Image Aspect="AspectFill"
+                                   VerticalOptions="Fill"
+                                   WidthRequest="50"
+                                   HeightRequest="50">
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding Rank}" 
+			                        CacheValidity="14" 
+			                        CachingEnabled="true"/>
+                                        </Image.Source>
+                                    </Image>
+                                </Frame>
+
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

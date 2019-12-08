@@ -23,12 +23,15 @@ namespace StudyBuddyApp.Views
     public partial class RankingsViewPage : ContentPage
     {
         public ObservableCollection<RankingsModel> Items { get; set; }
+        RankingsViewModel viewModel;
         public RankingsViewPage()
         {
             InitializeComponent();
             Items = new ObservableCollection<RankingsModel>
             { };
+            viewModel = new RankingsViewModel();
             RankingsListGetter();
+            BindingContext = this.viewModel;
             RankingsList.ItemsSource = Items;
         }
 
@@ -78,7 +81,11 @@ namespace StudyBuddyApp.Views
 
         private void RankingsList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-
+            .IsEnabled = false;
+            await Navigation.PushModalAsync(
+                new NavigationPage(
+                    new HelpRequestAddPage(
+                        new ViewModels.HelpRequestAddViewModel())));
         }
     }
 
