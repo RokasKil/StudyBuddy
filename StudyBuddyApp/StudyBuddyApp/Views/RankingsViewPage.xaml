@@ -78,7 +78,7 @@
                                    WidthRequest="50"
                                    HeightRequest="50">
                                         <Image.Source>
-                                            <UriImageSource Uri="{Binding Rank}" 
+                                            <UriImageSource Uri="{}" 
 			                        CacheValidity="14" 
 			                        CachingEnabled="true"/>
                                         </Image.Source>

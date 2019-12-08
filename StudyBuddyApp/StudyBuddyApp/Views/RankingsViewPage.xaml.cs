@@ -23,6 +23,7 @@ namespace StudyBuddyApp.Views
     public partial class RankingsViewPage : ContentPage
     {
         public ObservableCollection<RankingsModel> Items { get; set; }
+        public bool ProfileOpen { get; set; } = false;
         RankingsViewModel viewModel;
         public RankingsViewPage()
         {
@@ -76,16 +77,28 @@ namespace StudyBuddyApp.Views
 
         private void RankingsList_Refreshing(object sender, EventArgs e)
         {
+            ProfileOpen = false;
             RankingsListGetter();
         }
 
-        private void RankingsList_ItemTapped(object sender, ItemTappedEventArgs e)
+        async private void RankingsList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            .IsEnabled = false;
+            if (e.Item == null)
+                return;
+
+            ((ListView)sender).SelectedItem = null;
+            if (ProfileOpen)
+            {
+                return;
+            }
+            ProfileOpen = true;
+            /*
             await Navigation.PushModalAsync(
                 new NavigationPage(
-                    new HelpRequestAddPage(
-                        new ViewModels.HelpRequestAddViewModel())));
+                    new ProfileViewPage(
+                        new ViewModels.ProfileViewViewModel(((RankingsModel)e.Item).User))));
+            */
+            await Navigation.PushAsync(new ProfileViewPage(new ViewModels.ProfileViewViewModel(((RankingsModel)e.Item).User)));
         }
     }
 
