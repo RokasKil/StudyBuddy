@@ -12,7 +12,8 @@ namespace StudyBuddyApp.Models
         HelpRequestList,
         SettingsPage,
         ConversationListPage,
-        HelpRequestAddPage
+        HelpRequestAddPage,
+        RankingsListPage
     }
     public class HomeMenuItem
     {

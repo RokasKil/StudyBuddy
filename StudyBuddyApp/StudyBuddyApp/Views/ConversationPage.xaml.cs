@@ -36,6 +36,10 @@ namespace StudyBuddyApp.Views
         public ConversationPage(ConversationViewModel viewModel)
         {
             InitializeComponent();
+            if (!viewModel.Users.ContainsKey(LocalUserManager.LocalUser.Username))
+            {
+                viewModel.Users[LocalUserManager.LocalUser.Username] = LocalUserManager.LocalUser;
+            }
             BindingContext = this.viewModel = viewModel;
             Items = new ObservableCollection<MessageModel>
             {
@@ -226,6 +230,12 @@ namespace StudyBuddyApp.Views
         private void ContentPage_Disappearing(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "ChatClosed");
+            DependencyService.Get<INotification>().AllowNotifcation(this, viewModel.Conversation);
+        }
+
+        private void ContentPage_Appearing(object sender, EventArgs e)
+        {
+            DependencyService.Get<INotification>().BlockNotification(this, viewModel.Conversation);
         }
     }
 }

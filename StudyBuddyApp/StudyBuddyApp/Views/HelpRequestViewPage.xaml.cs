@@ -36,6 +36,7 @@ namespace StudyBuddyApp.Views
         }
         public async void OnImageButtonClicked(object sender, EventArgs e)
         {
+            buttonViewProfile.IsEnabled = false;
             await Navigation.PushAsync(new ProfileViewPage(new ViewModels.ProfileViewViewModel(viewModel.Creator)));
         }
         
@@ -62,6 +63,11 @@ namespace StudyBuddyApp.Views
                 remover.Remove(viewModel.HelpRequestModel.HelpRequest);
             }
             return;
+        }
+
+        private void ContentPage_Appearing(object sender, EventArgs e)
+        {
+            buttonViewProfile.IsEnabled = true;
         }
     }
 }
