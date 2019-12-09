@@ -9,10 +9,12 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Tamsusis rėžimas" 
+                <Image x:Name="NightModeIcon"
+                       Margin="5, 5, 0, 5"/>
+                <Label Text="Tamsusis režimas" 
                        FontSize="20"
                        TextColor="{DynamicResource PrimaryTextColor}"
-                       Margin="5, 5, 5, 5"
+                       Margin="0, 5, 5, 5"
                        HorizontalOptions="StartAndExpand"
                        
                        
@@ -22,6 +24,7 @@
                         x:Name="DarkModeSwitch"
                         HorizontalOptions="End"
                         VerticalOptions="Center"
+                        Margin="0, 5, 5, 5"
                 />
             </StackLayout>
         </StackLayout>

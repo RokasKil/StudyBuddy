@@ -88,7 +88,7 @@ namespace StudyBuddyApp.Models
         private static readonly GridLength zeroWidth = new GridLength(0, GridUnitType.Star);
         private static readonly GridLength thirtyWidth = new GridLength(30, GridUnitType.Star);
 
-        private static readonly Color leftColor = Color.Teal;
+        private static readonly Color leftColor = Color.FromHex("#2196F3");
         private static readonly Color rightColor = Color.Gray;
 
     }

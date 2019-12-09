@@ -141,6 +141,7 @@
                            x:Name="FakeEntry"
                            Focused="FakeEntry_Focused"/>
                     <Button Text="Siųsti"
+                            ContentLayout="Right,20" Image="@drawable/ic_send"
                             InputTransparent="True"
                             Clicked="SendButton_Clicked"
                             x:Name="SendButton"
