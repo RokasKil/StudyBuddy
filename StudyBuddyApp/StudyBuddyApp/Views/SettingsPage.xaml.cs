@@ -34,11 +34,13 @@ namespace StudyBuddyApp.Views
             {
                 Application.Current.Resources.MergedDictionaries.Clear();
                 Application.Current.Resources.MergedDictionaries.Add(new DarkTheme());
+                NightModeIcon.Source = "@drawable/ic_night";
             }
             else
             {
                 Application.Current.Resources.MergedDictionaries.Clear();
                 Application.Current.Resources.MergedDictionaries.Add(new LightTheme());
+                NightModeIcon.Source = "@drawable/ic_day";
             }
             Application.Current.Properties["DarkMode"] = e.Value;
             Application.Current.SavePropertiesAsync();

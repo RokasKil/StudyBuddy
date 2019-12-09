@@ -3,53 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
              x:Class="StudyBuddyApp.Views.ProfileViewPage"
              Title="{Binding Title}"
              Appearing="ContentPage_Appearing">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame Padding="0"
-                   CornerRadius="75"
-                   IsClippedToBounds="True"
-                   HorizontalOptions="Center"
-                   HeightRequest="150"
-                   WidthRequest="150"
-                   Margin="6, 0">
-                <Image
-                x:Name="ProfilePicture"
-                Aspect="AspectFill"
-                VerticalOptions="Fill"
-                HorizontalOptions="Center"
-                WidthRequest="150"
-                HeightRequest="150">
-                    <Image.Source>
-                        <UriImageSource Uri="{Binding ImageLocation}" 
-			                    CacheValidity="14" 
-			                    CachingEnabled="true"/>
-                    </Image.Source>
-                </Image>
-            </Frame>
-            
-            
-            
-            <Label
+        <AbsoluteLayout>
+            <BoxView x:Name="BackgroundBoxview"
+                     Color="Black"
+                     HeightRequest="300"
+                     AbsoluteLayout.LayoutFlags="WidthProportional"
+                     AbsoluteLayout.LayoutBounds="0,0,1,150"/>
+            <StackLayout Padding="0, 50, 0, 0"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <AbsoluteLayout HorizontalOptions="Center">
+                    <controls:CircleImage BorderColor = "Black"
+                                          BorderThickness = "3"
+                                          Aspect="AspectFill"
+                                          WidthRequest="200"
+                                          HeightRequest="200"
+                                          Source="{Binding ImageLocation}"/>
+                    <controls:CircleImage Aspect="AspectFill"
+                                          WidthRequest="80"
+                                          HeightRequest="80"
+                                          Source="{Binding ImageLocation}"
+                                          AbsoluteLayout.LayoutFlags="PositionProportional"
+                                          AbsoluteLayout.LayoutBounds="1,1,80,80"/>
+                </AbsoluteLayout>
+
+                <!--nuotraukos pabaiga-->
+
+                <Label Text="{Binding FullName}"
+                   x:Name="labelFullName"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="Title"
+                   FontAttributes="Bold"/>
+                <Label
                 Text="{Binding KarmaDescription}"
-                HorizontalOptions="Center"/>
-            <ProgressBar
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                FontSize="Medium"/>
+                <ProgressBar
                 x:Name="ProgressBarKarma"
-                Progress="{Binding KarmaPointsForBar}"/>
-            <Label
-                x:Name="labelFullName"
-                Text="{Binding FullName}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-            <Label 
-                x:Name="labelUserName"
-                Text="{Binding UserName}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-            <Button
+                Progress="{Binding KarmaPointsForBar}"
+
+                MinimumHeightRequest="50"
+                Margin="20,10,20,20"/>
+
+                <Button
                 x:Name="StartConversation"
                 Clicked="StartConversation_Clicked"
                 Text="Parašyti žinutę"
@@ -79,5 +83,6 @@
 
             <ActivityIndicator x:Name="LoadingIndicator"/>
         </StackLayout>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
