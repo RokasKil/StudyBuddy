@@ -64,7 +64,7 @@ namespace StudyBuddyShared.Network
                         Message = comment["message"].ToString(),
                         Username = comment["username"].ToString(),
                         CommentID = comment["id"].ToObject<int>(),
-                        CreatedDate = comment["createdDate"].ToObject<long>(),
+                        CreatedDate = comment["postDate"].ToObject<long>(),
                         HelpRequestID = comment["help_request"].ToObject<int>()
                     });
                 });

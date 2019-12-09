@@ -14,18 +14,14 @@
                 <Label Text="Tamsusis režimas" 
                        FontSize="20"
                        TextColor="{DynamicResource PrimaryTextColor}"
-                       Margin="0, 5, 5, 5"
-                       HorizontalOptions="StartAndExpand"
-                       
-                       
-                />
+                       Margin="5, 5, 5, 5"
+                       HorizontalOptions="StartAndExpand"/>
 
                 <Switch Toggled="OnToggled"
                         x:Name="DarkModeSwitch"
                         HorizontalOptions="End"
                         VerticalOptions="Center"
-                        Margin="0, 5, 5, 5"
-                />
+                        Margin="0, 5, 5, 5"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

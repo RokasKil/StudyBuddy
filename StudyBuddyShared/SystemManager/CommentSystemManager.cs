@@ -5,36 +5,33 @@ using System.Text;
 
 namespace StudyBuddyShared.SystemManager
 {
-    class CommentSystemManager
+    public static class CommentSystemManager// Returns implementations of interfaces
     {
-        public static class CategorySystemManager // Returns implementations of interfaces
+        public static ICommentGetter NewCommentGetter()
         {
-            public static ICommentGetter NewCommentGetter()
+            if (LocalUserManager.LocalUser != null)
             {
-                if (LocalUserManager.LocalUser != null)
-                {
-                    return new CommentGetter(LocalUserManager.LocalUser);
-                }
-                return null;
+                return new CommentGetter(LocalUserManager.LocalUser);
             }
+            return null;
+        }
 
-            public static ICommentPoster NewCommentPoster()
+        public static ICommentPoster NewCommentPoster()
+        {
+            if (LocalUserManager.LocalUser != null)
             {
-                if (LocalUserManager.LocalUser != null)
-                {
-                    return new CommentPoster(LocalUserManager.LocalUser);
-                }
-                return null;
+                return new CommentPoster(LocalUserManager.LocalUser);
             }
+            return null;
+        }
 
-            public static ICommentRemover NewCommentRemover()
+        public static ICommentRemover NewCommentRemover()
+        {
+            if (LocalUserManager.LocalUser != null)
             {
-                if (LocalUserManager.LocalUser != null)
-                {
-                    return new CommentRemover(LocalUserManager.LocalUser);
-                }
-                return null;
+                return new CommentRemover(LocalUserManager.LocalUser);
             }
+            return null;
         }
     }
 }

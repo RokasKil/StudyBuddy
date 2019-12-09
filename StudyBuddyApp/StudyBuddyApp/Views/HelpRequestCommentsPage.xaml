@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StudyBuddyApp.Views.HelpRequestCommentsPage"
+             Title="{Binding HelpRequestModel.Title}"
+             Appearing="ContentPage_Appearing">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name ="deleteButton" 
+                     Text="{Binding DeleteButtonText}" 
+                     Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Frame Padding="0"
+                   CornerRadius="75"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   Margin="6, 0">
+                    <ImageButton Aspect="AspectFill"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+                    WidthRequest="150"
+                    HeightRequest="150"
+                    Clicked="OnImageButtonClicked">
+                        <ImageButton.Source>
+                            <UriImageSource Uri="{Binding Creator.ProfilePictureLocation}"
+                                        CacheValidity="14" 
+			                            CachingEnabled="true"/>
+                        </ImageButton.Source>
+                    </ImageButton>
+                </Frame>
+                <Label
+                   Text="{Binding HelpRequestModel.Name}"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Start"
+                   FontSize="Medium"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   Margin="0.5, 0.5, 0.5, 0.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Tapped="OnImageButtonClicked"/>
+                    </Label.GestureRecognizers> 
+                </Label>
+                <Label Text="{Binding HelpRequestModel.Title}"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Start"
+                   FontSize="Medium"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   Margin="0.5, 0.5, 0.5, 0.5"/>
+                <Label Text="{Binding HelpRequestModel.Description}"
+                   HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="Start"
+                   FontSize="Medium"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   Margin="10, 0.5, 10, 0.5"/>
+                <Label Text="{Binding HelpRequestModel.Category}" 
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalTextAlignment="Start"
+                   FontSize="Small"
+                   Margin="0.5, 0.5, 10, 0.5" />
+                <Label Text="{Binding HelpRequestModel.Date}"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalTextAlignment="Start"
+                   FontSize="Small"
+                   Margin="0.5, 0.5, 10, 0.5"/>
+            </StackLayout>
+            <ListView x:Name="CommentList"
+                    ItemsSource="{Binding Items}"
+                    HasUnevenRows="true"
+                    ItemTapped="CommentList_ItemTapped"
+                    CachingStrategy="RecycleElement"
+                    IsPullToRefreshEnabled="True"
+                    Refreshing="HelpRequestCommentsPage_Refreshing"
+                    >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10,5,10,5">
+                                <Label Text="{Binding Username}" 
+                               FontSize="16"
+                               FontAttributes="Bold"/>
+                                <Label Text="{Binding Message}" 
+                               LineBreakMode="TailTruncation"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding CreatedDate}"
+                                   HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout>
+                <Editor Placeholder="Komentaras"
+                        HorizontalOptions="FillAndExpand"
+                        MaxLength="2000"
+                        x:Name="SendEditor"
+                        Unfocused="SendEditor_Unfocused"
+                        AutoSize="TextChanges"
+                        TextChanged="SendEditor_TextChanged"/>
+                <AbsoluteLayout VerticalOptions="Center">
+                    <!-- Using a hack by placing text field under button to not lose keyboard -->
+                    <Entry Placeholder="Testing"
+                           AbsoluteLayout.LayoutBounds="0, 0"
+                           BackgroundColor="Transparent"
+                           PlaceholderColor="Transparent"
+                           TextColor="Transparent"
+                           Visual="Material"
+                           x:Name="FakeEntry"
+                           Focused="FakeEntry_Focused"/>
+                    <Button Text="Siųsti"
+                            InputTransparent="True"
+                            Clicked="PostButton_Clicked"
+                            x:Name="PostButton"
+                            AbsoluteLayout.LayoutBounds="0, 0"/>
+                </AbsoluteLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
