@@ -35,7 +35,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IConversationStarter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IMessageGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IMessageSender.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entity\Comment.cs" />
+	<Compile Include="$(MSBuildThisFileDirectory)Entity\Comment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\KarmaBadge.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestManagerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestPoster.cs" />
@@ -53,6 +54,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entity\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\UserReview.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KarmaBadgeSystem\IKarmaBadgeGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KarmaBadgeSystem\IKarmaBadgeListGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KarmaBadgeSystem\KarmaBadgeGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KarmaBadgeSystem\KarmaBadgeListGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\AllMessageGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\APICaller.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\Authenticator.cs" />
@@ -64,6 +69,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Network\ConversationStarter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\HelpRequestGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\HelpRequestManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\KarmaBadgeGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\KarmaBadgeListGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\MessagePoster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\MessagesGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\ProfilePictureUpdater.cs" />
@@ -78,6 +85,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\CommentSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\ConversationSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\HelpRequestSystemManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemManager\KarmaBadgeSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\LocalUserManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\UserReviewSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\UserSystemManager.cs" />
@@ -99,5 +107,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utility\AttachedProperties\AttachedProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Extensions\DateTimeExtender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\EnumConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\KarmaBadgeFetcher.cs" />
   </ItemGroup>
 </Project>

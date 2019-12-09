@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StudyBuddyShared.KarmaBadgeSystem;
+using StudyBuddyShared.Utility;
 
 namespace UnitTests
 {
@@ -780,6 +782,116 @@ namespace UnitTests
             Assert.AreNotEqual(userReviews, null);
             Assert.AreEqual(userReviews.Find((_review) => _review.Username == user.Username && _review.Message == message), null);
             ///
+        }
+    }
+    #endregion
+    #region KarmaBadge
+    [TestClass]
+    public class UnitTestKarmaBadge
+    {
+        [TestMethod]
+        [Timeout(1000)]
+        public void KarmaBadgeGetterTest()
+        {
+            LocalUser user = UnitTestAuth.Login();
+            var status = KarmaBadgeGetStatus.UnknownError;
+            KarmaBadge badge = null;
+            bool done = false;
+
+            var getter = KarmaBadgeSystemManager.NewKarmaBadgeGetter();
+            getter.Result += (_status, _badge) => {
+                status = _status;
+                badge = _badge;
+                done = true;
+
+            };
+
+            getter.Get(user.Username);
+            while (!done) { }
+            if (badge != null)
+            {
+                Console.WriteLine(badge.Image + ", " + badge.Title + ", " + badge.StartValue);
+            }
+            else
+            {
+                Console.WriteLine("Badge is null");
+            }
+            Assert.AreEqual(status, KarmaBadgeGetStatus.Success);
+            Assert.AreNotEqual(badge, null);
+        }
+
+        [TestMethod]
+        [Timeout(10000)]
+        public void KarmaBadgeGetterListTest()
+        {
+            LocalUser user = UnitTestAuth.Login();
+            var status = KarmaBadgeListGetStatus.UnknownError;
+            List<KarmaBadge> badges = null;
+            bool done = false;
+
+
+            var getter = KarmaBadgeSystemManager.NewKarmaBadgeListGetter();
+            getter.Result += (_status, _badges) => {
+                status = _status;
+                badges = _badges;
+                done = true;
+
+            };
+
+            getter.Get();
+            while (!done) { }
+            if (badges != null)
+            {
+                badges.ForEach(badge =>
+                {
+                    Console.WriteLine(badge.Image + ", " + badge.Title + ", " + badge.StartValue);
+                });
+            }
+            else
+            {
+                Console.WriteLine("Badges is null");
+            }
+            Assert.AreEqual(status, KarmaBadgeListGetStatus.Success);
+            Assert.AreNotEqual(badges, null);
+        }
+        [TestMethod]
+        [Timeout(10000)]
+        public void KarmaBadgeFetcherTest()
+        {
+            LocalUser user = UnitTestAuth.Login();
+            var status = KarmaBadgeListGetStatus.UnknownError;
+            List<KarmaBadge> badges = null;
+            bool done = false;
+
+
+            var getter = KarmaBadgeSystemManager.NewKarmaBadgeListGetter();
+            getter.Result += (_status, _badges) => {
+                status = _status;
+                badges = _badges;
+                done = true;
+
+            };
+
+            getter.Get();
+            while (!done) { }
+            if (badges != null)
+            {
+                badges.ForEach(badge =>
+                {
+                    Console.WriteLine(badge.Image + ", " + badge.Title + ", " + badge.StartValue);
+                });
+            }
+            else
+            {
+                Console.WriteLine("Badges is null");
+            }
+            Assert.AreEqual(status, KarmaBadgeListGetStatus.Success);
+            Assert.AreNotEqual(badges, null);
+            KarmaBadgeFetcher.KarmaBadges = badges;
+            badges.ForEach(badge =>
+            {
+                Assert.AreEqual(KarmaBadgeFetcher.CurrentBadge(badge.StartValue), badge);
+            });
         }
     }
     #endregion
