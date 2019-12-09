@@ -33,7 +33,7 @@ namespace StudyBuddyApp.Views
             GetComments(viewModel.HelpRequestModel.HelpRequest.Id);
             CommentList.ItemsSource = Items;
             BindingContext = viewModel;
-
+            PostButton.IsEnabled = false;
             if (viewModel.Creator.Username == LocalUserManager.LocalUser.Username)
             {
                 deleteButton.IsEnabled = true;
@@ -76,7 +76,6 @@ namespace StudyBuddyApp.Views
         void GetComments(int helpRequestID)
         {
             var commentGetter = CommentSystemManager.NewCommentGetter();
-
             commentGetter.Result += (status, comments) =>
             {
                 Device.BeginInvokeOnMainThread(async () =>
@@ -101,8 +100,8 @@ namespace StudyBuddyApp.Views
                     {
                         await DisplayAlert("Klaida", "Nepavyko įkelti komentarų", "OK");
                     }
+                    CommentList.IsRefreshing = false;
                 });
-
             };
             commentGetter.Get(helpRequestID);
         }
@@ -112,16 +111,19 @@ namespace StudyBuddyApp.Views
             GetComments(viewModel.HelpRequestModel.HelpRequest.Id);
         }
 
-        private void CommentList_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void CommentList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
                 return;
 
             var selectedItem = ((ListView)sender).SelectedItem as CommentModel;
+
             if(selectedItem.Username.Equals(LocalUserManager.LocalUser.Username))
             {
-                
+                if (await DisplayActionSheet("Ar norite ištrinti komentarą?", "Taip", "Ne") == "Taip")
+                RemoveComment(selectedItem.Comment.CommentID);
             }
+            ((ListView)sender).SelectedItem = null;
         }
 
         private void SendEditor_Unfocused(object sender, FocusEventArgs e)
@@ -145,7 +147,13 @@ namespace StudyBuddyApp.Views
 
         private void PostButton_Clicked(object sender, EventArgs e)
         {
+            if (SendEditor.Text == null)
+                return;
+            else if (SendEditor.Text.Length == 0)
+                return;
+                
             var commentManager = CommentSystemManager.NewCommentPoster();
+            PostButton.IsEnabled = false;
             commentManager.Result += (status, comment) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -158,6 +166,7 @@ namespace StudyBuddyApp.Views
                     {
                         DependencyService.Get<IToast>().LongToast("Komentaras nebuvo išsiųstas");
                     }
+                    PostButton.IsEnabled = true;
                 });
             };
 
@@ -167,11 +176,42 @@ namespace StudyBuddyApp.Views
                 HelpRequestID = viewModel.HelpRequestModel.HelpRequest.Id,
                 Username = LocalUserManager.LocalUser.Username
             });
+            GetComments(viewModel.HelpRequestModel.HelpRequest.Id);
         }
 
-        private void buttonDeleteComment_Clicked(object sender, EventArgs e)
+        private void RemoveComment(int commentID)
         {
-            
+            var commentManager = CommentSystemManager.NewCommentRemover();
+            commentManager.Result += (status, comment) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    if (status == CommentManagerStatus.Success)
+                    {
+                        DependencyService.Get<IToast>().LongToast("Komentaras sėkmingai ištrintas");
+                    }
+                    else
+                    {
+                        DependencyService.Get<IToast>().LongToast("Komentaras nebuvo ištrintas");
+                    }
+                });
+            };
+
+            commentManager.RemoveComment(new Comment { 
+                CommentID = commentID});
+      
+            GetComments(viewModel.HelpRequestModel.HelpRequest.Id);
+        }
+
+        private void HelpRequestCommentsPage_Refreshing(object sender, EventArgs e)
+        {
+            GetComments(viewModel.HelpRequestModel.HelpRequest.Id);
+            CommentList.IsRefreshing = false;
+        }
+
+        private void SendEditor_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PostButton.IsEnabled = SendEditor.Text.Length > 0;
         }
     }
 }

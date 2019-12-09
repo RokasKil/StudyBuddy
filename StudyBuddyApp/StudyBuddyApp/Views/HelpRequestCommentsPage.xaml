@@ -17,42 +17,6 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
-                <Label Text="{Binding HelpRequestModel.Title}"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Start"
-                   FontSize="Medium"
-                   TextColor="{DynamicResource PrimaryTextColor}"
-                   Margin="0.5, 0.5, 0.5, 0.5"
-            />
-                <Label Text="{Binding HelpRequestModel.Description}"
-                   HorizontalTextAlignment="Start"
-                   VerticalTextAlignment="Start"
-                   FontSize="Medium"
-                   TextColor="{DynamicResource PrimaryTextColor}"
-                   Margin="10, 0.5, 10, 0.5"
-            />
-                <Label Text="{Binding HelpRequestModel.Category}" 
-                   HorizontalTextAlignment="Center"
-                   HorizontalOptions="EndAndExpand"
-                   VerticalTextAlignment="Start"
-                   FontSize="Small"
-                   Margin="0.5, 0.5, 10, 0.5"
-            />
-                <Label Text="{Binding HelpRequestModel.Date}"
-                   HorizontalTextAlignment="Center"
-                   HorizontalOptions="EndAndExpand"
-                   VerticalTextAlignment="Start"
-                   FontSize="Small"
-                   Margin="0.5, 0.5, 10, 0.5"
-            />
-                <Label Text="{Binding HelpRequestModel.Name}"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Start"
-                   FontSize="Medium"
-                   TextColor="{DynamicResource PrimaryTextColor}"
-                   Margin="0.5, 0.5, 0.5, 0.5"
-            />
-
                 <Frame Padding="0"
                    CornerRadius="75"
                    IsClippedToBounds="True"
@@ -60,25 +24,55 @@
                    HeightRequest="150"
                    WidthRequest="150"
                    Margin="6, 0">
-                    <Image Aspect="AspectFill"
+                    <ImageButton Aspect="AspectFill"
                     VerticalOptions="Fill"
                     HorizontalOptions="Center"
                     WidthRequest="150"
-                    HeightRequest="150">
-                        <Image.Source>
+                    HeightRequest="150"
+                    Clicked="OnImageButtonClicked">
+                        <ImageButton.Source>
                             <UriImageSource Uri="{Binding Creator.ProfilePictureLocation}"
                                         CacheValidity="14" 
-			                            CachingEnabled="true"
-                        />
-                        </Image.Source>
-                    </Image>
+			                            CachingEnabled="true"/>
+                        </ImageButton.Source>
+                    </ImageButton>
                 </Frame>
-                <Button
-                x:Name="buttonViewProfile"
-                Text="Peržiūrėti profilį"
-                VerticalOptions="End"
-                HorizontalOptions="CenterAndExpand"
-                Clicked="OnImageButtonClicked"/>
+                <Label
+                   Text="{Binding HelpRequestModel.Name}"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Start"
+                   FontSize="Medium"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   Margin="0.5, 0.5, 0.5, 0.5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Tapped="OnImageButtonClicked"/>
+                    </Label.GestureRecognizers> 
+                </Label>
+                <Label Text="{Binding HelpRequestModel.Title}"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Start"
+                   FontSize="Medium"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   Margin="0.5, 0.5, 0.5, 0.5"/>
+                <Label Text="{Binding HelpRequestModel.Description}"
+                   HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="Start"
+                   FontSize="Medium"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   Margin="10, 0.5, 10, 0.5"/>
+                <Label Text="{Binding HelpRequestModel.Category}" 
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalTextAlignment="Start"
+                   FontSize="Small"
+                   Margin="0.5, 0.5, 10, 0.5" />
+                <Label Text="{Binding HelpRequestModel.Date}"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalTextAlignment="Start"
+                   FontSize="Small"
+                   Margin="0.5, 0.5, 10, 0.5"/>
             </StackLayout>
             <ListView x:Name="CommentList"
                     ItemsSource="{Binding Items}"
@@ -86,7 +80,8 @@
                     ItemTapped="CommentList_ItemTapped"
                     CachingStrategy="RecycleElement"
                     IsPullToRefreshEnabled="True"
-                    Refreshing="ContentPage_Appearing">
+                    Refreshing="HelpRequestCommentsPage_Refreshing"
+                    >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -99,10 +94,6 @@
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding CreatedDate}"
                                    HorizontalOptions="EndAndExpand"/>
-                                    <Button
-                                        x:Name="buttonDeleteComment"
-                                        Text="Ištrinti"
-                                        Clicked="buttonDeleteComment_Clicked"/>
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -115,7 +106,8 @@
                         MaxLength="2000"
                         x:Name="SendEditor"
                         Unfocused="SendEditor_Unfocused"
-                        AutoSize="TextChanges"/>
+                        AutoSize="TextChanges"
+                        TextChanged="SendEditor_TextChanged"/>
                 <AbsoluteLayout VerticalOptions="Center">
                     <!-- Using a hack by placing text field under button to not lose keyboard -->
                     <Entry Placeholder="Testing"

@@ -72,13 +72,14 @@ namespace StudyBuddyApp.Views
         {
             if (e.Item == null)
                 return;
-
+            HelpRequestList.IsEnabled = false;
             var selectedItem = ((ListView)sender).SelectedItem as HelpRequestModel;
             var user = users[selectedItem.HelpRequest.CreatorUsername];
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
             await Navigation.PushAsync(new HelpRequestCommentsPage(new HelpRequestCommentsModel(user, selectedItem)));
+            HelpRequestList.IsEnabled = true;
         }
         /// <summary>
         /// Gauna visus HelpRequest iš DB ir iš karto filtruoja pagal parametrus

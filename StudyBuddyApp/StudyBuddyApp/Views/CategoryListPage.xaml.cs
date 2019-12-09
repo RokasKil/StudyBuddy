@@ -43,7 +43,7 @@ namespace StudyBuddyApp.Views
         {
             var categoryGetter = CategorySystemManager.NewCategoryGetter();
 
-            categoryGetter.Result += async (status, categories) =>
+            categoryGetter.Result += (status, categories) =>
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
