@@ -35,6 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IConversationStarter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IMessageGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IMessageSender.cs" />
+	<Compile Include="$(MSBuildThisFileDirectory)Entity\Comment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\KarmaBadge.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestManagerBase.cs" />

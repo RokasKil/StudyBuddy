@@ -12,7 +12,11 @@ namespace StudyBuddyShared.Utility
         public static List<KarmaBadge> KarmaBadges { get; set; }
         public static KarmaBadge CurrentBadge(int value)
         {
-            KarmaBadges = (List<KarmaBadge>)KarmaBadges.OrderBy(karmaBadge => karmaBadge.StartValue);
+            if (KarmaBadges == null)
+            {
+                return null;
+            }
+            KarmaBadges = KarmaBadges.OrderBy(karmaBadge => karmaBadge.StartValue).ToList();
             for (int i = 0; i < KarmaBadges.Count; i++)
             {
                 if (i + 1 >= KarmaBadges.Count)
