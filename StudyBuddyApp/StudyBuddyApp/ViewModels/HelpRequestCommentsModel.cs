@@ -10,12 +10,13 @@ using StudyBuddyShared.SystemManager;
 namespace StudyBuddyApp.ViewModels
 {
 
-    public class HelpRequestViewPageModel : BaseViewModel
+    public class HelpRequestCommentsModel : BaseViewModel
     {
         public HelpRequestModel HelpRequestModel { get; set; }
+        public CommentModel CommentModel { get; set; }
         public User Creator { get; set; }
         public string DeleteButtonText { get; set; }
-        public HelpRequestViewPageModel(User user, HelpRequestModel helpRequest)
+        public HelpRequestCommentsModel(User user, HelpRequestModel helpRequest)
         {
             Creator = user;
             HelpRequestModel = helpRequest;

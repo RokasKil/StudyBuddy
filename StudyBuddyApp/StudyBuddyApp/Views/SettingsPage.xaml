@@ -13,16 +13,11 @@
                        FontSize="20"
                        TextColor="{DynamicResource PrimaryTextColor}"
                        Margin="5, 5, 5, 5"
-                       HorizontalOptions="StartAndExpand"
-                       
-                       
-                />
-
+                       HorizontalOptions="StartAndExpand"/>
                 <Switch Toggled="OnToggled"
                         x:Name="DarkModeSwitch"
                         HorizontalOptions="End"
-                        VerticalOptions="Center"
-                />
+                        VerticalOptions="Center"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

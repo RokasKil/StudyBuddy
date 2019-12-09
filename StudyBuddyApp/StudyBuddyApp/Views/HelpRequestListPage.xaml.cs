@@ -78,7 +78,7 @@ namespace StudyBuddyApp.Views
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
-            await Navigation.PushAsync(new HelpRequestViewPage(new HelpRequestViewPageModel(user, selectedItem)));
+            await Navigation.PushAsync(new HelpRequestCommentsPage(new HelpRequestCommentsModel(user, selectedItem)));
         }
         /// <summary>
         /// Gauna visus HelpRequest iš DB ir iš karto filtruoja pagal parametrus
