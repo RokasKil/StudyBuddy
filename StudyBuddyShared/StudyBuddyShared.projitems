@@ -11,6 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AuthenticationSystem\Authenticator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AuthenticationSystem\IAuthenticator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AuthenticationSystem\IRegistrator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AuthenticationSystem\Registrator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\CategoryAdder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\CategoryGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CategorySystem\CategoryManagerBase.cs" />
@@ -33,7 +35,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IConversationStarter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IMessageGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ConversationSystem\IMessageSender.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entity\Comment.cs" />
+	<Compile Include="$(MSBuildThisFileDirectory)Entity\Comment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\KarmaBadge.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestManagerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HelpRequestSystem\HelpRequestPoster.cs" />
@@ -51,6 +54,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entity\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entity\UserReview.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KarmaBadgeSystem\IKarmaBadgeGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KarmaBadgeSystem\IKarmaBadgeListGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KarmaBadgeSystem\KarmaBadgeGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KarmaBadgeSystem\KarmaBadgeListGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\AllMessageGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\APICaller.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\Authenticator.cs" />
@@ -62,9 +69,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Network\ConversationStarter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\HelpRequestGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\HelpRequestManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\KarmaBadgeGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\KarmaBadgeListGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\MessagePoster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\MessagesGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\ProfilePictureUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\RankingsGetter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\Registrator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Network\UserReviewManager.cs" />
@@ -74,6 +85,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\CommentSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\ConversationSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\HelpRequestSystemManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SystemManager\KarmaBadgeSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\LocalUserManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\UserReviewSystemManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SystemManager\UserSystemManager.cs" />
@@ -84,14 +96,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\UserReviewManagerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\UserReviewPoster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserReviewSystem\UserReviewRemover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IRankingsGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserProfilePictureUpdater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\IUserUpdater.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserSystem\RankingsGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserGetter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserProfilePictureUpdater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserSystem\UserUpdater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\AttachedProperties\AttachedProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Extensions\DateTimeExtender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\EnumConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\KarmaBadgeFetcher.cs" />
   </ItemGroup>
 </Project>
