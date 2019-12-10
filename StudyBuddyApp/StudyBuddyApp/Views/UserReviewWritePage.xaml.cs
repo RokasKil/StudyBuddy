@@ -49,10 +49,13 @@ namespace StudyBuddyApp.Views
                     if (status == UserReviewManageStatus.Success)
                     {
                         DependencyService.Get<IToast>().LongToast("Atsiliepimas išsiųstas");
+                        await Navigation.PopModalAsync();
                     }
                     else
                     {
-                        await Application.Current.MainPage.DisplayAlert("Klaida", "Atsiliepimas neišsiųstas, bandykite dar kartą", "tęsti"); ;
+                        buttonNegativeReview.IsEnabled = true;
+                        buttonPositiveReview.IsEnabled = true;
+                        await Application.Current.MainPage.DisplayAlert("Klaida", "Atsiliepimas neišsiųstas, bandykite dar kartą", "tęsti");
                     }
                 });
             };
@@ -63,6 +66,8 @@ namespace StudyBuddyApp.Views
                     Karma = karma,
                     Message = Description.Text
                 });
+            buttonNegativeReview.IsEnabled = false;
+            buttonPositiveReview.IsEnabled = false;
         }
 
         private void Description_TextChanged(object sender, TextChangedEventArgs e)

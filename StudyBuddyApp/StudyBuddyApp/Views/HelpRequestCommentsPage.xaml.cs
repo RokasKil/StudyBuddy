@@ -45,7 +45,7 @@ namespace StudyBuddyApp.Views
         }
         public async void OnImageButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ProfileViewPage(new ViewModels.ProfileViewViewModel(viewModel.Creator)));
+            await ProfileOpener.OpenProfile(viewModel.Creator);
         }
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)

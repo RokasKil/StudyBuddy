@@ -13,7 +13,7 @@ namespace StudyBuddyApp.ViewModels
         public RankingsViewModel()
         {
             Title = "Reitingai";
-            PointsName = "Exp: ";
+            PointsName = "XP: ";
         }
         
 
