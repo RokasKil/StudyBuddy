@@ -22,15 +22,15 @@ namespace StudyBuddyShared.CommentSystem
         public CommentGetter(string privateKey)
         {
             this.PrivateKey = privateKey;
-            getter = new Network.CommentsGetter(PrivateKey, (status, comments) =>
+            getter = new Network.CommentsGetter(PrivateKey, (status, comments, users) =>
             {
-                Result?.Invoke(EnumConverter.Convert<CommentGetStatus>(status), comments);
+                Result?.Invoke(EnumConverter.Convert<CommentGetStatus>(status), comments, users);
             });
         }
 
-        public void Get(int helpRequestID)
+        public void Get(int helpRequestID, bool getUsers = true)
         {
-            getter.get(helpRequestID);
+            getter.get(helpRequestID, getUsers);
         }
     }
 }

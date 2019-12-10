@@ -82,18 +82,18 @@ namespace StudyBuddyShared.Network
             if (post)
             {
                 obj = new APICaller("postReview.php")
-                .addParam("privateKey", PrivateKey)
-                .addParam("message", userReview.Message)
-                .addParam("username", userReview.Username)
-                .addParam("positive", (userReview.Karma > 0).ToString())
-                .call();
+                .AddParam("privateKey", PrivateKey)
+                .AddParam("message", userReview.Message)
+                .AddParam("username", userReview.Username)
+                .AddParam("positive", (userReview.Karma > 0).ToString())
+                .Call();
             }
             else
             {
                 obj = new APICaller("removeReview.php")
-                .addParam("privateKey", PrivateKey)
-                .addParam("username", userReview.Username)
-                .call();
+                .AddParam("privateKey", PrivateKey)
+                .AddParam("username", userReview.Username)
+                .Call();
             }
             ManagerStatus status = ManagerStatus.UnknownError;
             if (!Enum.TryParse<ManagerStatus>(obj["message"].ToString(), out status))

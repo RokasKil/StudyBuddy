@@ -31,36 +31,36 @@ namespace StudyBuddyShared.Network
             Api = api;
         }
 
-        public APICaller setApi(string api)
+        public APICaller SetApi(string api)
         {
             Api = api;
             return this;
         }
 
-        public APICaller addParam(string param, string value)
+        public APICaller AddParam(string param, string value)
         {
             PostParams.Add(param, value);
             return this;
         }
 
-        public APICaller addDelegate(APICallResultDelegate reciever)
+        public APICaller AddDelegate(APICallResultDelegate reciever)
         {
             APICallResult += reciever;
             return this;
         }
-        public APICaller removeParam(string param, string value)
+        public APICaller RemoveParam(string param, string value)
         {
             PostParams.Remove(param);
             return this;
         }
 
-        public void callAsync()
+        public void CallAsync()
         {
-            callThread = new Thread(() => APICallResult(call()));
+            callThread = new Thread(() => APICallResult(Call()));
             callThread.Start();
         }
 
-        public JObject call()
+        public JObject Call()
         {
             using (WebClient client = new WebClient())
             {

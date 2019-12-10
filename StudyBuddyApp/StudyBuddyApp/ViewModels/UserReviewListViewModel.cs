@@ -11,8 +11,10 @@ namespace StudyBuddyApp.ViewModels
         {
             User = user;
             this.Title = "Atsiliepimai";
+            Delete = "Ištrinti";
         }
         public User User { get; set; }
+        public string Delete { get; set; }
     }
     
 }

@@ -49,7 +49,9 @@ namespace StudyBuddyApp.Views
                     if (status == UserReviewManageStatus.Success)
                     {
                         DependencyService.Get<IToast>().LongToast("Atsiliepimas išsiųstas");
-                        await Navigation.PopModalAsync();
+                        if (Navigation.NavigationStack.Contains(this)) {
+                            await Navigation.PopAsync();
+                        }
                     }
                     else
                     {

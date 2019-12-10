@@ -10,7 +10,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             x:Name="buttonDelete" 
-            Text="Ištrinti" 
+            Text="{Binding Delete}" 
             Clicked="buttonDelete_Clicked"/>
     </ContentPage.ToolbarItems>
     <ListView
