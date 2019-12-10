@@ -143,7 +143,7 @@ namespace StudyBuddyApp.Views
                                 StatusLabel.Text = "Klaidingas rezultatas";
                                 break;
                             case RegisterStatus.FailedToConnect:
-                                StatusLabel.Text = "Nepavyko susiiekti su serveriu";
+                                StatusLabel.Text = "Nepavyko prisijungti prie tinklo";
                                 break;
                             case RegisterStatus.FieldsMissing:
                                 StatusLabel.Text = "Trūksta laukų";

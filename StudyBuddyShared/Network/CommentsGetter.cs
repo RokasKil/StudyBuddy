@@ -20,7 +20,7 @@ namespace StudyBuddyShared.Network
             UnknownError,
             FieldsMissing
         }
-        public delegate void GetCommentsDelegate(GetStatus status, List<Comment> comments);
+        public delegate void GetCommentsDelegate(GetStatus status, List<Comment> comments, Dictionary<string, User> users);
         public GetCommentsDelegate GetCommentsResult { get; set; }
         public string PrivateKey { get; set; }
         public int helpRequestID;
@@ -40,23 +40,29 @@ namespace StudyBuddyShared.Network
             GetCommentsResult = getCommentResult;
         }
 
-        public void get(int helpRequestID)
+        public void get(int helpRequestID, bool user = true)
         {
             if (getCategoriesThread != null && getCategoriesThread.IsAlive) // Jau vyksta užklausa
             {
                 return;
             }
-            getCategoriesThread = new Thread(()=>getLogic(helpRequestID));
+            getCategoriesThread = new Thread(()=>getLogic(helpRequestID, user));
             getCategoriesThread.Start();
         }
 
-        private void getLogic(int helpRequestID)
+        private void getLogic(int helpRequestID, bool getUsers)
         {
-            JObject obj = new APICaller("getHelpRequestComments.php").addParam("privateKey", PrivateKey).
-                addParam("id", helpRequestID.ToString()).call();//TODO perduoti helprequestid
+            var caller = new APICaller("getHelpRequestComments.php").AddParam("privateKey", PrivateKey).
+                AddParam("id", helpRequestID.ToString());
+            if (getUsers)
+            {
+                caller.AddParam("user", "");
+            }
+            JObject obj = caller.Call();
             if (obj["status"].ToString() == "success")
             {
                 List<Comment> comments = new List<Comment>();
+                Dictionary<string, User> users = null;
                 obj["comments"].ToList().ForEach((comment) =>
                 {
                     comments.Add(new Comment
@@ -64,11 +70,27 @@ namespace StudyBuddyShared.Network
                         Message = comment["message"].ToString(),
                         Username = comment["username"].ToString(),
                         CommentID = comment["id"].ToObject<int>(),
-                        CreatedDate = comment["createdDate"].ToObject<long>(),
+                        CreatedDate = comment["postDate"].ToObject<long>(),
                         HelpRequestID = comment["help_request"].ToObject<int>()
                     });
-                });
-                GetCommentsResult(GetStatus.Success, comments);
+                }); 
+                if (getUsers)
+                {
+                    users = new Dictionary<string, User>();
+                    obj["users"].ToList().ForEach((user) =>
+                    {
+                        users[user.First["username"].ToString()] = new User
+                        {
+                            Username = user.First["username"].ToString(),
+                            FirstName = user.First["firstName"].ToString(),
+                            LastName = user.First["lastName"].ToString(),
+                            KarmaPoints = user.First["karmaPoints"].ToObject<int>(),
+                            IsLecturer = Convert.ToBoolean(user.First["lecturer"].ToObject<int>()),
+                            ProfilePictureLocation = user.First["profilePicture"].ToString()
+                        };
+                    });
+                }
+                GetCommentsResult(GetStatus.Success, comments, users);
             }
             else
             {
@@ -77,7 +99,7 @@ namespace StudyBuddyShared.Network
                 {
                     status = GetStatus.UnknownError;
                 }
-                GetCommentsResult(status, null);
+                GetCommentsResult(status, null, null);
             }
         }
     }

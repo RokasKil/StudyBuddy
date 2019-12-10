@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:StudyBuddyApp.ViewModels"
              x:Class="StudyBuddyApp.Views.RankingsViewPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              Title="{Binding Title}"
              Appearing="RankingsList_Refreshing">
 
@@ -22,69 +23,41 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Frame Padding="0"
-                               CornerRadius="30"
-                               IsClippedToBounds="True"
-                               VerticalOptions="Center"
-                               HeightRequest="60"
-                               WidthRequest="60"
-                               Margin="6, 0">
-                                    <Image Aspect="AspectFill"
-                                   VerticalOptions="Fill"
-                                   WidthRequest="60"
-                                   HeightRequest="60">
-                                        <Image.Source>
-                                            <UriImageSource Uri="{Binding ProfilePictureLocation}" 
-			                        CacheValidity="14" 
-			                        CachingEnabled="true"/>
-                                        </Image.Source>
-                                    </Image>
-                                </Frame>
-
+                            <StackLayout Orientation="Horizontal"
+                                         Padding="0, 6">
+                                <AbsoluteLayout HorizontalOptions="Start"
+                                                Padding="5">
+                                    <controls:CircleImage Aspect="AspectFill"
+                                                          WidthRequest="50"
+                                                          HeightRequest="50"
+                                                          Source="{Binding ProfilePictureLocation}"/>
+                                </AbsoluteLayout>
                                 <StackLayout Orientation="Vertical"
-                                    HorizontalOptions="FillAndExpand"
-                                     Spacing="3">
+                                             HorizontalOptions="FillAndExpand"
+                                             Spacing="3">
                                     <Label Text="{Binding Name}"
-                                   FontSize="16"
-                                   FontAttributes="Bold"
-                                   TextColor="{DynamicResource PrimaryTextColor}"/>
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="{DynamicResource PrimaryTextColor}"/>
 
-                                    <StackLayout 
-                                        Orientation="Horizontal"
-                                    HorizontalOptions="FillAndExpand"
-                                     Spacing="3">
-                                        <Label Text="Exp: "
-                                   FontSize="16"
-                                   FontAttributes="Bold"
-                                   TextColor="{DynamicResource PrimaryTextColor}"/>
+                                    <StackLayout Orientation="Horizontal"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Spacing="3">
                                         <Label Text="{Binding KarmaPoints}"
-                                   FontSize="16"
-                                   FontAttributes="Bold"
-                                   TextColor="{DynamicResource PrimaryTextColor}"/>
+                                               FontSize="16"
+                                               TextColor="{DynamicResource PrimaryTextColor}"/>
+                                        <Label Text=" XP"
+                                               FontSize="16"
+                                               TextColor="{DynamicResource PrimaryTextColor}"/>
                                     </StackLayout>
-
                                 </StackLayout>
-
-                                <Frame Padding="0"
-                               CornerRadius="25"
-                               IsClippedToBounds="True"
-                               VerticalOptions="Center"
-                               HeightRequest="50"
-                               WidthRequest="50"
-                               Margin="6, 0">
-                                    <Image Aspect="AspectFill"
-                                   VerticalOptions="Fill"
-                                   WidthRequest="50"
-                                   HeightRequest="50">
-                                        <Image.Source>
-                                            <UriImageSource Uri="{}" 
-			                        CacheValidity="14" 
-			                        CachingEnabled="true"/>
-                                        </Image.Source>
-                                    </Image>
-                                </Frame>
-
+                                <AbsoluteLayout HorizontalOptions="End"
+                                                VerticalOptions="Center">
+                                    <controls:CircleImage Aspect="AspectFill"
+                                                          WidthRequest="50"
+                                                          HeightRequest="50"
+                                                          Source="{Binding BadgeImageLocation}"/>
+                                </AbsoluteLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

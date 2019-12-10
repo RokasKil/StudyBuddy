@@ -59,12 +59,12 @@ namespace StudyBuddyShared.Network
 
         private void getLogic(Conversation conversation, long timestamp, bool wait)
         {
-            APICaller caller = new APICaller("getMessages.php").addParam("privateKey", PrivateKey).addParam("conversation", conversation.Id.ToString()).addParam("timestamp", timestamp.ToString());
+            APICaller caller = new APICaller("getMessages.php").AddParam("privateKey", PrivateKey).AddParam("conversation", conversation.Id.ToString()).AddParam("timestamp", timestamp.ToString());
             if (wait)
             {
-                caller.addParam("wait", "");
+                caller.AddParam("wait", "");
             }
-            var obj = caller.call();
+            var obj = caller.Call();
             //Console.Write(obj);
             if (obj["status"].ToString() == "success")
             {

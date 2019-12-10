@@ -11,6 +11,8 @@ using StudyBuddyShared.Entity;
 using StudyBuddyShared.SystemManager;
 using StudyBuddyShared.AuthenticationSystem;
 using StudyBuddyApp.Views;
+using StudyBuddyShared.KarmaBadgeSystem;
+using StudyBuddyShared.Utility;
 
 namespace StudyBuddyApp
 {
@@ -44,6 +46,7 @@ namespace StudyBuddyApp
                 PasswordEntry.IsEnabled = false;
                 LoadingIndicator.IsRunning = true;
                 StatusLabel.IsVisible = false;
+                LoginButton.IsVisible = false;
 
                 // Dependency injection per interfaces
                 var auth = AuthenticationSystemManager.NewAuthenticator();
@@ -72,15 +75,36 @@ namespace StudyBuddyApp
                         LocalUserManager.LocalUser = user;
                         Application.Current.Properties["PrivateKey"] = user.PrivateKey;
                         Application.Current.SavePropertiesAsync();
-                        App.Current.MainPage = new Views.MainPage();
+                        var listGetter = KarmaBadgeSystemManager.NewKarmaBadgeListGetter();
+                        listGetter.Result += (_status, badges) => {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                if(_status == KarmaBadgeListGetStatus.Success)
+                                {
+                                    KarmaBadgeFetcher.KarmaBadges = badges;
+                                    App.Current.MainPage = new Views.MainPage();
+                                }
+                                else
+                                {
+                                    UsernameEntry.IsEnabled = true;
+                                    PasswordEntry.IsEnabled = true;
+                                    StatusLabel.IsVisible = true;
+                                    StatusLabel.Text = LocalizeStatus(_status);
+                                    LoadingIndicator.IsRunning = false;
+                                    LoginButton.IsVisible = true;
+                                }
+                            });
+                        };
+                        listGetter.Get();
                     }
                     else
                     {
                         UsernameEntry.IsEnabled = true;
                         PasswordEntry.IsEnabled = true;
                         StatusLabel.IsVisible = true;
-                        StatusLabel.Text = status.ToString(); // TODO: Localization
+                        StatusLabel.Text = LocalizeStatus(status);
                         LoadingIndicator.IsRunning = false;
+                        LoginButton.IsVisible = true;
                     }
                 });
             }
@@ -91,11 +115,37 @@ namespace StudyBuddyApp
             PasswordEntry.IsEnabled = false;
             LoadingIndicator.IsRunning = true;
             StatusLabel.IsVisible = false;
+            LoginButton.IsVisible = false;
             Application.Current.Properties["notificationTimestamp"] = (long)-1;
             // Dependency injection per interfaces
             IAuthenticator auth = AuthenticationSystemManager.NewAuthenticator();
             auth.Result += LoginResponse;
             auth.Login(UsernameEntry.Text, PasswordEntry.Text);
+        }
+        public string LocalizeStatus(Enum status)
+        {
+            switch (status.ToString())
+            {
+                case "UsernameEmpty":
+                    return "Slapyvardis negali būti tuščias";
+                case "PasswordEmpty":
+                    return "Slaptažodis negali būti tuščias";
+                case "InvalidUsernameOrPassword":
+                    return "Neteisingi prisijungimo duomenys";
+                case "InvalidPrivateKey":
+                    return "Sesija negalioja";
+                case "Success":
+                    return "Pavyko";
+                case "JsonReadException":
+                    return "Klaidingas rezultatas";
+                case "FieldsMissing":
+                    return "Trūksta laukų";
+                case "FailedToConnect":
+                    return "Nepavyko prisijungti prie tinklo";
+                case "UnknownError":
+                default:
+                    return "Nežinoma klaida";
+            }
         }
     }
 }

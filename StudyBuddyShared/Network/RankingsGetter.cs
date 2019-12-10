@@ -52,9 +52,9 @@ namespace StudyBuddyShared.Network
 
         private void getLogic()
         {
-            APICaller caller = new APICaller("getRankings.php").addParam("privateKey", PrivateKey);
+            APICaller caller = new APICaller("getRankings.php").AddParam("privateKey", PrivateKey);
 
-            JObject obj = caller.call();
+            JObject obj = caller.Call();
             //Console.WriteLine(obj);
             if (obj["status"].ToString() == "success")
             {

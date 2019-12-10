@@ -28,15 +28,18 @@ namespace StudyBuddyShared.Utility
                 {
                     continue;
                 }
-
-                if (KarmaBadges[i].StartValue <= value)
+                else
+                {
+                    return KarmaBadges[i];
+                }
+                /*if (KarmaBadges[i].StartValue <= value)
                 {
                     return KarmaBadges[i];
                 }
                 else if (KarmaBadges[i + 1].StartValue <= value)
                 {
                     return KarmaBadges[i + 1];
-                }
+                }*/
             }
 
             return null;

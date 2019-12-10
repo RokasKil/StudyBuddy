@@ -67,7 +67,7 @@ namespace StudyBuddyShared.Network
 
         private void loginLogic(string username, string password)
         {
-            JObject obj = new APICaller("auth.php").addParam("username", username).addParam("password", password).call();
+            JObject obj = new APICaller("auth.php").AddParam("username", username).AddParam("password", password).Call();
             if(obj["status"].ToString() == "success")
             {
                 LocalUser localUser = new LocalUser
@@ -94,7 +94,7 @@ namespace StudyBuddyShared.Network
         }
         private void loginLogic(string privateKey)
         {
-            JObject obj = new APICaller("auth.php").addParam("privateKey", privateKey).call();
+            JObject obj = new APICaller("auth.php").AddParam("privateKey", privateKey).Call();
             if(obj["status"].ToString() == "success")
             {
                 LocalUser localUser = new LocalUser
