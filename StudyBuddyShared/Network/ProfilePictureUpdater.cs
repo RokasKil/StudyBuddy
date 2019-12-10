@@ -64,9 +64,9 @@ namespace StudyBuddyShared.Network
 
         private void getLogic(string picture)
         {
-            JObject obj = new APICaller("uploadProfilePicture.php").addParam("privateKey", PrivateKey)
-                                                            .addParam("picture", picture)
-                                                            .call();
+            JObject obj = new APICaller("uploadProfilePicture.php").AddParam("privateKey", PrivateKey)
+                                                            .AddParam("picture", picture)
+                                                            .Call();
             if (obj["status"].ToString() == "success")
             {
                 string pictureLocation = obj["url"].ToString();

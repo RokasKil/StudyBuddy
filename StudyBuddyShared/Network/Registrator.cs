@@ -90,12 +90,12 @@ namespace StudyBuddyShared.Network
         private void registerLogic(string username, string password, string firstName, string lastName, string email)
         {
             JObject obj = new APICaller("register.php")
-                .addParam("username", username)
-                .addParam("password", password)
-                .addParam("firstName", firstName)
-                .addParam("lastName", lastName)
-                .addParam("email", email)
-                .call();
+                .AddParam("username", username)
+                .AddParam("password", password)
+                .AddParam("firstName", firstName)
+                .AddParam("lastName", lastName)
+                .AddParam("email", email)
+                .Call();
             Console.WriteLine(obj);
             RegisterStatus status = RegisterStatus.UnknownError;
             if (!Enum.TryParse<RegisterStatus>(obj["message"].ToString(), out status))

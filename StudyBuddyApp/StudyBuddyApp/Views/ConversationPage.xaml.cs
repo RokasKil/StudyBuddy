@@ -49,21 +49,32 @@ namespace StudyBuddyApp.Views
             //Listens messages already loaded
             MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.LocalMessagesLimited, (task)=>
             {
-                //Adds them to the list
-                MessageRecieverLimited(task);
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    //Adds them to the list
+                    MessageRecieverLimited(task);
 
-                //Stops listening
-                MessagingCenter.Unsubscribe<MessagingTask>(this, MessagingTask.LocalMessagesLimited);
+                    //Stops listening
+                    MessagingCenter.Unsubscribe<MessagingTask>(this, MessagingTask.LocalMessagesLimited);
 
-                MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.LocalMessagesLimited, MessageRecieverLimited);
+                    MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.LocalMessagesLimited, MessageRecieverLimited);
 
-                //Starts listening for new messages
-                MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.NewMessages, MessageReciever);
-                MessageListView.ScrollTo(Items.LastOrDefault(), ScrollToPosition.End, false);
+                    //Starts listening for new messages
+                    MessagingCenter.Subscribe<MessagingTask>(this, MessagingTask.NewMessages, MessageReciever);
+                    MessageListView.ScrollTo(Items.LastOrDefault(), ScrollToPosition.End, false);
+                });
             });
             //Ask for messages already loaded
             GetMoreHistory();
 
+#pragma warning disable CS0618 // Type or member is obsolete
+            ProfileLayout.GestureRecognizers.Add(new TapGestureRecognizer(async (view) =>
+            {
+                ProfileLayout.IsEnabled = false;
+                await ProfileOpener.OpenProfile(viewModel.Users[viewModel.Conversation.Users[0]]);
+                ProfileLayout.IsEnabled = true;
+            }));
+#pragma warning restore CS0618 // Type or member is obsolete
 
         }
 

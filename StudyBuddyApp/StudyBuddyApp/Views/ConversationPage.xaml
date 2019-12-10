@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudyBuddyApp.Views.ConversationPage"
              xmlns:local="clr-namespace:StudyBuddyApp.DataTemplates"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              NavigationPage.HasNavigationBar="False"
              Disappearing="ContentPage_Disappearing"
              Appearing="ContentPage_Appearing">
@@ -88,31 +89,25 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal"
-                         Spacing="0">
-                <Frame Padding="0"
-                   CornerRadius="25"
-                   IsClippedToBounds="True"
-                   HorizontalOptions="Center"
-                   HeightRequest="50"
-                   WidthRequest="50"
-                    Margin="6">
-                    <Image Aspect="AspectFill"
-                           VerticalOptions="Fill"
-                           WidthRequest="50"
-                           HeightRequest="50">
-                        <Image.Source>
-                            <UriImageSource Uri="{Binding ImageLocation}" 
-			                        CacheValidity="14" 
-			                        CachingEnabled="true"/>
-                        </Image.Source>
-                    </Image>
-                </Frame>
+                         Spacing="0"
+                         x:Name="ProfileLayout"
+                         HorizontalOptions="FillAndExpand">
+                <AbsoluteLayout HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Padding="5"
+                                InputTransparent="True">
+                    <controls:CircleImage Aspect="AspectFill"
+                                          WidthRequest="50"
+                                          HeightRequest="50"
+                                          Source="{Binding ImageLocation}"/>
+                </AbsoluteLayout>
                 <Label Text="{Binding Title}"
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="Start"
                        FontSize="20"
                        FontAttributes="Bold"
-                       TextColor="{DynamicResource PrimaryTextColor}"/>
+                       TextColor="{DynamicResource PrimaryTextColor}"
+                                InputTransparent="True"/>
             </StackLayout>
             <ListView x:Name="MessageListView"
                       CachingStrategy="RecycleElement"
@@ -124,14 +119,25 @@
                       ItemTemplate="{StaticResource DataTemplateSelector}"
                       >
             </ListView>
-            <StackLayout Orientation="Horizontal">
+            <Grid HorizontalOptions="StartAndExpand"
+                  Padding="5, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <Editor Placeholder="Žinutė"
                         HorizontalOptions="FillAndExpand"
                         MaxLength="2000"
                         x:Name="SendEditor"
                         Unfocused="SendEditor_Unfocused"
-                        AutoSize="TextChanges"/>
-                <AbsoluteLayout VerticalOptions="Center"> <!-- Using a hack by placing text field under button to not lose keyboard -->
+                        AutoSize="TextChanges"
+                        Grid.Column="0"/>
+                <AbsoluteLayout VerticalOptions="Center"
+                                Grid.Column="1"
+                                HorizontalOptions="Fill"> <!-- Using a hack by placing text field under button to not lose keyboard -->
                     <Entry Placeholder="Testing"
                            AbsoluteLayout.LayoutBounds="0, 0"
                            BackgroundColor="Transparent"
@@ -145,9 +151,10 @@
                             InputTransparent="True"
                             Clicked="SendButton_Clicked"
                             x:Name="SendButton"
+                            Margin="0, 4"
                             AbsoluteLayout.LayoutBounds="0, 0"/>
                 </AbsoluteLayout>
-            </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

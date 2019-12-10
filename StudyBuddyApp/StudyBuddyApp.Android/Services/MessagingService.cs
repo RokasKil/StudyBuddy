@@ -316,12 +316,14 @@ namespace StudyBuddyApp.Droid.Services
             });
             new Thread(() =>
             {
+                var temp = users.ToDictionary(entry => entry.Key,
+                                                entry => entry.Value);
                 LoadData();
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     MessagingCenter.Send(new MessagingTask(messagesDict: messages, users: users), MessagingTask.NewMessages);
                 });
-                foreach(var entry in users)
+                foreach(var entry in temp)
                 {
                     var getter = UserSystemManager.UserGetter();
                     if (getter != null)

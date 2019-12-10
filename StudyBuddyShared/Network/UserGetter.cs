@@ -58,7 +58,7 @@ namespace StudyBuddyShared.Network
 
         private void getLogic(string username)
         {
-            JObject obj = new APICaller("getUser.php").addParam("username", username).addParam("privateKey", PrivateKey).call();
+            JObject obj = new APICaller("getUser.php").AddParam("username", username).AddParam("privateKey", PrivateKey).Call();
             if (obj["status"].ToString() == "success")
             {
                 User user = new User

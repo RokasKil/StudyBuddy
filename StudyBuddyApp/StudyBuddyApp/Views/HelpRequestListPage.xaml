@@ -24,7 +24,7 @@
 
 
     <ContentPage.Content >
-        <StackLayout Padding='5'>
+        <StackLayout Padding="5">
             <Picker x:Name="PickCategory"
                     Title="{Binding CategoryGeneral}" 
                     ItemsSource="{Binding CategoryItems}"
@@ -46,7 +46,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
+                            <StackLayout Padding="5">
                                 <Label Text="{Binding Title}" 
                                        FontSize="Medium"
                                        FontAttributes="Bold"

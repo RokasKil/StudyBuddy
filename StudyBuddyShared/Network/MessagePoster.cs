@@ -71,7 +71,7 @@ namespace StudyBuddyShared.Network
         private void postLogic(Conversation conversation, string message)
         {
             //Console.Write("Starting to send " + message + "\n");
-            JObject obj = new APICaller("postMessage.php").addParam("conversation", conversation.Id.ToString()).addParam("message", message).addParam("privateKey", PrivateKey).call();
+            JObject obj = new APICaller("postMessage.php").AddParam("conversation", conversation.Id.ToString()).AddParam("message", message).AddParam("privateKey", PrivateKey).Call();
 
             //Console.Write("Sent " + message + "\n");
             //Console.Write(obj);

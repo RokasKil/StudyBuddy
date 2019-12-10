@@ -10,6 +10,7 @@
         <StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Image x:Name="NightModeIcon"
+                       Source="@drawable/ic_day"
                        Margin="5, 5, 0, 5"/>
                 <Label Text="Tamsusis režimas" 
                        FontSize="20"

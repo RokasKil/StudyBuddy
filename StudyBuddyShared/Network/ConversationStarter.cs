@@ -60,7 +60,7 @@ namespace StudyBuddyShared.Network
 
         private void startLogic(string username)
         {
-            JObject obj = new APICaller("startConversation.php").addParam("username", username).addParam("privateKey", PrivateKey).call();
+            JObject obj = new APICaller("startConversation.php").AddParam("username", username).AddParam("privateKey", PrivateKey).Call();
             if (obj["status"].ToString() == "success")
             {
                 Dictionary<string, User>  users = new Dictionary<string, User>();

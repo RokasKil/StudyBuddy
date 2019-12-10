@@ -10,7 +10,8 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20">
-                <controls:CircleImage     x:Name="ProfilePicture"  
+                <AbsoluteLayout HorizontalOptions="Center">
+                    <controls:CircleImage x:Name="ProfilePicture"  
                                           BorderColor = "Black"
                                           BorderThickness = "3"
                                           Aspect="AspectFill"
@@ -18,6 +19,7 @@
                                           HeightRequest="200"
                                           Source="{Binding ImageLocation}"
                                           Margin="0,0,0,20"/>
+                </AbsoluteLayout>
 
                 <Button
                 x:Name="buttonChangeProfilePicture"

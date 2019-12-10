@@ -105,10 +105,10 @@ namespace StudyBuddyShared.Network
                     break;
             }
             JObject obj = new APICaller(modificationType)
-                .addParam("privateKey", PrivateKey)
-                .addParam("title", category.Title)
-                .addParam("description", category.Description)
-                .call();
+                .AddParam("privateKey", PrivateKey)
+                .AddParam("title", category.Title)
+                .AddParam("description", category.Description)
+                .Call();
             ManagerStatus status = ManagerStatus.UnknownError;
             if (!Enum.TryParse<ManagerStatus>(obj["message"].ToString(), out status))
             {

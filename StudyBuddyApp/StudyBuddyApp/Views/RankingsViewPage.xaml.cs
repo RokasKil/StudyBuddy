@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using StudyBuddyShared.SystemManager;
 using StudyBuddyShared.CategorySystem;
 using StudyBuddyShared.UserSystem;
+using StudyBuddyApp.Utility;
 
 namespace StudyBuddyApp.Views
 {
@@ -98,7 +99,8 @@ namespace StudyBuddyApp.Views
                     new ProfileViewPage(
                         new ViewModels.ProfileViewViewModel(((RankingsModel)e.Item).User))));
             */
-            await Navigation.PushAsync(new ProfileViewPage(new ViewModels.ProfileViewViewModel(((RankingsModel)e.Item).User)));
+            await ProfileOpener.OpenProfile(((RankingsModel)e.Item).User);
+            //await Navigation.PushAsync(new ProfileViewPage(new ViewModels.ProfileViewViewModel(((RankingsModel)e.Item).User)));
         }
     }
 
