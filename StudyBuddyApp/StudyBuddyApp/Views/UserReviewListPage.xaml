@@ -29,8 +29,7 @@
                         <Label Text="{Binding FullName}" 
                                FontSize="16"
                                FontAttributes="Bold"/>
-                        <Label Text="{Binding Message}" 
-                               LineBreakMode="TailTruncation"/>
+                        <Label Text="{Binding Message}"/>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding KarmaPoints}"
                                    HorizontalOptions="End"/>

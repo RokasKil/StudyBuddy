@@ -119,7 +119,8 @@
                       ItemTemplate="{StaticResource DataTemplateSelector}"
                       >
             </ListView>
-            <Grid HorizontalOptions="StartAndExpand">
+            <Grid HorizontalOptions="StartAndExpand"
+                  Padding="5, 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
@@ -150,6 +151,7 @@
                             InputTransparent="True"
                             Clicked="SendButton_Clicked"
                             x:Name="SendButton"
+                            Margin="0, 4"
                             AbsoluteLayout.LayoutBounds="0, 0"/>
                 </AbsoluteLayout>
             </Grid>

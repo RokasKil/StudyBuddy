@@ -19,13 +19,14 @@
         <ResourceDictionary>
             <DataTemplate x:Key="HelpRequestTemplate">
                 <ViewCell>
-                    <StackLayout>
+                    <StackLayout >
                         <Label Text="{Binding HelpRequestModel.Title}"
-                               HorizontalTextAlignment="Center"
+                               HorizontalTextAlignment="Start"
                                VerticalTextAlignment="Start"
-                               FontSize="Medium"
+                               FontSize="Large"
+                               FontAttributes="Bold"
                                TextColor="{DynamicResource PrimaryTextColor}"
-                               Margin="0.5, 0.5, 0.5, 0.5"/>
+                               Margin="10, 0.5, 10, 0.5"/>
                         <Label Text="{Binding HelpRequestModel.Description}"
                                HorizontalTextAlignment="Start"
                                VerticalTextAlignment="Start"
@@ -38,27 +39,48 @@
                                VerticalTextAlignment="Start"
                                FontSize="Small"
                                Margin="0.5, 0.5, 10, 0.5" />
-                        <Label Text="{Binding HelpRequestModel.Date}"
+                        <!--<Label Text="{Binding HelpRequestModel.Date}"
                                HorizontalTextAlignment="Center"
                                HorizontalOptions="EndAndExpand"
                                VerticalTextAlignment="Start"
                                FontSize="Small"
-                               Margin="0.5, 0.5, 10, 0.5"/>
+                               Margin="0.5, 0.5, 10, 0.5"/>-->
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="CommentTemplate">
                 <ViewCell>
-                    <StackLayout Padding="10,5,10,5">
-                        <Label Text="{Binding Name}" 
-                                               FontSize="16"
-                                               FontAttributes="Bold"/>
-                        <Label Text="{Binding Message}" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding CreatedDate}"
-                                                   HorizontalOptions="EndAndExpand"/>
+                    <Frame Grid.Column="0"
+                           CornerRadius="10"
+                           Padding="0, 5"
+                           Margin="10, 4"
+                           BackgroundColor="{DynamicResource CommentBackgroundColor}"
+                           HorizontalOptions="FillAndExpand">
+                        <StackLayout Padding="10,5,10,5"
+                                     HorizontalOptions="FillAndExpand">
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+                                <AbsoluteLayout HorizontalOptions="Start"
+                                                VerticalOptions="Center"
+                                                Padding="0">
+                                    <controls:CircleImage Aspect="AspectFill"
+                                          WidthRequest="35"
+                                          HeightRequest="35"
+                                          Source="{Binding ImageLocation}"/>
+                                </AbsoluteLayout>
+                                <Label Text="{Binding Name}" 
+                                       VerticalOptions="Center"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       LineBreakMode="TailTruncation"/>
+                            </StackLayout>
+                            <Label Text="{Binding Message}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding CreatedDate}"
+                                       HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
+                    </Frame>
                 </ViewCell>
             </DataTemplate>
             <local:HelpRequestDataTemplateSelector x:Key="DataTemplateSelector"
@@ -71,7 +93,8 @@
             <StackLayout Orientation="Horizontal"
                          Spacing="0"
                          x:Name="ProfileLayout"
-                         HorizontalOptions="FillAndExpand">
+                         HorizontalOptions="FillAndExpand"
+                         BackgroundColor="#1976D2">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnImageButtonClicked"/>
                 </StackLayout.GestureRecognizers>
@@ -84,13 +107,24 @@
                                           HeightRequest="50"
                                           Source="{Binding Creator.ProfilePictureLocation}"/>
                 </AbsoluteLayout>
-                <Label Text="{Binding HelpRequestModel.Name}"
-                       VerticalOptions="CenterAndExpand" 
-                       HorizontalOptions="Start"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       TextColor="{DynamicResource PrimaryTextColor}"
-                       InputTransparent="True"/>
+                <StackLayout VerticalOptions="Center"
+                             Spacing="0">
+                    <Label Text="{Binding HelpRequestModel.Name}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource PrimaryTextColor}"
+                           InputTransparent="True"
+                           Margin="10, 0, 0, 0"/>
+                    <Label Text="{Binding HelpRequestModel.Date}"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           FontSize="12"
+                           TextColor="{DynamicResource PrimaryTextColor}"
+                           InputTransparent="True"
+                           Margin="10, 0, 0, 0"/>
+                </StackLayout>
             </StackLayout>
 
             <ListView x:Name="CommentList"
@@ -103,7 +137,8 @@
                               HorizontalOptions="Fill"
                               ItemTemplate="{StaticResource DataTemplateSelector}"/>
                     
-            <Grid HorizontalOptions="StartAndExpand">
+            <Grid HorizontalOptions="StartAndExpand"
+                  Padding="5, 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
@@ -132,9 +167,11 @@
                            x:Name="FakeEntry"
                            Focused="FakeEntry_Focused"/>
                     <Button Text="Siųsti"
+                            ContentLayout="Right,20" Image="@drawable/ic_send"
                             InputTransparent="True"
                             Clicked="PostButton_Clicked"
                             x:Name="PostButton"
+                            Margin="0, 4"
                             AbsoluteLayout.LayoutBounds="0, 0"/>
                 </AbsoluteLayout>
             </Grid>

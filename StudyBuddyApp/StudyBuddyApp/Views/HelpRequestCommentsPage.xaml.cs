@@ -25,6 +25,7 @@ namespace StudyBuddyApp.Views
         public ObservableCollection<object> Items { get; set; }
         readonly HelpRequestCommentsModel viewModel;
         private long sendEditorLastFocused = 0;
+        Dictionary<string, User> users;
         public HelpRequestCommentsPage(HelpRequestCommentsModel helpRequestCommentsModel)
         {
             InitializeComponent();
@@ -34,7 +35,6 @@ namespace StudyBuddyApp.Views
             CommentList.ItemsSource = Items;
             Items.Add(viewModel);
             BindingContext = viewModel;
-            PostButton.IsEnabled = false;
             if (viewModel.Creator.Username == LocalUserManager.LocalUser.Username)
             {
                 deleteButton.IsEnabled = true;
@@ -83,6 +83,7 @@ namespace StudyBuddyApp.Views
                 {
                     if (status == CommentGetStatus.Success)
                     {
+                        this.users = users;
                         Items.Clear();
                         Items.Add(viewModel);
                         comments.ForEach(comment =>
@@ -93,7 +94,8 @@ namespace StudyBuddyApp.Views
                                 Username = comment.Username,
                                 Message = comment.Message,
                                 CreatedDate = comment.CreatedDate.ToFullDate(false),
-                                Comment = comment
+                                Comment = comment,
+                                ImageLocation = users[comment.Username].ProfilePictureLocation
                             });
                         });
 
@@ -117,13 +119,24 @@ namespace StudyBuddyApp.Views
         {
             if (e.Item == null)
                 return;
-
+            if(e.Item is HelpRequestCommentsModel)
+            {
+                ((ListView)sender).SelectedItem = null;
+                return;
+            }
             var selectedItem = ((ListView)sender).SelectedItem as CommentModel;
 
             if(selectedItem.Username.Equals(LocalUserManager.LocalUser.Username))
             {
                 if (await DisplayActionSheet("Ar norite ištrinti komentarą?", "Taip", "Ne") == "Taip")
                 RemoveComment(selectedItem.Comment.CommentID);
+            }
+            else
+            {
+                ((ListView)sender).IsEnabled = false;
+                await ProfileOpener.OpenProfile(users[selectedItem.Username]);
+                ((ListView)sender).IsEnabled = true;
+
             }
             ((ListView)sender).SelectedItem = null;
         }
@@ -169,7 +182,8 @@ namespace StudyBuddyApp.Views
                             Username = comment.Username,
                             Message = comment.Message,
                             CreatedDate = DateTime.Now.ToFullDate(),
-                            Comment = comment
+                            Comment = comment,
+                            ImageLocation = LocalUserManager.LocalUser.ProfilePictureLocation
                         });
                         CommentList.ScrollTo(Items.LastOrDefault(), ScrollToPosition.End, false);
                     }
@@ -222,7 +236,7 @@ namespace StudyBuddyApp.Views
 
         private void SendEditor_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PostButton.IsEnabled = SendEditor.Text.Length > 0;
+            //PostButton.IsEnabled = SendEditor.Text.Length > 0;
         }
     }
 }
