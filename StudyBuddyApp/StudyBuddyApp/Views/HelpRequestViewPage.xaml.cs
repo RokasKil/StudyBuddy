@@ -11,7 +11,6 @@ using StudyBuddyApp.ViewModels;
 using StudyBuddyShared.SystemManager;
 using StudyBuddyApp.Utility;
 using StudyBuddyShared.HelpRequestSystem;
-using StudyBuddyShared.SystemManager;
 
 namespace StudyBuddyApp.Views
 {
