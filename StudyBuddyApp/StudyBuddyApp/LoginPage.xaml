@@ -10,38 +10,54 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" >
-            <Image 
-                Source="{DynamicResource LogoImage}"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
-            <Entry Placeholder="{Binding Username}"
-                x:Name="UsernameEntry"
-                HorizontalTextAlignment="Center"
-                ReturnType="Next"
-                VerticalOptions="Center" 
-                WidthRequest="200"
-                HorizontalOptions="CenterAndExpand" />
-            <Entry Placeholder="{Binding Password}"
-                IsPassword="True"
-                x:Name="PasswordEntry"
-                ReturnType="Go"
-                HorizontalTextAlignment="Center"
-                VerticalOptions="Center" 
-                WidthRequest="200"
-                HorizontalOptions="CenterAndExpand" />
-            <Label x:Name="RegisterLabel" 
-                   VerticalOptions="Center" 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout VerticalOptions="Center" 
+                         Padding="20"
+                         Grid.Row="0">
+                <Image Source="{DynamicResource LogoImage}"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="CenterAndExpand" />
+                <Entry Placeholder="{Binding Username}"
+                       x:Name="UsernameEntry"
+                       HorizontalTextAlignment="Center"
+                       ReturnType="Next"
+                       VerticalOptions="Center" 
+                       WidthRequest="200"
+                       HorizontalOptions="CenterAndExpand" />
+                <Entry Placeholder="{Binding Password}"
+                       IsPassword="True"
+                       x:Name="PasswordEntry"
+                       ReturnType="Go"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center" 
+                       WidthRequest="200"
+                       HorizontalOptions="CenterAndExpand" />
+                <Button Text="{Binding Login}"
+                        HorizontalOptions="Center"
+                        x:Name="LoginButton"
+                        Clicked="PasswordEntryCompleted"
+                        Margin="0, 10, 0, 0"/>
+                <Label Text="Status"
+                       x:Name="StatusLabel"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="CenterAndExpand"
+                       IsVisible="False"/>
+                <ActivityIndicator x:Name="LoadingIndicator"
+                                   VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Grid.Row="1" VerticalOptions="End" Padding="20">
+                <Label x:Name="RegisterLabel" 
+                   VerticalOptions="End" 
                    HorizontalOptions="CenterAndExpand"
                    Text="{Binding Registration}"
                    TextDecorations="Underline"/>
-            <Label Text="Status"
-                x:Name="StatusLabel"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand"
-                IsVisible="False"/>
-            <ActivityIndicator x:Name="LoadingIndicator"
-                />
-        </StackLayout>
+            </StackLayout>
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

@@ -86,6 +86,10 @@ namespace StudyBuddyApp
                 return;
             }
             string action = await DisplayActionSheet("Iš kur norite įkelti nuotrauką?", "Atšaukti", null, "Iš telefono", "Nusifotografuoti dabar");
+            if(action == null)
+            {
+                return;
+            }
             photoFromCamera = action.Equals("Nusifotografuoti dabar");
             /*if you want to take a picture use StoreCameraMediaOptions instead of PickMediaOptions*/
             var cameraMediaOptions = new StoreCameraMediaOptions()

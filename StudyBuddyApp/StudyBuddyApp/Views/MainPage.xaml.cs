@@ -17,7 +17,7 @@ namespace StudyBuddyApp.Views
     {
         private bool appeared = false;
 
-        Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
+        public Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
         public MainPage()
         {
             InitializeComponent();

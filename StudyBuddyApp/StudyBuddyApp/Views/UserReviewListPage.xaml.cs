@@ -20,7 +20,7 @@ namespace StudyBuddyApp.Views
     {
         UserReviewListViewModel viewModel;
         public ObservableCollection<UserReviewModel> Items { get; set; }
-        ItemTappedEventArgs e;
+        public int MyReviewIndex = -1;
         public UserReviewListPage(UserReviewListViewModel viewModel)
         {
             InitializeComponent();
@@ -29,12 +29,12 @@ namespace StudyBuddyApp.Views
             GetUserReviews();
             UserReviewsList.ItemsSource = Items;
             buttonDelete.IsEnabled = false;
+            buttonDelete.Text = "";
         }
 
         private void UserReviewList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            buttonDelete.IsEnabled = (Items[e.ItemIndex].Username.Equals(LocalUserManager.LocalUser.Username));
-            this.e = e;
+            UserReviewsList.SelectedItem = null;
         }
         private void GetUserReviews()
         {
@@ -45,9 +45,17 @@ namespace StudyBuddyApp.Views
                 {
                     if (status == UserReviewsGetStatus.Success)
                     {
+                        buttonDelete.IsEnabled = false;
+                        buttonDelete.Text = "";
                         Items.Clear();
                         userReviews.ForEach(UserReview =>
                         {
+                            if (UserReview.Username == LocalUserManager.LocalUser.Username)
+                            {
+                                buttonDelete.IsEnabled = true;
+                                buttonDelete.Text = viewModel.Delete;
+                                MyReviewIndex = Items.Count;
+                            }
                             Items.Add(
                                 new UserReviewModel()
                                 {
@@ -72,6 +80,7 @@ namespace StudyBuddyApp.Views
         public void DeleteReview()
         {
             buttonDelete.IsEnabled = false;
+            buttonDelete.Text = "";
             var userReviewRemover = UserReviewSystemManager.NewUserReviewRemover();
             userReviewRemover.Result += (status, userReview) =>
             {
@@ -79,7 +88,7 @@ namespace StudyBuddyApp.Views
                 {
                     if (status == UserReviewManageStatus.Success)
                     {
-                        Items.RemoveAt(e.ItemIndex);
+                        Items.RemoveAt(MyReviewIndex);
                     }
                     else
                     {

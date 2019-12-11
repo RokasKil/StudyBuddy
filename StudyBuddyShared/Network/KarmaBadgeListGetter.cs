@@ -52,7 +52,7 @@ namespace StudyBuddyShared.Network
 
         private void getLogic()
         {
-            JObject obj = new APICaller("getKarmaBadges.php").addParam("privateKey", PrivateKey).call();
+            JObject obj = new APICaller("getKarmaBadges.php").AddParam("privateKey", PrivateKey).Call();
             //Console.WriteLine(obj);
             if (obj["status"].ToString() == "success")
             {

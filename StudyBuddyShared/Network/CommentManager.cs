@@ -74,17 +74,17 @@ namespace StudyBuddyShared.Network
             if (post)
             {
                 obj = new APICaller("postHelpRequestComment.php")
-                .addParam("privateKey", PrivateKey)
-                .addParam("id", comment.HelpRequestID.ToString())
-                .addParam("message", comment.Message)
-                .call();
+                .AddParam("privateKey", PrivateKey)
+                .AddParam("id", comment.HelpRequestID.ToString())
+                .AddParam("message", comment.Message)
+                .Call();
             }
             else
             {
                 obj = new APICaller("removeHelpRequestComment.php")
-                .addParam("privateKey", PrivateKey)
-                .addParam("id", comment.CommentID.ToString())
-                .call();
+                .AddParam("privateKey", PrivateKey)
+                .AddParam("id", comment.CommentID.ToString())
+                .Call();
             }
             if (obj["status"].ToString() == "success" && post)
             {

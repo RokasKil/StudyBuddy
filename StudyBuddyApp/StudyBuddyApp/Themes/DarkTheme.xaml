@@ -15,5 +15,6 @@
     <Color x:Key="ButtonColor">#2196F3</Color>
     <Color x:Key="TransparentColor">Transparent</Color>
     <Color x:Key="PickerTitleColor">Gray</Color>
+    <Color x:Key="CommentBackgroundColor">Gray</Color>
     <FileImageSource x:Key="LogoImage" File="@drawable/ic_study_buddy_white"></FileImageSource>
 </ResourceDictionary>

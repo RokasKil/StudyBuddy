@@ -15,12 +15,12 @@ namespace StudyBuddyShared.CommentSystem
         FieldsMissing
     }
 
-    public delegate void GetCommentDelegate(CommentGetStatus status, List<Comment> comments);
+    public delegate void GetCommentDelegate(CommentGetStatus status, List<Comment> comments, Dictionary<string, User> users);
 
     public interface ICommentGetter : IPrivateKey
     {
         GetCommentDelegate Result { get; set; } // Result delegate
 
-        void Get(int helpRequestID); //Get comments
+        void Get(int helpRequestID, bool getUsers = true); //Get comments
     }
 }

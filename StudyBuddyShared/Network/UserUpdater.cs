@@ -62,11 +62,11 @@ namespace StudyBuddyShared.Network
 
         private void getLogic(string firstName, string lastName)
         {
-            JObject obj = new APICaller("updateProfile.php").addParam("privateKey", PrivateKey)
-                                                            .addParam("firstName", firstName)
-                                                            .addParam("lastName", lastName)
-                                                            .addParam("gender", "0")
-                                                            .call();
+            JObject obj = new APICaller("updateProfile.php").AddParam("privateKey", PrivateKey)
+                                                            .AddParam("firstName", firstName)
+                                                            .AddParam("lastName", lastName)
+                                                            .AddParam("gender", "0")
+                                                            .Call();
             if (obj["status"].ToString() == "success")
             {
                 //teehee

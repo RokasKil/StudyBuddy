@@ -28,7 +28,7 @@
                     <controls:CircleImage Aspect="AspectFill"
                                           WidthRequest="80"
                                           HeightRequest="80"
-                                          Source="{Binding ImageLocation}"
+                                          Source="{Binding KarmaBadgeLocation}"
                                           AbsoluteLayout.LayoutFlags="PositionProportional"
                                           AbsoluteLayout.LayoutBounds="1,1,80,80"/>
                 </AbsoluteLayout>
@@ -42,6 +42,13 @@
                    FontSize="Title"
                    FontAttributes="Bold"/>
                 <Label
+                Text="{Binding KarmaBadgeTitle}"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                FontSize="Medium"
+                Margin="0, -10, 0, 0"
+                BackgroundColor="Transparent"/>
+                <Label
                 Text="{Binding KarmaDescription}"
                 HorizontalOptions="Center"
                 VerticalOptions="Start"
@@ -51,7 +58,7 @@
                 Progress="{Binding KarmaPointsForBar}"
 
                 MinimumHeightRequest="50"
-                Margin="20,10,20,20"/>
+                Margin="20,5,20,15"/>
 
                 <Button
                 x:Name="StartConversation"

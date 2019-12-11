@@ -9,8 +9,10 @@ namespace StudyBuddyApp.Models
     {
         public int HelpRequestID { get; set; }
         public string Message { get; set; }
+        public string Name { get; set; }
         public string Username { get; set; }
         public string CreatedDate { get; set; }
+        public string ImageLocation { get; set; }
         public Comment Comment { get; set; }
     }
 }

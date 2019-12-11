@@ -22,18 +22,19 @@ namespace StudyBuddyApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HelpRequestCommentsPage : ContentPage
     {
-        public ObservableCollection<CommentModel> Items { get; set; }
+        public ObservableCollection<object> Items { get; set; }
         readonly HelpRequestCommentsModel viewModel;
         private long sendEditorLastFocused = 0;
+        Dictionary<string, User> users;
         public HelpRequestCommentsPage(HelpRequestCommentsModel helpRequestCommentsModel)
         {
             InitializeComponent();
-            Items = new ObservableCollection<CommentModel> { };
+            Items = new ObservableCollection<object> { };
             viewModel = helpRequestCommentsModel;
             GetComments(viewModel.HelpRequestModel.HelpRequest.Id);
             CommentList.ItemsSource = Items;
+            Items.Add(viewModel);
             BindingContext = viewModel;
-            PostButton.IsEnabled = false;
             if (viewModel.Creator.Username == LocalUserManager.LocalUser.Username)
             {
                 deleteButton.IsEnabled = true;
@@ -45,7 +46,7 @@ namespace StudyBuddyApp.Views
         }
         public async void OnImageButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ProfileViewPage(new ViewModels.ProfileViewViewModel(viewModel.Creator)));
+            await ProfileOpener.OpenProfile(viewModel.Creator);
         }
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -76,22 +77,25 @@ namespace StudyBuddyApp.Views
         void GetComments(int helpRequestID)
         {
             var commentGetter = CommentSystemManager.NewCommentGetter();
-            commentGetter.Result += (status, comments) =>
+            commentGetter.Result += (status, comments, users) =>
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     if (status == CommentGetStatus.Success)
                     {
-
+                        this.users = users;
                         Items.Clear();
+                        Items.Add(viewModel);
                         comments.ForEach(comment =>
                         {
                             Items.Add(new CommentModel
                             {
+                                Name = users[comment.Username].FirstName + " " + users[comment.Username].LastName,
                                 Username = comment.Username,
                                 Message = comment.Message,
                                 CreatedDate = comment.CreatedDate.ToFullDate(false),
-                                Comment = comment
+                                Comment = comment,
+                                ImageLocation = users[comment.Username].ProfilePictureLocation
                             });
                         });
 
@@ -115,13 +119,24 @@ namespace StudyBuddyApp.Views
         {
             if (e.Item == null)
                 return;
-
+            if(e.Item is HelpRequestCommentsModel)
+            {
+                ((ListView)sender).SelectedItem = null;
+                return;
+            }
             var selectedItem = ((ListView)sender).SelectedItem as CommentModel;
 
             if(selectedItem.Username.Equals(LocalUserManager.LocalUser.Username))
             {
                 if (await DisplayActionSheet("Ar norite ištrinti komentarą?", "Taip", "Ne") == "Taip")
                 RemoveComment(selectedItem.Comment.CommentID);
+            }
+            else
+            {
+                ((ListView)sender).IsEnabled = false;
+                await ProfileOpener.OpenProfile(users[selectedItem.Username]);
+                ((ListView)sender).IsEnabled = true;
+
             }
             ((ListView)sender).SelectedItem = null;
         }
@@ -161,6 +176,16 @@ namespace StudyBuddyApp.Views
                     if (status == CommentManagerStatus.Success)
                     {
                         DependencyService.Get<IToast>().LongToast("Komentaras sėkmingai išsiųstas");
+                        Items.Add(new CommentModel
+                        {
+                            Name = LocalUserManager.LocalUser.FirstName + " " + LocalUserManager.LocalUser.LastName,
+                            Username = comment.Username,
+                            Message = comment.Message,
+                            CreatedDate = DateTime.Now.ToFullDate(),
+                            Comment = comment,
+                            ImageLocation = LocalUserManager.LocalUser.ProfilePictureLocation
+                        });
+                        CommentList.ScrollTo(Items.LastOrDefault(), ScrollToPosition.End, false);
                     }
                     else
                     {
@@ -176,7 +201,7 @@ namespace StudyBuddyApp.Views
                 HelpRequestID = viewModel.HelpRequestModel.HelpRequest.Id,
                 Username = LocalUserManager.LocalUser.Username
             });
-            GetComments(viewModel.HelpRequestModel.HelpRequest.Id);
+            SendEditor.Text = "";
         }
 
         private void RemoveComment(int commentID)
@@ -211,7 +236,7 @@ namespace StudyBuddyApp.Views
 
         private void SendEditor_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PostButton.IsEnabled = SendEditor.Text.Length > 0;
+            //PostButton.IsEnabled = SendEditor.Text.Length > 0;
         }
     }
 }

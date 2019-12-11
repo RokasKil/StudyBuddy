@@ -52,13 +52,13 @@ namespace StudyBuddyShared.Network
 
         private void getLogic(bool getUsers, string username)
         {
-            APICaller caller = new APICaller("getReviews.php").addParam("privateKey", PrivateKey).addParam("username", username);
+            APICaller caller = new APICaller("getReviews.php").AddParam("privateKey", PrivateKey).AddParam("username", username);
             if (getUsers)
             {
-                caller.addParam("user", "");
+                caller.AddParam("user", "");
             }
 
-            JObject obj = caller.call();
+            JObject obj = caller.Call();
             //Console.WriteLine(obj);
             if (obj["status"].ToString() == "success")
             {
