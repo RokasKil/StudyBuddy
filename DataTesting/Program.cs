@@ -12,11 +12,15 @@ namespace DataTesting
     {
         static void Main(string[] args)
         {
-            InsertData();
-            SelectWithSelectCommand("Jane","Doe");
+            //InsertData();
+            //SelectWithSelectCommand("Jane","Doe");
             Update();
-            SelectWithSelectCommand("Jack", "Johnson");
+            //SelectWithSelectCommand("Jack", "Johnson");
+
+
+            SelectWithSelectCommand2();
             Console.ReadLine();
+
         }
         public static void InsertData()
         {
@@ -74,6 +78,40 @@ namespace DataTesting
             da.Dispose();
 
             Console.WriteLine(ds.Tables[0].Rows[0]["LastName"]);
+            for (int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+            {
+                Console.Write(ds.Tables[0].Rows[i].ItemArray[1].ToString());
+                Console.Write(" ");
+                Console.WriteLine(ds.Tables[0].Rows[i].ItemArray[2].ToString());
+            }
+        }
+
+        static public void SelectWithSelectCommand2()
+        {
+            string myCon = @"Data Source = (localdb)\mssqllocaldb; Integrated Security = True";
+
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = myCon;
+            cn.Open();
+            SqlDataAdapter da = new SqlDataAdapter();
+
+            SqlCommand command = new SqlCommand("SELECT Id, FirstName, LastName FROM Person", cn);
+
+            da.SelectCommand = command;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Person");
+
+            cn.Close();
+            da.Dispose();
+
+            Console.WriteLine(ds.Tables[0].Rows[0]["LastName"]);
+            for (int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+            {
+                Console.Write(ds.Tables[0].Rows[i].ItemArray[1].ToString());
+                Console.Write(" ");
+                Console.WriteLine(ds.Tables[0].Rows[i].ItemArray[2].ToString());
+            }
         }
 
         static public void Update()
@@ -99,22 +137,23 @@ namespace DataTesting
             DataSet ds = new DataSet();
             da.Fill(ds, "Person");
 
-            ds.Tables[0].Rows[0]["FirstName"] = "Jack";
-            ds.Tables[0].Rows[0]["LastName"] = "Johnson";
+            ds.Tables[0].Rows[5]["FirstName"] = "Jack";
+            ds.Tables[0].Rows[5]["LastName"] = "Johnson";
 
             da.Update(ds.Tables[0]);
             cn.Close();
             da.Dispose();
         }
-
+        /*
         private DataTable CopyDataTable(DataTable table)
         {
             // Create an object variable for the copy.
             DataTable copyDataTable;
             copyDataTable = table.Copy();
 
-            return copyDataTable
+            return copyDataTable;
             // Insert code to work with the copy.
         }
+        */
     }
 }
